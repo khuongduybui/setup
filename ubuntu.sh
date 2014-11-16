@@ -2,7 +2,7 @@
 apt-get update
 apt-get upgrade -y
 
-apt-get install -y build-essential dkms debhelper vim nodejs npm git expect-dev gdebi monodevelop
+apt-get install build-essential dkms debhelper vim nodejs npm git monodevelop
 
 echo '#! /bin/sh' > bin/install-chrome.sh
 echo 'cd /tmp' >> bin/install-chrome.sh
@@ -35,7 +35,7 @@ echo 'apt-get update' >> bin/install-game.sh
 echo 'apt-get install -y wine playonlinux' >> bin/install-game.sh
 
 echo '#! /bin/sh' > bin/install-X-utils.sh
-echo 'apt-get install -y network-manager-vpnc mesa-utils ibus-unikey' >> bin/install-X-utils.sh
+echo 'apt-get install -y network-manager-vpnc mesa-utils expect-dev gdebi ibus-unikey' >> bin/install-X-utils.sh
 
 which gdm && sh bin/install-X.utils.sh
 which gdm && sh bin/install-chrome.sh
