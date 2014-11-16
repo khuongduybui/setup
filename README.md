@@ -15,6 +15,6 @@ sudo apt-get install -y git
 
 __Step 3__. Download and run the setup scripts
 ```sh
-git clone ssh://git@bitbucket.org:khuongduybui/linux.git ~/setup
+git clone git@bitbucket.org:khuongduybui/linux.git ~/setup
 sudo sh ~/setup/setup.sh
 ```
