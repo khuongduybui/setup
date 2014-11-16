@@ -13,7 +13,10 @@ test -d ~/code/test || mkdir ~/code/test
 
 npm install -g mocha express-generator nodemon
 
+echo ''
+echo '=== Additional modules ==='
 echo 'To install Skype, run install-skype.sh'
 echo 'To install Viber, run install-viber.sh'
 echo 'To install TeamViewer, run install-teamviewer.sh'
 echo 'To install PlayOnLinux and Steam, run install-game.sh'
+echo '=== Goodbye ==='
