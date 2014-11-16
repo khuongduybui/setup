@@ -13,7 +13,7 @@ test -d ~/code || mkdir ~/code
 test -d ~/code/test || mkdir ~/code/test
 
 echo "Installing NPM tools..."
-npm install -g mocha express-generator nodemon 2&>1 > /dev/null
+npm install -g mocha express-generator nodemon > /dev/null
 
 echo ''
 echo '=== Additional modules ==='
