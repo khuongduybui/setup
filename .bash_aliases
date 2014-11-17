@@ -1,7 +1,7 @@
 #Global
 ##Env var
-export EDITOR=vim
-alias e=vim
+export EDITOR=vi
+alias e=vi
 alias reload='. ~/.bash_aliases';
 alias settings='e ~/.bash_aliases;reload';
 ##Functions
