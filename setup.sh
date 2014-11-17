@@ -6,6 +6,8 @@ test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 ln -s ~/setup/.bash_aliases ~/
 test -d ~/bin || mkdir ~/bin
 
+wget -O - https://deb.nodesource.com/setup | sudo bash -
+
 which apt-get && echo "Ubuntu detected. Installing core modules..." && sh ~/setup/ubuntu.sh > /dev/null
 
 chmod +x bin/*.sh
