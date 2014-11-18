@@ -11,7 +11,7 @@ alias backup='which btrfs && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume sna
 ##Generic
 alias code='cd ~/code;cd';
 alias g='git status';
-alias gdf='git diff';
+alias gdf='git diff -b';
 alias gco='git checkout';
 alias gbd='git branch -d';
 alias gbD='git branch -D';

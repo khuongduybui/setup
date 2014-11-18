@@ -1,8 +1,18 @@
 #! /bin/sh
+apt-add-repository -y ppa:daniel.pavel/solaar
+
 apt-get update
 apt-get upgrade -y
 
-apt-get install -y build-essential dkms debhelper vim byobu nodejs git monodevelop
+apt-get install -y \
+  build-essential \
+  dkms \
+  debhelper \
+  vim \
+  byobu \
+  nodejs \
+  git \
+  monodevelop \
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
 echo 'cd /tmp' >> ~/bin/install-chrome.sh
@@ -35,7 +45,12 @@ echo 'apt-get update' >> ~/bin/install-game.sh
 echo 'apt-get install -y wine playonlinux' >> ~/bin/install-game.sh
 
 echo '#! /bin/sh' > ~/bin/install-X-utils.sh
-echo 'apt-get install -y network-manager-vpnc mesa-utils expect-dev gdebi ibus-unikey' >> ~/bin/install-X-utils.sh
+echo 'apt-get install -y network-manager-vpnc mesa-utils expect-dev gdebi ibus-unikey solaar' >> ~/bin/install-X-utils.sh
 
-which gdm && sh ~/bin/install-X-utils.sh
+echo '#! /bin/sh' > ~/bin/install-noX-utils.sh
+echo 'git clone https://git.lekensteyn.nl/ltunify.git /tmp/ltunify' >> ~/bin/install-noX-utils.sh
+echo 'cd /tmp/ltunify' >> ~/bin/install-noX-utils.sh
+echo 'make install-home' >> ~/bin/install-noX-utils.sh
+
+which gdm && sh ~/bin/install-X-utils.sh || sh ~/bin/install-noX-utils.sh
 which gdm && (which google-chrome || sh ~/bin/install-chrome.sh)
