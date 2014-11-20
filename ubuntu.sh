@@ -1,5 +1,6 @@
 #! /bin/sh
 apt-add-repository -y ppa:daniel.pavel/solaar
+apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
 
 apt-get update
 apt-get upgrade -y
