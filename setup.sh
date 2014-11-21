@@ -1,6 +1,7 @@
 #! /bin/sh
 echo "Setting up global preferences..."
 echo 'export MESA_EXTENSION_OVERRIDE="-GL_EXT_texture_sRGB_decode -GL_ARB_draw_elements_base_vertex -GL_ARB_map_buffer_range"' >> /etc/profile.d/LoLFix.sh
+echo 'export NSS_SSL_CBC_RANDOM_IV=0' >> /etc/profile.d/PidginSipeFix.sh
 
 git config --global user.name "Duy K. Bui"
 git config --global user.email "duy@buifamily.info"

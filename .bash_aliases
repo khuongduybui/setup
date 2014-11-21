@@ -1,5 +1,7 @@
 #Global
 ##Env var
+test -d /apollo && \
+  export PATH="/apollo/env/SDETools/bin:$PATH"
 export EDITOR=vi
 alias e=vi
 alias reload='. ~/.bash_aliases';
@@ -9,7 +11,7 @@ alias backup='which btrfs && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume sna
 
 #Development
 ##Generic
-alias code='cd ~/code;cd';
+alias code='cd ~/code;test -d src && cd src;cd';
 alias g='git status';
 alias gdf='git diff -b';
 alias gco='git checkout';
@@ -19,3 +21,6 @@ alias gbD='git branch -D';
 ##OpenFISMA
 
 ##Sniper
+
+#Init
+_byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
