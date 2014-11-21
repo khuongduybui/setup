@@ -7,6 +7,9 @@ git config --global user.name "Duy K. Bui"
 git config --global user.email "duy@buifamily.info"
 git config --global color.ui true
 
+wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -O ~/.git.sh > /dev/null
+wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O- | tee -a ~/.git.sh > /dev/null
+
 test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 ln -s ~/setup/.bash_aliases ~/
 

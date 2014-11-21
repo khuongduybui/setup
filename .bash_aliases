@@ -23,4 +23,5 @@ alias gbD='git branch -D';
 ##Sniper
 
 #Init
+test -f ~/.git.sh && . ~/.git.sh && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]? "
 _byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
