@@ -24,6 +24,8 @@ test -f /etc/issue &&\
 
 chmod +x bin/*.sh
 
+which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
+
 test -d ~/code || mkdir ~/code
 test -d ~/code/test || mkdir ~/code/test
 
