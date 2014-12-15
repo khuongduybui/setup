@@ -7,7 +7,8 @@ test -d /etc/profile.d && \
 which git && \
   git config --global user.name "Duy K. Bui" && \
   git config --global user.email "duy@buifamily.info" && \
-  git config --global color.ui true
+  git config --global color.ui true && \
+  git config --global push.default simple
 
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
