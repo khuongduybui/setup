@@ -2,6 +2,8 @@
 apt-add-repository -y ppa:daniel.pavel/solaar
 apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
 
+wget -O - https://deb.nodesource.com/setup | sudo bash - > /dev/null
+
 apt-get update
 apt-get upgrade -y
 

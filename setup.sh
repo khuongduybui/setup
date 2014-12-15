@@ -1,26 +1,30 @@
 #! /bin/sh
 echo "Setting up global preferences..."
-echo 'export MESA_EXTENSION_OVERRIDE="-GL_EXT_texture_sRGB_decode -GL_ARB_draw_elements_base_vertex -GL_ARB_map_buffer_range"' >> /etc/profile.d/LoLFix.sh
-echo 'export NSS_SSL_CBC_RANDOM_IV=0' >> /etc/profile.d/PidginSipeFix.sh
+test -d /etc/profile.d && \
+  echo 'export MESA_EXTENSION_OVERRIDE="-GL_EXT_texture_sRGB_decode -GL_ARB_draw_elements_base_vertex -GL_ARB_map_buffer_range"' >> /etc/profile.d/LoLFix.sh && \
+  echo 'export NSS_SSL_CBC_RANDOM_IV=0' >> /etc/profile.d/PidginSipeFix.sh
 
-git config --global user.name "Duy K. Bui"
-git config --global user.email "duy@buifamily.info"
-git config --global color.ui true
+which git && \
+  git config --global user.name "Duy K. Bui" && \
+  git config --global user.email "duy@buifamily.info" && \
+  git config --global color.ui true
 
-wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -O ~/.git.sh > /dev/null
-wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O- | tee -a ~/.git.sh > /dev/null
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
 
 test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 ln -s ~/setup/.bash_aliases ~/
 
 test -d ~/bin || mkdir ~/bin
 
-wget -O - https://deb.nodesource.com/setup | sudo bash - > /dev/null
-
 test -f /etc/issue &&\
   grep -i ubuntu /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
   sh ~/setup/ubuntu.sh > /dev/null
+
+which sw_vers &&\
+  echo "OS X detected. Installing core modules..." &&\
+  sh ~/setup/mac.sh
 
 chmod +x bin/*.sh
 
@@ -32,10 +36,8 @@ test -d ~/code/test || mkdir ~/code/test
 echo "Installing NPM tools..."
 npm install -g mocha express-generator nodemon > /dev/null
 
-echo ''
+reload
+echo 'Core modules have been installed.'
 echo '=== Additional modules ==='
-echo 'To install Skype, run install-skype.sh'
-echo 'To install Viber, run install-viber.sh'
-echo 'To install TeamViewer, run install-teamviewer.sh'
-echo 'To install PlayOnLinux and Steam, run install-game.sh'
+ls bin/*.sh
 echo '=== Goodbye ==='
