@@ -46,7 +46,11 @@ function mvm() {
   test -d /Users/duybui && sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/apollo /apollo;
   export PATH=/apollo/env/SDETools/bin:$PATH;
 }
-alias aps='test -d /apollo && PATH="/apollo/env/SDETools/bin:$PATH" bash -i || echo "ERR: apollo not found"';
+function aps() {
+  test -d /apollo.local && PATH="/apollo.local/env/SDETools/bin:$PATH" bash -i;
+  test -d /apollo.local || (test -d /apollo && PATH="/apollo/env/SDETools/bin:$PATH" bash -i);
+  test -d /apollo.local || test -d /apollo || echo "ERR: apollo not found";
+}
 function log() {
   test -d /apollo/env/$1/logs || return;
   test -f /apollo/env/$1/logs/$2.log || ls -lahF /apollo/env/$1/logs/*.log;
