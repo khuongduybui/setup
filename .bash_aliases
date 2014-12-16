@@ -33,6 +33,9 @@ alias gbd='git branch -d';
 alias gbD='git branch -D';
 
 ##Amazon
+alias pwe='pwd | grep -o "[^/]*$"';
+alias ape='/apollo/bin/env -e `pwe`';
+
 alias vm='ssh -fY duybui-vm.aka.amazon.com "gnome-terminal" 2> /dev/null';
 alias gvm='ssh -fY duybui-vm.aka.amazon.com gnome-panel 2> /dev/null';
 alias svm='ssh -Y duybui-vm.aka.amazon.com bash -i';
@@ -49,9 +52,11 @@ function log() {
   test -f /apollo/env/$1/logs/$2.log || ls -lahF /apollo/env/$1/logs/*.log;
   test -f /apollo/env/$1/logs/$2.log && less /apollo/env/$1/logs/$2.log;
 }
-###Durin
-#alias mdl='sudo mount -t cifs \\\\iad11-va-lm1-2a.ant.amazon.com\\durin_logs . -o username=ANT\\duybui,noexec';
 
+alias activate-host='sudo /apollo/bin/apolloHostControl --status Active';
+alias server='ape brazil-build server';
+
+###Durin
 function mdl() {
   echo "\\\\$1\\durin_logs"
   sudo mount -t cifs "\\\\$1\\durin_logs" . -o username=ANT\\duybui,noexec
@@ -62,6 +67,12 @@ function mdl() {
 ##Sniper
 
 #Init
-test -f ~/.git.sh && . ~/.git.sh && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]\$ "
+PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]\$ "
 which brazil > /dev/null && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\] brazil> " && code
 _byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
+
+
+
+
+#PATH="$PATH:/apollo/env/SDETools/bin";
+
