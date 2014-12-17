@@ -50,7 +50,7 @@ function aps() {
 }
 
 alias pwe='pwd | grep -o "[^/]*$"';
-alias ape='/apollo/bin/env -e `pwe`';
+alias ape='kinit -R; /apollo/bin/env -e `pwe`';
 alias apa='sudo /apollo/bin/runCommand -e `pwe` -a Activate';
 alias apd='sudo /apollo/bin/runCommand -e `pwe` -a Deactivate';
 
@@ -62,6 +62,7 @@ function log() {
 
 alias activate='sudo /apollo/bin/apolloHostControl --status Active';
 alias server='ape brazil-build server';
+alias pkg='ape brazil-build apollo-pkg';
 function pwmysql() {
   e=`pwe`;
   pMaterial=`grep -e '<root source="odin"' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep materialset | sed -e 's/materialset="//' -e 's/"//' -`;
