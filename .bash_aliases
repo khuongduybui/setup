@@ -5,10 +5,10 @@ alias e=vi
 alias reload='. ~/.bash_aliases';
 alias settings='e ~/.bash_aliases;reload';
 alias l='ls -lahF';
-which sw_vers > /dev/null && alias ls='ls -G';
+(which sw_vers > /dev/null 2>&1 && alias ls='ls -G') || alias ls='ls --color';
 
 ##Functions
-alias backup='which btrfs > /dev/null && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume snapshot /mnt/@ /mnt/@_`date +"%Y%m%d%H%M%S"`;sudo umount /mnt) || (echo "This feature requires btrfs.")'
+alias backup='which btrfs > /dev/null 2>&1 && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume snapshot /mnt/@ /mnt/@_`date +"%Y%m%d%H%M%S"`;sudo umount /mnt) || (echo "This feature requires btrfs.")'
 function acc() {
   test -f ~/OneDrive/Essentials/accounts.ini && grep -e $1 ~/OneDrive/Essentials/accounts.ini
 }
@@ -103,6 +103,6 @@ function mdl() {
 #Init
 test -f ~/.git.sh && . ~/.git.sh
 test -f ~/.git.sh && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]\$ "
-test -f ~/.git.sh && which brazil > /dev/null && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\] brazil> " && code
+test -f ~/.git.sh && which brazil > /dev/null 2>&1 && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\] brazil> " && code
 _byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
 
