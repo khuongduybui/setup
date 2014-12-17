@@ -75,14 +75,14 @@ function odin() {
   GET "http://localhost:2009/query?Operation=retrieve&ContentType=JSON&material.materialName=$1&material.materialType=Credential" | tr '{},' '\n\n\n' | sed -n 's/"materialData":"\(.*\)"/\1/p' | base64 -di
 }
 
-function rails-console() {
+function railsconsole() {
   e=`pwe`;
   cd rails-root;
   /apollo/bin/env -e $e brazil-runtime-exec rails console;
   cd -;
 }
 
-function rails-runner() {
+function railsrunner() {
   e=`pwe`;
   cd rails-root;
   /apollo/bin/env -e $e brazil-runtime-exec rails runner ../$1;
