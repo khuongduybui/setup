@@ -35,7 +35,7 @@ alias gbD='git branch -D';
 ##Amazon
 alias vm='ssh -fY duybui-vm.aka.amazon.com "gnome-terminal" 2> /dev/null';
 alias gvm='ssh -fY duybui-vm.aka.amazon.com gnome-panel 2> /dev/null';
-alias svm='ssh -Y duybui-vm.aka.amazon.com bash -i';
+alias svm='ssh -Y duybui-vm.aka.amazon.com';
 function mvm() {
   test -d /home/duybui && sudo mount -t nfs -o proto=tcp,port=2049 duybui-vm.aka.amazon.com:/workplace/duybui /home/duybui/code;
   test -d /home/duybui && sudo mount -t nfs -o proto=tcp,port=2049 duybui-vm.aka.amazon.com:/apollo /apollo;
