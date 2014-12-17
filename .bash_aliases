@@ -33,9 +33,6 @@ alias gbd='git branch -d';
 alias gbD='git branch -D';
 
 ##Amazon
-alias pwe='pwd | grep -o "[^/]*$"';
-alias ape='/apollo/bin/env -e `pwe`';
-
 alias vm='ssh -fY duybui-vm.aka.amazon.com "gnome-terminal" 2> /dev/null';
 alias gvm='ssh -fY duybui-vm.aka.amazon.com gnome-panel 2> /dev/null';
 alias svm='ssh -Y duybui-vm.aka.amazon.com bash -i';
@@ -51,14 +48,46 @@ function aps() {
   test -d /apollo.local || (test -d /apollo && PATH="/apollo/env/SDETools/bin:$PATH" bash -i);
   test -d /apollo.local || test -d /apollo || echo "ERR: apollo not found";
 }
+
+alias pwe='pwd | grep -o "[^/]*$"';
+alias ape='/apollo/bin/env -e `pwe`';
+alias apa='sudo /apollo/bin/runCommand -e `pwe` -a Activate';
+alias apd='sudo /apollo/bin/runCommand -e `pwe` -a Deactivate';
+
 function log() {
-  test -d /apollo/env/$1/logs || return;
-  test -f /apollo/env/$1/logs/$2.log || ls -lahF /apollo/env/$1/logs/*.log;
-  test -f /apollo/env/$1/logs/$2.log && less /apollo/env/$1/logs/$2.log;
+  test -d /apollo/env/$1/var/output/logs || return;
+  test -f /apollo/env/$1/var/output/logs/$2 || ls -lahF /apollo/env/$1/var/output/logs/;
+  test -f /apollo/env/$1/var/output/logs/$2 && less /apollo/env/$1/var/output/logs/$2;
 }
 
-alias activate-host='sudo /apollo/bin/apolloHostControl --status Active';
+alias activate='sudo /apollo/bin/apolloHostControl --status Active';
 alias server='ape brazil-build server';
+function pwmysql() {
+  e=`pwe`;
+  pMaterial=`grep -e '<root source="odin"' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep materialset | sed -e 's/materialset="//' -e 's/"//' -`;
+  pw=`odin $pMaterial`
+  db=`grep -e '<database name=' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep name | sed -e 's/name="//' -e 's/"//' -`;
+
+  ape mysql -S /apollo/env/`pwe`/var/mysql/state/mysql.sock -u root -p$pw $db
+}
+
+function odin() {
+  GET "http://localhost:2009/query?Operation=retrieve&ContentType=JSON&material.materialName=$1&material.materialType=Credential" | tr '{},' '\n\n\n' | sed -n 's/"materialData":"\(.*\)"/\1/p' | base64 -di
+}
+
+function rails-console() {
+  e=`pwe`;
+  cd rails-root;
+  /apollo/bin/env -e $e brazil-runtime-exec rails console;
+  cd -;
+}
+
+function rails-runner() {
+  e=`pwe`;
+  cd rails-root;
+  /apollo/bin/env -e $e brazil-runtime-exec rails runner ../$1;
+  cd -;
+}
 
 ###Durin
 function mdl() {
@@ -71,12 +100,8 @@ function mdl() {
 ##Sniper
 
 #Init
-PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]\$ "
-which brazil > /dev/null && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\] brazil> " && code
+test -f ~/.git.sh && . ~/.git.sh
+test -f ~/.git.sh && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\]\$ "
+test -f ~/.git.sh && which brazil > /dev/null && PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$prompt_status\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\033[33;34m\]\$(__git_ps1)\[\e[00m\] brazil> " && code
 _byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
-
-
-
-
-#PATH="$PATH:/apollo/env/SDETools/bin";
 
