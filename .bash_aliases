@@ -22,8 +22,8 @@ function code() {
   test -d ./$1 || return;
   cd ./$1;
 
-  test -d src && test -d src/`ls src` && cd src/`ls src`;
-  test -d ./.git && git status || ls -lahF;
+  test -d src && test -d src/$(ls --color=none src) && cd src/$(ls --color=none src);
+  test -d ./.git && git status || l;
 }
 alias g='git status';
 alias gdf='git diff -b';
