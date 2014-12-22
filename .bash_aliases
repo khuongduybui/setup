@@ -48,8 +48,8 @@ function aps() {
   test -d /apollo.local || test -d /apollo || echo "ERR: apollo not found";
 }
 
-alias pwe='pwd | grep -o "[^/]*$"';
-alias ape='kinit -R; /apollo/bin/env -e `pwe`';
+alias pwe='basename $(pwd)';
+alias ape='/apollo/bin/env -e `pwe`';
 alias apa='sudo /apollo/bin/runCommand -e `pwe` -a Activate';
 alias apd='sudo /apollo/bin/runCommand -e `pwe` -a Deactivate';
 
