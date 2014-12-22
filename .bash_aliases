@@ -41,7 +41,6 @@ function mvm() {
   test -d /home/duybui && sudo mount -t nfs -o proto=tcp,port=2049 duybui-vm.aka.amazon.com:/apollo /apollo;
   test -d /Users/duybui && sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/workplace/duybui /workplace/duybui;
   test -d /Users/duybui && sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/apollo /apollo;
-  export PATH=/apollo/env/SDETools/bin:$PATH;
 }
 function aps() {
   test -d /apollo.local && PATH="/apollo.local/env/SDETools/bin:$PATH" bash -i;
