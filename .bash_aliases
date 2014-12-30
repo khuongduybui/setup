@@ -43,9 +43,14 @@ function mvm() {
   test -d /Users/duybui && sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/apollo /apollo;
 }
 function aps() {
-  test -d /apollo.local && PATH="/apollo.local/env/SDETools/bin:$PATH" bash -i;
-  test -d /apollo.local || (test -d /apollo && PATH="/apollo/env/SDETools/bin:$PATH" bash -i);
-  test -d /apollo.local || test -d /apollo || echo "ERR: apollo not found";
+  if ! [ -d /apollo ]; then
+    echo "ERROR: /apollo not found."
+    return;
+  fi;
+  NEWPATH="$PATH";
+  test -d /apollo/env/SDETools/bin && NEWPATH="/apollo/env/SDETools/bin:$NEWPATH";
+  test -d /apollo/env/envImprovement/bin && NEWPATH="/apollo/env/envImprovement/bin:$NEWPATH";
+  PATH="/apollo/env/SDETools/bin:$PATH" bash -i;
 }
 
 alias pwe='basename $(pwd)';

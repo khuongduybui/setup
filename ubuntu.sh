@@ -8,14 +8,13 @@ apt-get update
 apt-get upgrade -y
 
 apt-get install -y \
-  build-essential \
-  dkms \
-  debhelper \
+  build-essential  dkms debhelper \
   vim \
   byobu \
   nodejs \
   git \
   monodevelop \
+  bluez-hcidump bluez-utils bluez-compat \
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
 echo 'cd /tmp' >> ~/bin/install-chrome.sh
