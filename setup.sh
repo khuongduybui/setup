@@ -13,6 +13,9 @@ which git && \
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
 
+test -f ~/.zsh_aliases && mv ~/.zsh_aliases ~/.zsh_aliases.bak
+ln -s ~/setup/.zsh_aliases ~/
+(test -f ~/.zshrc && grep .zsh_aliases ~/.zshrc > /dev/null 2>&1) || echo "source ~/.zsh_aliases" >> ~/.zshrc
 test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 ln -s ~/setup/.bash_aliases ~/
 
