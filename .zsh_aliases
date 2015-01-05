@@ -49,10 +49,16 @@ function aps() {
     echo "ERROR: /apollo not found."
     return;
   fi;
+
+  if [ -f /apollo/env/envImprovement/var/zshrc ]; then
+    source /apollo/env/envImprovement/var/zshrc;
+    return;
+  fi;
+
   NEWPATH="$PATH";
   test -d /apollo/env/SDETools/bin && NEWPATH="/apollo/env/SDETools/bin:$NEWPATH";
   test -d /apollo/env/envImprovement/bin && NEWPATH="/apollo/env/envImprovement/bin:$NEWPATH";
-  PATH="/apollo/env/SDETools/bin:$PATH" zsh -i;
+  PATH=$NEWPATH zsh -i;
 }
 
 alias pwe='basename $(pwd)';
@@ -109,6 +115,10 @@ function mdl() {
 #Init
 autoload -U colors
 colors
+
+zstyle ':completion:*' menu select
+
+setopt AUTO_PUSHD
 
 PROMPT="%F{blue}%n%f@%F{magenta}%m%f:%F{red}%~/%f"
 test -f ~/.git.zsh && source ~/.git.zsh && setopt PROMPT_SUBST && RPROMPT='%F{green}$(__git_ps1)%f'
