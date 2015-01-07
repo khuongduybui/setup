@@ -31,8 +31,8 @@ function code
 			cd $argv[1]
 			if test -d ./src
 				cd src
-				if test -d ./(ls --color=none)
-					cd (ls --color=none)
+				if test -d ./(command ls)
+					cd (command ls)
 				end
 			end
 		end	

@@ -11,9 +11,11 @@ brew install \
   node \
   byobu \
   fish \
+  autojump \
 
 grep "fish" /etc/shells || echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 ln -s ~/setup/fish-functions ~/.config/fish/functions
+ln -s ~/setup/config.fish ~/.config/fish/
 
 #byobu-enable
 
