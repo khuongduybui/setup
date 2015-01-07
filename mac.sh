@@ -9,14 +9,18 @@ which brew && brew update || install_brew
 
 brew install \
   node \
-  byobu
+  byobu \
+  fish \
 
-byobu-enable
+grep "fish" /etc/shells || echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
+ln -s ~/setup/fish-functions ~/.config/fish/functions
 
-test -f ~/.bash_aliases && \
-test -f ~/.byobu/prompt && \
-grep -e .bash_aliases ~/.byobu/prompt || \
-  echo 'source ~/.bash_aliases' >> ~/.byobu/prompt
+#byobu-enable
+
+#test -f ~/.bash_aliases && \
+#test -f ~/.byobu/prompt && \
+#grep -e .bash_aliases ~/.byobu/prompt || \
+#  echo 'source ~/.bash_aliases' >> ~/.byobu/prompt
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
 echo 'brew cask install google-chrome' >> ~/bin/install-chrome.sh
