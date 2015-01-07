@@ -3,7 +3,11 @@ function settings
 		edit ~/.config/fish/config.fish
 		reload
 	else
-		funced -e "vim -c 'set syntax=fish'" $argv
+		if test -f ~/.config/fish/functions/$argv[1].fish
+			edit ~/.config/fish/functions/$argv[1].fish
+		else
+			funced -e "vim -c 'set syntax=fish'" $argv
+		end
 		funcsave $argv
 	end
 end

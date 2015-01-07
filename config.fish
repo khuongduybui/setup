@@ -9,3 +9,4 @@ set -g fish_user_abbreviations \
 	's=settings' \
 	'e=edit' \
 	'v=view' \
+	'c=code' \
