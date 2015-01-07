@@ -116,9 +116,7 @@ function mdl() {
 #Init
 autoload -U colors
 colors
-
 zstyle ':completion:*' menu select
-
 setopt AUTO_PUSHD
 
 PROMPT="%F{blue}%n%f@%F{magenta}%m%f:%F{red}%~/%f"
@@ -126,5 +124,10 @@ test -f ~/.git.zsh && source ~/.git.zsh && setopt PROMPT_SUBST && RPROMPT='%F{gr
 test -f ~/.git-completion.sh && zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
 which brazil > /dev/null 2>&1 || PROMPT="$PROMPT > " 
 which brazil > /dev/null 2>&1 && PROMPT="$PROMPT %F{blue}brazil%f> "
-#_byobu_sourced=1 which byobu-launch > /dev/null 2>&1 && source `which byobu-launch`
 
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+# Add the following line to your ~/.config/fish/config.fish:
+# . /usr/local/Cellar/autojump/HEAD/etc/autojump.fish
+
+#_byobu_sourced=1 which byobu-launch > /dev/null 2>&1 && source `which byobu-launch`
