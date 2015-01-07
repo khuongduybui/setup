@@ -10,11 +10,13 @@ which git && \
   git config --global color.ui true && \
   git config --global push.default simple
 
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.zsh
+#curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh > ~/.git-completion.zsh
 
 test -f ~/.zsh_aliases && mv ~/.zsh_aliases ~/.zsh_aliases.bak
 ln -s ~/setup/.zsh_aliases ~/
+test -f ~/.zshrc || (echo "autoload -Uz zsh-newuser-install" > ~/.zshrc; echo "zsh-newuser-install" >> ~/.zshrc)
 (test -f ~/.zshrc && grep .zsh_aliases ~/.zshrc > /dev/null 2>&1) || echo "source ~/.zsh_aliases" >> ~/.zshrc
 test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 ln -s ~/setup/.bash_aliases ~/
