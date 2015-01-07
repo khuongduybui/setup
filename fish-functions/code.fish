@@ -13,12 +13,9 @@ function code
 		return
 	end
 	pushd .
-	if test (count $argv) = 0
-		cd ~/code
-		ls
-	else
-		cd ~/code
-		if not test -d ~/code/$argv[1]
+	cd ~/code
+	if not test (count $argv) = 0
+		if not test -d ./$argv[1]
 			set_color $fish_color_error
 			echo -n "ERROR: "
 			set_color normal
@@ -30,9 +27,19 @@ function code
 			set_color $fish_color_param[2]
 			echo "~/code/"
 			set_color normal
-			ls
 		else
 			cd $argv[1]
+			if test -d ./src
+				cd src
+				if test -d ./(ls --color=none)
+					cd (ls --color=none)
+				end
+			end
 		end	
+	end
+	if test -d ./.git
+		git status
+	else
+		l
 	end
 end

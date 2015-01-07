@@ -24,7 +24,7 @@ ln -s ~/setup/.bash_aliases ~/
 test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.bak
 ln -s ~/setup/.vimrc ~/
 test -d ~/.vim/bundle && mkdir -p ~/.vim/bundle
-test -d ~/.vim/bundle/vundle && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
 test -d ~/bin || mkdir ~/bin
 
