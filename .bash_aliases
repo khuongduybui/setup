@@ -1,6 +1,7 @@
 #Global
 ##Env var
 export EDITOR=vi
+test -d $HOME/bin && export PATH="$PATH:$HOME/bin/"
 alias e=vi
 alias reload='. ~/.bash_aliases';
 alias settings='e ~/.bash_aliases;reload';
@@ -8,7 +9,7 @@ alias l='ls -lahF';
 (which sw_vers > /dev/null 2>&1 && alias ls='ls -G') || alias ls='ls --color';
 
 ##Functions
-alias backup='which btrfs > /dev/null 2>&1 && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume snapshot /mnt/@ /mnt/@_`date +"%Y%m%d%H%M%S"`;sudo umount /mnt) || (echo "This feature requires btrfs.")'
+alias backup='which btrfs > /dev/null 2>&1 && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume snapshot /mnt/@ /mnt/@_$(date +"%Y%m%d%H%M%S");sudo umount /mnt) || (echo "This feature requires btrfs.")'
 function acc() {
   test -f ~/OneDrive/Essentials/accounts.ini && grep -e $1 ~/OneDrive/Essentials/accounts.ini
 }
@@ -16,10 +17,18 @@ function acc() {
 #Development
 ##Generic
 function code() {
-  test -d ~/code || return;
+  if ! [ -d ~/code ]; then
+    echo "ERROR: ~/code directory not found.";
+    return;
+  fi
+
   cd ~/code;
  
-  test -d ./$1 || return;
+  if ! [ -d ./$1 ]; then
+    echo "ERROR: ~/code/$1 directory not found.";
+    return;
+  fi
+
   cd ./$1;
 
   test -d src && test -d src/$(ls --color=none src) && cd src/$(ls --color=none src);
@@ -54,26 +63,32 @@ function aps() {
 }
 
 alias pwe='basename $(pwd)';
-alias ape='/apollo/bin/env -e `pwe`';
-alias apa='sudo /apollo/bin/runCommand -e `pwe` -a Activate';
-alias apd='sudo /apollo/bin/runCommand -e `pwe` -a Deactivate';
+alias ape='/apollo/bin/env -e $(pwe)';
+alias apa='sudo /apollo/bin/runCommand -e $(pwe) -a Activate';
+alias apd='sudo /apollo/bin/runCommand -e $(pwe) -a Deactivate';
 
 function log() {
-  test -d /apollo/env/$1/var/output/logs || return;
+  if ! [ -d /apollo/env/$1/var/output/logs ]; then
+    echo "ERROR: log directory not found.";
+    return;
+  fi
+
   test -f /apollo/env/$1/var/output/logs/$2 || ls -lahF /apollo/env/$1/var/output/logs/;
   test -f /apollo/env/$1/var/output/logs/$2 && less /apollo/env/$1/var/output/logs/$2;
 }
+alias pwl='log $(pwe)';
 
 alias activate='sudo /apollo/bin/apolloHostControl --status Active';
 alias server='ape brazil-build server';
 alias pkg='ape brazil-build apollo-pkg';
 function pwmysql() {
-  e=`pwe`;
-  pMaterial=`grep -e '<root source="odin"' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep materialset | sed -e 's/materialset="//' -e 's/"//' -`;
-  pw=`odin $pMaterial`
-  db=`grep -e '<database name=' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep name | sed -e 's/name="//' -e 's/"//' -`;
+  e=$(pwe);
+  pMaterial=$(grep -e '<root source="odin"' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep materialset | sed -e 's/materialset="//' -e 's/"//' -);
 
-  ape mysql -S /apollo/env/`pwe`/var/mysql/state/mysql.sock -u root -p$pw $db
+  pw=$(odin $pMaterial)
+  db=$(grep -e '<database name=' apollo-overrides/$e/mysql-config/server.xml | tr '< >' '\n' | grep name | sed -e 's/name="//' -e 's/"//' -);
+
+  ape mysql -S /apollo/env/$(pwe)/var/mysql/state/mysql.sock -u root -p$pw $db
 }
 
 function odin() {
@@ -81,14 +96,14 @@ function odin() {
 }
 
 function railsconsole() {
-  e=`pwe`;
+  e=$(pwe);
   cd rails-root;
   /apollo/bin/env -e $e brazil-runtime-exec rails console;
   cd -;
 }
 
 function railsrunner() {
-  e=`pwe`;
+  e=$(pwe);
   cd rails-root;
   /apollo/bin/env -e $e brazil-runtime-exec rails runner ../$1;
   cd -;
@@ -99,6 +114,42 @@ function mdl() {
   echo "\\\\$1\\durin_logs"
   sudo mount -t cifs "\\\\$1\\durin_logs" . -o username=ANT\\duybui,noexec
 }
+
+###EoS
+####Nessus
+function nlogin() {
+  if ! [ -z "$TOKEN" ]; then
+    echo "Already logged in with token $TOKEN";
+    return;
+  fi
+
+  echo "Logging in...";
+  RESULT=$(curl -k1 -d username="duybui" -d password="Aw5%3D141592" "https://$(hostname -f):8834/session" 2>/dev/null);
+  TOKEN=$(node -p "var obj=$RESULT; obj.token");
+
+  export TOKEN;
+  echo "Success with token $TOKEN";
+}
+
+function nlogout() {
+  if [ -z "$TOKEN" ]; then
+    echo "Already logged out.";
+    return;
+  fi
+
+  echo "Logging out...";
+  curl -k1 -X DELETE -H "X-Cookie: token=$TOKEN" "https://$(hostname -f):8834/session" >/dev/null 2>&1;
+  export TOKEN=;
+  echo "Success";
+}
+
+function nget() {
+  nlogin >/dev/null;
+  curl -k1 -H "X-Cookie: token=$TOKEN" "https://$(hostname -f):8834/$1" 2>/dev/null;
+}
+
+export ncurl='curl -k1 -X POST -H "X-Cookie: token=$TOKEN" https://$(hostname -f):8834/';
+
 
 ##OpenFISMA
 
