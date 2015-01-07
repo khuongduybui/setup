@@ -7,7 +7,8 @@ alias e=vi
 alias reload='. ~/.zsh_aliases';
 alias settings='e ~/.zsh_aliases;reload';
 alias l='ls -lahF';
-(which sw_vers > /dev/null 2>&1 && alias ls='ls -G') || alias ls='ls --color';
+which sw_vers > /dev/null 2>&1 && alias ls='ls -G'
+which sw_vers > /dev/null 2>&1 || alias ls='ls --color';
 
 ##Functions
 alias backup='which btrfs > /dev/null 2>&1 && (sudo mount /dev/sda1 /mnt;sudo btrfs subvolume snapshot /mnt/@ /mnt/@_`date +"%Y%m%d%H%M%S"`;sudo umount /mnt) || (echo "This feature requires btrfs.")'
@@ -125,5 +126,5 @@ test -f ~/.git.zsh && source ~/.git.zsh && setopt PROMPT_SUBST && RPROMPT='%F{gr
 test -f ~/.git-completion.sh && zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
 which brazil > /dev/null 2>&1 || PROMPT="$PROMPT > " 
 which brazil > /dev/null 2>&1 && PROMPT="$PROMPT %F{blue}brazil%f> "
-_byobu_sourced=1 test -f /usr/bin/byobu-launch && . /usr/bin/byobu-launch
+_byobu_sourced=1 which byobu-launch > /dev/null 2>&1 && source `which byobu-launch`
 
