@@ -3,6 +3,7 @@
 #export LANG="en_US.UTF-8"
 #export LC_ALL=$LANG
 export EDITOR=vi
+alias vi=vim
 alias e=vi
 alias reload='. ~/.zsh_aliases';
 alias settings='e ~/.zsh_aliases;reload';
@@ -125,7 +126,7 @@ test -f ~/.git-completion.sh && zstyle ':completion:*:*:git:*' script ~/.git-com
 which brazil > /dev/null 2>&1 || PROMPT="$PROMPT > " 
 which brazil > /dev/null 2>&1 && PROMPT="$PROMPT %F{blue}brazil%f> "
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+which brew > /dev/null 2>&1 && [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # Add the following line to your ~/.config/fish/config.fish:
 # . /usr/local/Cellar/autojump/HEAD/etc/autojump.fish
