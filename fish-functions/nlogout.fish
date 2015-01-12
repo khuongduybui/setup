@@ -5,8 +5,7 @@ function nlogout
 	end
 
 	echo "Logging out..."
-	set host (hostname -f)
-	curl -k1 -X DELETE -H "X-Cookie: token=$TOKEN" "https://$host:8834/session" >/dev/null 2>&1
+	curl -k1 -H "X-Cookie: token=$TOKEN" "https://"(hostname -f)":8834/session" -X DELETE >/dev/null 2>&1
 	set -xg NESSUS_TOKEN
 	echo "Success";
 end

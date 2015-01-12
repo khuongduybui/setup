@@ -7,8 +7,6 @@ function nlogin
 	end
 
 	echo "Logging in..."
-	set host (hostname -f)
-	set result (curl -k1 -d username="duybui" -d password="Aw5%3D141592" "https://$host:8834/session" 2>/dev/null)
-	set -xg NESSUS_TOKEN (node -p "var obj=$result; obj.token");
-	echo "Success with token $NESSUS_TOKEN";
+	set -xg NESSUS_TOKEN (node -p "var obj="(curl -k1 -d username="duybui" -d password="Aw5%3D141592" "https://"(hostname -f)":8834/session" 2>/dev/null)"; obj.token")
+	echo "Success with token $NESSUS_TOKEN"
 end
