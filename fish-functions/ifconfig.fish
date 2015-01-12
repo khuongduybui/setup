@@ -1,3 +1,7 @@
 function ifconfig
-	sudo /sbin/ifconfig $argv
+	if test (which ifconfig)
+		command ifconfig $argv
+	else
+		sudo /sbin/ifconfig $argv
+	end
 end

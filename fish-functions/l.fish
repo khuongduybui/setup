@@ -1,7 +1,7 @@
 function l
 	if __is_mac
-		ls -laGhF $argv
+		command ls -laGhF $argv
 	else
-		ls -lahF --color $argv
+		command ls -lahF --color $argv
 	end
 end
