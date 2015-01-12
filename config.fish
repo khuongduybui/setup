@@ -3,6 +3,10 @@ if test -f /usr/local/Cellar/autojump/*/etc/autojump.fish
 	source /usr/local/Cellar/autojump/*/etc/autojump.fish
 end
 
+if test (which byobu-launcher) > /dev/null 2>&1
+	byobu-launcher
+end
+
 #Global
 ##Editors
 set -xg EDITOR (which vim)
@@ -27,3 +31,5 @@ set -g fish_user_abbreviations 'c=code' $fish_user_abbreviations
 set -g fish_user_abbreviations 'd=dot' $fish_user_abbreviations
 set -g fish_user_abbreviations 'a=abbr' $fish_user_abbreviations
 set -g fish_user_abbreviations 'acc=accounts' $fish_user_abbreviations
+set -g fish_user_abbreviations 'apa=apr Activate' $fish_user_abbreviations
+set -g fish_user_abbreviations 'apd=apr Deactivate' $fish_user_abbreviations
