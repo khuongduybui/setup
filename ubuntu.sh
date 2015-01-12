@@ -1,4 +1,5 @@
 #! /bin/sh
+apt-add-repository -y ppa:fish-shell/release-2
 apt-add-repository -y ppa:daniel.pavel/solaar
 apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
 
@@ -10,7 +11,7 @@ apt-get upgrade -y
 apt-get install -y \
   build-essential  dkms debhelper \
   vim \
-  byobu \
+  byobu fish \
   nodejs \
   git \
   monodevelop \
