@@ -4,7 +4,7 @@ function accounts
 		echo -n "ERROR: "
 		set_color normal
 		set_color $fish_color_param[1]
-		echo -n "accounts.ini"
+		echo -n "accounts.ini "
 		set_color $fish_color_error
 		echo -n "not found under "
 		set_color normal
