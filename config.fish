@@ -4,6 +4,8 @@ if test -f /usr/local/Cellar/autojump/*/etc/autojump.fish
 end
 
 #Global
+##Editors
+set -xg EDITOR (which vim)
 ##Colors
 set -g fish_color_cwd red
 set -g fish_color_user blue

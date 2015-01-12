@@ -1,5 +1,5 @@
 function mvm
-	if test __is_mac
+	if __is_mac
 		sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/workplace/duybui /workplace/duybui;
 		sudo mount -t nfs duybui-vm.aka.amazon.com:/rhel5pdi/apollo /apollo;
 	else	

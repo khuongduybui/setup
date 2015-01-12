@@ -54,6 +54,7 @@ echo '#! /bin/sh' > ~/bin/install-noX-utils.sh
 echo 'git clone https://git.lekensteyn.nl/ltunify.git /tmp/ltunify' >> ~/bin/install-noX-utils.sh
 echo 'cd /tmp/ltunify' >> ~/bin/install-noX-utils.sh
 echo 'sudo make install-home' >> ~/bin/install-noX-utils.sh
+echo 'gconftool --set --type=string /apps/gnome-terminal/profiles/Default/encoding UTF-8' >> ~/bin/install-noX-utils.sh
 
 which gdm && sh ~/bin/install-X-utils.sh || sh ~/bin/install-noX-utils.sh
 which gdm && (which google-chrome || sh ~/bin/install-chrome.sh)

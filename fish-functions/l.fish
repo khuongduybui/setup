@@ -1,7 +1,7 @@
 function l
-	if which sw_vers >/dev/null 2>&1
+	if __is_mac
 		ls -laGhF $argv
 	else
-		ls -lahF --color
+		ls -lahF --color $argv
 	end
 end
