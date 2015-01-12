@@ -4,7 +4,7 @@ if test -f /usr/local/Cellar/autojump/*/etc/autojump.fish
 end
 
 if test (which byobu-launcher) > /dev/null 2>&1
-	byobu-launcher
+	status --is-login; and status --is-interactive; and exec byobu-launcher
 end
 
 #Global
