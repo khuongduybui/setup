@@ -10,6 +10,9 @@ end
 #Global
 ##Editors
 set -xg EDITOR (which vim)
+set -xg VISUAL $EDITOR
+set -xg VIEWER "$EDITOR -v"
+
 ##Colors
 set -g fish_color_cwd red
 set -g fish_color_user blue
@@ -36,3 +39,4 @@ set -g fish_user_abbreviations 'apd=apr Deactivate' $fish_user_abbreviations
 set -g fish_user_abbreviations 'activate=aph --status Active' $fish_user_abbreviations
 set -g fish_user_abbreviations 'server=ape /apollo/env/SDETools/bin/brazil-build server' $fish_user_abbreviations
 set -g fish_user_abbreviations 'pkg=ape /apollo/end/SDETools/bin/brazil-build apollo-pkg' $fish_user_abbreviations
+set -g fish_user_abbreviations 'esudo=sudo -E' $fish_user_abbreviations

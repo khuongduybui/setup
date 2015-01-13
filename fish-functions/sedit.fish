@@ -1,3 +1,3 @@
 function sedit
-	eval "sudo $EDITOR" $argv
+	eval "sudo -E $EDITOR" $argv
 end
