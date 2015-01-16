@@ -13,6 +13,9 @@ set -xg EDITOR (which vim)
 set -xg VISUAL $EDITOR
 set -xg VIEWER "$EDITOR -v"
 
+##Languages
+set -xg LANG en_US.UTF-8
+
 ##Colors
 set -g fish_color_cwd red
 set -g fish_color_user blue
