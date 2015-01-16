@@ -17,6 +17,7 @@ set -xg VIEWER "$EDITOR -v"
 set -g fish_color_cwd red
 set -g fish_color_user blue
 set -g fish_color_host magenta
+set -g fish_color_status red
 
 ##Abbreviations
 set -g fish_user_abbreviations $fish_user_abbreviations
