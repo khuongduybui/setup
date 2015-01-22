@@ -1,0 +1,34 @@
+{
+	"auto_complete_commit_on_tab": true,
+	"color_scheme": "Packages/Wombat Theme/Wombat.tmTheme",
+	"draw_shadows": false,
+	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Source Code Pro",
+	"font_size": 12,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"overlay_scroll_bars": "enabled",
+	"rulers":
+	[
+		120,
+		160
+	],
+	"show_encoding": true,
+	"show_full_path": true,
+	"show_line_endings": true,
+	"tab_size": 2,
+	"theme": "Wombat.sublime-theme",
+	"translate_tabs_to_spaces": false,
+	"trim_trailing_white_space_on_save": true,
+	"use_simple_full_screen": true,
+	"wombat_color_blue": true,
+	"wombat_color_expanded_folder": true,
+	"wombat_dirty_bottom_bar": true,
+	"wombat_dirty_bottom_bar_blue": true,
+	"wombat_sidebar_tree_small": true,
+	"wombat_solid_current_tab": true,
+	"wombat_tabs_medium": true
+}

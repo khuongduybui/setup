@@ -1,0 +1,26 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_dependencies":
+	[
+		"0_package_control_loader",
+		"bz2",
+		"ssl-linux"
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"Emmet",
+		"Git",
+		"GitGutter",
+		"HTML Extended",
+		"HTML5",
+		"Package Control",
+		"Ruby on Rails snippets",
+		"Sass",
+		"SublimeCodeIntel",
+		"Wombat Color Scheme",
+		"Wombat Theme"
+	]
+}
