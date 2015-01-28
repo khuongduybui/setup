@@ -3,5 +3,5 @@ function aph
 		set_color $fish_color_error; echo "ERROR: Apollo not found."
 		return
 	end		
-	sudo /apollo/bin/apolloHostControl -e (pwe) $argv
+	sudo /apollo/bin/apolloHostControl $argv
 end
