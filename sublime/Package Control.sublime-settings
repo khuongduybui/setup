@@ -2,12 +2,6 @@
 	"in_process_packages":
 	[
 	],
-	"installed_dependencies":
-	[
-		"0_package_control_loader",
-		"bz2",
-		"ssl-linux"
-	],
 	"installed_packages":
 	[
 		"Alignment",
@@ -20,8 +14,8 @@
 		"Package Control",
 		"Ruby on Rails snippets",
 		"Sass",
-		"Stylus",
 		"SideBarGit",
+		"Stylus",
 		"SublimeCodeIntel",
 		"Theme - Gravity",
 		"Theme - Soda",
