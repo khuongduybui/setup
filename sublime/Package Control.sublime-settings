@@ -2,24 +2,25 @@
 	"in_process_packages":
 	[
 	],
-	"installed_dependencies":
-	[
-		"0_package_control_loader",
-		"bz2",
-		"ssl-linux"
-	],
 	"installed_packages":
 	[
 		"Alignment",
 		"Emmet",
 		"Git",
 		"GitGutter",
+		"Golden Dragon Color Scheme",
 		"HTML Extended",
 		"HTML5",
 		"Package Control",
 		"Ruby on Rails snippets",
 		"Sass",
+		"SideBarGit",
+		"Stylus",
 		"SublimeCodeIntel",
+		"Theme - Gravity",
+		"Theme - Soda",
+		"Theme - Sodarized",
+		"Vorhees",
 		"Wombat Color Scheme",
 		"Wombat Theme"
 	]
