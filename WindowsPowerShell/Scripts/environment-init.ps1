@@ -28,12 +28,12 @@ Write-Host "Verifying Languages..." -ForegroundColor Yellow;
 Verify-Choco -list $list ruby > $null;
 Verify-Choco -list $list python > $null;
 Verify-Choco -list $list perl > $null;
-Verify-Choco -list $list node > $null;
+Verify-Choco -list $list nodejs.install > $null;
 Verify-Choco -list $list jdk > $null;
 Verify-Choco -list $list golang > $null;
 
-Write-Host "Verifying VSCs..." -ForegroundColor Yellow;
-Verify-Choco -list $list git > $null;
+Write-Host "Verifying VCSs..." -ForegroundColor Yellow;
+Verify-Choco -list $list git.install > $null;
 Verify-Choco -list $list hg > $null;
 Verify-Choco -list $list svn > $null;
 
@@ -72,3 +72,19 @@ if ((Verify-Command "hg") -eq $true) {
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;
+
+
+Write-Host "             _           _"
+Write-Host "            //\         /\\"
+Write-Host "           //  \______ /  \\"
+Write-Host "          //   /       \   \\"
+Write-Host "         //   /         \   \\"
+Write-Host "        //   /   sSSSs   \   \\"
+Write-Host "       //_  /   sSSSsSs   \  _\\"
+Write-Host "      //`_\     Ss. . s     /_,\\"
+Write-Host "     //   \`   Ss\ _ /Ss  , /   \\"
+Write-Host "    //   / \ \sSs_) (_sSs/ / \   \\"
+Write-Host "   //   /   \_|_  \ /  _|_/   \   \\"
+Write-Host "   \\  /      sS\ _^_ /ss      \  //"
+Write-Host "    \\/          )   (          \//"
+Write-Host "     `==========================='"
