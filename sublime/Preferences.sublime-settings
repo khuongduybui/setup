@@ -2,6 +2,7 @@
 	"atomic_save": false,
 	"auto_complete_commit_on_tab": true,
 	"color_scheme": "Packages/Wombat Color Scheme/Wombat.tmTheme",
+	"default_line_ending": "unix",
 	"draw_shadows": false,
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Source Code Pro",
