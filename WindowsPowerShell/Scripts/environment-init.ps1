@@ -59,6 +59,7 @@ $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
   $env:Path="$env:Path;$(Resolve-Path "$gitPath/../../bin")";
   Verify-Module "posh-git";
+  ssh-add "~/.ssh/openfisma-ec2.pem";
 }
 if ((Verify-Command "npm") -eq $true) {
   Verify-Module "posh-npm";
@@ -72,19 +73,3 @@ if ((Verify-Command "hg") -eq $true) {
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;
-
-
-Write-Host "             _           _"
-Write-Host "            //\         /\\"
-Write-Host "           //  \______ /  \\"
-Write-Host "          //   /       \   \\"
-Write-Host "         //   /         \   \\"
-Write-Host "        //   /   sSSSs   \   \\"
-Write-Host "       //_  /   sSSSsSs   \  _\\"
-Write-Host "      //`_\     Ss. . s     /_,\\"
-Write-Host "     //   \`   Ss\ _ /Ss  , /   \\"
-Write-Host "    //   / \ \sSs_) (_sSs/ / \   \\"
-Write-Host "   //   /   \_|_  \ /  _|_/   \   \\"
-Write-Host "   \\  /      sS\ _^_ /ss      \  //"
-Write-Host "    \\/          )   (          \//"
-Write-Host "     `==========================='"

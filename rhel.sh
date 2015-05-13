@@ -16,4 +16,12 @@ byobu-launcher-install
 
 exec byobu-launcher
 
+wget http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
+sudo yum install http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
+
 mkdir ~/code
+
+mkdir ~/opt
+echo install iojs
+sudo yum install gcc gcc-c++
+mkdir ~/bin
