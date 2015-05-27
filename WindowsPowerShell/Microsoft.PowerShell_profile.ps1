@@ -61,4 +61,6 @@ Set-Alias   sss             Scapsync-Solr
 Set-Alias   ssu             Scapsync-Update
 
 $env:Path += ";$(Split-Path $Profile)\Scripts"
+$env:PSModulePath = "$(Split-Path $Profile)\Modules"
+
 Environment-Init

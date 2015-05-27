@@ -1,6 +1,6 @@
 pushd;
 cd ~\OneDrive\Essentials;
-$files = Get-ChildItem -force | Where-Object {$_.NAME -match "^[\._]"};
+$files = Get-ChildItem -force | Where-Object {$_.NAME -match "(^[\._])|(\.js$)"};
 cd ~;
 foreach ($file in $files) {
     $f = $file.Name;

@@ -1,7 +1,7 @@
 param($module, $alias, $main)
 
 if (Test-Path "$(Split-Path $profile)\Modules\$module\$module.psm1") {
-    #Import-Module $module;
+    #Import-Module "$(Split-Path $profile)\Modules\$module";
     if ($alias -eq $null) {
         Write-Host "$module loaded." -ForegroundColor DarkGreen;
     } else {

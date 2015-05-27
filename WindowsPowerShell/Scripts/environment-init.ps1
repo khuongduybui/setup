@@ -5,9 +5,6 @@ $APPLICATION_ENV = "development";
 $env:HOME = Resolve-Path ("~");
 
 #$env:Path="$env:Path;C:\Program Files (x86)\Mono-3.2.3\bin"
-#$env:Path="$env:Path;$(Resolve-Path ~\Programs\node-webkit)"
-#$env:Path="$env:Path;$(Resolve-Path ~\Programs\atom-shell)"
-#$env:Path="$env:Path;C:\ProgramData\chocolatey\lib\nodejs.commandline.0.10.31\tools\"
 #$env:Path="$env:Path;$(Resolve-Path ~\Programs\movie-tools\libwebp-0.4.0-windows-x64\bin)"
 
 #$env:GOROOT="$(Resolve-Path ~\Programs\go)"
@@ -55,14 +52,13 @@ Write-Host "Verifying Pscx modules..." -ForegroundColor Yellow;
 Verify-Module "PsGet";
 Verify-Module "Pscx";
 Verify-Module "Find-String" "awk";
+Verify-Module "PsReadline";
+
 $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
   $env:Path="$env:Path;$(Resolve-Path "$gitPath/../../bin")";
   Verify-Module "posh-git";
   ssh-add "~/.ssh/openfisma-ec2.pem";
-}
-if ((Verify-Command "npm") -eq $true) {
-  Verify-Module "posh-npm";
 }
 if ((Verify-Command "svn") -eq $true) {
   Verify-Module "posh-svn";
@@ -70,6 +66,26 @@ if ((Verify-Command "svn") -eq $true) {
 if ((Verify-Command "hg") -eq $true) {
   Verify-Module "posh-hg";
 }
+
+if ((Verify-Command "npm") -eq $true) {
+  Verify-Module "posh-npm";
+}
+
+#$HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
+#Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | out-null
+#if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History } else { echo $historyfilepath }
+# if you don't already have this configured...
+Set-PSReadLineOption -HistoryNoDuplicates 
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
+Set-PSReadLineOption -MaximumHistoryCount 4000
+# history substring search
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# Tab completion
+Set-PSReadlineKeyHandler -Chord 'Shift+Tab' -Function Complete
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;
