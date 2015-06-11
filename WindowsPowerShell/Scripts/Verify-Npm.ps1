@@ -1,5 +1,5 @@
 param([parameter(mandatory=$true)][string] $command, [string] $package, [switch] $f);
-if ($package -eq $null) {
+if ($package -eq "") {
   $package = $command;
 }
 
@@ -10,7 +10,7 @@ if ((Verify-Command $command) -eq $false) {
   } else {
     Write-Host "$command missing! Attempting to install..." -ForegroundColor DarkYellow;
     npm install -g $package;
-    return Verify-Choco -command $command -package $package;
+    return Verify-NPM -command $command -package $package;
   }
 } else {
   Write-Host "$command installed." -ForegroundColor DarkGreen;

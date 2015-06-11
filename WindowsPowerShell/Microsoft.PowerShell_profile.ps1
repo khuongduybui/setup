@@ -61,7 +61,7 @@ Set-Alias   sss             Scapsync-Solr
 Set-Alias   ssu             Scapsync-Update
 
 $env:Path += ";$(Split-Path $Profile)\Scripts"
-$env:PSModulePath = "$(Split-Path $Profile)\Modules"
+$env:PSModulePath = "$(Split-Path $Profile)\Modules;$env:PSModulePath"
 
 $HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
 Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | out-null

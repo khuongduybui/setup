@@ -9,54 +9,75 @@ $env:HOME = Resolve-Path ("~");
 
 #$env:GOROOT="$(Resolve-Path ~\Programs\go)"
 #$env:GOPATH="$(Resolve-Path ~\Programs\go\path)"
-
 #$env:Path="$env:Path;$(Resolve-Path ~\Programs\go\bin);$(Resolve-Path ~\Programs\go\path\bin)"
+
 Wrap-Ls;
+
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted > $null;
+Set-PackageSource -Name chocolatey -Trusted > $null;
 
 Write-Host "Verifying applications.." -ForegroundColor Yellow;
 Sysinternals-Init;
-$list = Choco-Init -l;
-Verify-Choco -list $list atom > $null;
-Verify-Choco -list $list picasa > $null;
-Verify-Choco -list $list calibre > $null;
-Verify-Choco -list $list javaruntime > $null;
+# Verify-Choco atom > $null;
+# Verify-Choco SublimeText3 > $null;
+Verify-Choco picasa > $null;
+Verify-Choco calibre > $null;
+Verify-Choco audacity > $null;
+Verify-Choco javaruntime > $null;
 
 Write-Host "Verifying Languages..." -ForegroundColor Yellow;
-Verify-Choco -list $list ruby > $null;
-Verify-Choco -list $list python > $null;
-Verify-Choco -list $list perl > $null;
-Verify-Choco -list $list nodejs.install > $null;
-Verify-Choco -list $list jdk > $null;
-Verify-Choco -list $list golang > $null;
+# Verify-Choco ruby > $null;
+# Verify-Choco python > $null;
+# Verify-Choco perl > $null;
+Verify-Choco io.js > $null;
+Verify-Choco jdk > $null;
+# Verify-Choco golang > $null;
 
 Write-Host "Verifying VCSs..." -ForegroundColor Yellow;
-Verify-Choco -list $list git.install > $null;
-Verify-Choco -list $list hg > $null;
-Verify-Choco -list $list svn > $null;
+Verify-Choco git.install > $null;
+# Verify-Choco hg > $null;
+# Verify-Choco svn > $null;
 
 Write-Host "Verifying DBMSes..." -ForegroundColor Yellow;
-Verify-Choco -list $list redis > $null;
-Verify-Choco -list $list mongo > $null;
+Verify-CHoco HeidiSQL > $null;
+# Verify-Choco redis > $null;
+# Verify-Choco mongo > $null;
 
 Write-Host "Verifying dev tools..." -ForegroundColor Yellow;
-Verify-Choco -list $list ant > $null;
+Verify-Choco ant > $null;
+Verify-Path C:\Users\duybui.ANT\AppData\Roaming\npm;
 Verify-Npm mocha > $null;
 Verify-Npm cordova > $null;
 Verify-Npm express -package express-generator > $null;
 Verify-Npm nodemon > $null;
+
 #Xampp-Init;
 #Bitnami-Init;
 #Android-Init;
 
-Write-Host "Verifying Pscx modules..." -ForegroundColor Yellow;
-Verify-Module "PsGet";
-Verify-Module "Pscx";
-Verify-Module "Find-String" "awk";
-Verify-Module "PsReadline";
+Write-Host "Verifying PowerShellGet modules..." -ForegroundColor Yellow;
+Verify-PS-Module "Pscx";
+Verify-PS-Module "ShowUI";
+Verify-PS-Module "PsReadline";
+# if you don't already have this configured...
+Set-PSReadLineOption -HistoryNoDuplicates 
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
+Set-PSReadLineOption -MaximumHistoryCount 4000
+# history substring search
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+# Tab completion
+Set-PSReadlineKeyHandler -Chord 'Shift+Tab' -Function Complete
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
+Write-Host "Verifying PsGet modules..." -ForegroundColor Yellow;
+$global:PsGetDestinationModulePath = "$(Split-Path $Profile)\Modules";
+Verify-Module "PsGet";
+Verify-Module "Find-String" "awk";
 $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
-  $env:Path="$env:Path;$(Resolve-Path "$gitPath/../../bin")";
+  Verify-Path "$gitPath/../../bin";
   Verify-Module "posh-git";
   ssh-add "~/.ssh/openfisma-ec2.pem";
 }
@@ -70,19 +91,6 @@ if ((Verify-Command "hg") -eq $true) {
 if ((Verify-Command "npm") -eq $true) {
   Verify-Module "posh-npm";
 }
-
-# if you don't already have this configured...
-Set-PSReadLineOption -HistoryNoDuplicates 
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
-Set-PSReadLineOption -MaximumHistoryCount 4000
-# history substring search
-Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-# Tab completion
-Set-PSReadlineKeyHandler -Chord 'Shift+Tab' -Function Complete
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;

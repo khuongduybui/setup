@@ -31,7 +31,7 @@ function script:gitCmdOperations($commands, $command, $filter) {
 
 $script:someCommands = @('add','am','annotate','archive','bisect','blame','branch','bundle','checkout','cherry','cherry-pick','citool','clean','clone','commit','config','describe','diff','difftool','fetch','format-patch','gc','grep','gui','help','init','instaweb','log','merge','mergetool','mv','notes','prune','pull','push','rebase','reflog','remote','rerere','reset','revert','rm','shortlog','show','stash','status','submodule','svn','tag','whatchanged')
 try {
-  if ((git flow 2> $null) -ne $null) {
+  if ((git help -a 2>&1 | Select-String flow) -ne $null) {
       $script:someCommands += 'flow'
   }
 }
@@ -72,6 +72,11 @@ function script:gitBranches($filter, $includeHEAD = $false) {
     $branches |
         where { $_ -ne '(no branch)' -and $_ -like "$filter*" } |
         foreach { $prefix + $_ }
+}
+
+function script:gitTags($filter) {
+    git tag |
+        where { $_ -like "$filter*" }
 }
 
 function script:gitFeatures($filter, $command){
@@ -163,6 +168,11 @@ function GitTabExpansion($lastBlock) {
     if($lastBlock -match "^$(Get-AliasPattern tgit) (?<cmd>\S*)$") {
             # Need return statement to prevent fall-through.
             return $tortoiseGitCommands | where { $_ -like "$($matches['cmd'])*" }
+    }
+
+    # Handles gitk
+    if($lastBlock -match "^$(Get-AliasPattern gitk).* (?<ref>\S*)$"){
+        return gitBranches $matches['ref'] $true
     }
 
     switch -regex ($lastBlock -replace "^$(Get-AliasPattern git) ","") {
@@ -276,11 +286,12 @@ function GitTabExpansion($lastBlock) {
         # Handles git <cmd> <ref>
         "^(?:checkout|cherry|cherry-pick|diff|difftool|log|merge|rebase|reflog\s+show|reset|revert|show).* (?<ref>\S*)$" {
             gitBranches $matches['ref'] $true
+            gitTags $matches['ref']
         }
     }
 }
 
-$PowerTab_RegisterTabExpansion = Get-Command Register-TabExpansion -Module powertab -ErrorAction SilentlyContinue
+$PowerTab_RegisterTabExpansion = if (Get-Module -Name powertab) { Get-Command Register-TabExpansion -Module powertab -ErrorAction SilentlyContinue }
 if ($PowerTab_RegisterTabExpansion)
 {
     & $PowerTab_RegisterTabExpansion "git.exe" -Type Command {
@@ -305,6 +316,7 @@ function TabExpansion($line, $lastWord) {
         # Execute git tab completion for all git-related commands
         "^$(Get-AliasPattern git) (.*)" { GitTabExpansion $lastBlock }
         "^$(Get-AliasPattern tgit) (.*)" { GitTabExpansion $lastBlock }
+        "^$(Get-AliasPattern gitk) (.*)" { GitTabExpansion $lastBlock }
 
         # Fall back on existing tab expansion
         default { if (Test-Path Function:\TabExpansionBackup) { TabExpansionBackup $line $lastWord } }

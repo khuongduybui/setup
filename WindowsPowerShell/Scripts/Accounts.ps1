@@ -4,7 +4,7 @@ pushd;
 cd ~\OneDrive;
 
 if ($keyword -eq $null) {
-    e .\Essentials\accounts.ini;
+    e $(Resolve-Path ".\Essentials\accounts.ini");
 } else {
     cat .\Essentials\accounts.ini | gawk "/$keyword/";
     cat .\Essentials\accounts.ini | gawk "/$keyword.*\{/,/\}/";
