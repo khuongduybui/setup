@@ -4,7 +4,6 @@ if test -f /usr/local/Cellar/autojump/*/etc/autojump.fish
 end
 
 if test (which byobu-launcher) > /dev/null 2>&1
-	status --is-login; and status --is-interactive; and exec byobu-launcher
 end
 
 #Global
@@ -45,3 +44,4 @@ set -g fish_user_abbreviations 'server=ape /apollo/env/SDETools/bin/brazil-build
 set -g fish_user_abbreviations 'pkg=ape /apollo/end/SDETools/bin/brazil-build apollo-pkg' $fish_user_abbreviations
 set -g fish_user_abbreviations 'esudo=sudo -E' $fish_user_abbreviations
 set -g fish_user_abbreviations 'eossh=ssh -i .ssh/id_eos_ec2 -l ec2-user' $fish_user_abbreviations
+status --is-login; and status --is-interactive; and exec byobu-launcher
