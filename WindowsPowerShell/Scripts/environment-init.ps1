@@ -27,10 +27,10 @@ Verify-Choco javaruntime > $null;
 
 Write-Host "Verifying Languages..." -ForegroundColor Yellow;
 # Verify-Choco ruby > $null;
-# Verify-Choco python > $null;
+Verify-Choco python2 > $null;Verify-Path "$env:SystemDrive\Python27"; Verify-Path "$env:SystemDrive\Python27\Scripts";
 # Verify-Choco perl > $null;
 Verify-Choco io.js > $null;
-Verify-Choco jdk > $null;
+Verify-Choco jdk8 > $null;
 # Verify-Choco golang > $null;
 
 Write-Host "Verifying VCSs..." -ForegroundColor Yellow;
@@ -39,13 +39,14 @@ Verify-Choco git.install > $null;
 # Verify-Choco svn > $null;
 
 Write-Host "Verifying DBMSes..." -ForegroundColor Yellow;
-Verify-CHoco HeidiSQL > $null;
+Verify-Choco HeidiSQL > $null;
 # Verify-Choco redis > $null;
-# Verify-Choco mongo > $null;
+Verify-Choco mongodb > $null;
+Verify-Choco robomongo > $null;
 
 Write-Host "Verifying dev tools..." -ForegroundColor Yellow;
 Verify-Choco ant > $null;
-Verify-Path C:\Users\duybui.ANT\AppData\Roaming\npm;
+Verify-Path "~\AppData\Roaming\npm";
 Verify-Npm mocha > $null;
 Verify-Npm cordova > $null;
 Verify-Npm express -package express-generator > $null;

@@ -11,9 +11,7 @@ if (Test-Path "$(Split-Path $profile)\Modules\$module\$module.psm1") {
 	if ($module -eq "PsGet") {
 		(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex;
 	} else {
-		Import-Module PsGet; 
-		Install-Module $module;
-		Import-Module PowerShellGet;
+		PsGet\Install-Module $module;
 	}
 }
 
