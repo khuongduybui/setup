@@ -1,18 +1,22 @@
 param([string] $Project);
 
 if ($Project -eq $null) {
-  l ~\Code\;
+	l ~\Code\;
 } else {
-  if (Test-Path ~\Code\$Project) {
-    cd ~\Code\$Project;
+	if (Test-Path ~\Code\$Project) {
+		cd ~\Code\$Project;
 
-    if (Test-Path .\.git) {
-      g;
-    } else {
-      l;
-    }
-  } else {
-    Write-Host "$Project not found." -ForegroundColor DarkRed;
-    popd;
-  }
+		if (Test-Path .\.git) {
+			g;
+		} else {
+			l;
+		}
+
+		if (Test-Path .\venv\Scripts\active) {
+			& .\venv\Scripts\active;
+		}
+	} else {
+		Write-Host "$Project not found." -ForegroundColor DarkRed;
+		popd;
+	}
 }
