@@ -1,7 +1,7 @@
 clear;
 Write-Host "Setting up environments..." -ForegroundColor Yellow;
 
-$APPLICATION_ENV = "development";
+$env:APPLICATION_ENV = "development";
 $env:HOME = Resolve-Path ("~");
 
 #$env:Path="$env:Path;C:\Program Files (x86)\Mono-3.2.3\bin"

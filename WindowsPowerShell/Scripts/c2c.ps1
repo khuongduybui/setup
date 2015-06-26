@@ -15,6 +15,8 @@ if ($Project -eq $null) {
 		if (Test-Path .\venv\Scripts\active) {
 			& .\venv\Scripts\active;
 		}
+
+		code .
 	} else {
 		Write-Host "$Project not found." -ForegroundColor DarkRed;
 		popd;
