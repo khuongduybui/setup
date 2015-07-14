@@ -17,7 +17,7 @@ if ($Project -eq $null) {
 		}
 
 		if ($o -eq $true) {
-			code .
+			e .
 		}
 	} else {
 		Write-Host "$Project not found." -ForegroundColor DarkRed;
