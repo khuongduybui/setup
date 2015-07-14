@@ -1,4 +1,4 @@
-param([string] $Project);
+param([switch] $o, [string] $Project);
 
 if ($Project -eq $null) {
 	l ~\Code\;
@@ -16,7 +16,9 @@ if ($Project -eq $null) {
 			& .\venv\Scripts\active;
 		}
 
-		code .
+		if ($o -eq $true) {
+			code .
+		}
 	} else {
 		Write-Host "$Project not found." -ForegroundColor DarkRed;
 		popd;
