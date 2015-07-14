@@ -17,7 +17,18 @@ if ($Project -eq $null) {
 		}
 
 		if ($o -eq $true) {
-			e .
+			$solution = $false;
+
+			$files = Get-ChildItem -force | Where-Object {$_.NAME -match "\.sln$"};
+			foreach ($file in $files) {
+				$f = $file.Name;
+				& ".\$f";
+				$solution = $true;
+			}
+			
+			if ($solution -eq $false) {
+				e .
+			}
 		}
 	} else {
 		Write-Host "$Project not found." -ForegroundColor DarkRed;
