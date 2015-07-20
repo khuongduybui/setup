@@ -16,6 +16,11 @@ function global:prompt {
 
     Write-VcsStatus
 
+		$brazil = Verify-Command brazil;
+		If ($brazil -eq $True) {
+			Write-Host " brazil" -nonewline -ForegroundColor cyan;
+		}
+
     $global:LASTEXITCODE = $realLASTEXITCODE
     return "> "
 }

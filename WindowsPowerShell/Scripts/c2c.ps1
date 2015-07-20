@@ -6,6 +6,10 @@ if ($Project -eq $null) {
 	if (Test-Path ~\Code\$Project) {
 		cd ~\Code\$Project;
 
+		if (Test-Path .\src\*) {
+			cd .\src\*;
+		}
+
 		if (Test-Path .\.git) {
 			g;
 		} else {
