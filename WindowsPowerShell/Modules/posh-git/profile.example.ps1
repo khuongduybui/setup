@@ -12,13 +12,13 @@ Import-Module .\posh-git
 function global:prompt {
     $realLASTEXITCODE = $LASTEXITCODE
 
-    Write-Host($pwd.ProviderPath) -nonewline
+    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor red
 
     Write-VcsStatus
 
 		$brazil = Verify-Command brazil;
 		If ($brazil -eq $True) {
-			Write-Host " brazil" -nonewline -ForegroundColor cyan;
+			Write-Host " aps" -nonewline;
 		}
 
     $global:LASTEXITCODE = $realLASTEXITCODE
