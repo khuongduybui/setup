@@ -11,7 +11,7 @@ Import-Module .\posh-git
 # Set up a simple prompt, adding the git prompt parts inside git repos
 function global:prompt {
 	$realLASTEXITCODE = $LASTEXITCODE
-	Write-Host($(whoami).Replace("\", "/")) -NoNewLine -ForegroundColor Blue
+	Write-Host($(whoami).replace($(hostname) + "\", "").replace("\", "/")) -NoNewLine -ForegroundColor Blue
 	Write-Host "@" -NoNewLine
 	Write-Host($(hostname) + " ") -NoNewLine -ForegroundColor DarkMagenta
 
