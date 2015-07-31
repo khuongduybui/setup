@@ -10,19 +10,22 @@ Import-Module .\posh-git
 
 # Set up a simple prompt, adding the git prompt parts inside git repos
 function global:prompt {
-    $realLASTEXITCODE = $LASTEXITCODE
+	$realLASTEXITCODE = $LASTEXITCODE
+	Write-Host($(whoami).Replace("\", "/")) -NoNewLine -ForegroundColor Blue
+	Write-Host "@" -NoNewLine
+	Write-Host($(hostname) + " ") -NoNewLine -ForegroundColor DarkMagenta
 
-    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor red
+	Write-Host($pwd.ProviderPath.Replace($env:HOME, "~").Replace("\", "/")) -NoNewLine -ForegroundColor Red
 
-    Write-VcsStatus
+	Write-VcsStatus
 
-		$brazil = Verify-Command brazil;
-		If ($brazil -eq $True) {
-			Write-Host " aps" -nonewline;
-		}
+	$brazil = Verify-Command brazil;
+	If ($brazil -eq $True) {
+		Write-Host " aps" -NoNewLine;
+	}
 
-    $global:LASTEXITCODE = $realLASTEXITCODE
-    return "> "
+	$global:LASTEXITCODE = $realLASTEXITCODE
+	return "> "
 }
 
 Pop-Location
