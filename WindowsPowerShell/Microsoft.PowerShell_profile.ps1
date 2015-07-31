@@ -16,6 +16,7 @@ Set-Alias   reload          Environment-Init
 function    mklink          { cmd /c mklink $args; }
 function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
+Set-Alias   code            c2c.ps1
 
 #Google-App-Engine Functions
 Set-Alias   gphp            Gapp-Php
