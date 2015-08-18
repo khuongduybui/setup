@@ -18,33 +18,64 @@ cd ~\OneDrive\Essentials\AppData;
 $files = Get-ChildItem;
 foreach ($file in $files) {
 	$f = $file.Name;
-	if (Test-Path $f\where.txt) {
-		$content = [IO.File]::ReadAllText($(Resolve-Path("~\OneDrive\Essentials\AppData\$f\where.txt")))
+	$onedrive = Resolve-Path $onedrive
+	if (Test-Path $onedrive\where.txt) {
+		$content = [IO.File]::ReadAllText($(Resolve-Path("$onedrive\where.txt")))
 		if (Test-Path $content) {
-			$content = Resolve-Path $content
+			$local = Resolve-Path $content
 
-			$children = Get-ChildItem -force "~\OneDrive\Essentials\AppData\$f" | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
+			$children = Get-ChildItem -force $onedrive | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
 			cd ~;
 			foreach ($child in $children) {
 				$file = $child.Name;
-				if (Test-Path $content\$file) {
-					if ($(Get-Item $(Resolve-Path $content\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
+				if (Test-Path $local\$file) {
+					if ($(Get-Item $(Resolve-Path $local\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
 						#don't do anything
 					} else {
-						mv $content\$file $content\$file.bak
+						mv $local\$file $local\$file.bak
 					}
 				}
 
-				if (Test-Path $content\$file) {
+				if (Test-Path $local\$file) {
 					#don't do anything
 				} else {
-					$target = Resolve-Path ~\OneDrive\Essentials\AppData\$f\$file
+					$target = Resolve-Path $onedrive\$file
 					if ($child.Attributes -match "Directory") {
-						mklink /D $content\$file $target;
+						mklink /D $local\$file $target;
 					} else {
-						mklink $content\$file $target;
+						mklink $local\$file $target;
 					}
 				}
+			}
+		}
+	}
+	if (Test-Path $onedrive\nowhere.txt) {
+		$content = [IO.File]::ReadAllText($(Resolve-Path("$onedrive\nowhere.txt")))
+		if (Test-Path $content) {
+			$local = Resolve-Path $content
+
+			$children = Get-ChildItem -force "$onedrive" | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
+			cd ~;
+			foreach ($child in $children) {
+				# $file = $child.Name;
+				# if (Test-Path $local\$file) {
+				# 	if ($(Get-Item $(Resolve-Path $onedrive\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
+				# 		#don't do anything
+				# 	} else {
+				# 		mv $local\$file $local\$file.bak
+				# 	}
+				# }
+
+				# if (Test-Path $local\$file) {
+				# 	#don't do anything
+				# } else {
+				# 	$target = Resolve-Path $onedrive\$file
+				# 	if ($child.Attributes -match "Directory") {
+				# 		mklink /D $local\$file $target;
+				# 	} else {
+				# 		mklink $local\$file $target;
+				# 	}
+				# }
 			}
 		}
 	}
