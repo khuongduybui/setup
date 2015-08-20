@@ -1,8 +1,14 @@
-param([string] $App);
+param([switch] $f, [string] $App);
 
 $path = "~\OneDrive\Essentials\AppData\$App"
-if ((Test-Path $path) -eq $false) {
-	Write-Host "$App not found." -ForegroundColor Red;
+if (Test-Path $path) {
+	cd $path;
+	if ($f -eq $True) {
+		$follow = Get-Content "*where.txt"
+		if (Test-Path $follow) {
+			cd $follow;
+		}
+	}
 } else {
-	cd $(Resolve-Path $path);
+	Write-Host "$App not found." -ForegroundColor Red;
 }

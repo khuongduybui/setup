@@ -1,7 +1,7 @@
 param([switch] $o, [string] $Project);
 
 if ($Project -eq $null) {
-	l ~\Code\;
+	Get-ChildItem ~\Code\;
 } else {
 	if (Test-Path ~\Code\$Project) {
 		cd ~\Code\$Project;
@@ -29,7 +29,7 @@ if ($Project -eq $null) {
 				& ".\$f";
 				$solution = $true;
 			}
-			
+
 			if ($solution -eq $false) {
 				e .
 			}
