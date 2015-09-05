@@ -1,6 +1,6 @@
 function settings
 	if test (count $argv) = 0
-		edit ~/.config/fish/config.fish
+		edit ~/setup/config.fish
 		reload
 	else
 		funced -e "vim -c 'set filetype=fish'" $argv
