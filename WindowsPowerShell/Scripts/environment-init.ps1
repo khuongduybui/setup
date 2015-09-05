@@ -13,12 +13,18 @@ $env:HOME = Resolve-Path ("~");
 
 Wrap-Ls;
 
+Verify-Path "~/Programs/putty" -v;
+if (Verify-Command "pageant") {
+	pageant (Get-Item ~/.ssh/*.ppk)
+	$env:GIT_SSH=(Verify-Command -o "plink").Path;
+	Write-Host "pageant loaded." -ForegroundColor Green;
+}
+
 $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
   Verify-Path "$gitPath/../../bin";
   Verify-Path "$gitPath/../../usr/bin";
   Verify-Module "posh-git";
-  ssh-add "~/.ssh/openfisma-ec2.pem";
 }
 if ((Verify-Command "svn") -eq $true) {
   Verify-Module "posh-svn";
