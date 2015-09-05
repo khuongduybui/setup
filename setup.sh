@@ -20,6 +20,8 @@ which git && \
 # (test -f ~/.zshrc && grep .zsh_aliases ~/.zshrc > /dev/null 2>&1) || echo "source ~/.zsh_aliases" >> ~/.zshrc
 # test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
 # ln -s ~/setup/.bash_aliases ~/
+ln -s ~/setup/config.fish ~/.config/fish/
+ln -s ~/setup/fish-functions ~/.config/fish/functions
 
 test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.bak
 ln -s ~/setup/.vimrc ~/
@@ -29,7 +31,7 @@ test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.g
 test -d ~/bin || mkdir ~/bin
 
 test -f /etc/issue &&\
-  grep -i ubuntu /etc/issue &&\
+  grep -Ei "elementary|ubuntu" /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
   sh ~/setup/ubuntu.sh > /dev/null
 

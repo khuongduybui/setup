@@ -1,5 +1,5 @@
 #Plugins
-if test -f /usr/local/Cellar/autojump/*/etc/autojump.fish
+if test -d /usr/local/Cellar/autojump
 	source /usr/local/Cellar/autojump/*/etc/autojump.fish
 end
 
@@ -22,7 +22,6 @@ set -g fish_color_host magenta
 set -g fish_color_status red
 
 ##Abbreviations
-set -g fish_user_abbreviations $fish_user_abbreviations
 set -g fish_user_abbreviations 'g=git status' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gco=git checkout' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gb=git branch' $fish_user_abbreviations
@@ -44,4 +43,4 @@ set -g fish_user_abbreviations 'server=ape /apollo/env/SDETools/bin/brazil-build
 set -g fish_user_abbreviations 'pkg=ape /apollo/end/SDETools/bin/brazil-build apollo-pkg' $fish_user_abbreviations
 set -g fish_user_abbreviations 'esudo=sudo -E' $fish_user_abbreviations
 set -g fish_user_abbreviations 'eossh=ssh -i .ssh/id_eos_ec2 -l ec2-user' $fish_user_abbreviations
-status --is-login; and status --is-interactive; and exec byobu-launcher
+status --is-interactive; and byobu-launcher
