@@ -18,7 +18,7 @@ cd ~\OneDrive\Essentials\AppData;
 $files = Get-ChildItem;
 foreach ($file in $files) {
 	$f = $file.Name;
-	$onedrive = Resolve-Path $onedrive
+	$onedrive = resolve-path ~\OneDrive\Essentials\AppData\$f;
 	if (Test-Path $onedrive\where.txt) {
 		$content = [IO.File]::ReadAllText($(Resolve-Path("$onedrive\where.txt")))
 		if (Test-Path $content) {
