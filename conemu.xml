@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2015-07-31 10:50:44" build="150513">
+		<key name=".Vanilla" modified="2015-10-01 17:24:01" build="150913">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -111,8 +111,8 @@
 			<value name="Multi.SplitWidth" type="hex" data="04"/>
 			<value name="Multi.SplitHeight" type="hex" data="04"/>
 			<value name="KeyboardHooks" type="hex" data="02"/>
-			<value name="FontName" type="string" data="Courier New"/>
-			<value name="FontName2" type="string" data="Source Code Pro"/>
+			<value name="FontName" type="string" data="Inconsolata"/>
+			<value name="FontName2" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
 			<value name="FontSize" type="dword" data="00000010"/>
 			<value name="FontSizeX" type="dword" data="00000000"/>
@@ -120,11 +120,11 @@
 			<value name="FontUseUnits" type="hex" data="00"/>
 			<value name="FontSizeX2" type="dword" data="00000000"/>
 			<value name="FontSizeX3" type="dword" data="00000000"/>
-			<value name="FontCharSet" type="hex" data="ff"/>
+			<value name="FontCharSet" type="hex" data="00"/>
 			<value name="Anti-aliasing" type="dword" data="00000006"/>
 			<value name="FontBold" type="hex" data="00"/>
 			<value name="FontItalic" type="hex" data="00"/>
-			<value name="Monospace" type="hex" data="02"/>
+			<value name="Monospace" type="hex" data="01"/>
 			<value name="BackGround Image show" type="hex" data="00"/>
 			<value name="BackGround Image" type="string" data="c:\back.bmp"/>
 			<value name="bgImageDarker" type="hex" data="ff"/>
@@ -139,11 +139,11 @@
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
 			<value name="UseCurrentSizePos" type="hex" data="01"/>
 			<value name="WindowMode" type="dword" data="00000520"/>
-			<value name="ConWnd Width" type="dword" data="0000007e"/>
-			<value name="ConWnd Height" type="dword" data="0000002c"/>
+			<value name="ConWnd Width" type="dword" data="00000062"/>
+			<value name="ConWnd Height" type="dword" data="0000001f"/>
 			<value name="Cascaded" type="hex" data="01"/>
-			<value name="ConWnd X" type="dword" data="0000019a"/>
-			<value name="ConWnd Y" type="dword" data="000000f6"/>
+			<value name="ConWnd X" type="dword" data="00000064"/>
+			<value name="ConWnd Y" type="dword" data="00000064"/>
 			<value name="16bit Height" type="dword" data="00000000"/>
 			<value name="AutoSaveSizePos" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
@@ -376,7 +376,7 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="HotKeys" modified="2015-07-31 10:50:44" build="150513">
+			<key name="HotKeys" modified="2015-10-01 17:24:01" build="150913">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="00000011"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -553,10 +553,11 @@
 				<value name="DndLKey" type="hex" data="00"/>
 				<value name="DndRKey" type="hex" data="a2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
+				<value name="Multi.Unfasten" type="dword" data="00000000"/>
 			</key>
-			<key name="Tasks" modified="2015-07-31 10:50:44" build="150513">
+			<key name="Tasks" modified="2015-10-01 17:24:01" build="150913">
 				<value name="Count" type="dword" data="00000009"/>
-				<key name="Task1" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task1" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101131"/>
@@ -565,7 +566,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task2" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task2" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{Desktop}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101132"/>
@@ -574,7 +575,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task3" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task3" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{VM}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101133"/>
@@ -583,7 +584,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task4" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task4" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{AM (Odin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101134"/>
@@ -592,7 +593,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task5" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task5" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{PowerShell restricted}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -601,7 +602,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task6" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task6" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{Pickaxe}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101136"/>
@@ -610,7 +611,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task7" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task7" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{cmd}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -619,7 +620,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task8" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task8" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -628,7 +629,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task9" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Task9" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="{CygWin}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101130"/>
@@ -638,12 +639,12 @@
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2015-07-31 10:50:44" build="150513">
+			<key name="Apps" modified="2015-10-01 17:24:01" build="150913">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-			<key name="Colors" modified="2015-07-31 10:50:44" build="150513">
+			<key name="Colors" modified="2015-10-01 17:24:01" build="150913">
 				<value name="Count" type="dword" data="00000002"/>
-				<key name="Palette1" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Palette1" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="moe-dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -684,7 +685,7 @@
 					<value name="ColorTable30" type="dword" data="00ffff00"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette2" modified="2015-07-31 10:50:44" build="150513">
+				<key name="Palette2" modified="2015-10-01 17:24:01" build="150913">
 					<value name="Name" type="string" data="Monokai"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -726,6 +727,13 @@
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
 			</key>
+			<value name="StartCreateDelay" type="dword" data="00000064"/>
+			<value name="DefaultTerminalDebugLog" type="hex" data="00"/>
+			<value name="Restore2ActiveMon" type="hex" data="00"/>
+			<value name="DownShowExOnTopMessage" type="hex" data="00"/>
+			<value name="EnvironmentSet" type="multi"/>
+			<value name="Update.InetTool" type="hex" data="00"/>
+			<value name="Update.InetToolCmd" type="string" data=""/>
 		</key>
 	</key>
 </key>
