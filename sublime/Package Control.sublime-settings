@@ -1,26 +1,12 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
 	"installed_packages":
 	[
-		"Alignment",
-		"Emmet",
-		"FileDiffs",
-		"Golden Dragon Color Scheme",
-		"HTML Extended",
-		"HTML5",
+		"AngularJS",
 		"Package Control",
-		"PowerShell",
-		"Pretty JSON",
-		"Ruby on Rails snippets",
-		"Sass",
-		"Stylus",
-		"Theme - Gravity",
-		"Theme - Soda",
-		"Theme - Sodarized",
-		"Vorhees",
-		"Wombat Color Scheme",
-		"Wombat Theme"
+		"Theme - Bamboo"
 	]
 }
