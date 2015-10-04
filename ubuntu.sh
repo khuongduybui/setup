@@ -13,6 +13,7 @@ apt-get install -y \
   vim \
   byobu fish \
   nodejs \
+  python-pip \
   git \
   monodevelop \
   bluez-hcidump bluez-utils bluez-compat \

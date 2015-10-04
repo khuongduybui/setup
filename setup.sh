@@ -55,6 +55,9 @@ test -d /home/duybui/code/test || mkdir /home/duybui/code/test
 echo "Installing NPM tools..."
 npm install -g mocha express-generator nodemon > /dev/null
 
+echo "Installing virtualenv..."
+pip install virtualenv nodeenv
+
 reload
 echo 'Core modules have been installed.'
 echo '=== Additional modules ==='

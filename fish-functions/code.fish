@@ -42,4 +42,7 @@ function code
 	else
 		l
 	end
+	if test -f ./env/bin/activate.fish
+		. ./env/bin/activate.fish
+	end
 end
