@@ -21,4 +21,5 @@ mkdir /home/duybui/code
 mkdir /home/duybui/opt
 echo install iojs
 sudo yum install gcc gcc-c++
+curl https://bootstrap.pypa.io/get-pip.py | python2
 mkdir /home/duybui/bin
