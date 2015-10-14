@@ -15,6 +15,7 @@ Wrap-Ls;
 
 Verify-Path "~/Programs/putty";
 Verify-Path "~/Programs/putty/App/putty";
+Verify-Path "D:/Program Files/putty";
 if (Verify-Command "pageant") {
 	pageant (Get-Item ~/.ssh/*.ppk)
 	$env:GIT_SSH=(Verify-Command -o "plink").Path;
