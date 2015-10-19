@@ -44,3 +44,6 @@ set -g fish_user_abbreviations 'pkg=ape /apollo/end/SDETools/bin/brazil-build ap
 set -g fish_user_abbreviations 'esudo=sudo -E' $fish_user_abbreviations
 set -g fish_user_abbreviations 'eossh=ssh -i .ssh/id_eos_ec2 -l ec2-user' $fish_user_abbreviations
 status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/.config/fish/my-session
+set -g fish_user_abbreviations 'lsenv=l /apollo/env/' $fish_user_abbreviations
+set -g fish_user_abbreviations $fish_user_abbreviations
+set -g fish_user_abbreviations 'pickaxe=ssh -At duybui-um.aka.amazon.com ssh -t aws-pickaxe-iad-prod-1a-i-24be46da.us-east-1.amazon.com /apollo/env/AWSPickaxeEscritoire/bin/pickaxe' $fish_user_abbreviations
