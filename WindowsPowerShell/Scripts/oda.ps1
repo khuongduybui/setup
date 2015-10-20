@@ -1,6 +1,6 @@
 param([switch] $f, [string] $App);
 
-$path = "~\OneDrive\Essentials\AppData\$App"
+$path = "$OneDrive\Essentials\AppData\$App"
 if (Test-Path $path) {
 	cd $path;
 	if ($f -eq $True) {

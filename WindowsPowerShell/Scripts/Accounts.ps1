@@ -1,7 +1,7 @@
 param($keyword);
 
 pushd;
-cd ~\OneDrive;
+cd $OneDrive;
 
 if ($keyword -eq $null) {
     e $(Resolve-Path ".\Essentials\accounts.ini");
