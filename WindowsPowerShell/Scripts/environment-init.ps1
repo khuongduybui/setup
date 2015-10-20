@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 clear;
 Write-Host "Setting up minimal environments..." -ForegroundColor Yellow;
 Write-Host "Profile location: $Profile" -ForegroundColor Blue;
@@ -19,6 +20,7 @@ Verify-Path "~/Programs/putty";
 Verify-Path "~/Programs/putty/App/putty";
 Verify-Path "~/Programs/PortableApps/puttyportable";
 Verify-Path "~/Programs/PortableApps/puttyportable/App/putty";
+Verify-Path "D:/Program Files/putty";
 if (Verify-Command "pageant") {
 	pageant (Get-Item ~/.ssh/*.ppk)
 	$env:GIT_SSH=(Verify-Command -o "plink").Path;
