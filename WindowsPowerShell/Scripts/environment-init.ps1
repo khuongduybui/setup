@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 clear;
 Write-Host "Setting up minimal environments..." -ForegroundColor Yellow;
 Write-Host "Profile location: $Profile" -ForegroundColor Blue;
