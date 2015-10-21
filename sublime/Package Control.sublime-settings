@@ -6,6 +6,10 @@
 	"installed_packages":
 	[
 		"AngularJS",
+		"HTML-CSS-JS Prettify",
+		"LESS",
+		"Material Theme",
+		"ModernPerl",
 		"Package Control",
 		"Theme - Bamboo"
 	]
