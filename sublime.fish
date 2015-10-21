@@ -4,7 +4,7 @@ cd ~;
 if __is_mac
 	set sublimepath "./Library/Application Support/Sublime Text 3"
 else
-	set sublimepath "./config/sublime-text-3"
+	set sublimepath "./.config/sublime-text-3"
 end
 
 set filepath "$sublimepath/Installed Packages/Package Control.sublime-package"
