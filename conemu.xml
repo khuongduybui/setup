@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2015-10-03 18:38:38" build="150913">
+		<key name=".Vanilla" modified="2015-10-26 17:56:15" build="150913">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -112,7 +112,7 @@
 			<value name="Multi.SplitHeight" type="hex" data="04"/>
 			<value name="KeyboardHooks" type="hex" data="02"/>
 			<value name="FontName" type="string" data="Inconsolata"/>
-			<value name="FontName2" type="string" data="Source Code Pro"/>
+			<value name="FontName2" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
 			<value name="FontSize" type="dword" data="00000010"/>
 			<value name="FontSizeX" type="dword" data="00000000"/>
@@ -293,9 +293,9 @@
 			<value name="TaskBarOverlay" type="hex" data="01"/>
 			<value name="TaskbarProgress" type="hex" data="01"/>
 			<value name="TabCloseMacro" type="string" data=""/>
-			<value name="TabFontFace" type="string" data="Verdana"/>
-			<value name="TabFontCharSet" type="dword" data="000000a3"/>
-			<value name="TabFontHeight" type="dword" data="00000018"/>
+			<value name="TabFontFace" type="string" data="Inconsolata"/>
+			<value name="TabFontCharSet" type="dword" data="00000000"/>
+			<value name="TabFontHeight" type="dword" data="00000010"/>
 			<value name="SaveAllEditors" type="string" data=""/>
 			<value name="ToolbarAddSpace" type="dword" data="00000000"/>
 			<value name="TabConsole" type="string" data="%s"/>
@@ -376,7 +376,7 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="HotKeys" modified="2015-10-03 18:38:38" build="150913">
+			<key name="HotKeys" modified="2015-10-26 17:56:15" build="150913">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="00000011"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -555,18 +555,18 @@
 				<value name="WndDragKey" type="dword" data="00121101"/>
 				<value name="Multi.Unfasten" type="dword" data="00000000"/>
 			</key>
-			<key name="Tasks" modified="2015-10-03 18:38:38" build="150913">
+			<key name="Tasks" modified="2015-10-26 17:56:15" build="150913">
 				<value name="Count" type="dword" data="0000000a"/>
-				<key name="Task1" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task1" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101131"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%CMDER_ROOT%\cmder.exe&quot;"/>
-					<value name="Cmd1" type="string" data="*powershell -NoProfile -NoExit -File %USERPROFILE%\setup\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -new_console:t:PowerShell"/>
+					<value name="Cmd1" type="string" data="*powershell -ExecutionPolicy Unrestricted -NoProfile -NoExit -File %USERPROFILE%\setup\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -new_console:t:PowerShell"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task2" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task2" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{Desktop}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101132"/>
@@ -575,7 +575,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task3" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task3" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{VM}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101133"/>
@@ -584,7 +584,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task4" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task4" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{AM}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101134"/>
@@ -593,16 +593,16 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task5" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task5" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{UM (Odin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101155"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="C:\Users\duybui.ANT\Programs\putty\puttyportable.exe -load UM -new_console:t:UM"/>
+					<value name="Cmd1" type="string" data="C:\Users\duybui.ANT\Programs\PortableApps\puttyPortable\puttyportable.exe -load UM -new_console:t:UM"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task6" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task6" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{Pickaxe}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101136"/>
@@ -611,7 +611,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task7" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task7" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{cmd}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -620,7 +620,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task8" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task8" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -629,31 +629,31 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task9" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task9" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{YueYing}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101159"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="C:\Users\duybui.ANT\Programs\Putty\puttyportable -load yueying -new_console:t:YueYing"/>
+					<value name="Cmd1" type="string" data="C:\Users\duybui.ANT\Programs\PortableApps\PuttyPortable\puttyportable -load yueying -new_console:t:YueYing"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task10" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Task10" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="{PowerShell restricted}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00101130"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%CMDER_ROOT%\cmder.exe&quot;"/>
-					<value name="Cmd1" type="string" data="powershell -NoProfile -NoExit -File %USERPROFILE%\setup\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -new_console:t:PowerShell"/>
+					<value name="Cmd1" type="string" data="powershell -ExecutionPolicy Unrestricted -NoProfile -NoExit -File %USERPROFILE%\setup\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -new_console:t:PowerShell"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2015-10-03 18:38:38" build="150913">
+			<key name="Apps" modified="2015-10-26 17:56:15" build="150913">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-			<key name="Colors" modified="2015-10-03 18:38:38" build="150913">
+			<key name="Colors" modified="2015-10-26 17:56:15" build="150913">
 				<value name="Count" type="dword" data="00000002"/>
-				<key name="Palette1" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Palette1" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="moe-dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -694,7 +694,7 @@
 					<value name="ColorTable30" type="dword" data="00ffff00"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette2" modified="2015-10-03 18:38:38" build="150913">
+				<key name="Palette2" modified="2015-10-26 17:56:15" build="150913">
 					<value name="Name" type="string" data="Monokai"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
