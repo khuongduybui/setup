@@ -43,7 +43,7 @@ echo "a"
 test -f /etc/redhat-release &&\
   grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
   echo "RHEL detected. Installing core modules..." &&\
-  bash /home/duybui/setup/rhel.sh > /dev/null
+  bash /home/duybui/setup/rhel.sh
 echo "b"
 chmod +x bin/*.sh
 
