@@ -5,5 +5,9 @@ function odin
 		echo "ERRROR: cannot connect to http://localhost:2009."
 		return
 	end
-	GET "http://localhost:2009/query?Operation=retrieve&ContentType=JSON&material.materialName=$argv[1]&material.materialType=Credential" | tr '{},' '\n\n\n' | sed -n 's/"materialData":"\(.*\)"/\1/p' | base64 -di
+	set type "Credential"
+	if test (count $argv) = 2
+		set type "$argv[2]"
+	end
+	GET "http://localhost:2009/query?Operation=retrieve&ContentType=JSON&material.materialName=$argv[1]&material.materialType=$type" | tr '{},' '\n\n\n' | sed -n 's/"materialData":"\(.*\)"/\1/p' | base64 -di
 end
