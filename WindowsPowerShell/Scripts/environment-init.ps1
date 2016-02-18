@@ -15,6 +15,10 @@ $env:HOME = Resolve-Path ("~");
 
 Wrap-Ls;
 
+Verify-Path "~/Programs/unison";
+if (Verify-Command "unison") {
+	Write-Host "unison loaded." -ForegroundColor Green;
+}
 Verify-Path "~/Programs/putty";
 Verify-Path "~/Programs/putty/App/putty";
 Verify-Path "~/Programs/PortableApps/puttyportable";
