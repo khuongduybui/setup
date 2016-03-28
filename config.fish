@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-#Plugins
-if test -d /usr/local/Cellar/autojump
-	source /usr/local/Cellar/autojump/*/etc/autojump.fish
-end
-
-if test (which byobu-screen) > /dev/null 2>&1
-end
-
-=======
->>>>>>> aa3cc52764d0c4e1c2201bb962363155af631c19
 #Global
 ##Editors
 set -xg EDITOR (which vim)
