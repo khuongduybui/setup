@@ -2,6 +2,7 @@
 apt-add-repository -y ppa:fish-shell/release-2
 apt-add-repository -y ppa:daniel.pavel/solaar
 apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
+apt-add-repository -y ppa:avsm/ocaml42+opam120
 
 wget -O - https://deb.nodesource.com/setup | sudo bash - > /dev/null
 
@@ -9,7 +10,7 @@ apt-get update
 apt-get upgrade -y
 
 apt-get install -y \
-  build-essential  dkms debhelper \
+  build-essential  dkms debhelper ocaml \
   vim \
   byobu fish \
   nodejs \
@@ -17,6 +18,17 @@ apt-get install -y \
   git \
   monodevelop \
   bluez-hcidump bluez-utils bluez-compat \
+
+################################################
+# UNISON - CLEAN UP
+################################################
+curl -sSL http://www.seas.upenn.edu/~bcpierce/unison//download/releases/stable/unison-2.48.3.tar.gz | tar -zxvf -
+cd unison-2.48.3
+make UISTYLE=text || true
+cp unison           /usr/bin
+cp unison-fsmonitor /usr/bin
+cd ../
+rm -r unison-2.48.3
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
 echo 'cd /tmp' >> ~/bin/install-chrome.sh

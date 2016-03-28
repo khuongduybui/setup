@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Plugins
 if test -d /usr/local/Cellar/autojump
 	source /usr/local/Cellar/autojump/*/etc/autojump.fish
@@ -6,6 +7,8 @@ end
 if test (which byobu-screen) > /dev/null 2>&1
 end
 
+=======
+>>>>>>> aa3cc52764d0c4e1c2201bb962363155af631c19
 #Global
 ##Editors
 set -xg EDITOR (which vim)
@@ -20,6 +23,7 @@ set -g fish_color_cwd red
 set -g fish_color_user blue
 set -g fish_color_host magenta
 set -g fish_color_status red
+set -g -x fish_greeting ''
 
 ##Abbreviations
 set -g fish_user_abbreviations 'g=git status' $fish_user_abbreviations
@@ -43,10 +47,9 @@ set -g fish_user_abbreviations 'server=ape /apollo/env/SDETools/bin/brazil-build
 set -g fish_user_abbreviations 'pkg=ape /apollo/end/SDETools/bin/brazil-build apollo-pkg' $fish_user_abbreviations
 set -g fish_user_abbreviations 'esudo=sudo -E' $fish_user_abbreviations
 set -g fish_user_abbreviations 'eossh=ssh -i .ssh/id_eos_ec2 -l ec2-user' $fish_user_abbreviations
-status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/.config/fish/my-session
 set -g fish_user_abbreviations 'lsenv=l /apollo/env/' $fish_user_abbreviations
 set -g fish_user_abbreviations $fish_user_abbreviations
 set -g fish_user_abbreviations 'pickaxe=ssh -At duybui-um.aka.amazon.com ssh -t aws-pickaxe-iad-prod-1a-i-24be46da.us-east-1.amazon.com /apollo/env/AWSPickaxeEscritoire/bin/pickaxe' $fish_user_abbreviations
 set -g fish_user_abbreviations 'grep-runtime-log=grep (brazil-bootstrap)/var/output/logs/* -e' $fish_user_abbreviations
 set -g fish_user_abbreviations 'rebuild-coral=clear; begin; set -lx SERVICE (pwe); cd ../"$SERVICE"Model/; brazil-build; cd ../"$SERVICE"Generator/; brazil-build; cd ../"$SERVICE"; brazil-build server; end' $fish_user_abbreviations
-status --is-login; and status --is-interactive; and exec byobu-screen
+
