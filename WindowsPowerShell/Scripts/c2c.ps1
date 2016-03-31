@@ -1,10 +1,10 @@
 param([switch] $o, [string] $Project);
 
 if ($Project -eq $null) {
-	Get-ChildItem ~\Code\;
+	Get-ChildItem ~\code\;
 } else {
-	if (Test-Path ~\Code\$Project) {
-		cd ~\Code\$Project;
+	if (Test-Path ~\code\$Project) {
+		cd ~\code\$Project;
 
 		if (Test-Path .\src\*) {
 			cd .\src\*;
