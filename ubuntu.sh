@@ -4,7 +4,7 @@ apt-add-repository -y ppa:daniel.pavel/solaar
 apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
 apt-add-repository -y ppa:avsm/ocaml42+opam120
 
-wget -O - https://deb.nodesource.com/setup | sudo bash - > /dev/null
+wget -O - https://deb.nodesource.com/setup_5.x | sudo bash - > /dev/null
 
 apt-get update
 apt-get upgrade -y
@@ -15,7 +15,6 @@ apt-get install -y \
   byobu fish \
   nodejs \
   python-pip \
-  git \
   monodevelop \
   bluez-hcidump bluez-utils bluez-compat \
 
