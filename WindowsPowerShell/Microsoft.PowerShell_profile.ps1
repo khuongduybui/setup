@@ -34,12 +34,6 @@ function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
 Set-Alias   code            c2c.ps1
 
-#Google-App-Engine Functions
-Set-Alias   gphp            Gapp-Php
-
-#XAMPP Functions
-function    mysql-root      { mysql --user=root $args; }
-
 #GIT Functions
 function    g               { git status $args; }
 function    gb              { git branch $args; }
