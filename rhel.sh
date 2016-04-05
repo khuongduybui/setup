@@ -1,3 +1,11 @@
+#! /bin/sh
+echo install NodeJS / NPM
+test -d /apollo || curl -sL https://rpm.nodesource.com/setup_5.x | sudo bash -
+sudo yum install -y nodejs gcc gcc-c++ make
+
+echo install Python / PIP
+which python2 && curl https://bootstrap.pypa.io/get-pip.py | python2
+
 mv /home/duybui/.zshrc /home/duybui/.zshrc.`date +%Y-%m-%d`.bak
 echo "/apollo/env/envImprovement/bin/fish" > /home/duybui/.zshrc
 #scp duybui.aka.amazon.com:/home/duybui/.ssh/id_rsa /home/duybui/.ssh/
@@ -15,8 +23,3 @@ byobu-launcher-install
 
 wget http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
 yum install -y http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
-
-mkdir /home/duybui/opt
-echo install iojs
-yum install -y gcc gcc-c++
-curl https://bootstrap.pypa.io/get-pip.py | python2

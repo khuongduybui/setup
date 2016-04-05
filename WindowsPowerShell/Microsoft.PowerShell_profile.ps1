@@ -7,6 +7,14 @@ if ($OneDrive -eq $ne) {
 if ($OneDrive -eq $ne) {
   $OneDrive = Resolve-Path "~/OneDrive";
 }
+$SpecialFolders = @{}
+$names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+foreach($name in $names)
+{
+  if($path = [Environment]::GetFolderPath($name)){
+    $SpecialFolders[$name] = $path
+  }
+}
 
 #Global Functions
 function    ..              { cd ..; }
@@ -25,12 +33,6 @@ function    mklink          { cmd /c mklink $args; }
 function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
 Set-Alias   code            c2c.ps1
-
-#Google-App-Engine Functions
-Set-Alias   gphp            Gapp-Php
-
-#XAMPP Functions
-function    mysql-root      { mysql --user=root $args; }
 
 #GIT Functions
 function    g               { git status $args; }
