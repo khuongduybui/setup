@@ -6,11 +6,11 @@ if ($test -eq $null) {
     Write-Host "$command missing! Run Verify-Choco -command $command -f to install." -ForegroundColor Red;
     return $false;
   } else {
-    Write-Host "$command missing! Attempting to install..." -ForegroundColor DarkYellow;
+    Write-Host "$command missing! Attempting to install..." -ForegroundColor Yellow;
     Install-Package -Name $command -Source chocolatey;
     return Verify-Choco -command $command;
   }
 } else {
-  Write-Host $command $test.Version -ForegroundColor DarkGreen;
+  Write-Host $command $test.Version -ForegroundColor Green;
   return $true;
 }

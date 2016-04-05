@@ -2,7 +2,7 @@ param([switch] $v, [string] $path);
 
 if ((Test-Path $path) -ne $True) {
 	if ($v -eq $True) {
-		Write-Host "$path not found." -ForegroundColor DarkRed;
+		Write-Host "$path not found." -ForegroundColor Red;
 	}
 	return;
 }

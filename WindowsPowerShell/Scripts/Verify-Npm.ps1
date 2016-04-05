@@ -8,11 +8,11 @@ if ((Verify-Command $command) -eq $false) {
     Write-Host "$command missing! Run Verify-Npm -command $command -package $package -f to install." -ForegroundColor Red;
     return $false;
   } else {
-    Write-Host "$command missing! Attempting to install..." -ForegroundColor DarkYellow;
+    Write-Host "$command missing! Attempting to install..." -ForegroundColor Yellow;
     npm install -g $package;
     return Verify-NPM -command $command -package $package;
   }
 } else {
-  Write-Host "$command installed." -ForegroundColor DarkGreen;
+  Write-Host "$command installed." -ForegroundColor Green;
   return $true;
 }

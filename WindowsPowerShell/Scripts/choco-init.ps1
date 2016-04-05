@@ -1,8 +1,8 @@
 param([switch] $f, [switch] $l, [switch] $u, [switch] $v)
 if ((Verify-Command "choco") -eq $true) {
-  Write-Host "choco installed." -ForegroundColor DarkGreen;
+  Write-Host "choco installed." -ForegroundColor Green;
   if ($v -eq $true) {
-    choco version | grep "found  " | Write-Host -ForegroundColor DarkGreen;
+    choco version | grep "found  " | Write-Host -ForegroundColor Green;
   }
   if ($u -eq $true) {
     #choco update;

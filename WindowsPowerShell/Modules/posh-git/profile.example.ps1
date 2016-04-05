@@ -13,7 +13,7 @@ function global:prompt {
 	$realLASTEXITCODE = $LASTEXITCODE
 	Write-Host(($(whoami) -ireplace "$(hostname)\\", '').replace("\", "/")) -NoNewLine -ForegroundColor Blue
 	Write-Host "@" -NoNewLine
-	Write-Host($(hostname) + " ") -NoNewLine -ForegroundColor DarkMagenta
+	Write-Host($(hostname) + " ") -NoNewLine -ForegroundColor Magenta
 
 	Write-Host($pwd.ProviderPath.Replace($env:HOME, "~").Replace("\", "/")) -NoNewLine -ForegroundColor Red
 

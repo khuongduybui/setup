@@ -35,7 +35,7 @@ if ($Project -eq $null) {
 			}
 		}
 	} else {
-		Write-Host "$Project not found." -ForegroundColor DarkRed;
+		Write-Host "$Project not found." -ForegroundColor Red;
 		popd;
 	}
 }

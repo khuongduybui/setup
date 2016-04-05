@@ -4,7 +4,7 @@ if ((Test-Path $file) -eq $false) {
   return $null;
 }
 if (($destination -eq $null) -or ((Test-Path $destination) -eq $false)) {
-  Write-Host "destination not supplied or not found. Using current working directory instead." -ForegroundColor DarkYellow;
+  Write-Host "destination not supplied or not found. Using current working directory instead." -ForegroundColor Yellow;
   $destination = pwd;
 }
 $shell = New-Object -com shell.application;
