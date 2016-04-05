@@ -7,6 +7,14 @@ if ($OneDrive -eq $ne) {
 if ($OneDrive -eq $ne) {
   $OneDrive = Resolve-Path "~/OneDrive";
 }
+$SpecialFolders = @{}
+$names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+foreach($name in $names)
+{
+  if($path = [Environment]::GetFolderPath($name)){
+    $SpecialFolders[$name] = $path
+  }
+}
 
 #Global Functions
 function    ..              { cd ..; }
