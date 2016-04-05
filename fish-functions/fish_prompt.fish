@@ -70,7 +70,7 @@ function fish_prompt --description 'Write out the prompt'
 		set -g __fish_prompt_user (set_color -o $fish_color_user)
 	end
 	if not set -q __fish_prompt_host
-		set -g __fish_prompt_host (set_color $fish_color_host)
+		set -g __fish_prompt_host (set_color -o $fish_color_host)
 	end
 
 	if which brazil >/dev/null 2>&1
