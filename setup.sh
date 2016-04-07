@@ -32,17 +32,17 @@ test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.g
 test -d ~/bin || mkdir ~/bin
 test -d ~/opt || mkdir ~/opt
 
-test -f /etc/issue && test -d /mnt/c/Users &&\
+test -f /etc/issue &&\
   grep -Ei "elementary|ubuntu" /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
+#   bash ~/setup/ubuntu.sh > /dev/null
+  bash ~/setup/ubuntu.sh
+
+test -f /etc/issue && test -d /mnt/c/Users &&\
+  grep -Ei "elementary|ubuntu" /etc/issue &&\
+  echo "Ubuntu on Windows detected. Installing additional modules..." &&\
 #   bash ~/setup/ubuntu-win.sh > /dev/null
   bash ~/setup/ubuntu-win.sh
-
-# test -f /etc/issue &&\
-#   grep -Ei "elementary|ubuntu" /etc/issue &&\
-#   echo "Ubuntu detected. Installing core modules..." &&\
-# #   bash ~/setup/ubuntu.sh > /dev/null
-#   bash ~/setup/ubuntu.sh
 
 # which sw_vers &&\
 #   echo "OS X detected. Installing core modules..." &&\
