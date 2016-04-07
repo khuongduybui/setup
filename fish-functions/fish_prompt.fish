@@ -1,7 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
 	
-	set -l last_status $status
-
 	# Just calculate these once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
 		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
@@ -56,14 +54,6 @@ function fish_prompt --description 'Write out the prompt'
 			set -g __fish_prompt_cwd (set_color $fish_color_cwd)
 		end
 
-	end
-
-	set -l prompt_status
-	if test $last_status -ne 0
-		if not set -q __fish_prompt_status
-			set -g __fish_prompt_status (set_color $fish_color_status)
-		end
-		echo "$__fish_prompt_status [$last_status]$__fish_prompt_normal"
 	end
 
 	if not set -q __fish_prompt_user
