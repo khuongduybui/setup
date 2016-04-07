@@ -22,7 +22,7 @@ function acc() {
 function code() {
   test -d ~/code || return;
   cd ~/code;
- 
+
   test -d ./$1 || return;
   cd ./$1;
 
@@ -123,7 +123,7 @@ setopt AUTO_PUSHD
 PROMPT="%F{blue}%n%f@%F{magenta}%m%f:%F{red}%~/%f"
 test -f ~/.git.zsh && source ~/.git.zsh && setopt PROMPT_SUBST && RPROMPT='%F{green}$(__git_ps1)%f'
 test -f ~/.git-completion.sh && zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
-which brazil > /dev/null 2>&1 || PROMPT="$PROMPT > " 
+which brazil > /dev/null 2>&1 || PROMPT="$PROMPT > "
 which brazil > /dev/null 2>&1 && PROMPT="$PROMPT %F{blue}brazil%f> "
 
 which brew > /dev/null 2>&1 && [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
