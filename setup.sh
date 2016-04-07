@@ -32,11 +32,17 @@ test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.g
 test -d ~/bin || mkdir ~/bin
 test -d ~/opt || mkdir ~/opt
 
-test -f /etc/issue &&\
+test -f /etc/issue && test -d /mnt/c/Users &&\
   grep -Ei "elementary|ubuntu" /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
-#   bash ~/setup/ubuntu.sh > /dev/null
-  bash ~/setup/ubuntu.sh
+#   bash ~/setup/ubuntu-win.sh > /dev/null
+  bash ~/setup/ubuntu-win.sh
+
+# test -f /etc/issue &&\
+#   grep -Ei "elementary|ubuntu" /etc/issue &&\
+#   echo "Ubuntu detected. Installing core modules..." &&\
+# #   bash ~/setup/ubuntu.sh > /dev/null
+#   bash ~/setup/ubuntu.sh
 
 # which sw_vers &&\
 #   echo "OS X detected. Installing core modules..." &&\
@@ -56,12 +62,12 @@ which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-pr
 test -d ~/code || mkdir ~/code
 test -d ~/code/test || mkdir ~/code/test
 
-which npm &&\
+which npm >/dev/null 2&>1 &&\
   echo "Installing NPM tools..." &&\
   npm install -g mocha express-generator nodemon > /dev/null
 
-which pip &&\
-  echo "Installing virtualenv..."
+which pip >/dev/null 2&>1 &&\
+  echo "Installing virtualenv..." &&\
   pip install virtualenv nodeenv
 
 # reload
