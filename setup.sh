@@ -10,51 +10,51 @@ which git &&\
   git config --global color.ui true &&\
   git config --global push.default matching
 
-# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > /home/duybui/.git.zsh
-# #curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> /home/duybui/.git.sh
-# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh > /home/duybui/.git-completion.zsh
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh > ~/.git-completion.zsh
 
-# test -f /home/duybui/.zsh_aliases && mv /home/duybui/.zsh_aliases /home/duybui/.zsh_aliases.bak
-# ln -s /home/duybui/setup/.zsh_aliases /home/duybui/
-# test -f /home/duybui/.zshrc || (echo "autoload -Uz zsh-newuser-install" > /home/duybui/.zshrc; echo "zsh-newuser-install" >> /home/duybui/.zshrc)
-# (test -f /home/duybui/.zshrc && grep .zsh_aliases /home/duybui/.zshrc > /dev/null 2>&1) || echo "source /home/duybui/.zsh_aliases" >> /home/duybui/.zshrc
-# test -f /home/duybui/.bash_aliases && mv /home/duybui/.bash_aliases /home/duybui/.bash_aliases.bak
-# ln -s /home/duybui/setup/.bash_aliases /home/duybui/
-test -d /home/duybui/.config/fish || mkdir -p /home/duybui/.config/fish
-test -f /home/duybui/.config/fish/config.fish || ln -s /home/duybui/setup/config.fish /home/duybui/.config/fish/config.fish
-test -d /home/duybui/setup/fish-functions || ln -s /home/duybui/setup/fish-functions /home/duybui/.config/fish/functions
+# test -f ~/.zsh_aliases && mv ~/.zsh_aliases ~/.zsh_aliases.bak
+# ln -s ~/setup/.zsh_aliases ~/
+# test -f ~/.zshrc || (echo "autoload -Uz zsh-newuser-install" > ~/.zshrc; echo "zsh-newuser-install" >> ~/.zshrc)
+# (test -f ~/.zshrc && grep .zsh_aliases ~/.zshrc > /dev/null 2>&1) || echo "source ~/.zsh_aliases" >> ~/.zshrc
+# test -f ~/.bash_aliases && mv ~/.bash_aliases ~/.bash_aliases.bak
+# ln -s ~/setup/.bash_aliases ~
+test -d ~/.config/fish || mkdir -p ~/.config/fish
+test -f ~/.config/fish/config.fish || ln -s ~/setup/config.fish ~/.config/fish/config.fish
+test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
 
-test -f /home/duybui/.vimrc && mv /home/duybui/.vimrc /home/duybui/.vimrc.`date +%Y-%m-%d`.bak
-ln -s /home/duybui/setup/.vimrc /home/duybui/
-test -d /home/duybui/.vim/bundle || mkdir -p /home/duybui/.vim/bundle
-test -d /home/duybui/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git /home/duybui/.vim/bundle/vundle
+test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.`date +%Y-%m-%d`.bak
+ln -s ~/setup/.vimrc ~/
+test -d ~/.vim/bundle || mkdir -p ~/.vim/bundle
+test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
-test -d /home/duybui/bin || mkdir /home/duybui/bin
-test -d /home/duybui/opt || mkdir /home/duybui/opt
+test -d ~/bin || mkdir ~/bin
+test -d ~/opt || mkdir ~/opt
 
 test -f /etc/issue &&\
   grep -Ei "elementary|ubuntu" /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
-#   bash /home/duybui/setup/ubuntu.sh > /dev/null
-  bash /home/duybui/setup/ubuntu.sh
+#   bash ~/setup/ubuntu.sh > /dev/null
+  bash ~/setup/ubuntu.sh
 
 # which sw_vers &&\
 #   echo "OS X detected. Installing core modules..." &&\
-# #   sh /home/duybui/setup/mac.sh > /dev/null
-#   sh /home/duybui/setup/mac.sh
+# #   sh ~/setup/mac.sh > /dev/null
+#   sh ~/setup/mac.sh
 
 test -f /etc/redhat-release &&\
   grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
   echo "RHEL detected. Installing core modules..." &&\
-#   bash /home/duybui/setup/rhel.sh > /dev/null
-  bash /home/duybui/setup/rhel.sh
+#   bash ~/setup/rhel.sh > /dev/null
+  bash ~/setup/rhel.sh
 
 chmod +x bin/*.sh
 
 which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
 
-test -d /home/duybui/code || mkdir /home/duybui/code
-test -d /home/duybui/code/test || mkdir /home/duybui/code/test
+test -d ~/code || mkdir ~/code
+test -d ~/code/test || mkdir ~/code/test
 
 which npm &&\
   echo "Installing NPM tools..." &&\
