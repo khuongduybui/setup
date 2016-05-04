@@ -1,4 +1,6 @@
 #Global
+set -xg PATH $PATH ~/bin
+
 ##Editors
 set -xg EDITOR (which vim)
 set -xg VISUAL $EDITOR

@@ -23,7 +23,7 @@ function code() {
   fi
 
   cd ~/code;
- 
+
   if ! [ -d ./$1 ]; then
     echo "ERROR: ~/code/$1 directory not found.";
     return;

@@ -1,33 +1,21 @@
 #! /bin/sh
-apt-add-repository -y ppa:fish-shell/release-2
-apt-add-repository -y ppa:daniel.pavel/solaar
-apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
-apt-add-repository -y ppa:avsm/ocaml42+opam120
+sudo apt-add-repository -y ppa:fish-shell/release-2
+sudo apt-add-repository -y ppa:daniel.pavel/solaar
+sudo apt-add-repository -y ppa:eugenesan/ppa # unison
+sudo apt-add-repository -y ppa:neovim-ppa/unstable
+sudo apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
+wget -O - https://deb.nodesource.com/setup_6.x | sudo bash - > /dev/null
 
-wget -O - https://deb.nodesource.com/setup_5.x | sudo bash - > /dev/null
+sudo apt-get update
+sudo apt-get upgrade -y
 
-apt-get update
-apt-get upgrade -y
-
-apt-get install -y \
-  build-essential  dkms debhelper ocaml \
-  vim \
+sudo apt-get install -y \
+  build-essential dkms debhelper \
+  vim neovim unison \
   byobu fish \
   nodejs \
-  python-pip \
-  monodevelop \
-  bluez-hcidump bluez-utils bluez-compat \
-
-################################################
-# UNISON - CLEAN UP
-################################################
-curl -sSL http://www.seas.upenn.edu/~bcpierce/unison//download/releases/stable/unison-2.48.3.tar.gz | tar -zxvf -
-cd unison-2.48.3
-make UISTYLE=text || true
-cp unison           /usr/bin
-cp unison-fsmonitor /usr/bin
-cd ../
-rm -r unison-2.48.3
+  python-dev python-pip python3-dev python3-pip \
+#   monodevelop \
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
 echo 'cd /tmp' >> ~/bin/install-chrome.sh
@@ -59,14 +47,17 @@ echo 'wget http://deb.playonlinux.com/playonlinux_trusty.list -O /etc/apt/source
 echo 'sudo apt-get update' >> ~/bin/install-game.sh
 echo 'sudo apt-get install -y wine playonlinux' >> ~/bin/install-game.sh
 
+echo '#! /bin/sh' > ~/bin/install-bluetooth-utils.sh
+echo 'sudo apt-get install -y bluez-hcidump bluez-utils bluez-compat' >> ~/bin/install-X-utils.sh
+
 echo '#! /bin/sh' > ~/bin/install-X-utils.sh
 echo 'sudo apt-get install -y network-manager-vpnc mesa-utils expect-dev gdebi ibus ibus-gtk ibus-qt4 ibus-unikey solaar' >> ~/bin/install-X-utils.sh
+echo 'gconftool --set --type=string /apps/gnome-terminal/profiles/Default/encoding UTF-8' >> ~/bin/install-X-utils.sh
 
 echo '#! /bin/sh' > ~/bin/install-noX-utils.sh
 echo 'git clone https://git.lekensteyn.nl/ltunify.git /tmp/ltunify' >> ~/bin/install-noX-utils.sh
 echo 'cd /tmp/ltunify' >> ~/bin/install-noX-utils.sh
 echo 'sudo make install-home' >> ~/bin/install-noX-utils.sh
-echo 'gconftool --set --type=string /apps/gnome-terminal/profiles/Default/encoding UTF-8' >> ~/bin/install-noX-utils.sh
 
-which gdm && sh ~/bin/install-X-utils.sh || sh ~/bin/install-noX-utils.sh
-which gdm && (which google-chrome || sh ~/bin/install-chrome.sh)
+which gdm && bash ~/bin/install-X-utils.sh || bash ~/bin/install-noX-utils.sh
+which gdm && (which google-chrome || bash ~/bin/install-chrome.sh)

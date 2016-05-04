@@ -1,7 +1,7 @@
 #! /bin/sh
 echo install NodeJS / NPM
-test -d /apollo || curl -sL https://rpm.nodesource.com/setup_5.x | sudo bash -
-sudo yum install -y nodejs gcc gcc-c++ make
+test -d /apollo || curl -sL https://rpm.nodesource.com/setup_6.x | sudo bash -
+# sudo yum install -y nodejs gcc gcc-c++ make # get nodejs from NodeJS apollo environment
 
 echo install Python / PIP
 which python2 && curl https://bootstrap.pypa.io/get-pip.py | python2
