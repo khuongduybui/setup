@@ -31,6 +31,7 @@ function code
 			cd $argv[1]
 			if test -d ./src
 				cd src
+				set -gx BRAZIL_PACKAGES_DIR (pwd)
 				if test (count $argv) = 2
 					cd ./(command ls | command grep --color=none -i $argv[2])
 				else if test (count (command ls)) = 1
