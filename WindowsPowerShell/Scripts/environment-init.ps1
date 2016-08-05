@@ -52,3 +52,4 @@ Verify-Path "C:\Program Files\Amazon\AWSCLI";
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;
+Get-Content ~/setup/banner.md;
