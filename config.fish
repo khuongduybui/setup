@@ -16,6 +16,9 @@ set -g fish_color_host magenta
 set -g fish_color_status red
 set -g -x fish_greeting ''
 
+##Greetings
+cat ~/setup/banner.md
+
 ##Abbreviations
 set -g fish_user_abbreviations 'g=git status' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gco=git checkout' $fish_user_abbreviations
