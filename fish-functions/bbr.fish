@@ -1,4 +1,3 @@
 function bbr
-	bb
-	bin/runtime.sh
+	bb & ./bin/runtime.sh
 end

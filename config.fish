@@ -16,6 +16,9 @@ set -g fish_color_host magenta
 set -g fish_color_status red
 set -g -x fish_greeting ''
 
+##Plugins
+fisher
+
 ##Greetings
 cat ~/setup/banner.md
 

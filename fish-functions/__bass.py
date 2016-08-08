@@ -1,0 +1,1 @@
+/local/home/duybui/.config/fisherman/bass/functions/__bass.py

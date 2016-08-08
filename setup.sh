@@ -22,6 +22,7 @@ which git &&\
 # ln -s ~/setup/.bash_aliases ~
 test -d ~/.config/fish || mkdir -p ~/.config/fish
 test -f ~/.config/fish/config.fish || ln -s ~/setup/config.fish ~/.config/fish/config.fish
+test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
 test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
 
 test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.`date +%Y-%m-%d`.bak
