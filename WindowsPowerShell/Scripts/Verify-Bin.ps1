@@ -1,9 +1,8 @@
 param([switch] $v, [string] $program);
 
-$path = "~/programs/$program*/bin"
-echo $path
+$path = "~/programs/$program*/bin";
 if ($v -eq $True) {
-    Verify-Path -v $path
+  return Verify-Path -v $path;
 } else {
-    Verify-Path $path
+  return Verify-Path $path;
 }

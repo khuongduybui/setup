@@ -1,12 +1,23 @@
 try {
-  $nodeCmd = Get-Command "node" -ErrorAction Stop;
-  if ($nodeCmd -ne $null) {
-    Write-Host "node installed." -ForegroundColor Green;
-  } else {
-    Write-Host "node missing! Attempting to install..." -ForegroundColor Yellow;
-    choco install nodejs.install
+  Write-Host "nodist $(nodist --version)" -ForegroundColor Green;
+  try {
+    Write-Host "node $(node --version)" -ForegroundColor Green;
+  } catch {
+    Write-Host "node missing. Attempting to install..." -ForegroundColor Yellow;
+    nodist latest;
+    Write-Host "node $(node --version)" -ForegroundColor Green;
   }
 } catch {
-  Write-Host "node missing! Attempting to install..." -ForegroundColor Yellow;
-  choco install nodejs.install
+  if ($(Verify-Bin "nodist") -eq $False) {
+    Write-Host "nodist missing. Try https://github.com/marcelklehr/nodist/releases/latest" -ForegroundColor Yellow;
+  } else {
+    Write-Host "nodist $(nodist --version)" -ForegroundColor Green;
+    try {
+      Write-Host "node $(node --version)" -ForegroundColor Green;
+    } catch {
+      Write-Host "node missing. Attempting to install..." -ForegroundColor Yellow;
+      nodist latest;
+      Write-Host "node $(node --version)" -ForegroundColor Green;
+    }
+  }
 }
