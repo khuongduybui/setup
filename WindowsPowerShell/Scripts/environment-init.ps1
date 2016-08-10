@@ -44,7 +44,6 @@ if ((Verify-Command "hg") -eq $true) {
 }
 
 if ((Verify-Command "npm") -eq $true) {
-  Verify-Path ~\AppData\Roaming\npm
   Verify-Module "posh-npm";
 }
 
