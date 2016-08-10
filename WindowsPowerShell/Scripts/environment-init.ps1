@@ -15,15 +15,15 @@ $env:HOME = Resolve-Path ("~");
 
 Wrap-Ls;
 
-Verify-Path "~/Programs/unison";
+Verify-Path "~/Programs/unison" >$null;
 if (Verify-Command "unison") {
 	Write-Host "unison loaded." -ForegroundColor Green;
 }
-Verify-Path "~/Programs/putty";
-Verify-Path "~/Programs/putty/App/putty";
-Verify-Path "~/Programs/PortableApps/puttyportable";
-Verify-Path "~/Programs/PortableApps/puttyportable/App/putty";
-Verify-Path "D:/Program Files/putty";
+Verify-Path "~/Programs/putty" >$null;
+Verify-Path "~/Programs/putty/App/putty" >$null;
+Verify-Path "~/Programs/PortableApps/puttyportable" >$null;
+Verify-Path "~/Programs/PortableApps/puttyportable/App/putty" >$null;
+Verify-Path "D:/Program Files/putty" >$null;
 if (Verify-Command "pageant") {
 	pageant (Get-Item ~/.ssh/*.ppk)
 	$env:GIT_SSH=(Verify-Command -o "plink").Path;
@@ -32,8 +32,8 @@ if (Verify-Command "pageant") {
 
 $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
-  Verify-Path "$gitPath/../../bin";
-  Verify-Path "$gitPath/../../usr/bin";
+  Verify-Path "$gitPath/../../bin" >$null;
+  Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
 }
 if ((Verify-Command "svn") -eq $true) {
@@ -48,7 +48,7 @@ if ((Verify-Command "npm") -eq $true) {
   Verify-Module "posh-npm";
 }
 
-Verify-Path "C:\Program Files\Amazon\AWSCLI";
+Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
 
 Write-Host "Done." -ForegroundColor Yellow;
 cd ~;
