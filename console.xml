@@ -188,19 +188,19 @@
 			<console shell="powershell -NoProfile -NoExit -File %USERPROFILE%\setup\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="1"/>
 		</tab>
 		<tab title="UM" use_default_icon="0">
-			<console shell="&quot;%USERPROFILE%\AppData\Local\Programs\Git\usr\bin\ssh.exe&quot; um" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
+			<console shell="&quot;%USERPROFILE%\Programs\Git\usr\bin\ssh.exe&quot; um" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
 				<env var="SSH_AUTH_SOCK" value="/TMP/SSH-NHZMWTU2CFOT/AGENT.13856" check="1"/>
 				<env var="SSH_AGENT_PID" value="16932" check="1"/>
 			</console>
 		</tab>
 		<tab title="OFJ" use_default_icon="0">
-			<console shell="&quot;%USERPROFILE%\AppData\Local\Programs\Git\usr\bin\ssh.exe&quot; ofj" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
+			<console shell="&quot;%USERPROFILE%\Programs\Git\usr\bin\ssh.exe&quot; ofj" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
 				<env var="SSH_AUTH_SOCK" value="/TMP/SSH-NHZMWTU2CFOT/AGENT.13856" check="1"/>
 				<env var="SSH_AGENT_PID" value="16932" check="1"/>
 			</console>
 		</tab>
 		<tab title="Sniper (LL)" use_default_icon="0">
-			<console shell="&quot;%USERPROFILE%\AppData\Local\Programs\Git\usr\bin\ssh.exe&quot; sniper.lunarlinelabs.net" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
+			<console shell="&quot;%USERPROFILE%\Programs\Git\usr\bin\ssh.exe&quot; sniper.lunarlinelabs.net" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
 				<env var="SSH_AUTH_SOCK" value="/TMP/SSH-NHZMWTU2CFOT/AGENT.13856" check="1"/>
 				<env var="SSH_AGENT_PID" value="16932" check="1"/>
 			</console>

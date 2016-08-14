@@ -29,7 +29,7 @@ if (Verify-Command "pageant") {
 	$env:GIT_SSH=(Verify-Command -o "plink").Path;
 	Write-Host "pageant loaded." -ForegroundColor Green;
 }
-
+Verify-Bin "Git" >$null;
 $gitPath = (Verify-Command -o "git").Path;
 if ($gitPath -ne $null) {
   Verify-Path "$gitPath/../../bin" >$null;
