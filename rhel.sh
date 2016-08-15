@@ -7,7 +7,10 @@ echo install Python / PIP
 which python2 && curl https://bootstrap.pypa.io/get-pip.py | python2
 
 mv /home/duybui/.zshrc /home/duybui/.zshrc.`date +%Y-%m-%d`.bak
-echo "/apollo/env/envImprovement/bin/fish" > /home/duybui/.zshrc
+cd /etc/yum.repos.d/
+wget http://download.opensuse.org/repositories/shells:fish:release:2/RedHat_RHEL-5/shells:fish:release:2.repo
+yum install fish
+echo "/usr/bin/fish" > /home/duybui/.zshrc
 #scp duybui.aka.amazon.com:/home/duybui/.ssh/id_rsa /home/duybui/.ssh/
 #scp duybui.aka.amazon.com:/home/duybui/.ssh/authorized_keys /home/duybui/.ssh/
 #chmod 400 /home/duybui/.ssh/id_rsa

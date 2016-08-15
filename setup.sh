@@ -56,6 +56,10 @@ test -f /etc/redhat-release &&\
 #   bash ~/setup/rhel.sh > /dev/null
   bash ~/setup/rhel.sh
 
+# cd ~
+# chown -R $(id -un):$(id -gn) .
+# cd -
+
 chmod +x bin/*.sh
 
 which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
