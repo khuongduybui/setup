@@ -23,7 +23,7 @@ yum install -y tmux-1.4-3.el5.1.x86_64.rpm
 yum install -y byobu-5.73-4.el5.noarch.rpm
 #byobu-launcher-install
 mv /home/duybui/.zprofile /home/duybui/.zprofile.`date +%Y-%m-%d`.bak
-echo "_byobu_sourced=1 /usr/bin/byobu -S duybui attach -t 1 || /usr/bin/byobu -S duybui" > /home/duybui/.zprofile
+echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" > /home/duybui/.zprofile
 #exec byobu-launcher
 
 wget http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
