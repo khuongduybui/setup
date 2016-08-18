@@ -1,3 +1,3 @@
-function bbr
-	bb & ./bin/runtime.sh
+function bbr --argument sync
+	bb "$sync" & ./bin/runtime.sh
 end

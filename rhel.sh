@@ -17,14 +17,17 @@ echo "exec /usr/bin/fish" > /home/duybui/.zshrc
 #chmod 400 /home/duybui/.ssh/id_rsa
 #git clone git@bitbucket.org:khuongduybui/linux.git /home/duybui/setup
 
-wget ftp://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/5/x86_64/tmux-1.4-3.el5.1.x86_64.rpm
-wget ftp://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/5/x86_64/byobu-5.73-4.el5.noarch.rpm
-yum install -y tmux-1.4-3.el5.1.x86_64.rpm
-yum install -y byobu-5.73-4.el5.noarch.rpm
+wget http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
+yum install -y http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
+
+#wget ftp://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/5/x86_64/tmux-1.4-3.el5.1.x86_64.rpm
+#wget ftp://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/5/x86_64/byobu-5.73-4.el5.noarch.rpm
+#yum install -y tmux-1.4-3.el5.1.x86_64.rpm
+#yum install -y byobu-5.73-4.el5.noarch.rpm
+yum check-update
+yum install -y byobu
 #byobu-launcher-install
 mv /home/duybui/.zprofile /home/duybui/.zprofile.`date +%Y-%m-%d`.bak
 echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" > /home/duybui/.zprofile
 #exec byobu-launcher
 
-wget http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
-yum install -y http://mirror.sfo12.us.leaseweb.net/epel/5/i386/epel-release-5-4.noarch.rpm
