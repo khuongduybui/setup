@@ -1,13 +1,13 @@
 param($keyword);
 
-pushd;
-cd $SyncRoot;
+Push-Location;
+Set-Location $SyncRoot;
 
-if ($keyword -eq $null) {
-    e $(Resolve-Path ".\Essentials\accounts.ini");
+if ($null -eq $keyword) {
+  e $(Resolve-Path ".\Essentials\accounts.ini");
 } else {
-    cat .\Essentials\accounts.ini | gawk "/$keyword/";
-    cat .\Essentials\accounts.ini | gawk "/$keyword.*\{/,/\}/";
+  Get-Content .\Essentials\accounts.ini | gawk "/$keyword/";
+  Get-Content .\Essentials\accounts.ini | gawk "/$keyword.*\{/,/\}/";
 }
 
-popd;
+Pop-Location;

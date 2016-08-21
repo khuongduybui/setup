@@ -1,6 +1,6 @@
 #Global Functions
-function    ..              { cd ..; }
-function    ...             { cd ..\..; }
+function    ..              { Set-Location ..; }
+function    ...             { Set-Location ..\..; }
 function    la              { Get-ChildItem -force $args; }
 Set-Alias   l               ls
 Set-Alias   ll              la

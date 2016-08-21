@@ -33,7 +33,7 @@ if (Verify-Command "pageant") {
 }
 Verify-Bin "Git" >$null;
 $gitPath = (Verify-Command -o "git").Path;
-if ($gitPath -ne $null) {
+if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../bin" >$null;
   Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
@@ -52,5 +52,5 @@ if ((Verify-Command "npm") -eq $true) {
 Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
 
 Write-Host "Done." -ForegroundColor Yellow;
-cd ~;
+Set-Location ~;
 Get-Content ~/setup/banner.md;
