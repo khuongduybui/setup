@@ -1,83 +1,79 @@
-pushd;
-cd $OneDrive\Essentials;
-$files = Get-ChildItem -force | Where-Object {$_.NAME -match "(^[\._])|(\.js$)"};
-cd ~;
-foreach ($file in $files) {
-	$f = $file.Name;
-	if (Test-Path ~\$f) {
-		#don't do anything
-	} else {
-		if ($file.Attributes -match "Directory") {
-			mklink /D $f $OneDrive\Essentials\$f;
-		} else {
-			mklink $f $OneDrive\Essentials\$f;
-		}
-	}
+param($root);
+
+if ($root -eq $nil) {
+  $root = $SyncRoot;
 }
-cd $OneDrive\Essentials\AppData;
-$files = Get-ChildItem;
-foreach ($file in $files) {
-	$f = $file.Name;
-	$onedriveApp = resolve-path $OneDrive\Essentials\AppData\$f;
-	if (Test-Path $onedriveApp\where.txt) {
-		$content = [IO.File]::ReadAllText($(Resolve-Path("$onedriveApp\where.txt")))
-		if (Test-Path $content) {
-			$local = Resolve-Path $content
+Write-Verbose "- Using root: $root" -Verbose;
 
-			$children = Get-ChildItem -force $onedriveApp | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
-			cd ~;
-			foreach ($child in $children) {
-				$file = $child.Name;
-				if (Test-Path $local\$file) {
-					if ($(Get-Item $(Resolve-Path $local\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
-						#don't do anything
-					} else {
-						mv $local\$file $local\$file.bak
-					}
-				}
+Push-Location;
 
-				if (Test-Path $local\$file) {
-					#don't do anything
-				} else {
-					$target = Resolve-Path $onedriveApp\$file
-					if ($child.Attributes -match "Directory") {
-						mklink /D $local\$file $target;
-					} else {
-						mklink $local\$file $target;
-					}
-				}
-			}
-		}
-	}
-	if (Test-Path $onedriveApp\nowhere.txt) {
-		$content = [IO.File]::ReadAllText($(Resolve-Path("$onedriveApp\nowhere.txt")))
-		if (Test-Path $content) {
-			$local = Resolve-Path $content
+if ((Test-Path $root\Essentials) -eq $True) {
+  Write-Verbose "+ Linking dot files" -Verbose;
+  Set-Location $root\Essentials;
+  $files = Get-ChildItem -force | Where-Object {$_.NAME -match "(^[\._])|(\.js$)"};
+  Set-Location ~;
+  foreach ($file in $files) {
+    $f = $file.Name;
+    if (Test-Path ~\$f) {
+      # don't do anything
+      Write-Verbose "| - Skipping existing $f" -Verbose;
+    } else {
+      if ($file.Attributes -match "Directory") {
+        mklink /D $f $root\Essentials\$f;
+      } else {
+        mklink $f $root\Essentials\$f;
+      }
+    }
+  }
 
-			$children = Get-ChildItem -force "$onedriveApp" | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
-			cd ~;
-			foreach ($child in $children) {
-				# $file = $child.Name;
-				# if (Test-Path $local\$file) {
-				# 	if ($(Get-Item $(Resolve-Path $onedriveApp\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
-				# 		#don't do anything
-				# 	} else {
-				# 		mv $local\$file $local\$file.bak
-				# 	}
-				# }
+  if ((Test-Path $root\Essentials\AppData) -eq $True) {
+    Write-Verbose "+ Linking application data" -Verbose;
+    Set-Location $root\Essentials\AppData;
+    $files = Get-ChildItem;
+    foreach ($file in $files) {
+      $f = $file.Name;
+      $syncApp = resolve-path $root\Essentials\AppData\$f;
+      if (Test-Path $syncApp\where.txt) {
+        Write-Verbose "| + Processing $(($syncApp -Split '\\')[-1])" -Verbose;
+        $content = [IO.File]::ReadAllText($(Resolve-Path("$syncApp\where.txt")))
+        if (Test-Path $content) {
+          $local = Resolve-Path $content
 
-				# if (Test-Path $local\$file) {
-				# 	#don't do anything
-				# } else {
-				# 	$target = Resolve-Path $onedriveApp\$file
-				# 	if ($child.Attributes -match "Directory") {
-				# 		mklink /D $local\$file $target;
-				# 	} else {
-				# 		mklink $local\$file $target;
-				# 	}
-				# }
-			}
-		}
-	}
+          $children = Get-ChildItem -force $syncApp | Where-Object {$_.NAME -match "[^(^where.txt$)]"};
+          Set-Location ~;
+          foreach ($child in $children) {
+            $file = $child.Name;
+
+            if (Test-Path $local\$file) {
+              if ($(Get-Item $(Resolve-Path $local\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
+                # don't do anything
+              } else {
+                Move-Item $local\$file $local\$file.bak
+              }
+            }
+
+            if (Test-Path $local\$file) {
+              # don't do anything
+              Write-Verbose "| | - Skipping linked $file" -Verbose;
+            } else {
+              $target = Resolve-Path $syncApp\$file
+              if ($child.Attributes -match "Directory") {
+                mklink /D $local\$file $target;
+              } else {
+                mklink $local\$file $target;
+              }
+            }
+          }
+        } else {
+          Write-Warning "| | - $content not found" -Verbose;
+        }
+      } else {
+        Write-Verbose "| - Skipping $(($syncApp -Split '\\')[-1])" -Verbose;
+        # don't do anything
+      }
+    }
+  }
 }
-popd;
+
+Write-Verbose "- Done with root: $root" -Verbose;
+Pop-Location;

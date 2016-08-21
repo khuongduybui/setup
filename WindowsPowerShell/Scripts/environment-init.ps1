@@ -1,17 +1,19 @@
-clear;
+Clear-Host;
 Write-Host "Setting up minimal environments..." -ForegroundColor Yellow;
 Write-Host "Profile location: $Profile" -ForegroundColor Blue;
-Write-Host "OneDrive location: $OneDrive" -ForegroundColor Blue;
-
+if ($null -ne $WorkDocs) {
+  Write-Host "WorkDocs location: $WorkDocs" -ForegroundColor Blue;
+}
+if ($null -ne $OneDrive) {
+  Write-Host "OneDrive location: $OneDrive" -ForegroundColor Blue;
+}
+if ($null -ne $SyncRoot) {
+  Write-Host "Sync root: $SyncRoot" -ForegroundColor Blue;
+} else {
+  Write-Host "Sync root not found!" -ForegroundColor Red;
+}
 $env:APPLICATION_ENV = "development";
 $env:HOME = Resolve-Path ("~");
-
-#$env:Path="$env:Path;C:\Program Files (x86)\Mono-3.2.3\bin"
-#$env:Path="$env:Path;$(Resolve-Path ~\Programs\movie-tools\libwebp-0.4.0-windows-x64\bin)"
-
-#$env:GOROOT="$(Resolve-Path ~\Programs\go)"
-#$env:GOPATH="$(Resolve-Path ~\Programs\go\path)"
-#$env:Path="$env:Path;$(Resolve-Path ~\Programs\go\bin);$(Resolve-Path ~\Programs\go\path\bin)"
 
 Wrap-Ls;
 

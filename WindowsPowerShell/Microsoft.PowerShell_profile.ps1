@@ -1,21 +1,3 @@
-#init
-$Profile = $myInvocation.mycommand.path
-$OneDrive = (Get-ItemProperty -Path "hkcu:\Software\Microsoft\Windows\CurrentVersion\SkyDrive\" -Name UserFolder -ErrorAction Silent).UserFolder;
-if ($OneDrive -eq $ne) {
-  $OneDrive = (Get-ItemProperty -Path "hkcu:\Software\Microsoft\OneDrive\" -Name UserFolder -ErrorAction Silent).UserFolder;
-}
-if ($OneDrive -eq $ne) {
-  $OneDrive = Resolve-Path "~/OneDrive";
-}
-$SpecialFolders = @{}
-$names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
-foreach($name in $names)
-{
-  if($path = [Environment]::GetFolderPath($name)){
-    $SpecialFolders[$name] = $path
-  }
-}
-
 #Global Functions
 function    ..              { cd ..; }
 function    ...             { cd ..\..; }
@@ -45,11 +27,33 @@ function    gbd             { git branch -D $args; }
 #Node Functions
 Set-Alias   ver             Get-Version
 
+#init
+$Profile = $myInvocation.mycommand.path
+
+$SpecialFolders = @{}
+$names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+foreach($name in $names)
+{
+  if($path = [Environment]::GetFolderPath($name)){
+    $SpecialFolders[$name] = $path
+  }
+}
+
 $env:Path += ";$(Split-Path $Profile)\Scripts"
 $env:PSModulePath = $env:PSModulePath -replace ("$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules" -replace "\\", "\\"), "$(Split-Path $Profile)\Modules"
 
 $HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
-Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | out-null
-if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History } else { echo $HistoryFilePath }
+Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | Out-Null
+if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History }
+
+$WorkDocs = find-work-docs 2>$null;
+if ($null -ne $WorkDocs) {
+  $SyncRoot = $WorkDocs;
+}
+
+$OneDrive = find-onedrive 2>$null;
+if ($null -ne $OneDrive) {
+  $SyncRoot = $OneDrive;
+}
 
 Environment-Init
