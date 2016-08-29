@@ -10,18 +10,19 @@ Push-Location;
 if ((Test-Path $root\Essentials) -eq $True) {
   Write-Verbose "+ Linking dot files" -Verbose;
   Set-Location $root\Essentials;
-  $files = Get-ChildItem -force | Where-Object {$_.NAME -match "(^[\._])|(\.js$)"};
+  $files = Get-ChildItem -force | Where-Object {$_.NAME -match "^dotfile"};
   Set-Location ~;
   foreach ($file in $files) {
-    $f = $file.Name;
+    $f = $file.Name -Replace "dotfile", "";
+
     if (Test-Path ~\$f) {
       # don't do anything
       Write-Verbose "| - Skipping existing $f" -Verbose;
     } else {
       if ($file.Attributes -match "Directory") {
-        mklink /D $f $root\Essentials\$f;
+        mklink /D $f $root\Essentials\$file;
       } else {
-        mklink $f $root\Essentials\$f;
+        mklink $f $root\Essentials\$file;
       }
     }
   }
