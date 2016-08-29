@@ -6,7 +6,12 @@ if ((Test-Path "$($SpecialFolders['LocalApplicationData'])/Amazon WorkDocs/SyncC
       $root = ($lastRootLogEntry[-1] -Split "sync root: ")[-1];
       Write-Output $root;
     } else {
-      Write-Error "sync root not found.";
+	  if ((Test-Path "~/WorkDocs") -eq $True) {
+        $root = Resolve-Path "~/WorkDocs";
+        Write-Output $root;
+      } else {
+        Write-Error "sync root not found.";
+      }
     }
   } else {
     Write-Error "service.log not found.";
