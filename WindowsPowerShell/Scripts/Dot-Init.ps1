@@ -46,7 +46,7 @@ if ((Test-Path $root\Essentials) -eq $True) {
 
             if (Test-Path $local\$file) {
               if ($(Get-Item $(Resolve-Path $local\$file)).Attributes -band [IO.FileAttributes]::ReparsePoint) {
-                # don't do anything
+                Remove-Item -Force -Recurse $local\$file
               } else {
                 Move-Item $local\$file $local\$file.bak
               }
