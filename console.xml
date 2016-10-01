@@ -187,6 +187,9 @@
 		<tab title="PowerShell (admin)" use_default_icon="0">
 			<console shell="%USERPROFILE%\setup\powershell.bat" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="1"/>
 		</tab>
+		<tab title="Bash" use_default_icon="0">
+			<console shell="C:\Windows\System32\bash.exe" init_dir="%USERPROFILE%" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0"/>
+		</tab>
 		<tab title="UM" use_default_icon="0">
 			<console shell="&quot;%USERPROFILE%\Programs\Git\usr\bin\ssh.exe&quot; um" init_dir="" priority="2" run_as_user="0" user="" net_only="0" run_as_admin="0">
 				<env var="SSH_AUTH_SOCK" value="/TMP/SSH-NHZMWTU2CFOT/AGENT.13856" check="1"/>
