@@ -67,13 +67,13 @@ which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-pr
 test -d ~/code || mkdir ~/code
 test -d ~/code/test || mkdir ~/code/test
 
-which npm >/dev/null 2&>1 &&\
+which npm >/dev/null 2>&1 &&\
   echo "Installing NPM tools..." &&\
-  npm install -g mocha express-generator nodemon > /dev/null
+  sudo npm install -g mocha express-generator nodemon > /dev/null
 
-which pip >/dev/null 2&>1 &&\
+which pip >/dev/null 2>&1 &&\
   echo "Installing virtualenv..." &&\
-  pip install virtualenv nodeenv
+  sudo pip install virtualenv nodeenv
 
 # reload
 echo 'Core modules have been installed.'

@@ -1,41 +1,45 @@
-param([switch] $o, [string] $Project);
+param([switch] $o, [string] $Project, [string] $Component);
 
-if ($Project -eq $null) {
-	Get-ChildItem ~\code\;
+if ($Project -eq '') {
+  Get-ChildItem ~\code\
 } else {
-	if (Test-Path ~\code\$Project) {
-		cd ~\code\$Project;
+  if (Test-Path ~\code\$Project) {
+    Set-Location ~\code\$Project;
 
-		if (Test-Path .\src\*) {
-			cd .\src\*;
-		}
+    if (Test-Path .\src\*$Component*) {
+      Set-Location .\src\*$Component*;
+    }
 
-		if (Test-Path .\.git) {
-			g;
-		} else {
-			l;
-		}
+    if (($Component -ne '') -and (Test-Path .\*$Component*)) {
+      Set-Location .\*$Component*
+    }
 
-		if (Test-Path .\venv\Scripts\active) {
-			& .\venv\Scripts\active;
-		}
+    if (Test-Path .\.git) {
+      git status;
+    } else {
+      Get-ChildItem;
+    }
 
-		if ($o -eq $true) {
-			$solution = $false;
+    if (Test-Path .\venv\Scripts\active) {
+      & .\venv\Scripts\active;
+    }
 
-			$files = Get-ChildItem -force | Where-Object {$_.NAME -match "\.sln$"};
-			foreach ($file in $files) {
-				$f = $file.Name;
-				& ".\$f";
-				$solution = $true;
-			}
+    if ($o -eq $true) {
+      $solution = $false;
 
-			if ($solution -eq $false) {
-				e .
-			}
-		}
-	} else {
-		Write-Host "$Project not found." -ForegroundColor Red;
-		popd;
-	}
+      $files = Get-ChildItem -force | Where-Object {$_.NAME -match "\.sln$"};
+      foreach ($file in $files) {
+        $f = $file.Name;
+        & ".\$f";
+        $solution = $true;
+      }
+
+      if ($solution -eq $false) {
+        e .
+      }
+    }
+  } else {
+    Write-Host "$Project not found." -ForegroundColor Red;
+    popd;
+  }
 }
