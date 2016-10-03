@@ -32,12 +32,12 @@ function code
 			if test -d ./src
 				cd src
 				set -gx BRAZIL_PACKAGES_DIR (pwd)
+			end
 				if test (count $argv) = 2
-					cd ./(command ls | command grep --color=none -i $argv[2])
+					cd ./(command ls | grep --color=none -i $argv[2])
 				else if test (count (command ls)) = 1
 					cd (command ls)
 				end
-			end
 		end	
 	end
 	if test -d ./.git

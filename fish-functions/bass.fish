@@ -1,1 +1,1 @@
-/local/home/duybui/.config/fisherman/bass/functions/bass.fish
+/home/duybui/.config/fisherman/bass/functions/bass.fish
