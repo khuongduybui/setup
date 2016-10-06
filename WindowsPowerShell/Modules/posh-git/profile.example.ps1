@@ -30,4 +30,4 @@ function global:prompt {
 
 Pop-Location
 
-Start-SshAgent -Quiet
+# Start-SshAgent -Quiet
