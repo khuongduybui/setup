@@ -31,3 +31,4 @@ mv /home/duybui/.zprofile /home/duybui/.zprofile.`date +%Y-%m-%d`.bak
 echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" > /home/duybui/.zprofile
 #exec byobu-launcher
 
+yum install -y w3m
