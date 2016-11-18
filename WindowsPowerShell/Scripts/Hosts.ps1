@@ -1,1 +1,1 @@
-e c:\Windows\System32\drivers\etc\hosts;
+notepad c:\Windows\System32\drivers\etc\hosts;
