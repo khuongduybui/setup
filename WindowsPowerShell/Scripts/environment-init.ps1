@@ -49,6 +49,7 @@ if ((Verify-Command "npm") -eq $true) {
   Verify-Module "posh-npm";
 }
 
+Verify-Module "Execute-With-Retry";
 Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
 
 Write-Host "Done." -ForegroundColor Yellow;
