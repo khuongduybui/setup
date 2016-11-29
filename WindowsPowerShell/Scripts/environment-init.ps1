@@ -34,9 +34,14 @@ if (Verify-Command "pageant") {
 Verify-Bin "Git" >$null;
 $gitPath = (Verify-Command -o "git").Path;
 if ($null -ne $gitPath) {
-  Verify-Path "$gitPath/../../bin" >$null;
+  Verify-Path "$gitPath/../../cmd" >$null;
   Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
+  Start-SSHAgent;
+  if (Verify-Bin "midway" -eq $True) {
+    mwinit;
+  }
+  ssh-add "~/.ssh/primary.pem";
 }
 if ((Verify-Command "svn") -eq $true) {
   Verify-Module "posh-svn";
