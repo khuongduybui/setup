@@ -37,11 +37,11 @@ if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../cmd" >$null;
   Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
-  Start-SSHAgent;
   if (Verify-Bin "midway" -eq $True) {
     mwinit;
   }
-  ssh-add "~/.ssh/primary.pem";
+  Start-SSHAgent;
+  Get-ChildItem ~/.ssh/*.pem | ForEach-Object { ssh-add $_ };
 }
 if ((Verify-Command "svn") -eq $true) {
   Verify-Module "posh-svn";
