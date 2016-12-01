@@ -40,8 +40,8 @@ if ($null -ne $gitPath) {
   if (Verify-Bin "midway" -eq $True) {
     mwinit;
   }
-  Start-SSHAgent;
-  Get-ChildItem ~/.ssh/*.pem | ForEach-Object { ssh-add $_ };
+  # Start-SSHAgent;
+  # Get-ChildItem ~/.ssh/*.pem | ForEach-Object { ssh-add $_ };
 }
 if ((Verify-Command "svn") -eq $true) {
   Verify-Module "posh-svn";
