@@ -38,7 +38,7 @@ if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
   if (Verify-Bin "midway" -eq $True) {
-    mwinit;
+    mwinit -k ~/.ssh/primary.pem.pub;
   }
   # Start-SSHAgent;
   # Get-ChildItem ~/.ssh/*.pem | ForEach-Object { ssh-add $_ };
