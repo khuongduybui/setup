@@ -15,6 +15,7 @@ function    mklink          { cmd /c mklink $args; }
 function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
 Set-Alias   code            c2c.ps1
+function    sshp            { ssh -o ProxyCommand=None $args; }
 
 #GIT Functions
 function    g               { git status $args; }
