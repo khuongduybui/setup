@@ -1,5 +1,7 @@
 $env:NODIST_PREFIX = Resolve-Path("~/Programs/nodist");
+
 if (Verify-Command "nodist") {
+  [Environment]::SetEnvironmentVariable("NODIST_PREFIX", $env:NODIST_PREFIX, "User")
   Write-Output "nodist $(nodist --version)";
   Write-Output "node $(node --version)";
 } else {
