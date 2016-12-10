@@ -5,6 +5,7 @@ if ($Project -eq '') {
 } else {
   if (Test-Path ~\code\$Project) {
     Set-Location ~\code\$Project;
+    $env:DEBUG = "${Project}:*";
 
     if (Test-Path .\src\*$Component*) {
       Set-Location .\src\*$Component*;
