@@ -38,19 +38,17 @@ if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../usr/bin" >$null;
   Verify-Module "posh-git";
   # mw-init;
-  # Start-SSHAgent;
-  # Get-ChildItem ~/.ssh/*.pem | ForEach-Object { ssh-add $_ };
+  # ssh-init;
 }
-if ((Verify-Command "svn") -eq $true) {
-  Verify-Module "posh-svn";
-}
-if ((Verify-Command "hg") -eq $true) {
-  Verify-Module "posh-hg";
-}
-
-if ((Verify-Command "npm") -eq $true) {
-  Verify-Module "posh-npm";
-}
+# if ((Verify-Command "svn") -eq $true) {
+#   Verify-Module "posh-svn";
+# }
+# if ((Verify-Command "hg") -eq $true) {
+#   Verify-Module "posh-hg";
+# }
+# if ((Verify-Command "npm") -eq $true) {
+#   Verify-Module "posh-npm";
+# }
 
 Verify-Module "Execute-With-Retry";
 Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
