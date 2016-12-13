@@ -29,7 +29,7 @@ function code
 			set_color normal
 		else
 			cd $argv[1]
-			set -x DEBUG "$argv[1]:*"
+			set -xg DEBUG "$argv[1]:*"
 			if test -d ./src
 				cd src
 				set -gx BRAZIL_PACKAGES_DIR (pwd)
