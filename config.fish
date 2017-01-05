@@ -1,4 +1,4 @@
-#gLOBal
+##Global
 set -xg PATH $PATH ~/bin
 
 ##Editors
@@ -18,6 +18,11 @@ set -g -x fish_greeting ''
 
 ##Plugins
 fisher 2>/dev/null
+
+##Windows?
+if test -d /mnt/c/Users
+	set -xg DISPLAY ":0"
+end
 
 ##Greetings
 cat ~/setup/banner.md
