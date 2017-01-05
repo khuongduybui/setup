@@ -17,7 +17,7 @@ set -g fish_color_status red
 set -g -x fish_greeting ''
 
 ##Plugins
-fisher
+fisher 2>/dev/null
 
 ##Greetings
 cat ~/setup/banner.md

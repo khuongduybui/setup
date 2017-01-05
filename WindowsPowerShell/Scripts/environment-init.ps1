@@ -39,6 +39,7 @@ if ($null -ne $gitPath) {
   Verify-Module "posh-git";
   # mw-init;
   # ssh-init;
+  X-init;
 }
 # if ((Verify-Command "svn") -eq $true) {
 #   Verify-Module "posh-svn";
@@ -49,7 +50,6 @@ if ($null -ne $gitPath) {
 # if ((Verify-Command "npm") -eq $true) {
 #   Verify-Module "posh-npm";
 # }
-
 Verify-Module "Execute-With-Retry";
 Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
 
