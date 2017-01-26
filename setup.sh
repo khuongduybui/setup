@@ -1,14 +1,14 @@
 #! /bin/bash
 echo "Setting up global preferences..."
-test -d /etc/profile.d &&\
-  echo 'export MESA_EXTENSION_OVERRIDE="-GL_EXT_texture_sRGB_decode -GL_ARB_draw_elements_base_vertex -GL_ARB_map_buffer_range"' >> /etc/profile.d/LoLFix.sh &&\
-  echo 'export NSS_SSL_CBC_RANDOM_IV=0' >> /etc/profile.d/PidginSipeFix.sh
+# test -d /etc/profile.d &&\
+#   echo 'export MESA_EXTENSION_OVERRIDE="-GL_EXT_texture_sRGB_decode -GL_ARB_draw_elements_base_vertex -GL_ARB_map_buffer_range"' >> /etc/profile.d/LoLFix.sh &&\
+#   echo 'export NSS_SSL_CBC_RANDOM_IV=0' >> /etc/profile.d/PidginSipeFix.sh
 
-which git &&\
-  git config --global user.name "Duy K. Bui" &&\
-  git config --global user.email "duy@buifamily.info" &&\
-  git config --global color.ui true &&\
-  git config --global push.default matching
+# which git &&\
+#   git config --global user.name "Duy K. Bui" &&\
+#   git config --global user.email "duy@buifamily.info" &&\
+#   git config --global color.ui true &&\
+#   git config --global push.default matching
 
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git.sh
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash >> ~/.git.sh
@@ -67,13 +67,13 @@ which gsettings && gsettings set org.gnome.shell.overrides workspaces-only-on-pr
 test -d ~/code || mkdir ~/code
 test -d ~/code/test || mkdir ~/code/test
 
-which npm >/dev/null 2>&1 &&\
-  echo "Installing NPM tools..." &&\
-  sudo npm install -g mocha express-generator nodemon > /dev/null
+# which npm >/dev/null 2>&1 &&\
+#   echo "Installing NPM tools..." &&\
+#   sudo npm install -g mocha express-generator nodemon > /dev/null
 
-which pip >/dev/null 2>&1 &&\
-  echo "Installing virtualenv..." &&\
-  sudo pip install virtualenv nodeenv
+# which pip >/dev/null 2>&1 &&\
+#   echo "Installing virtualenv..." &&\
+#   sudo pip install virtualenv nodeenv
 
 # reload
 echo 'Core modules have been installed.'
