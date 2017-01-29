@@ -25,7 +25,7 @@ sudo yum check-update
 # wget ftp://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/5/x86_64/byobu-5.73-4.el5.noarch.rpm
 # yum install -y tmux-1.4-3.el5.1.x86_64.rpm
 # yum install -y byobu-5.73-4.el5.noarch.rpm
-# yum install -y byobu
+sudo yum install -y byobu
 # byobu-launcher-install
 mv /home/duybui/.zprofile /home/duybui/.zprofile.`date +%Y-%m-%d`.bak
 echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" > /home/duybui/.zprofile
