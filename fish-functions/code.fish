@@ -33,6 +33,9 @@ function code
 			if test -d ./src
 				cd src
 				set -gx BRAZIL_PACKAGES_DIR (pwd)
+				if test -d ./BitScripts
+					bass source ./BitScripts/envsetup.sh
+				end
 			end
 				if test (count $argv) = 2
 					cd ./(command ls | grep --color=none -i $argv[2])

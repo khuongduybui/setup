@@ -5,7 +5,9 @@ function aps
 		# set -lx BIT_SCRIPTS_PATH $HOME/opt/BitScripts
 		# set -lx PATH $PATH $BIT_SCRIPTS_PATH/bin
 		# set -lx BIT_CURL (/apollo/bin/env -e envImprovement which kcurl)
-		bass source $HOME/opt/BitScripts/envsetup.sh
+		if test -d $HOME/opt/BitScripts
+			bass source $HOME/opt/BitScripts/envsetup.sh
+		end
 		set -lx BIT_LOVES_PYTHON yes
 		set -lx BIT_REVIEWER_GROUPS asis-dev
 		if not test (count $argv) = 0
