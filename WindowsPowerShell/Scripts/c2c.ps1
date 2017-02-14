@@ -11,7 +11,9 @@ if ($Project -eq '') {
       Set-Location .\src\*$Component*;
     }
 
-    if (($Component -ne '') -and (Test-Path .\*$Component*)) {
+    if (($Component -ne '') -and (Test-Path .\$Component)) {
+      Set-Location .\$Component
+    } elseif (($Component -ne '') -and (Test-Path .\*$Component*)) {
       Set-Location .\*$Component*
     }
 
