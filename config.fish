@@ -6,6 +6,9 @@ set -xg EDITOR (which nvim 2>/dev/null; or which vim)
 set -xg VISUAL $EDITOR
 set -xg VIEWER "$EDITOR -v"
 
+##DOCKER
+set -xg DOCKER_HOST "unix:///var/run/docker.sock"
+
 ##Languages
 set -xg LANG en_US.UTF-8
 

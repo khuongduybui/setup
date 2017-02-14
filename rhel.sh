@@ -32,3 +32,5 @@ echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" >
 # exec byobu-launcher
 
 # yum install -y w3m
+
+sudo ln -sf /usr/share/zoneinfo/EST /etc/localtime
