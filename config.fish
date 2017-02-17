@@ -20,7 +20,7 @@ set -g fish_color_status red
 set -g -x fish_greeting ''
 
 ##Plugins
-fisher 2>/dev/null
+#fisher 2>/dev/null
 
 ##Windows?
 if test -d /mnt/c/Users
