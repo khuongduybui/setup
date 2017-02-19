@@ -10,7 +10,7 @@ Set-Alias   run             Start-Process
 Set-Alias   tor             Fetch-Torrent
 Set-Alias   acc             Accounts
 Set-Alias   sup             Supervisor-App
-Set-Alias   reload          Environment-Init
+function    reload          { Function-Init; Environment-Init }
 function    mklink          { cmd /c mklink $args; }
 function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
@@ -58,4 +58,5 @@ if ($null -ne $OneDrive) {
   $SyncRoot = $OneDrive;
 }
 
-Environment-Init
+Function-Init;
+Environment-Init;
