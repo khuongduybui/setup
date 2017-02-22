@@ -31,6 +31,7 @@ Set-Alias   ver             Get-Version
 
 #init
 $Profile = $myInvocation.mycommand.path
+. "$(Split-Path $Profile)\Functions\*.ps1";
 
 $SpecialFolders = @{}
 $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
