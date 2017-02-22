@@ -59,5 +59,4 @@ if ($null -ne $OneDrive) {
   $SyncRoot = $OneDrive;
 }
 
-Function-Init;
 Environment-Init;
