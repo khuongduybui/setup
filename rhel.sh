@@ -11,7 +11,7 @@ cd /etc/yum.repos.d/
 sudo wget http://download.opensuse.org/repositories/shells:fish:release:2/RedHat_RHEL-5/shells:fish:release:2.repo
 sudo yum install -y fish
 cd -
-echo "exec /usr/bin/fish" > /home/duybui/.zshrc
+# echo "exec /usr/bin/fish" > /home/duybui/.zshrc
 # scp duybui.aka.amazon.com:/home/duybui/.ssh/id_rsa /home/duybui/.ssh/
 # scp duybui.aka.amazon.com:/home/duybui/.ssh/authorized_keys /home/duybui/.ssh/
 # chmod 400 /home/duybui/.ssh/id_rsa
@@ -28,7 +28,7 @@ sudo yum check-update
 sudo yum install -y byobu
 # byobu-launcher-install
 mv /home/duybui/.zprofile /home/duybui/.zprofile.`date +%Y-%m-%d`.bak
-echo "_byobu_sourced=1 byobu -S duybui attach -t 1 || byobu -S duybui && exit" > /home/duybui/.zprofile
+echo "_byobu_sourced=1 byobu -S ~/duybui new-session -A -s duybui" > /home/duybui/.zprofile
 # exec byobu-launcher
 
 # yum install -y w3m

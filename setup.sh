@@ -77,6 +77,10 @@ test -d ~/code/test || mkdir ~/code/test
 
 # reload
 echo 'Core modules have been installed.'
+
+echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
+echo 'set -g default-command /usr/bin/fish' >> ~/.byobu/.tmux.conf
+
 echo '=== Additional modules ==='
 ls bin/*.sh
 echo '=== Goodbye ==='

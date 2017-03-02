@@ -1,4 +1,5 @@
 #! /bin/sh
+sudo apt install software-properties-common # required for apt-add-repository
 sudo apt-add-repository -y ppa:fish-shell/release-2
 # sudo apt-add-repository -y ppa:daniel.pavel/solaar
 sudo apt-add-repository -y ppa:eugenesan/ppa # unison
