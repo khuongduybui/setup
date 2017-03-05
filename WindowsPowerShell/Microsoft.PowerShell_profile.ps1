@@ -17,6 +17,7 @@ function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
 Set-Alias   code            c2c.ps1
 function    sshp            { ssh -o ProxyCommand=None $args; }
 function    ssh-corp        { ssh -o ProxyCommand=None $args; }
+function    docker-ip       { docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $args; }
 
 #GIT Functions
 function    g               { git status $args; }
