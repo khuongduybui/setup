@@ -12,10 +12,10 @@ function aps
 		set -lx BIT_REVIEWER_GROUPS asis-dev
 		if not test (count $argv) = 0
 			if set -q BRAZIL_CLI_BIN
-				/apollo/bin/env -e envImprovement /apollo/bin/env -e WDETools /apollo/bin/env -e BrazilCLI /usr/bin/fish
+				/apollo/bin/env -e AmazonAwsCli /apollo/bin/env -e envImprovement /apollo/bin/env -e WDETools /apollo/bin/env -e BrazilCLI /usr/bin/fish
 				return
 			end
 		end
-		/apollo/bin/env -e envImprovement /apollo/bin/env -e WDETools /apollo/bin/env -e SDETools /usr/bin/fish
+		/apollo/bin/env -e AmazonAwsCli /apollo/bin/env -e envImprovement /apollo/bin/env -e WDETools /apollo/bin/env -e SDETools /usr/bin/fish
 	end
 end
