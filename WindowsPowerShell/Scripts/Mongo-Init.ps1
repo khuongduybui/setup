@@ -3,7 +3,7 @@ if ($service -eq $null) {
   if (Verify-Command "mongod") {
     Write-Host "mongodb $(mongod --version | grep 'db version')" -ForegroundColor Green;
     Write-Host "Install service as needed:";
-    Write-Host 'mongod --dbpath="Z:\db\data" --logpath="Z:\db\logs" --install' -ForegroundColor Blue;
+    Write-Host 'mongod --dbpath="Z:\db\data" --logpath="Z:\db\logs\mongodb.log" --install' -ForegroundColor Blue;
   } else {
     if ($(Verify-Bin "mongodb") -eq $False) {
       Write-Host "mongodb missing. Try https://www.mongodb.com/download-center#community" -ForegroundColor Yellow;

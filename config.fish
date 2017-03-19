@@ -59,4 +59,4 @@ set -g fish_user_abbreviations 'grep-runtime-log=grep (brazil-bootstrap)/var/out
 set -g fish_user_abbreviations 'rebuild-coral=clear; begin; set -lx SERVICE (pwe); cd ../"$SERVICE"Model/; brazil-build; cd ../"$SERVICE"Generator/; brazil-build; cd ../"$SERVICE"; brazil-build server; end' $fish_user_abbreviations
 set -g fish_user_abbreviations 'ssh-corp=ssh -o ProxyCommand=None' $fish_user_abbreviations
 set -g fish_user_abbreviations 'awsp=aws --profile' $fish_user_abbreviations
-status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/duybui new-session -A -s default
+status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/byobu new-session -A -s default
