@@ -2,7 +2,7 @@
 sudo apt install software-properties-common # required for apt-add-repository
 sudo apt-add-repository -y ppa:fish-shell/release-2
 # sudo apt-add-repository -y ppa:daniel.pavel/solaar
-sudo apt-add-repository -y ppa:eugenesan/ppa # unison
+# sudo apt-add-repository -y ppa:eugenesan/ppa # unison
 sudo apt-add-repository -y ppa:neovim-ppa/unstable
 #sudo apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
 wget -O - https://deb.nodesource.com/setup_7.x | sudo -E bash - > /dev/null
@@ -12,7 +12,8 @@ sudo apt-get upgrade -y
 
 sudo apt-get install -y \
   build-essential dkms debhelper \
-  vim neovim unison \
+  vim neovim \
+#   unison \
   byobu fish \
   nodejs \
   python-dev python-pip python3-dev python3-pip \
