@@ -1,0 +1,1 @@
+C:\Windows\system32\bash.exe -c fish -l
