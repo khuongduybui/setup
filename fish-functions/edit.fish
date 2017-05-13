@@ -1,3 +1,3 @@
 function edit
-	eval $EDITOR $argv; 
+	eval $EDITOR $argv;
 end
