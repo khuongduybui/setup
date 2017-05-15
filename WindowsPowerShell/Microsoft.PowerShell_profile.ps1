@@ -10,7 +10,7 @@ Set-Alias   run             Start-Process
 Set-Alias   tor             Fetch-Torrent
 Set-Alias   acc             Accounts
 Set-Alias   sup             Supervisor-App
-function    reload          { Function-Init; Environment-Init }
+function    reload          { Environment-Init }
 function    mklink          { cmd /c mklink $args; }
 function    bcopy           { cmd /c copy /b $args; }
 function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
