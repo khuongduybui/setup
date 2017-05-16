@@ -13,10 +13,10 @@ sudo apt-get upgrade -y
 sudo apt-get install -y \
   build-essential dkms debhelper \
   vim neovim \
-#   unison \
   byobu fish \
   nodejs \
   python-dev python-pip python3-dev python3-pip \
+#   unison \
 #   monodevelop \
 
 echo '#! /bin/sh' > ~/bin/install-chrome.sh
