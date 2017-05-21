@@ -2,7 +2,7 @@
 set -xg PATH $PATH ~/bin
 
 ##Editors
-set -xg EDITOR (which subl 2>/dev/null; or which nvim 2>/dev/null; or which vim)
+set -xg EDITOR (which nvim 2>/dev/null; or which vim)
 set -xg VISUAL $EDITOR
 set -xg VIEWER "$EDITOR -v"
 
