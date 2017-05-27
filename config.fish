@@ -24,7 +24,7 @@ set -g -x fish_greeting ''
 
 ##Windows?
 if test -d /mnt/c/Users
-	powershell.exe -file "C:\Users\duybui\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
+	powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\duybui\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
 	set -xg DISPLAY "localhost:0"
 end
 
