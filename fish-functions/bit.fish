@@ -1,5 +1,10 @@
-# Defined in /tmp/fish.Pjr423/bit.fish @ line 2
+# Defined in /tmp/fish.B8rbhh/bit.fish @ line 2
 function bit
+	set here (pwd)
+	if test -d .git
+		cd ..
+	end
+
 	for repo in (ls */.git | grep .git: | sed -e 's|/\.git:||')
 		cd $repo
 		
@@ -20,4 +25,6 @@ function bit
 		cd -
 		echo
 	end
+
+	cd $here
 end
