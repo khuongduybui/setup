@@ -34,11 +34,14 @@ cat ~/setup/banner.md
 
 ##Abbreviations
 set -g fish_user_abbreviations 'g=git status' $fish_user_abbreviations
+set -g fish_user_abbreviations 'b=bit status' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gco=git checkout' $fish_user_abbreviations
+set -g fish_user_abbreviations 'bco=bit checkout' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gb=git branch' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gbd=git branch -d' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gbD=git branch -D' $fish_user_abbreviations
 set -g fish_user_abbreviations 'gdf=git diff --ignore-space-change' $fish_user_abbreviations
+set -g fish_user_abbreviations 'bdf=bit diff --ignore-space-change' $fish_user_abbreviations
 set -g fish_user_abbreviations 's=settings' $fish_user_abbreviations
 set -g fish_user_abbreviations 'e=edit' $fish_user_abbreviations
 set -g fish_user_abbreviations 'se=sedit' $fish_user_abbreviations
