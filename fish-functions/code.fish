@@ -1,14 +1,15 @@
+# Defined in /tmp/fish.sFYViX/code.fish @ line 2
 function code
 	if not test -d ~/code
 		set_color $fish_color_error
 		echo -n "ERROR: "
 		set_color normal
-		set_color $fish_color_param[2]
+		set_color $fish_color_param
 		echo -n "code/ "
 		set_color $fish_color_error
 		echo -n "not found under "
 		set_color normal
-		set_color $fish_color_param[2]
+		set_color $fish_color_param
 		echo "~/"
 		return
 	end
@@ -19,12 +20,12 @@ function code
 			set_color $fish_color_error
 			echo -n "ERROR: "
 			set_color normal
-			set_color $fish_color_param[2]
+			set_color $fish_color_param
 			echo -n "$argv[1]/ "
 			set_color $fish_color_error
 			echo -n "not found under "
 			set_color normal
-			set_color $fish_color_param[2]
+			set_color $fish_color_param
 			echo "~/code/"
 			set_color normal
 		else
