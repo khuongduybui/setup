@@ -4,7 +4,7 @@ set -xg PATH $PATH ~/bin
 ##Editors
 set -xg EDITOR (which nvim 2>/dev/null; or which vim)
 set -xg VISUAL $EDITOR
-set -xg VIEWER "$EDITOR -v"
+#set -xg VIEWER "$EDITOR -R"
 
 ##DOCKER
 set -xg DOCKER_HOST "unix:///var/run/docker.sock"
@@ -13,11 +13,11 @@ set -xg DOCKER_HOST "unix:///var/run/docker.sock"
 set -xg LANG en_US.UTF-8
 
 ##Colors
-set -g fish_color_cwd red
-set -g fish_color_user blue
-set -g fish_color_host magenta
-set -g fish_color_status red
-set -g -x fish_greeting ''
+#set -g fish_color_cwd red
+#set -g fish_color_user blue
+#set -g fish_color_host magenta
+#set -g fish_color_status red
+#set -g -x fish_greeting ''
 
 ##Plugins
 #fisher 2>/dev/null
@@ -67,5 +67,5 @@ set -g fish_user_abbreviations 'awsp=aws --profile' $fish_user_abbreviations
 set -g fish_user_abbreviations 'byobu=byobu-launcher -S ~/byobu new-session -A -s default' $fish_user_abbreviations
 set -g fish_user_abbreviations 'update-git=git remote set-url origin git@bitbucket.org:khuongduybui/linux.git' $fish_user_abbreviations
 set -g fish_user_abbreviations 'reset-time=sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime' $fish_user_abbreviations
-
+set -g fish_user_abbreviations 'reset-fish=rm ~/.config/fish/fishd*' $fish_user_abbreviations
 status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/byobu new-session -A -s default
