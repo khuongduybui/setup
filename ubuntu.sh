@@ -5,7 +5,7 @@ sudo apt-add-repository -y ppa:fish-shell/release-2
 # sudo apt-add-repository -y ppa:eugenesan/ppa # unison
 sudo apt-add-repository -y ppa:neovim-ppa/unstable
 #sudo apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
-wget -O - https://deb.nodesource.com/setup_7.x | sudo -E bash - > /dev/null
+wget -O - https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
