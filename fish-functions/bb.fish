@@ -4,5 +4,7 @@ function bb --argument sync
 	if test -n "$sync"
 		brazil ws sync --md
 	end
-	/apollo/bin/env -e envImprovement brazil-recursive-cmd --package $package-$interface -- "brazil-build"
+	echo Building target: $package-$interface with (which brazil-build)
+	echo /apollo/bin/env -e envImprovement brazil-recursive-cmd --package $package-$interface -- (which brazil-build)
+	/apollo/bin/env -e envImprovement brazil-recursive-cmd --package $package-$interface -- (which brazil-build)
 end

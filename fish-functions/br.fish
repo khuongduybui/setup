@@ -1,4 +1,3 @@
 function br
-	brazil-build;
-	bin/runtime.sh;
+	brazil-build & bin/runtime.sh
 end
