@@ -5,7 +5,7 @@ sudo apt-add-repository -y ppa:fish-shell/release-2
 # sudo apt-add-repository -y ppa:eugenesan/ppa # unison
 sudo apt-add-repository -y ppa:neovim-ppa/unstable
 #sudo apt-add-repository -y 'deb http://download.virtualbox.org/virtualbox/debian'
-wget -O - https://deb.nodesource.com/setup_7.x | sudo -E bash - > /dev/null
+wget -O - https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -13,7 +13,7 @@ sudo apt-get upgrade -y
 sudo apt-get install -y \
   build-essential dkms debhelper \
   vim neovim \
-  byobu fish \
+  byobu fish mc screenfetch wmctrl xsel \
   nodejs \
   python-dev python-pip python3-dev python3-pip \
 #   unison \
@@ -63,3 +63,6 @@ echo 'sudo make install-home' >> ~/bin/install-noX-utils.sh
 
 which gdm && bash ~/bin/install-X-utils.sh || bash ~/bin/install-noX-utils.sh
 which gdm && (which google-chrome || bash ~/bin/install-chrome.sh)
+
+# echo 'which fish >/dev/null && exec fish -l' >> ~/.bashrc
+sudo chsh -s $(which fish) $(whoami)

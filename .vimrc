@@ -1,4 +1,4 @@
-set shell=/bin/bash
+set shell=/usr/bin/fish
 set nocompatible
 filetype off
 
@@ -10,3 +10,4 @@ Bundle 'dag/vim-fish'
 
 syntax enable
 filetype plugin indent on
+set number

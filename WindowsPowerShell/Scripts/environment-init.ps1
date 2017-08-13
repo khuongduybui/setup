@@ -21,6 +21,7 @@ Verify-Path "~/Programs/unison" >$null;
 if (Verify-Command "unison") {
 	Write-Host "unison loaded." -ForegroundColor Green;
 }
+
 Verify-Path "~/Programs/putty" >$null;
 Verify-Path "~/Programs/putty/App/putty" >$null;
 Verify-Path "~/Programs/PortableApps/puttyportable" >$null;
@@ -36,11 +37,11 @@ $gitPath = (Verify-Command -o "git").Path;
 if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../cmd" >$null;
   Verify-Path "$gitPath/../../usr/bin" >$null;
-  Verify-Module "posh-git";
-  # mw-init;
-  # ssh-init;
-  X-init;
+  ssh-init;
 }
+Verify-Module "posh-git";
+X-init;
+
 # if ((Verify-Command "svn") -eq $true) {
 #   Verify-Module "posh-svn";
 # }
@@ -50,8 +51,10 @@ if ($null -ne $gitPath) {
 # if ((Verify-Command "npm") -eq $true) {
 #   Verify-Module "posh-npm";
 # }
+
 Verify-Module "Execute-With-Retry";
 Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
+# mw-init;
 
 Write-Host "Done." -ForegroundColor Yellow;
 Set-Location ~;

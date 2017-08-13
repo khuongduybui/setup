@@ -27,6 +27,9 @@ test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/
 
 test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.`date +%Y-%m-%d`.bak
 ln -s ~/setup/.vimrc ~/
+mkdir -p ~/.config/nvim
+test -f ~/.config/nvim/init.vim && mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.`date +%Y-%m-%d`.bak
+ln -s ~/setup/.vimrc ~/.config/nvim/init.vim
 test -d ~/.vim/bundle || mkdir -p ~/.vim/bundle
 test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
@@ -78,8 +81,9 @@ test -d ~/code/test || mkdir ~/code/test
 # reload
 echo 'Core modules have been installed.'
 
-echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
-echo 'set -g default-command /usr/bin/fish' >> ~/.byobu/.tmux.conf
+# mkdir -p ~/.byobu
+# echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
+# echo 'set -g default-command /usr/bin/fish' >> ~/.byobu/.tmux.conf
 
 echo '=== Additional modules ==='
 ls bin/*.sh
