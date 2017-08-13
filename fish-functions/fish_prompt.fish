@@ -1,0 +1,1 @@
+/home/duybui/.config/fisherman/bobthefish/fish_prompt.fish
