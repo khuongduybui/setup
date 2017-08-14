@@ -5,4 +5,5 @@ fisherman/get
 fisherman/getopts
 fisherman/segment
 fisherman/spin
+oh-my-fish/plugin-thefuck
 fisherman/z
