@@ -1,0 +1,1 @@
+/home/duybui/.config/fisherman/debug/debug.fish
