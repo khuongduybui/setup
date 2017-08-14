@@ -13,7 +13,7 @@ sudo apt-get upgrade -y
 sudo apt-get install -y \
   build-essential dkms debhelper \
   vim neovim \
-  byobu fish mc screenfetch wmctrl xsel \
+  byobu fish mc screenfetch wmctrl xsel autojump thefuck \
   nodejs \
   python-dev python-pip python3-dev python3-pip \
 #   unison \
