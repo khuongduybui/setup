@@ -1,0 +1,1 @@
+/home/duybui/.config/fisherman/segment/segment.fish
