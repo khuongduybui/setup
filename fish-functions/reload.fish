@@ -1,6 +1,7 @@
+# Defined in /tmp/fish.pANRF4/reload.fish @ line 2
 function reload
 	if test -f ~/.config/fish/config.fish
-		. ~/.config/fish/config.fish
+		source ~/.config/fish/config.fish
 
 	else
 		set_color $fish_color_error

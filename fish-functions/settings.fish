@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.z3Jn77/settings.fish @ line 2
 function settings
 	if test (count $argv) = 0
 		edit ~/setup/config.fish
