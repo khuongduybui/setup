@@ -64,5 +64,4 @@ echo 'sudo make install-home' >> ~/bin/install-noX-utils.sh
 which gdm && bash ~/bin/install-X-utils.sh || bash ~/bin/install-noX-utils.sh
 which gdm && (which google-chrome || bash ~/bin/install-chrome.sh)
 
-# echo 'which fish >/dev/null && exec fish -l' >> ~/.bashrc
 sudo chsh -s $(which fish) $(whoami)
