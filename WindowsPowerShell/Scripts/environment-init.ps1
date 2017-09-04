@@ -37,7 +37,7 @@ $gitPath = (Verify-Command -o "git").Path;
 if ($null -ne $gitPath) {
   Verify-Path "$gitPath/../../cmd" >$null;
   Verify-Path "$gitPath/../../usr/bin" >$null;
-  ssh-init;
+  # ssh-init;
 }
 Verify-Module "posh-git";
 X-init;
