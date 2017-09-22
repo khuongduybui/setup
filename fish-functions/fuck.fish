@@ -1,1 +1,0 @@
-/home/duybui/.config/fisherman/thefuck/functions/fuck.fish
