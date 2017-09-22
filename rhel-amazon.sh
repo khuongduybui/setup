@@ -9,7 +9,6 @@ cd ocaml-4.02.3
 gmake world && gmake opt && sudo gmake install
 cd ../unison-${unison_ver}
 gmake
-mkdir -p ~/bin
-mv ./unison ~/bin
+sudo mv ./unison /usr/bin/
 sudo chown root ./unison-fsmonitor
-mv ./unison-fsmonitor ~/bin
+sudo mv ./unison-fsmonitor /usr/bin
