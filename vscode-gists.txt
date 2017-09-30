@@ -1,1 +1,3 @@
-Insider: 1342efc2f1b8f7f14d6ac8f202a4361b
+Insider:
+  Gist: 1342efc2f1b8f7f14d6ac8f202a4361b
+  Token: 2386a12283af0d41b8536214793478a50051bcfc
