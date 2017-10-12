@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.4lVFiD/sp.fish @ line 2
+# Defined in /tmp/fish.YpgUZZ/sp.fish @ line 2
 function sp
-	spin --style="-\|/" --format=" @ Working, please wait\r" $argv
+	spin --style="" --format="@\r" $argv
 end
