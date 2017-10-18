@@ -1,2 +1,24 @@
-*bass*
+__aj_err.fish
+__z.fish
+__z_add.fish
+__z_complete.fish
+__zo.fish
+debug.fish
+fish_greeting.fish
+fish_mode_prompt.fish
+fish_prompt.fish
+fish_right_prompt.fish
+fish_title.fish
+get.fish
+getopts.fish
+j.fish
+jc.fish
+jco.fish
+jo.fish
+segment.fish
+segment_close.fish
+segment_right.fish
+spin.fish
+z.awk
+zadd.awk
 

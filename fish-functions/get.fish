@@ -1,1 +1,0 @@
-/home/duybui/.config/fisherman/get/functions/get.fish
