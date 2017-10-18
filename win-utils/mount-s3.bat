@@ -1,0 +1,1 @@
+mount.exe -o nolock 52.23.218.207:/duybui-media-backup I:
