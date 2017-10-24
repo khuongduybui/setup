@@ -48,7 +48,7 @@ echo 'Core modules have been installed.'
 echo '=== Additional modules ==='
 test -f /etc/issue &&\
   grep -Ei "elementary|ubuntu" /etc/issue &&\
-  test -d /mnt/c/Users &&\
+  grep -i "Microsoft" /proc/version &&\
   echo "Ubuntu on Windows detected. Installing additional modules..." &&\
   bash ~/setup/ubuntu-win.sh
 

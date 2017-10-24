@@ -7,6 +7,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'dag/vim-fish'
+Bundle 'terryma/vim-multiple-cursors'
 
 syntax enable
 filetype plugin indent on
