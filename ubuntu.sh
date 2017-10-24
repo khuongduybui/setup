@@ -11,7 +11,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 sudo apt-get install -y \
-  build-essential dkms debhelper \
+  build-essential dkms debhelper awscli \
   vim neovim \
   byobu fish mc screenfetch wmctrl xsel autojump thefuck \
   nodejs \
