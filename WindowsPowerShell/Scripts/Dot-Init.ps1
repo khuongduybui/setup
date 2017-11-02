@@ -19,7 +19,7 @@ if ((Test-Path $root\Essentials) -eq $True) {
       # don't do anything
       Write-Verbose "| - Skipping existing $f" -Verbose;
     } else {
-      if ($file.Attributes -match "Directory") {
+      if (($file.Attributes -match "Directory") -Or ($file.Attributes -match 524304)) {
         mklink /D $f $root\Essentials\$file;
       } else {
         mklink $f $root\Essentials\$file;
