@@ -27,7 +27,7 @@ test -f /etc/redhat-release; and set -g theme_color_scheme solarized; or set -g 
 #fisher 2>/dev/null
 
 ## Windows?
-if test -d /mnt/c/Users
+if test -d /mnt/c/Users; and which powershell.exe >/dev/null
 	powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\duybui\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
 	set -xg DISPLAY "localhost:0"
 end
@@ -38,6 +38,7 @@ cat ~/setup/banner.md
 
 ## Abbreviations
 source ~/setup/abbreviations.fish
+test -f /etc/brazilcli.env; and bass source /etc/brazilcli.env
 
 ## Load byobu
 status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true

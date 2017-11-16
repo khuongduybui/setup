@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.u6br7l/aps.fish @ line 2
 function aps
 	if test -d /apollo/env/envImprovement
 		# set -lx PATH /apollo/env/SDETools/bin $PATH
@@ -17,5 +18,9 @@ function aps
 			end
 		end
 		/apollo/bin/env -e AmazonAwsCli /apollo/bin/env -e envImprovement /apollo/bin/env -e WDETools /apollo/bin/env -e SDETools /usr/bin/fish
+	else if test -d ~/.toolbox
+		set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
+		set -lx PATH /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games /home/duybui/bin $BRAZIL_CLI_BIN
+		/usr/bin/fish
 	end
 end
