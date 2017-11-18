@@ -8,6 +8,8 @@ sudo apt install -y openssh-server amazon-desktop-dhcp-config amazon-desktop-man
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt update
 sudo install -y git
+ln -s ~/setup/amazon.gitignore ~/.gitignore
+ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Midway
 sudo apt install mwinit
