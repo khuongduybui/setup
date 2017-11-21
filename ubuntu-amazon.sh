@@ -9,7 +9,9 @@ sudo apt install -y openssh-server amazon-desktop-dhcp-config amazon-desktop-man
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt update
 sudo install -y git
+test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.bak
 ln -s ~/setup/amazon.gitignore ~/.gitignore
+test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.bak
 ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Midway
