@@ -38,7 +38,7 @@ cat ~/setup/banner.md
 
 ## Abbreviations
 source ~/setup/abbreviations.fish
-test -f /etc/brazilcli.env; and bass source /etc/brazilcli.env
+# test -f /etc/brazilcli.env; and bass source /etc/brazilcli.env
 
 ## Load byobu
 status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
