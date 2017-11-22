@@ -19,8 +19,8 @@ mkdir -p ~/opt
 mkdir -p ~/code/test
 
 mkdir -p ~/.fonts
-ln -s ~/setup/source-code-pro.ttf ~/.fonts
-sudo fc-cache -f -v
+test -f ~/.fonts/source-code-pro.ttf || ln -s ~/setup/source-code-pro.ttf ~/.fonts
+which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 
 echo "=== Installing modules ==="
 
@@ -29,7 +29,7 @@ test -f /etc/issue &&\
   echo "Ubuntu detected. Installing core modules..." &&\
   bash ~/setup/ubuntu.sh
 
-which sw_vers 2>/dev/null &&\
+which sw_vers 2>/dev/null >/dev/null &&\
   echo "OS X detected. Installing core modules..." &&\
   sh ~/setup/mac.sh
 

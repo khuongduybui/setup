@@ -41,5 +41,11 @@ source ~/setup/abbreviations.fish
 # test -f /etc/brazilcli.env; and bass source /etc/brazilcli.env
 
 ## Load byobu
-status --is-login; and status --is-interactive; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
+if status --is-login; and status --is-interactive
+	if __is_mac
+		exec byobu-launcher
+	else
+		exec byobu-launcher -S ~/byobu new-session -A -s default
+	end
+end
 
