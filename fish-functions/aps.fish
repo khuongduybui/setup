@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.u6br7l/aps.fish @ line 2
+# Defined in /var/folders/dz/y2q7pw153pz7gm62rj5n25_9qzr_wy/T//fish.VywnlV/aps.fish @ line 2
 function aps
 	if test -d /apollo/env/envImprovement
 		# set -lx PATH /apollo/env/SDETools/bin $PATH
@@ -21,6 +21,6 @@ function aps
 	else if test -d ~/.toolbox
 		set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
 		set -lx PATH /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games /home/duybui/bin $BRAZIL_CLI_BIN
-		/usr/bin/fish
+		fish
 	end
 end
