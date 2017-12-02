@@ -1,13 +1,24 @@
 --- /home/duybui/setup/fish-functions/fish_prompt.fish	2017-11-30 12:07:40.135051300 -0500
 +++ /home/duybui/setup/fish-functions/fish_prompt.fish	2017-11-30 12:08:37.284008800 -0500
-@@ -1395,5 +1395,11 @@
+@@ -1395,5 +1395,22 @@
      __bobthefish_prompt_dir
    end
  
 +  if test (which brazil)
 +    __bobthefish_start_segment brmagenta white
-+    set_color
 +    echo -n aps
++
++    if klist -s
++    else
++      __bobthefish_start_segment red white
++      echo -n !kinit
++    end
++
++    if test (find ~/.midway -type f -ctime -0.5)
++    else
++      __bobthefish_start_segment brred white
++      echo -n !mwinit
++    end
 +  end
 +
    __bobthefish_finish_segments
