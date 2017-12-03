@@ -1,23 +1,35 @@
---- /home/duybui/setup/fish-functions/fish_prompt.fish	2017-11-30 12:07:40.135051300 -0500
-+++ /home/duybui/setup/fish-functions/fish_prompt.fish	2017-11-30 12:08:37.284008800 -0500
-@@ -1395,5 +1395,22 @@
+--- /home/duybui/setup/fish-functions/fish_prompt.fish	2017-12-03 13:44:39.935629000 -0500
++++ /home/duybui/setup/fish-functions/fish_prompt.fish	2017-12-03 13:44:31.302309800 -0500
+@@ -263,6 +263,11 @@
+       set directory '/'
+     case "$HOME"
+       set directory '~'
++    case "/mnt/c/Users/duybui/code/*/src/*"
++      set parent    (string split "/" (string sub -s 26 "$current_dir"))[1]/(pwe)
++      set directory (string sub -s (math 26 + 4 + (string length $parent)) "$current_dir")
++    case "/mnt/*/Users/duybui/code/*"
++      set directory (string sub -s 26 "$current_dir")
+     case '*'
+       set parent    (__bobthefish_pretty_parent "$current_dir")
+       set directory (basename "$current_dir")
+@@ -1395,5 +1400,22 @@
      __bobthefish_prompt_dir
    end
  
 +  if test (which brazil)
 +    __bobthefish_start_segment brmagenta white
-+    echo -n aps
++    echo -n "aps "
 +
 +    if klist -s
 +    else
 +      __bobthefish_start_segment red white
-+      echo -n !kinit
++      echo -n "!k "
 +    end
 +
 +    if test (find ~/.midway -type f -ctime -0.5)
 +    else
 +      __bobthefish_start_segment brred white
-+      echo -n !mwinit
++      echo -n "!mw "
 +    end
 +  end
 +
