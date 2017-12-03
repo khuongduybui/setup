@@ -1,0 +1,4 @@
+#! /usr/bin/fish
+
+ssh (string trim -c / (string sub -s 5 $argv[1]))
+
