@@ -4,6 +4,7 @@ __z.fish
 __z_add.fish
 __z_complete.fish
 __zo.fish
+__z_clean.fish
 bass.fish
 debug.fish
 fish_greeting.fish
@@ -23,4 +24,4 @@ segment_right.fish
 spin.fish
 z.awk
 zadd.awk
-
+zclean.awk
