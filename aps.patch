@@ -7,7 +7,7 @@
 +    case "/mnt/c/Users/duybui/code/*/src/*"
 +      set parent    (string split "/" (string sub -s 26 "$current_dir"))[1]/(pwe)
 +      set directory (string sub -s (math 26 + 4 + (string length $parent)) "$current_dir")
-+    case "/mnt/*/Users/duybui/code/*"
++    case "/mnt/c/Users/duybui/code/*"
 +      set directory (string sub -s 26 "$current_dir")
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
@@ -16,7 +16,7 @@
      __bobthefish_prompt_dir
    end
  
-+  if test (which brazil)
++  if test (which brazil 2>/dev/null)
 +    __bobthefish_start_segment brmagenta white
 +    echo -n "aps "
 +
