@@ -1,5 +1,6 @@
 ## Global
-set -xg PATH $PATH ~/bin
+mkdir -p ~/.yarn/bin
+set -xg PATH $PATH ~/bin ~/.yarn/bin
 
 ## Editors
 set -xg EDITOR (which nvim 2>/dev/null; or which vim)
@@ -49,4 +50,3 @@ if status --is-login; and status --is-interactive
 		exec byobu-launcher -S ~/byobu new-session -A -s default
 	end
 end
-

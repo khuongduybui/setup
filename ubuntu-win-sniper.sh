@@ -1,6 +1,8 @@
 sudo apt update
 sudo apt install -y curl git software-properties-common dirmngr python build-essential
-sudo npm install -g yarn forever npm-check-updates
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+yarn global add forever npm-check-updates
 
 sudo service dbus start
 # sudo apt install -y lubuntu-core
