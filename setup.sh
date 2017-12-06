@@ -14,6 +14,10 @@ ln -s ~/setup/.vimrc ~/.config/nvim/init.vim
 test -d ~/.vim/bundle || mkdir -p ~/.vim/bundle
 test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
+# curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+# chmod u+x nvim.appimage
+# ./nvim.appimage
+
 mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/code/test

@@ -50,3 +50,7 @@ if status --is-login; and status --is-interactive
 		exec byobu-launcher -S ~/byobu new-session -A -s default
 	end
 end
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish ]; and . /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
