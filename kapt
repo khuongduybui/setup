@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+
+echo deb http://http.kali.org/kali kali-rolling main contrib non-free | sudo tee /etc/apt/sources.list.d/katoolin.list.disabled
+sudo mv /etc/apt/sources.list.d/katoolin.list.disabled /etc/apt/sources.list.d/katoolin.list
+sudo apt update
+sudo apt install -y $argv
+sudo mv /etc/apt/sources.list.d/katoolin.list /etc/apt/sources.list.d/katoolin.list.disabled
+sudo apt update
+
