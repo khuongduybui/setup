@@ -1,7 +1,15 @@
-sudo apt-add-repository ppa:elementary-os/stable
-sudo apt-add-repository ppa:elementary-os/testing
-sudo apt-add-repository ppa:elementary-os/daily
-sudo apt-add-repository ppa:versable/elementary-update
-sudo apt-get update
-sudo apt-get install elementary-desktop elementary-tweaks elementary-plank-extra elementary-plank-themes indicator-notifications indicator-synapse
+#!/bin/bash
+
+sudo add-apt-repository ppa:elementary-os/stable
+sudo add-apt-repository ppa:elementary-os/os-patches
+sudo apt update -y
+sudo apt install -y elementary-os-overlay
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y elementary-desktop
+sudo apt dist-upgrade -y
+
+sudo mkdir -p /etc/io.elementary.appcenter
+sudo touch /etc/io.elementary.appcenter/appcenter.blacklist
 gconftool --set --type=string /orgs/pantheon/-terminal/settings/encoding UTF-8
+
