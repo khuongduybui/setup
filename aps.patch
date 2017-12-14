@@ -1,5 +1,5 @@
---- /home/duybui/setup/fish-functions/fish_prompt.fish	2017-12-03 13:44:39.935629000 -0500
-+++ /home/duybui/setup/fish-functions/fish_prompt.fish	2017-12-03 13:44:31.302309800 -0500
+--- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:39.935629000 -0500
++++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:31.302309800 -0500
 @@ -263,6 +263,11 @@
        set directory '/'
      case "$HOME"
