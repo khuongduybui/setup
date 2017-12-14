@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo add-apt-repository ppa:elementary-os/stable
-sudo add-apt-repository ppa:elementary-os/os-patches
+sudo add-apt-repository -y ppa:elementary-os/stable
+sudo add-apt-repository -y ppa:elementary-os/os-patches
 sudo apt update -y
 sudo apt install -y elementary-os-overlay
 sudo apt update -y
