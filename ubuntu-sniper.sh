@@ -26,3 +26,6 @@ sudo apt install -y nmap nikto
 # sudo apt install -y metasploit-framework # @TODO
 sudo mv /etc/apt/sources.list.d/katoolin.list /etc/apt/sources.list.d/katoolin.list.disabled
 sudo apt update
+
+ln -s ~/setup/kapt ~/bin
+
