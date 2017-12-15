@@ -1,7 +1,7 @@
 #! /bin/sh
 
 echo "Install package manager"
-sudo apt install gdebi
+# sudo apt install -y gdebi
 
 echo "Install system utils"
 sudo apt-add-repository -y ppa:fish-shell/release-2
