@@ -45,3 +45,10 @@ sudo apt install -y openjdk-8-jdk
 sudo apt install -y ruby
 ~/.toolbox/bin/brazil setup --ruby
 
+# Ninja Dev Sync
+curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.1.0.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
+chmod 755 ~/.toolbox/bin/ 
+sudo apt install inotify-tools
+printf "\nfs.inotify.max_user_watches = 1000000\n" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p 
+
