@@ -4,8 +4,6 @@ echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /e
 # echo deb http://cascadia.corp.amazon.com/amazon xenial--thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update
 sudo apt install -y openssh-server amazon-desktop-dhcp-config amazon-desktop-management amazon-firstboot2 amazon-firefoxconfig-dev amazon-pbis-config apt-transport-https
-echo deb https://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-sudo apt update
 
 # Latest GIT
 test -f ~/.gitignore.bak && rm ~/.gitignore.bak
