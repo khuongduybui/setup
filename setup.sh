@@ -24,6 +24,7 @@ mkdir -p ~/code/test
 
 mkdir -p ~/.fonts
 test -f ~/.fonts/source-code-pro.ttf || ln -s ~/setup/source-code-pro.ttf ~/.fonts
+test -f ~/.fonts/fira-code-retina.otf || ln -s ~/setup/fira-code-retina.otf ~/.fonts
 which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 
 echo "=== Installing modules ==="

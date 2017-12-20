@@ -40,4 +40,5 @@ abbr gll 'git config --global user.email duy.bui@lunarline.com'
 abbr c9color 'set -g theme_color_scheme terminal2-dark-white'
 abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr nm 'ssh um-cli /apollo/bin/env -e envImprovement'
+abbr cmd command
 
