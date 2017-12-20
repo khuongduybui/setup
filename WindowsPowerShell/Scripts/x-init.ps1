@@ -15,7 +15,7 @@ if ($XServerPath -ne $null) {
     $xming = Get-Process -Name 'Xming' 2>$null;
     $vcxsrv = Get-Process -Name 'VcXsrv' 2>$null;
     if ($xming -eq $null -and $vcxsrv -eq $null) {
-        Start-Process $XServerPath -ArgumentList (':0', '-ac', '-terminate', '-lesspointer', '-multiwindow', '-clipboard', '-wgl', '-resize', '-nolisten', 'inet6');
+        Start-Process $XServerPath -ArgumentList (':0', '-ac', '-terminate', '-lesspointer', '-multiwindow', '-clipboard', '-wgl', '-resize', '-nolisten', 'inet6', '-swrastwgl');
     }
     $env:DISPLAY='localhost:0';
     Write-Output "$XServerPath loaded.";
