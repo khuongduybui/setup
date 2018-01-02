@@ -4,7 +4,7 @@
 # sudo yum install -y nodejs gcc gcc-c++ make # get nodejs from NodeJS apollo environment
 
 # echo install Python / PIP
-which python2 && curl https://bootstrap.pypa.io/get-pip.py | sudo python2
+# which python2 && curl https://bootstrap.pypa.io/get-pip.py | sudo python2
 
 mv /home/duybui/.zshrc /home/duybui/.zshrc.`date +%Y-%m-%d`.bak
 cd /etc/yum.repos.d/
