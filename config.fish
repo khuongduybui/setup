@@ -1,6 +1,7 @@
 ## Global
 mkdir -p ~/.yarn/bin
-set -xg PATH $PATH ~/bin ~/.yarn/bin
+mkdir -p ~/.local/bin
+set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
 
 ## Editors
 set -xg EDITOR (which nvim 2>/dev/null; or which vim)
