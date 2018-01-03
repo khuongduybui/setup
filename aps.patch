@@ -5,17 +5,18 @@
      case "$HOME"
        set directory '~'
 +    case "$HOME/code/*/src/*"
-+      set parent    (string split "/" (string sub -s 19 "$current_dir"))[1]/(pwe)
-+      set directory (string sub -s (math 26 + 4 + (string length $parent)) "$current_dir")
++      set parent    (string split "/" (string sub -s 19 "$current_dir"))[1]' '$__bobthefish_right_arrow_glyph' '(pwe)' '$__bobthefish_right_arrow_glyph' '
++      set directory (string sub -s (math 19 + 4 + (string length $parent) - 4) "$current_dir")
 +    case "$HOME/code/*"
-+      set directory (string sub -s 19 "$current_dir")
++      set parent    (string split "/" (string sub -s 19 "$current_dir"))[1]' '$__bobthefish_right_arrow_glyph' '
++      set directory (string sub -s (math 19 + (string length $parent) - 2) "$current_dir")
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (basename "$current_dir")
 @@ -1395,5 +1400,22 @@
      __bobthefish_prompt_dir
    end
- 
+
 +  if test (which brazil 2>/dev/null)
 +    __bobthefish_start_segment brmagenta white
 +    echo -n "aps "
