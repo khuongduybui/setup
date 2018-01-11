@@ -14,9 +14,9 @@ echo "Install dev tools"
 wget -O - https://deb.nodesource.com/setup_9.x | sudo -E bash - > /dev/null
 sudo apt update -y
 sudo apt install -y \
-  build-essential dkms debhelper awscli \
-  nodejs \
-  python-dev python-pip python3-dev python3-pip \
+build-essential dkms debhelper awscli \
+nodejs \
+python-dev python-pip python3-dev python3-pip \
 
 echo "Update system"
 sudo apt upgrade -y

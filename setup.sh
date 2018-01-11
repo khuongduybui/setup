@@ -30,44 +30,49 @@ which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 echo "=== Installing modules ==="
 
 test -f /etc/issue &&\
-  grep -Ei "elementary|ubuntu" /etc/issue &&\
-  echo "Ubuntu detected. Installing core modules..." &&\
-  bash ~/setup/ubuntu.sh
+grep -Ei "elementary|ubuntu" /etc/issue &&\
+echo "Ubuntu detected. Installing core modules..." &&\
+bash ~/setup/ubuntu.sh
 
 which sw_vers 2>/dev/null >/dev/null &&\
-  echo "OS X detected. Installing core modules..." &&\
-  sh ~/setup/mac.sh
+echo "OS X detected. Installing core modules..." &&\
+sh ~/setup/mac.sh
 
 test -f /etc/redhat-release &&\
-  grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
-  echo "RHEL detected. Installing core modules..." &&\
-  bash ~/setup/rhel.sh
+grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
+echo "RHEL detected. Installing core modules..." &&\
+bash ~/setup/rhel.sh
+
+test -f /etc/os-release &&\
+grep -i "Amazon Linux 2" /etc/os-release &&\
+echo "AL2 detected. Installing core modules..." &&\
+bash ~/setup/al2.sh
 
 test -f /etc/issue &&\
-  grep -i "openSUSE" /etc/issue &&\
-  echo "openSUSE detected. Installing core modules..." &&\
-  bash ~/setup/opensuse.sh
+grep -i "openSUSE" /etc/issue &&\
+echo "openSUSE detected. Installing core modules..." &&\
+bash ~/setup/opensuse.sh
 
 echo 'Core modules have been installed.'
 
 echo '=== Additional modules ==='
 test -f /etc/issue &&\
-  grep -Ei "elementary|ubuntu" /etc/issue &&\
-  grep -i "Microsoft" /proc/version &&\
-  echo "Ubuntu on Windows detected. Installing additional modules..." &&\
-  bash ~/setup/ubuntu-win.sh
+grep -Ei "elementary|ubuntu" /etc/issue &&\
+grep -i "Microsoft" /proc/version &&\
+echo "Ubuntu on Windows detected. Installing additional modules..." &&\
+bash ~/setup/ubuntu-win.sh
 
 test -f /etc/issue &&\
-  grep -i "openSUSE" /etc/issue &&\
-  test -d /mnt/c/Users &&\
-  echo "openSUSE on Windows detected. Installing additional modules..." &&\
-  bash ~/setup/opensuse-win.sh
+grep -i "openSUSE" /etc/issue &&\
+test -d /mnt/c/Users &&\
+echo "openSUSE on Windows detected. Installing additional modules..." &&\
+bash ~/setup/opensuse-win.sh
 
 test -f /etc/redhat-release &&\
-  grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
-  test -d /apollo/env &&\
-  echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
-  bash ~/setup/rhel-amazon.sh
+grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
+test -d /apollo/env &&\
+echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
+bash ~/setup/rhel-amazon.sh
 
 chmod +x bin/*.sh
 ls bin/*.sh
