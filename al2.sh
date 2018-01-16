@@ -11,14 +11,14 @@ sudo amazon-linux-extras install vim
 # @TODO mc screenfetch
 
 echo "Install dev tools"
-wget -O - https://rpm.nodesource.com/setup_9.x | sudo -E bash - > /dev/null
+wget -O - https://rpm.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
 sudo yum install -y \
 gcc-c++ make \
-nodejs \
+nodejs-8.3.0 \ # required by nodec
 
 sudo amazon-linux-extras install python3
 
 echo "Update system"
-sudo yum update -y
+# sudo yum update -y
 
 which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
