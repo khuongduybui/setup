@@ -27,11 +27,18 @@ and set -g theme_color_scheme solarized
 
 ## Windows?
 if test -d /mnt/c/Users
-    and which powershell.exe >/dev/null
-    powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\duybui\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
-    set -xg DISPLAY "localhost:0"
-    set -xg LIBGL_ALWAYS_INDIRECT 1
-    set -xg XCURSOR_SIZE 64
+    if test -f ~/.wuser
+        set -xg WUSER (cat ~/.wuser)
+    else
+        set -xg WUSER (whoami)
+    end
+
+    if which powershell.exe >/dev/null
+        powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
+        set -xg DISPLAY "localhost:0"
+        set -xg LIBGL_ALWAYS_INDIRECT 1
+        set -xg XCURSOR_SIZE 64
+    end
 end
 
 ## Greetings

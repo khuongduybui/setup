@@ -1,6 +1,6 @@
 --- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:39.935629000 -0500
 +++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:31.302309800 -0500
-@@ -263,6 +263,13 @@
+@@ -263,6 +263,20 @@
        set directory '/'
      case "$HOME"
        set directory '~'
@@ -10,6 +10,13 @@
 +    case "$HOME/code/*"
 +      set parent    (string split "/" (string sub -s (math 13 + (string length $USER)) "$current_dir"))[1]
 +      set directory (string sub -s (math 13 + (string length $USER) + (string length $parent) + 1) "$current_dir")
++      [ (string length $directory) != 0 ]; and set parent $parent' '$__bobthefish_right_arrow_glyph' '
++    case "/mnt/c/Users/$WUSER/code/*/src/*"
++      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$__bobthefish_right_arrow_glyph' '(pwe)
++      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
++    case "/mnt/c/Users/$WUSER/code/*"
++      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
++      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$__bobthefish_right_arrow_glyph' '
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
