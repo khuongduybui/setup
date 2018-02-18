@@ -39,6 +39,8 @@ if test -d /mnt/c/Users
         set -xg LIBGL_ALWAYS_INDIRECT 1
         set -xg XCURSOR_SIZE 64
     end
+
+    test (umask) -eq 0022; or umask 0022
 end
 
 ## Greetings
