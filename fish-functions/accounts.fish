@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.zdvapT/accounts.fish @ line 2
 function accounts
 	if test -f ~/OneDrive/Essentials/accounts.ini
 		if test (count $argv) = 0
@@ -5,11 +6,11 @@ function accounts
 		else
 			egrep --color -e $argv[1] ~/OneDrive/Essentials/accounts.ini
 		end
-	else if test -f /mnt/c/Users/$WSUER/OneDrive/Essentials/accounts.ini
+	else if test -f /mnt/c/Users/$WUSER/OneDrive/Essentials/accounts.ini
 		if test (count $argv) = 0
-			edit /mnt/c/Users/$WSUER/OneDrive/Essentials/accounts.ini
+			edit /mnt/c/Users/$WUSER/OneDrive/Essentials/accounts.ini
 		else
-			egrep --color -e $argv[1] /mnt/c/Users/$WSUER/OneDrive/Essentials/accounts.ini
+			egrep --color -e $argv[1] /mnt/c/Users/$WUSER/OneDrive/Essentials/accounts.ini
 		end
 	else if test -f /mnt/d/OneDrive/Essentials/accounts.ini
 		if test (count $argv) = 0
@@ -27,7 +28,7 @@ function accounts
 		echo -n "not found under "
 		set_color normal
 		# set_color $fish_color_param[2]
-		echo "~/OneDrive/Essentials" or "/mnt/c/Users/$WSUER/OneDrive/Essentials" or "/d/OneDrive/Essentials"
+		echo "~/OneDrive/Essentials" or "/mnt/c/Users/$WUSER/OneDrive/Essentials" or "/d/OneDrive/Essentials"
 		return
 	end
 end
