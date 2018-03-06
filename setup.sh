@@ -53,6 +53,11 @@ grep -i "openSUSE" /etc/issue &&\
 echo "openSUSE detected. Installing core modules..." &&\
 bash ~/setup/opensuse.sh
 
+test -f /etc/issue &&\
+grep -Ei "kali" /etc/issue &&\
+echo "Kali detected. Installing core modules..." &&\
+bash ~/setup/kali.sh
+
 echo 'Core modules have been installed.'
 
 echo '=== Additional modules ==='
@@ -73,6 +78,12 @@ grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
 test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
+
+test -f /etc/issue &&\
+grep -Ei "kali" /etc/issue &&\
+grep -i "Microsoft" /proc/version &&\
+echo "Kali on Windows detected. Installing additional modules..." &&\
+bash ~/setup/kali-win.sh
 
 chmod +x bin/*.sh
 ls bin/*.sh
