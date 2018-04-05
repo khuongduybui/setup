@@ -21,4 +21,4 @@ python-dev python-pip python3-dev python3-pip \
 echo "Update system"
 sudo apt upgrade -y
 
-# which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
+which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)

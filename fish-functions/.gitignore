@@ -22,6 +22,10 @@ segment.fish
 segment_close.fish
 segment_right.fish
 spin.fish
+__bobthefish_colors.fish
+__bobthefish_display_colors.fish
+__bobthefish_glyphs.fish
+bobthefish_display_colors.fish
 z.awk
 zadd.awk
 zclean.awk
