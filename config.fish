@@ -33,12 +33,12 @@ if test -d /mnt/c/Users
         set -xg WUSER (whoami)
     end
 
-    if which powershell.exe >/dev/null
-        powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
-        set -xg DISPLAY "localhost:0"
-        set -xg LIBGL_ALWAYS_INDIRECT 1
-        set -xg XCURSOR_SIZE 64
-    end
+    # if which powershell.exe >/dev/null
+    #     powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
+    #     set -xg DISPLAY "localhost:0"
+    #     set -xg LIBGL_ALWAYS_INDIRECT 1
+    #     set -xg XCURSOR_SIZE 64
+    # end
 
     test (umask) -eq 0022; or umask 0022
 end
