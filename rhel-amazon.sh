@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install unison
 unison_ver=2.48.3
 wget http://www.seas.upenn.edu/~bcpierce/unison//download/releases/unison-${unison_ver}/unison-${unison_ver}.tar.gz
@@ -12,3 +14,6 @@ gmake
 sudo mv ./unison /usr/bin/
 sudo chown root ./unison-fsmonitor
 sudo mv ./unison-fsmonitor /usr/bin
+
+# install XRDP
+sudo yum install -y xrdp x11rdp xorgxrdp tigervnc-server
