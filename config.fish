@@ -4,8 +4,8 @@ mkdir -p ~/.local/bin
 set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
 
 ## Editors
-set -xg EDITOR (which nvim 2>/dev/null; or which vim)
-set -xg VISUAL $EDITOR
+set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
+#set -xg VISUAL $EDITOR
 #set -xg VIEWER "$EDITOR -R"
 
 ## DOCKER
