@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.H1iG9m/aps.fish @ line 2
+# Defined in /var/folders/dz/y2q7pw153pz7gm62rj5n25_9qzr_wy/T//fish.aDBVvX/aps.fish @ line 2
 function aps
 	set -lx ADDITIONAL_PATH $PATH
 	test -d /apollo/env/envImprovement; and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/envImprovement/bin
@@ -14,9 +14,17 @@ function aps
 	if not test (count $argv) = 0
 		set -q BRAZIL_CLI_BIN; or set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
 		set -lx PATH $ADDITIONAL_PATH $BRAZIL_CLI_BIN
-		/usr/bin/fish
+		if __is_mac
+			/usr/local/bin/fish
+		else
+			/usr/bin/fish
+		end
 	else
 		set -lx PATH $ADDITIONAL_PATH /apollo/env/SDETools/bin
-		/usr/bin/fish
+		if __is_mac
+			/usr/local/bin/fish
+		else
+			/usr/bin/fish
+		end
 	end
 end

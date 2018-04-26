@@ -19,8 +19,7 @@ set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 set -g theme_color_scheme terminal2-dark-white
-__is_mac
-and set -g theme_color_scheme solarized
+__is_mac; and set -g theme_color_scheme solarized
 
 ## Plugins
 #fisher 2>/dev/null
