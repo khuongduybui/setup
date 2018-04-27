@@ -15,45 +15,45 @@ if ($null -ne $SyncRoot) {
 $env:APPLICATION_ENV = "development";
 $env:HOME = Resolve-Path ("~");
 
-Wrap-Ls;
+wrap-ls;
 
-Verify-Path "~/Programs/unison" >$null;
-if (Verify-Command "unison") {
+verify-path "~/Programs/unison" >$null;
+if (verify-command "unison-fsmonitor") {
 	Write-Host "unison loaded." -ForegroundColor Green;
 }
 
-Verify-Path "~/Programs/putty" >$null;
-Verify-Path "~/Programs/putty/App/putty" >$null;
-Verify-Path "~/Programs/PortableApps/puttyportable" >$null;
-Verify-Path "~/Programs/PortableApps/puttyportable/App/putty" >$null;
-Verify-Path "D:/Program Files/putty" >$null;
-if (Verify-Command "pageant") {
+verify-path "~/Programs/putty" >$null;
+verify-path "~/Programs/putty/App/putty" >$null;
+verify-path "~/Programs/PortableApps/puttyportable" >$null;
+verify-path "~/Programs/PortableApps/puttyportable/App/putty" >$null;
+verify-path "D:/Program Files/putty" >$null;
+if (verify-command "pageant") {
 	pageant (Get-Item ~/.ssh/*.ppk)
-	$env:GIT_SSH=(Verify-Command -o "plink").Path;
+	$env:GIT_SSH=(verify-command -o "plink").Path;
 	Write-Host "pageant loaded." -ForegroundColor Green;
 }
-Verify-Bin "Git" >$null;
-$gitPath = (Verify-Command -o "git").Path;
+verify-bin "git" >$null;
+$gitPath = (verify-command -o "git").Path;
 if ($null -ne $gitPath) {
-  Verify-Path "$gitPath/../../cmd" >$null;
-  Verify-Path "$gitPath/../../usr/bin" >$null;
+  verify-path "$gitPath/../../cmd" >$null;
+  verify-path "$gitPath/../../usr/bin" >$null;
   # ssh-init;
 }
-Verify-Module "posh-git";
-X-init;
+verify-module "posh-git";
+x-init;
 
-# if ((Verify-Command "svn") -eq $true) {
-#   Verify-Module "posh-svn";
+# if ((verify-command "svn") -eq $true) {
+#   verify-module "posh-svn";
 # }
-# if ((Verify-Command "hg") -eq $true) {
-#   Verify-Module "posh-hg";
+# if ((verify-command "hg") -eq $true) {
+#   verify-module "posh-hg";
 # }
-# if ((Verify-Command "npm") -eq $true) {
-#   Verify-Module "posh-npm";
+# if ((verify-command "npm") -eq $true) {
+#   verify-module "posh-npm";
 # }
 
-Verify-Module "Execute-With-Retry";
-Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
+verify-module "Execute-With-Retry";
+verify-path "C:\Program Files\Amazon\AWSCLI" >$null;
 # mw-init;
 
 Write-Host "Done." -ForegroundColor Yellow;

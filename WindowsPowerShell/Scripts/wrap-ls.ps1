@@ -1,4 +1,4 @@
-New-CommandWrapper Out-Default -Process {
+new-commandwrapper Out-Default -Process {
     $regex_opts = ([System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
 
     $compressed = New-Object System.Text.RegularExpressions.Regex(
