@@ -3,10 +3,16 @@ git
 visualstudiocode
 vcxsrv
 googlechrome
+peazip
 
 advanced-renamer
-google-drive-file-stream 
+hwmonitor
+google-drive-file-stream
 zerotier-one
+shrewsoftvpn
+rufus
+sdformatter
+anyvideoconverter
 
 audacity
 xnconvert
