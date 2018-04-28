@@ -40,6 +40,8 @@ if test -d /mnt/c/Users
     # end
 
     test (umask) -eq 0022; or umask 0022
+
+    mount-workdocs
 end
 
 ## Greetings
