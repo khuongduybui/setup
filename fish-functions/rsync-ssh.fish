@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.7kCmIL/rsync-ssh.fish @ line 2
+# Defined in /tmp/fish.IhG9PL/rsync-ssh.fish @ line 2
 function rsync-ssh
 	mkdir -p ~/.ssh
 	test -d /mnt/c/Users/$WUSER/OneDrive; and rsync -r /mnt/c/Users/$WUSER/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
