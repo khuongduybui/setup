@@ -29,8 +29,8 @@ sudo chown root:root /etc/krb5.conf
 kinit -f
 
 # Toolbox
-curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/install-toolbox.sh' -o /tmp/install-toolbox.sh
-bash /tmp/install-toolbox.sh ubuntu
+curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
+bash /tmp/toolbox-install.sh ubuntu
 
 ~/.toolbox/bin/toolbox install cr
 ~/.toolbox/bin/toolbox install brazilcli
@@ -45,7 +45,7 @@ sudo apt install -y ruby
 
 # Ninja Dev Sync
 curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.1.0.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
-chmod 755 ~/.toolbox/bin/ 
+chmod 755 ~/.toolbox/bin/ninja-dev-sync
 ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
 sudo apt install inotify-tools
 printf "\nfs.inotify.max_user_watches = 1000000\n" | sudo tee -a /etc/sysctl.conf
