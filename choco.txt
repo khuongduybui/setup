@@ -2,8 +2,13 @@ notepad3
 git
 visualstudiocode
 vcxsrv
-googlechrome
 peazip
+googlechrome
+
+postman
+unison
+
+microsoft-teams
 
 advanced-renamer
 hwmonitor
@@ -12,8 +17,8 @@ zerotier-one
 shrewsoftvpn
 rufus
 sdformatter
-anyvideoconverter
 
+anyvideoconverter
 audacity
 xnconvert
 xnviewmp
@@ -21,10 +26,5 @@ xnviewmp
 jdownloader
 deluge
 
-postman
-unison
-
 steam
 twitch
-
-microsoft-teams
