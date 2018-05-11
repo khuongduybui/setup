@@ -21,7 +21,7 @@
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (basename "$current_dir")
-@@ -1395,5 +1400,22 @@
+@@ -1395,5 +1400,27 @@
      __bobthefish_prompt_dir
    end
 
@@ -40,6 +40,11 @@
 +      __bobthefish_start_segment brred white
 +      echo -n "!mw "
 +    end
++  end
++
++  if test -n "$OPS"
++    __bobthefish_start_segment brblue white
++    echo -n "$OPS "
 +  end
 +
    __bobthefish_finish_segments

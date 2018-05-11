@@ -16,13 +16,12 @@ set -xg LANG en_US.UTF-8
 
 ## Colors
 set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
-set -g theme_powerline_fonts yes
-set -g theme_nerd_fonts yes
+set -g theme_powerline_fonts no
+set -g theme_nerd_fonts no
 set -g theme_display_hostname no
 set -g theme_display_user no
-set -g theme_color_scheme solarized
-# set -g theme_color_scheme terminal2-dark-white
-# __is_mac; and set -g theme_color_scheme solarized
+set -g theme_color_scheme terminal2-dark-white
+__is_mac; and set -g theme_color_scheme solarized
 
 ## Plugins
 #fisher 2>/dev/null
