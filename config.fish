@@ -16,12 +16,14 @@ set -xg LANG en_US.UTF-8
 
 ## Colors
 set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
-set -g theme_powerline_fonts no
-set -g theme_nerd_fonts no
-set -g theme_display_hostname no
-set -g theme_display_user no
-set -g theme_color_scheme terminal2-dark-white
-__is_mac; and set -g theme_color_scheme solarized
+set -g theme_powerline_fonts yes
+set -g theme_nerd_fonts yes
+__is_dev_desktop; and set -g theme_powerline_fonts no
+__is_dev_desktop; and set -g theme_nerd_fonts no
+__is_dev_desktop; and set -g theme_display_hostname no
+__is_dev_desktop; and set -g theme_display_user no
+set -g theme_color_scheme solarized
+__is_dev_desktop; and set -g theme_color_scheme terminal2-dark-white
 
 ## Plugins
 #fisher 2>/dev/null
@@ -61,9 +63,9 @@ complete -c code -x -a '(__fish_complete_code)'
 if status --is-login
     and status --is-interactive
     if __is_mac
-        exec byobu-launcher
+        # exec byobu-launcher
     else
-        exec byobu-launcher -S ~/byobu new-session -A -s default
+        # exec byobu-launcher -S ~/byobu new-session -A -s default
     end
 end
 
