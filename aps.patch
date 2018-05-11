@@ -1,9 +1,20 @@
---- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:39.935629000 -0500
-+++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2017-12-03 13:44:31.302309800 -0500
-@@ -263,6 +263,20 @@
+--- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:16:57.219047900 -0400
++++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:18:49.583681700 -0400
+@@ -87,6 +87,8 @@
+   # Replace $HOME with ~
+   set -l real_home ~
+   set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $current_dir))
++  set -l win_home /mnt/c/Users/$WUSER
++  set -l parent_dir (string replace -r '^'"$win_home"'($|/)' '$1' (__bobthefish_dirname $current_dir))
+
+   # Must check whether `$parent_dir = /` if using native dirname
+   if [ -z "$parent_dir" ]
+@@ -303,6 +305,22 @@
        set directory '/'
      case "$HOME"
        set directory '~'
++    case "/mnt/c/Users/$WUSER"
++      set directory ''
 +    case "$HOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
 +      set directory (string sub -s (math 13 + (string length $HOME) + 4 + (string length $parent) - 2) "$current_dir")
@@ -20,25 +31,25 @@
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
-       set directory (basename "$current_dir")
-@@ -1395,5 +1400,27 @@
+       set directory (__bobthefish_basename "$current_dir")
+@@ -918,5 +934,27 @@
      __bobthefish_prompt_dir
    end
-
+ 
 +  if test (which brazil 2>/dev/null)
 +    __bobthefish_start_segment brmagenta white
-+    echo -n "aps "
++    __is_dev_desktop; and echo -m "aps "; or echo -n " "
 +
 +    if klist -s
 +    else
 +      __bobthefish_start_segment red white
-+      echo -n "!k "
++      __is_dev_desktop; and echo -n "!k "; or echo -n " "
 +    end
 +
 +    if test (find ~/.midway -type f -ctime -0.5)
 +    else
 +      __bobthefish_start_segment brred white
-+      echo -n "!mw "
++      __is_dev_desktop; and echo -n "!mw "; or echo -n " "
 +    end
 +  end
 +
