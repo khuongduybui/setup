@@ -22,8 +22,8 @@ __is_dev_desktop; and set -g theme_powerline_fonts no
 __is_dev_desktop; and set -g theme_nerd_fonts no
 __is_dev_desktop; and set -g theme_display_hostname no
 __is_dev_desktop; and set -g theme_display_user no
-set -g theme_color_scheme solarized
-__is_dev_desktop; and set -g theme_color_scheme terminal2-dark-white
+# set -g theme_color_scheme solarized
+set -g theme_color_scheme terminal2-dark-white
 
 ## Plugins
 #fisher 2>/dev/null
@@ -62,10 +62,10 @@ complete -c code -x -a '(__fish_complete_code)'
 ## Load byobu
 if status --is-login
     and status --is-interactive
-    if __is_mac
-        # exec byobu-launcher
-    else
+    if __is_dev_desktop
         # exec byobu-launcher -S ~/byobu new-session -A -s default
+    else
+        exec byobu-launcher
     end
 end
 
