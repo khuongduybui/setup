@@ -4,7 +4,7 @@
    # Replace $HOME with ~
    set -l real_home ~
    set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $current_dir))
-+  set -l win_home /mnt/c/Users/$WUSER
++  set -l win_home /mnt/$WDRIVE/Users/$WUSER
 +  set -l parent_dir (string replace -r '^'"$win_home"'($|/)' '$1' (__bobthefish_dirname $current_dir))
 
    # Must check whether `$parent_dir = /` if using native dirname
@@ -13,7 +13,7 @@
        set directory '/'
      case "$HOME"
        set directory '~'
-+    case "/mnt/c/Users/$WUSER"
++    case "/mnt/$WDRIVE/Users/$WUSER"
 +      set directory ''
 +    case "$HOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
@@ -22,10 +22,10 @@
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]
 +      set directory (string sub -s (math 13 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
-+    case "/mnt/c/Users/$WUSER/code/*/src/*"
++    case "/mnt/$WDRIVE/Users/$WUSER/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
 +      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
-+    case "/mnt/c/Users/$WUSER/code/*"
++    case "/mnt/$WDRIVE/Users/$WUSER/code/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
 +      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '

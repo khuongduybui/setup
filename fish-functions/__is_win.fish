@@ -1,3 +1,3 @@
-function __is_mac
-	test -d /mnt/c/Users
+function __is_win
+	test (which cmd.exe 2>/dev/null)
 end

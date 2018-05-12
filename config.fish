@@ -29,11 +29,17 @@ set -g theme_color_scheme terminal2-dark-white
 #fisher 2>/dev/null
 
 ## Windows?
-if test -d /mnt/c/Users
+if __is_win
     if test -f ~/.wuser
         set -xg WUSER (cat ~/.wuser)
     else
         set -xg WUSER (whoami)
+    end
+
+    if test -f ~/.wdrive
+        set -xg WDRIVE (cat ~/.wdrive)
+    else
+        set -xg WDRIVE c
     end
 
     # if which powershell.exe >/dev/null

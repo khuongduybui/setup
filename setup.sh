@@ -72,7 +72,7 @@ bash ~/setup/ubuntu-win.sh
 
 test -f /etc/issue &&\
 grep -i "openSUSE" /etc/issue &&\
-test -d /mnt/c/Users &&\
+which cmd.exe >/dev/null 2>&1 &&\
 echo "openSUSE on Windows detected. Installing additional modules..." &&\
 bash ~/setup/opensuse-win.sh
 
