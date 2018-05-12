@@ -2,6 +2,7 @@
 mkdir -p ~/.yarn/bin
 mkdir -p ~/.local/bin
 set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
+__is_dev_desktop; set -xg HOME ~
 
 ## Editors
 set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
