@@ -2,7 +2,8 @@
 mkdir -p ~/.yarn/bin
 mkdir -p ~/.local/bin
 set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
-__is_dev_desktop; set -xg HOME ~
+__is_dev_desktop
+set -xg HOME ~
 
 ## Editors
 set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
@@ -19,10 +20,14 @@ set -xg LANG en_US.UTF-8
 set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
-__is_dev_desktop; and set -g theme_powerline_fonts no
-__is_dev_desktop; and set -g theme_nerd_fonts no
-__is_dev_desktop; and set -g theme_display_hostname no
-__is_dev_desktop; and set -g theme_display_user no
+__is_dev_desktop
+and set -g theme_powerline_fonts no
+__is_dev_desktop
+and set -g theme_nerd_fonts no
+__is_dev_desktop
+and set -g theme_display_hostname no
+__is_dev_desktop
+and set -g theme_display_user no
 # set -g theme_color_scheme solarized
 set -g theme_color_scheme terminal2-dark-white
 
@@ -43,14 +48,18 @@ if __is_win
         set -xg WDRIVE c
     end
 
+    set -xg WHOME /mnt/$WDRIVE/Users/$WUSER
+    set -xg W $WHOME
+
     # if which powershell.exe >/dev/null
-    #     powershell.exe -ExecutionPolicy Unrestricted -File "C:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
+    #     powershell.exe -ExecutionPolicy Unrestricted -File "$WDRIVE:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
     #     set -xg DISPLAY "localhost:0"
     #     set -xg LIBGL_ALWAYS_INDIRECT 1
     #     set -xg XCURSOR_SIZE 64
     # end
 
-    test (umask) -eq 0022; or umask 0022
+    test (umask) -eq 0022
+    or umask 0022
 
     mount-workdocs
 end

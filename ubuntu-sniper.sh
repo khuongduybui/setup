@@ -14,7 +14,7 @@ sudo service dbus start
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 sudo apt update
-test -d /mnt/$WDRIVE/Users/$WUSER && sudo apt install -y mongodb
+test (which cmd.exe >/dev/null 2>&1) && sudo apt install -y mongodb
 sudo apt install -y mongodb-org
 
 sudo apt install -y libfontconfig1 aha

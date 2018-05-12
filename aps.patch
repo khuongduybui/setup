@@ -1,11 +1,10 @@
 --- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:16:57.219047900 -0400
 +++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:18:49.583681700 -0400
-@@ -87,6 +87,8 @@
+@@ -87,6 +87,7 @@
    # Replace $HOME with ~
    set -l real_home ~
    set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $current_dir))
-+  set -l win_home /mnt/$WDRIVE/Users/$WUSER
-+  set -l parent_dir (string replace -r '^'"$win_home"'($|/)' '$1' $parent_dir)
++  set -l parent_dir (string replace -r '^'"$WHOME"'($|/)' '$1' $parent_dir)
 
    # Must check whether `$parent_dir = /` if using native dirname
    if [ -z "$parent_dir" ]
@@ -13,7 +12,7 @@
        set directory '/'
      case "$HOME"
        set directory '~'
-+    case "/mnt/$WDRIVE/Users/$WUSER"
++    case "$WHOME"
 +      set directory ''
 +    case "$HOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
@@ -22,10 +21,10 @@
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]
 +      set directory (string sub -s (math 13 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
-+    case "/mnt/$WDRIVE/Users/$WUSER/code/*/src/*"
++    case "$WHOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
 +      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
-+    case "/mnt/$WDRIVE/Users/$WUSER/code/*"
++    case "$WHOME/code/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
 +      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
