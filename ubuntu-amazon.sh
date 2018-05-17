@@ -1,9 +1,11 @@
 # Amazon
 wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
 echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)--thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update
-sudo apt install -y openssh-server amazon-desktop-dhcp-config amazon-desktop-management amazon-firstboot2 amazon-firefoxconfig-dev amazon-pbis-config apt-transport-https
+sudo apt install -y openssh-server apt-transport-https amazon-desktop-management
+# WSL doesn't need the following:
+# sudo apt install -y amazon-desktop-dhcp-config amazon-firstboot2 amazon-firefoxconfig-dev amazon-pbis-config
 
 # Latest GIT
 test -f ~/.gitignore.bak && rm ~/.gitignore.bak
@@ -37,7 +39,7 @@ bash /tmp/toolbox-install.sh ubuntu
 
 sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt update
-sudo apt install -y openjdk-8-jdk
+sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/brazil setup --java
 
 sudo apt install -y ruby
@@ -47,7 +49,6 @@ sudo apt install -y ruby
 curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.1.0.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
 chmod 755 ~/.toolbox/bin/ninja-dev-sync
 ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
-sudo apt install inotify-tools
+sudo apt install -y inotify-tools
 printf "\nfs.inotify.max_user_watches = 1000000\n" | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p 
-
+sudo sysctl -p

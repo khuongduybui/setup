@@ -71,6 +71,12 @@ echo "Ubuntu on Windows detected. Installing additional modules..." &&\
 bash ~/setup/ubuntu-win.sh
 
 test -f /etc/issue &&\
+grep -Ei "elementary|ubuntu" /etc/issue &&\
+hostname -d | grep ant.amazon.com >/dev/null &&\
+echo "Ubuntu on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/ubuntu-amazon.sh
+
+test -f /etc/issue &&\
 grep -i "openSUSE" /etc/issue &&\
 which cmd.exe >/dev/null 2>&1 &&\
 echo "openSUSE on Windows detected. Installing additional modules..." &&\
