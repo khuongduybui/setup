@@ -7,7 +7,7 @@
 	ui = auto
 [core]
 	pager = less -FMRiX
-	excludesfile = /home/duybui/.gitignore
+	excludesfile = ~/.gitignore
 	fileMode = false
 [alias]
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
