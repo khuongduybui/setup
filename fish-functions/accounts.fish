@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.Rgpjwb/accounts.fish @ line 2
+# Defined in /var/folders/dz/y2q7pw153pz7gm62rj5n25_9qzr_wy/T//fish.unCYdU/accounts.fish @ line 2
 function accounts
-    if test -f ~/OneDrive/Essentials/accounts.ini
+	if test -f ~/OneDrive/Essentials/accounts.ini
         if test (count $argv) = 0
             edit ~/OneDrive/Essentials/accounts.ini
         else
