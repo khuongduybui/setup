@@ -31,7 +31,7 @@
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (__bobthefish_basename "$current_dir")
-@@ -918,5 +934,39 @@
+@@ -918,5 +934,40 @@
      __bobthefish_prompt_dir
    end
  
