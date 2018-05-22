@@ -1,13 +1,19 @@
-# Defined in /tmp/fish.rjxNk2/pfw.fish @ line 2
+# Defined in /tmp/fish.cxtrxn/pfw.fish @ line 2
 function pfw
 	if not which socat >/dev/null
+	    echo "Installing socat..."
 		which yum >/dev/null; and sudo yum install -y socat
 		which apt >/dev/null; and sudo apt install -y socat
+		which zypper >/dev/null; and sudo zypper install -y socat
 	end
 	set destination 3000
 	if test (count $argv) = 2
 		set destination $argv[2]
 	end
-	echo "Forwarding port $argv[1] to $destination"
-	sudo socat "tcp-listen:$argv[1],reuseaddr,fork" "tcp:localhost:$destination"
+	echo "Redirecting traffic from port $destination to $argv[1]"
+	if $destination -le 101
+        sudo socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
+    else
+        socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
+    end
 end
