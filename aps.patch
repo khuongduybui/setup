@@ -31,7 +31,7 @@
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (__bobthefish_basename "$current_dir")
-@@ -918,5 +934,27 @@
+@@ -918,5 +934,39 @@
      __bobthefish_prompt_dir
    end
  
@@ -47,14 +47,27 @@
 +
 +    if test (find ~/.midway -type f -ctime -0.5)
 +    else
-+      __bobthefish_start_segment brred white
++      __bobthefish_start_segment white red
 +      __is_dev_desktop; and echo -n "!mw "; or echo -n " "
 +    end
 +  end
 +
-+  if test -n "$OPS"
-+    __bobthefish_start_segment brblue white
-+    echo -n "$OPS "
++  if test (which aws 2>/dev/null)
++    if test -n "$OPS"
++      __bobthefish_start_segment brblue white
++      echo -n " $OPS "
++    end
++
++    if test -n "$AWS_PROFILE"
++      __bobthefish_start_segment brblue white
++      echo -n " $AWS_PROFILE "
++    end
++
++    set -l aws_region (aws configure get region)
++    if test -n "$aws_region"; and [ $aws_region != "us-east-1" ]
++      __bobthefish_start_segment white brblue
++      echo -n "$aws_region "
++    end
 +  end
 +
    __bobthefish_finish_segments
