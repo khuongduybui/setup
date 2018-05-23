@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.EGKyRY/aps.fish @ line 2
+# Defined in /tmp/fish.584jm3/aps.fish @ line 2
 function aps
 	set -lx ADDITIONAL_PATH $PATH
     test -d /apollo/env/envImprovement
@@ -27,18 +27,16 @@ function aps
     getopts $argv | while read -l key value
         switch $key
             case legacy
-                test -x $SDE_CLI_BIN/brazil
-                and set -x APS_PATH $PATH $ADDITIONAL_PATH $SDE_CLI_BIN
+                test -x $SDE_CLI_BIN/brazil; and set -x APS_PATH $SDE_CLI_BIN
         end
     end
 
-    if test -n "$APS_PATH"
-        test -x $BRAZIL_CLI_BIN/brazil
-        and set -x APS_PATH $PATH $ADDITIONAL_PATH $BRAZIL_CLI_BIN
+    if test -z $APS_PATH
+        test -x $BRAZIL_CLI_BIN/brazil; and set -x APS_PATH $BRAZIL_CLI_BIN
     end
-
-    set -lx PATH $APS_PATH
-    if test (which brazil 2>/dev/null)
+    
+    if not test -z $APS_PATH
+        set -lx PATH $ADDITIONAL_PATH $APS_PATH
         if __is_mac
             /usr/local/bin/fish
         else
