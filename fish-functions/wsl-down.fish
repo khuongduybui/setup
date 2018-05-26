@@ -1,19 +1,22 @@
-# Defined in /tmp/fish.M4dDKo/wsl-down.fish @ line 2
+# Defined in /tmp/fish.zieE9i/wsl-down.fish @ line 2
 function wsl-down
 	echo 'Attempting to shutdown this WSL instance.'
-	if __read_confirm
-		sudo service mongodb stop
-		sudo service rethinkdb stop
-
-		sudo service dbus stop
+    if __read_confirm
+        set servs mongodb rethinkdb dbus
+        set existing_servs (service --status-all 2>&1)
+        for serv in $servs
+            if echo $existing_servs | grep -Fq $serv
+                sudo service $serv stop
+            end
+        end
 
         if test -f /home/duybui/brazil-pkg-cache/daemon-pid
             set -l pkgcache (string split : (cat /home/duybui/brazil-pkg-cache))[1]
-		    if test (ps aux | grep $pkgcache | grep -v grep | wc -l) -gt 0
-		        sudo kill -9 $pkgcache
-		    end
-		end
+            if test (ps aux | grep $pkgcache | grep -v grep | wc -l) -gt 0
+                sudo kill -9 $pkgcache
+            end
+        end
 
-		exit
-	end
+        sudo killall -9 fish
+    end
 end
