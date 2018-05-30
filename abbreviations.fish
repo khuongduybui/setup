@@ -44,3 +44,6 @@ abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr nm 'ssh um-cli /apollo/bin/env -e envImprovement'
 abbr cmd command
 abbr region 'aws configure set region'
+abbr mongodb 'sudo service mongodb'
+abbr rethinkdb 'sudo service rethinkdb'
+abbr dbus 'sudo service dbus'
