@@ -1,18 +1,14 @@
+# Defined in /tmp/fish.63scBh/execute_bit.fish @ line 2
 function execute_bit
-    set_color -b blue white
-    echo -n ' '(basename (pwd))' '
-    set_color -b magenta blue
-    echo -n \uE0B0
-    set_color -b magenta white
-    echo -n (__fish_git_prompt)' '
-    set_color -b normal magenta
-    echo -n \uE0B0
-    set_color normal
-    echo -n ' 'git' '
+	segment white magenta (__fish_git_prompt)' '
+    segment white blue ' '(basename (pwd))' '
+    segment_close
+
+    echo -n git' '
     set_color cyan
-    echo -n $argv
+    echo $argv
     set_color normal
-    echo
+
     git $argv
     echo
 end
