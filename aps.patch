@@ -8,7 +8,7 @@
 
    # Must check whether `$parent_dir = /` if using native dirname
    if [ -z "$parent_dir" ]
-@@ -303,6 +305,22 @@
+@@ -303,6 +305,28 @@
        set directory '/'
      case "$HOME"
        set directory '~'
@@ -21,9 +21,15 @@
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]
 +      set directory (string sub -s (math 13 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
++    case "$WHOME/code/aws/*/src/*"
++      set parent    (string split "/" (string sub -s (math 24 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
++      set directory (string sub -s (math 24 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
 +    case "$WHOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
 +      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
++    case "$WHOME/code/personal/*"
++      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
++      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
 +    case "$WHOME/code/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
 +      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
@@ -34,7 +40,7 @@
 @@ -918,5 +934,40 @@
      __bobthefish_prompt_dir
    end
- 
+
 +  if test (which brazil 2>/dev/null)
 +    __bobthefish_start_segment brmagenta white
 +    __is_dev_desktop; and echo -n "aps "; or echo -n " "
