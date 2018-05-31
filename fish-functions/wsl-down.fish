@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.zieE9i/wsl-down.fish @ line 2
+# Defined in /tmp/fish.a1JMoE/wsl-down.fish @ line 2
 function wsl-down
 	echo 'Attempting to shutdown this WSL instance.'
     if __read_confirm
@@ -17,6 +17,7 @@ function wsl-down
             end
         end
 
-        sudo killall -9 fish
+        which killall >/dev/null; and sudo killall -9 fish
+        exit
     end
 end
