@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.a1JMoE/wsl-down.fish @ line 2
+# Defined in /tmp/fish.XlO1hn/wsl-down.fish @ line 2
 function wsl-down
 	echo 'Attempting to shutdown this WSL instance.'
     if __read_confirm
@@ -11,7 +11,7 @@ function wsl-down
         end
 
         if test -f /home/duybui/brazil-pkg-cache/daemon-pid
-            set -l pkgcache (string split : (cat /home/duybui/brazil-pkg-cache))[1]
+            set -l pkgcache (string split : (cat /home/duybui/brazil-pkg-cache/daemon-pid))[1]
             if test (ps aux | grep $pkgcache | grep -v grep | wc -l) -gt 0
                 sudo kill -9 $pkgcache
             end
