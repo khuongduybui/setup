@@ -37,7 +37,7 @@
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (__bobthefish_basename "$current_dir")
-@@ -918,5 +934,40 @@
+@@ -918,5 +934,56 @@
      __bobthefish_prompt_dir
    end
 
@@ -73,6 +73,23 @@
 +    if test -n "$aws_region"; and [ $aws_region != "us-east-1" ]
 +      __bobthefish_start_segment white brblue
 +      echo -n " $aws_region "
++    end
++  end
++
++  if test (which bark 2>/dev/null)
++    if test -n "$BARK_ACCOUNT"
++      __bobthefish_start_segment brblue white
++      echo -n " $BARK_ACCOUNT "
++    end
++
++    if test -n "$BARK_MS"
++      __bobthefish_start_segment brblue white
++      echo -n " $BARK_MS"
++    end
++  
++    if test -n "$BARK_REGION"; and [ $BARK_REGION != "iad" ]
++      __bobthefish_start_segment white brblue
++      echo -n " $BARK_REGION "
 +    end
 +  end
 +
