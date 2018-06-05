@@ -1,7 +1,7 @@
-# Defined in /tmp/fish.WFKR6i/__fish_complete_code.fish @ line 2
+# Defined in /tmp/fish.k7eJam/__fish_complete_code.fish @ line 2
 function __fish_complete_code
 	if test -d ~/code
     	cd ~/code
-	    ls -d *
+	    ls -d */
 	end
 end
