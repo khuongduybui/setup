@@ -42,7 +42,7 @@
    end
 
 +  if test (which brazil 2>/dev/null)
-+    __bobthefish_start_segment brmagenta white
++    __bobthefish_start_segment bryellow white
 +    __is_dev_desktop; and echo -n "aps "; or echo -n " "
 +
 +    if klist -s
@@ -72,7 +72,7 @@
 +    set -l aws_region (aws configure get region)
 +    if test -n "$aws_region"; and [ $aws_region != "us-east-1" ]
 +      __bobthefish_start_segment white brblue
-+      echo -n "$aws_region "
++      echo -n " $aws_region "
 +    end
 +  end
 +
