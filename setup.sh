@@ -1,13 +1,16 @@
 #! /bin/bash
 echo "=== Setting up global preferences ==="
 
-test -d ~/.config/fish || mkdir -p ~/.config/fish
+mkdir -p ~/.config/fish
 test -f ~/.config/fish/config.fish || ln -s ~/setup/config.fish ~/.config/fish/config.fish
 test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
 test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
 
-test -d ~/.config/micro || mkdir -p ~/.config/micro
+mkdir -p ~/.config/micro
 test -f ~/.config/micro/settings.json || ln -s ~/setup/micro.json ~/.config/micro/settings.json
+
+mkdir -p ~/.config/bark
+test -d ~/.config/bark/profiles || ln -s ~/setup/bark-profiles ~/.config/bark/profiles
 
 test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.`date +%Y-%m-%d`.bak
 ln -s ~/setup/.vimrc ~/
