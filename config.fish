@@ -68,6 +68,7 @@ source ~/setup/abbreviations.fish
 
 ## Completions
 complete -c code -x -a '(__fish_complete_code)'
+complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 ## Load byobu
 if status --is-login
