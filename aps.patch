@@ -42,7 +42,7 @@
    end
 
 +  if test (which brazil 2>/dev/null)
-+    __bobthefish_start_segment bryellow white
++    __bobthefish_start_segment yellow white
 +    echo -n " "
 +
 +    if klist -s
