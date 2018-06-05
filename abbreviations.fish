@@ -3,7 +3,7 @@
 abbr f 'fuck'
 abbr reset-fish 'rm ~/.config/fish/fishd*'
 abbr reset-time 'sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime'
-abbr update-git 'git remote set-url origin git@bitbucket.org:khuongduybui/linux.git'
+abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 abbr byobu 'byobu-launcher -S ~/byobu new-session -A -s default'
 abbr awsp 'aws --profile'
 abbr ssh-corp 'ssh -o ProxyCommand=None'
