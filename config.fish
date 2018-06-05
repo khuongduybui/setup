@@ -2,7 +2,6 @@
 mkdir -p ~/.yarn/bin
 mkdir -p ~/.local/bin
 set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
-__is_dev_desktop
 set -xg HOME ~
 
 ## Editors
@@ -21,14 +20,9 @@ set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 __is_dev_desktop
-and set -g theme_powerline_fonts no
-__is_dev_desktop
-and set -g theme_nerd_fonts no
-__is_dev_desktop
 and set -g theme_display_hostname no
 __is_dev_desktop
 and set -g theme_display_user no
-# set -g theme_color_scheme solarized
 set -g theme_color_scheme terminal2-dark-white
 
 ## Plugins

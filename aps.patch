@@ -43,18 +43,18 @@
 
 +  if test (which brazil 2>/dev/null)
 +    __bobthefish_start_segment bryellow white
-+    __is_dev_desktop; and echo -n "aps "; or echo -n " "
++    echo -n " "
 +
 +    if klist -s
 +    else
 +      __bobthefish_start_segment red white
-+      __is_dev_desktop; and echo -n "!k "; or echo -n " "
++      echo -n " "
 +    end
 +
 +    if test (find ~/.midway -type f -ctime -0.5)
 +    else
 +      __bobthefish_start_segment white red
-+      __is_dev_desktop; and echo -n "!mw "; or echo -n " "
++      echo -n " "
 +    end
 +  end
 +
