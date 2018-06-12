@@ -12,7 +12,8 @@ sudo yum install -y byobu
 
 test -f ~/.zshrc && mv ~/.zshrc.`date +%Y-%m-%d`.bak
 test -f ~/.zprofile && mv ~/.zprofile ~/.zprofile.`date +%Y-%m-%d`.bak
-echo "_byobu_sourced=1 byobu -S ~/duybui new-session -A -s duybui" > ~/.zprofile
+# echo "_byobu_sourced=1 byobu -S ~/duybui new-session -A -s duybui" > ~/.zprofile
+ln -s ~/setup/rhel.zprofile ~/.zprofile
 echo "set -g default-shell /usr/bin/fish" > $HOME/.byobu/.tmux.conf
 echo "set -g default-command /usr/bin/fish" >> $HOME/.byobu/.tmux.conf
 
