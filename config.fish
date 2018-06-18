@@ -74,7 +74,7 @@ complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 if status --is-login
     and status --is-interactive
     if __is_dev_desktop
-        # exec byobu-launcher -S ~/byobu new-session -A -s default
+        exec byobu-launcher -S ~/byobu new-session -A -s default
     else
         exec byobu-launcher
     end
