@@ -28,8 +28,8 @@
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
 +      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
 +    case "$WHOME/code/personal/*"
-+      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
-+      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
++      set parent    (string split "/" (string sub -s (math 28 + (string length $WUSER)) "$current_dir"))[1]
++      set directory (string sub -s (math 28 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
 +    case "$WHOME/code/*"
 +      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
 +      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
