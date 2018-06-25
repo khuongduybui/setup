@@ -1,7 +1,8 @@
+# Defined in /tmp/fish.J3ZZNY/l.fish @ line 2
 function l
 	if __is_mac
-		command ls -laGhF $argv
+		ls -laGhF $argv
 	else
-		command ls -lahF --color $argv
+		ls -lahF --color $argv
 	end
 end

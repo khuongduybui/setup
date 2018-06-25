@@ -7,7 +7,7 @@ echo "Install system utils"
 sudo apt-add-repository -y ppa:fish-shell/release-2
 sudo apt-add-repository -y ppa:neovim-ppa/unstable
 sudo apt update -y
-sudo apt install -y fish vim neovim byobu
+sudo apt install -y fish vim neovim byobu grc
 sudo apt install -y mc screenfetch
 
 echo "Install dev tools"
