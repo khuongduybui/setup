@@ -8,13 +8,13 @@ cd /etc/yum.repos.d/
 sudo wget https://download.opensuse.org/repositories/shells:fish:release:2/RHEL_7/shells:fish:release:2.repo
 sudo yum install -y fish neovim byobu
 sudo amazon-linux-extras install vim
-# @TODO mc screenfetch
+# @TODO mc screenfetch grc
 
 echo "Install dev tools"
-wget -O - https://rpm.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
+wget -O - https://rpm.nodesource.com/setup_9.x | sudo -E bash - > /dev/null
 sudo yum install -y \
 gcc-c++ make \
-nodejs-8.3.0 \ # required by nodec
+nodejs \
 
 sudo amazon-linux-extras install python3
 
