@@ -16,10 +16,10 @@
 +      set directory ''
 +    case "$HOME/code/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
-+      set directory (string sub -s (math 13 + (string length $HOME) + 4 + (string length $parent) - 2) "$current_dir")
++      set directory (string sub -s (math 7 + (string length $HOME) + 4 + (string length $parent) - 2) "$current_dir")
 +    case "$HOME/code/*"
 +      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]
-+      set directory (string sub -s (math 13 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
++      set directory (string sub -s (math 7 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
 +      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
 +    case "$WHOME/code/aws/*/src/*"
 +      set parent    (string split "/" (string sub -s (math 24 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
