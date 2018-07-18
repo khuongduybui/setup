@@ -7,6 +7,8 @@ abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git
 abbr byobu 'byobu-launcher -S ~/byobu new-session -A -s default'
 abbr awsp 'aws --profile'
 abbr ssh-corp 'ssh -o ProxyCommand=None'
+abbr ssh-ec2 'ssh -i ~/.ssh/ec2.pem'
+abbr ssh-odin 'ssh -N um-odin'
 abbr rebuild-coral 'clear; begin; set -lx SERVICE (pwe); cd ../"$SERVICE"Model/; brazil-build; cd ../"$SERVICE"Generator/; brazil-build; cd ../"$SERVICE"; brazil-build ser    ver; end'
 abbr grep-runtime-log 'grep (brazil-bootstrap)/var/output/logs/* -e'
 abbr pickaxe 'ssh -At duybui.aka.amazon.com ssh -t aws-pickaxe-iad-prod-1a-i-24be46da.us-east-1.amazon.com /apollo/env/AWSPickaxeEscritoire/bin/pickaxe'
