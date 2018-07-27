@@ -51,7 +51,7 @@
 +      echo -n " "
 +    end
 +
-+    if test (find ~/.midway -type f -ctime -0.5)
++    if test (mwinit -k ~/.ssh/primary.pem.pub -l | grep cookie; or mwinit -l | grep cookie)
 +    else
 +      __bobthefish_start_segment white red
 +      echo -n " "
