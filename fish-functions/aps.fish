@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.584jm3/aps.fish @ line 2
+# Defined in /tmp/fish.OhMNBv/aps.fish @ line 2
 function aps
 	set -lx ADDITIONAL_PATH $PATH
     test -d /apollo/env/envImprovement
@@ -19,6 +19,8 @@ function aps
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/NodeJS/bin
     test -d /apollo/env/Sigv4Curl
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/Sigv4Curl/bin
+    test -d /apollo/env/AAAWorkspaceSupport
+    and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/AAAWorkspaceSupport/bin
 
     set -q BRAZIL_CLI_BIN
     or set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
