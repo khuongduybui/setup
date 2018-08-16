@@ -10,12 +10,13 @@ sudo yum install -y epel-release-5-4.noarch.rpm
 sudo yum check-update
 sudo yum install -y byobu
 
-test -f ~/.zshrc && mv ~/.zshrc.`date +%Y-%m-%d`.bak
+test -f ~/.zshrc && mv ~/.zshrc ~/.zshrc.`date +%Y-%m-%d`.bak
 test -f ~/.zprofile && mv ~/.zprofile ~/.zprofile.`date +%Y-%m-%d`.bak
 # echo "_byobu_sourced=1 byobu -S ~/duybui new-session -A -s duybui" > ~/.zprofile
 ln -s ~/setup/rhel.zprofile ~/.zprofile
-echo "set -g default-shell /usr/bin/fish" > $HOME/.byobu/.tmux.conf
-echo "set -g default-command /usr/bin/fish" >> $HOME/.byobu/.tmux.conf
+mkdir -p ~/.byobu
+echo "set -g default-shell /usr/bin/fish" > ~/.byobu/.tmux.conf
+echo "set -g default-command /usr/bin/fish" >> ~/.byobu/.tmux.conf
 
 # yum install -y w3m
 
