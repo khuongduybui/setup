@@ -5,7 +5,7 @@ sudo wget http://download.opensuse.org/repositories/shells:fish:release:2/RedHat
 sudo yum install -y fish
 cd -
 
-wget http://dl.fedoraproject.org/pub/archive/epel/5/i386//epel-release-5-4.noarch.rpm
+wget http://dl.fedoraproject.org/pub/archive/epel/5/i386/epel-release-5-4.noarch.rpm
 sudo yum install -y epel-release-5-4.noarch.rpm
 sudo yum check-update
 sudo yum install -y byobu
