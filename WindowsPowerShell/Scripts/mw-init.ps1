@@ -16,10 +16,10 @@ if (Verify-Bin "midway" -eq $True) {
   Write-Verbose "Init Midway for $key";
   mwinit -k "$key" -o;
   Clear-Host;
-  ssh um-cli mwinit -o --no-update-check -k ~/.ssh/primary.pem.pub;
-  Clear-Host;
-  ssh um-cli kinit -f;
-  Clear-Host;
+  # ssh um-cli mwinit -o --no-update-check -k ~/.ssh/primary.pem.pub;
+  # Clear-Host;
+  # ssh um-cli kinit -f;
+  # Clear-Host;
 }
 
 $VerbosePreference = $oldverbose

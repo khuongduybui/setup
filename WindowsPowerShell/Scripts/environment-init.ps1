@@ -17,26 +17,26 @@ $env:HOME = Resolve-Path ("~");
 
 wrap-ls;
 
-verify-path "~/Programs/unison" >$null;
+Verify-Path "~/Programs/unison" >$null;
 if (verify-command "unison-fsmonitor") {
 	Write-Host "unison loaded." -ForegroundColor Green;
 }
 
-verify-path "~/Programs/putty" >$null;
-verify-path "~/Programs/putty/App/putty" >$null;
-verify-path "~/Programs/PortableApps/puttyportable" >$null;
-verify-path "~/Programs/PortableApps/puttyportable/App/putty" >$null;
-verify-path "D:/Program Files/putty" >$null;
+Verify-Path "~/Programs/putty" >$null;
+Verify-Path "~/Programs/putty/App/putty" >$null;
+Verify-Path "~/Programs/PortableApps/puttyportable" >$null;
+Verify-Path "~/Programs/PortableApps/puttyportable/App/putty" >$null;
+Verify-Path "D:/Program Files/putty" >$null;
 if (verify-command "pageant") {
 	pageant (Get-Item ~/.ssh/*.ppk)
 	$env:GIT_SSH=(verify-command -o "plink").Path;
 	Write-Host "pageant loaded." -ForegroundColor Green;
 }
-verify-bin "git" >$null;
+Verify-Bin "git" >$null;
 $gitPath = (verify-command -o "git").Path;
 if ($null -ne $gitPath) {
-  verify-path "$gitPath/../../cmd" >$null;
-  verify-path "$gitPath/../../usr/bin" >$null;
+  Verify-Path "$gitPath/../../cmd" >$null;
+  Verify-Path "$gitPath/../../usr/bin" >$null;
   # ssh-init;
 }
 verify-module "posh-git";
@@ -53,7 +53,7 @@ x-init;
 # }
 
 verify-module "Execute-With-Retry";
-verify-path "C:\Program Files\Amazon\AWSCLI" >$null;
+Verify-Path "C:\Program Files\Amazon\AWSCLI" >$null;
 # mw-init;
 
 Write-Host "Done." -ForegroundColor Yellow;
