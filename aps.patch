@@ -79,7 +79,7 @@
 +  end
 +
 +  if test (which rde 2>/dev/null)
-+    if test -n "$DOCKER_HOST"
++    if echo $DOCKER_HOST | grep -q tcp
 +      __bobthefish_start_segment brblue white
 +      echo -n " "
 +    end

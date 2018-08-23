@@ -36,7 +36,7 @@ which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 echo "=== Installing modules ==="
 
 test -f /etc/issue &&\
-grep -Ei "elementary|ubuntu" /etc/issue &&\
+grep -q -Ei "elementary|ubuntu" /etc/issue &&\
 echo "Ubuntu detected. Installing core modules..." &&\
 bash ~/setup/ubuntu.sh
 
@@ -45,22 +45,22 @@ echo "OS X detected. Installing core modules..." &&\
 sh ~/setup/mac.sh
 
 test -f /etc/redhat-release &&\
-grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
+grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
 echo "RHEL detected. Installing core modules..." &&\
 bash ~/setup/rhel.sh
 
 test -f /etc/os-release &&\
-grep -i "Amazon Linux 2" /etc/os-release &&\
+grep -q -i "Amazon Linux 2" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
 test -f /etc/issue &&\
-grep -i "openSUSE" /etc/issue &&\
+grep -q -i "openSUSE" /etc/issue &&\
 echo "openSUSE detected. Installing core modules..." &&\
 bash ~/setup/opensuse.sh
 
 test -f /etc/issue &&\
-grep -Ei "kali" /etc/issue &&\
+grep -q -Ei "kali" /etc/issue &&\
 echo "Kali detected. Installing core modules..." &&\
 bash ~/setup/kali.sh
 
@@ -68,32 +68,32 @@ echo 'Core modules have been installed.'
 
 echo '=== Additional modules ==='
 test -f /etc/issue &&\
-grep -Ei "elementary|ubuntu" /etc/issue &&\
-grep -i "Microsoft" /proc/version &&\
+grep -q -Ei "elementary|ubuntu" /etc/issue &&\
+grep -q -i "Microsoft" /proc/version &&\
 echo "Ubuntu on Windows detected. Installing additional modules..." &&\
 bash ~/setup/ubuntu-win.sh
 
 test -f /etc/issue &&\
-grep -Ei "elementary|ubuntu" /etc/issue &&\
-hostname -d | grep ant.amazon.com >/dev/null &&\
+grep -q -Ei "elementary|ubuntu" /etc/issue &&\
+hostname -d | grep -q ant.amazon.com &&\
 echo "Ubuntu on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/ubuntu-amazon.sh
 
 test -f /etc/issue &&\
-grep -i "openSUSE" /etc/issue &&\
+grep -q -i "openSUSE" /etc/issue &&\
 which cmd.exe >/dev/null 2>&1 &&\
 echo "openSUSE on Windows detected. Installing additional modules..." &&\
 bash ~/setup/opensuse-win.sh
 
 test -f /etc/redhat-release &&\
-grep -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
+grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
 test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
 
 test -f /etc/issue &&\
-grep -Ei "kali" /etc/issue &&\
-grep -i "Microsoft" /proc/version &&\
+grep -q -Ei "kali" /etc/issue &&\
+grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
