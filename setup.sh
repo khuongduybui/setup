@@ -50,7 +50,7 @@ echo "RHEL detected. Installing core modules..." &&\
 bash ~/setup/rhel.sh
 
 test -f /etc/os-release &&\
-grep -q -i "Amazon Linux 2" /etc/os-release &&\
+grep -q -i "Amazon Linux" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
