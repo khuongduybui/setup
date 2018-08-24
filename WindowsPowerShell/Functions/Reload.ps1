@@ -13,5 +13,10 @@ function global:Reload {
       $Functions += $Function
       Import-Module -Force -Global "$FunctionPath\$FunctionFile"
     }
+
+    $EI = Get-ChildItem "Function:/Environment-Init" -ErrorAction SilentlyContinue
+    if ($null -ne $EI) {
+      Environment-Init
+    }
   }
 }

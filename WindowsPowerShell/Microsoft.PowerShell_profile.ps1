@@ -1,5 +1,5 @@
 # Turn-on Verbose output as needed
-$VerbosePreference = "Continue"
+# $VerbosePreference = "Continue"
 
 # Set up custom paths for functions, scripts, modules
 $Profile = $myInvocation.mycommand.path
@@ -37,7 +37,6 @@ foreach($name in $names)
     Write-Verbose "$name detected at $path."
   }
 }
-
 $OneDrive = Find-OneDrive
 if ($null -ne $OneDrive) {
   $SyncRoot = $OneDrive
@@ -47,10 +46,11 @@ if ($null -ne $OneDrive) {
 # Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | Out-Null
 # if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History }
 
-# environment-init;
-
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path $ChocolateyProfile) {
   Import-Module "$ChocolateyProfile"
 }
+
+# Invoke init script
+Environment-Init
