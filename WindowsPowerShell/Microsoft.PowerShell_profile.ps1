@@ -1,69 +1,56 @@
-#Global Functions
-function    ..              { Set-Location ..; }
-function    ...             { Set-Location ..\..; }
-function    la              { Get-ChildItem -force $args; }
-Set-Alias   l               ls
-Set-Alias   ll              la
-Set-Alias   grep            Select-String
-Set-Alias   which           Get-Command
-Set-Alias   run             Start-Process
-Set-Alias   tor             Fetch-Torrent
-Set-Alias   acc             Accounts
-Set-Alias   sup             Supervisor-App
-function    reload          { environment-init }
-function    mklink          { cmd /c mklink $args; }
-function    bcopy           { cmd /c copy /b $args; }
-function    myip            { ipconfig | gawk "/(adapter|IPv4 Address)/"; }
-Set-Alias   code            c2c.ps1
-function    sshp            { ssh -o ProxyCommand=None $args; }
-function    ssh-corp        { ssh -o ProxyCommand=None $args; }
-function    docker-ip       { docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $args; }
+# Turn-on Verbose output as needed
+$VerbosePreference = "Continue"
 
-#GIT Functions
-function    g               { git status $args; }
-function    gb              { git branch $args; }
-function    gst             { git status $args; }
-function    gco             { git checkout $args; }
-function    gdf             { git diff --ignore-space-change $args; }
-function    gbd             { git branch -D $args; }
-
-#Node Functions
-Set-Alias   ver             Get-Version
-
-#init
+# Set up custom paths for functions, scripts, modules
 $Profile = $myInvocation.mycommand.path
-. "$(Split-Path $Profile)\Functions\*.ps1";
+Write-Verbose "Profile detected at $Profile."
+$ProfilePath = $(Split-Path $Profile)
+$Functions = @()
+$FunctionPath = "$ProfilePath\Functions"
+if (Test-Path $FunctionPath) {
+  Write-Verbose "Importing functions from $FunctionPath."
+  foreach ($FunctionFile in $(Get-ChildItem $FunctionPath)) {
+    $FunctionName = $FunctionFile -replace "\.ps1", ""
+    $Functions += $FunctionName
+    Import-Module "$FunctionPath\$FunctionFile" -Force
+  }
+}
+$ScriptPath = "$ProfilePath\Scripts"
+if (Test-Path $ScriptPath) {
+  Write-Verbose "Importing functions from $ScriptPath."
+  $env:Path += ";$ScriptPath"
+}
+$ModulePath = "$ProfilePath\Modules"
+if (Test-Path $ModulePath) {
+  Write-Verbose "Importing functions from $ModulePath."
+  $DefaultModulePath = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules"
+  $env:PSModulePath = $env:PSModulePath -replace ($DefaultModulePath -replace "\\", "\\"), "$ModulePath"
+}
 
+# Set up common environment variables
 $SpecialFolders = @{}
 $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
 foreach($name in $names)
 {
   if($path = [Environment]::GetFolderPath($name)){
     $SpecialFolders[$name] = $path
+    Write-Verbose "$name detected at $path."
   }
 }
 
-$env:Path += ";$(Split-Path $Profile)\Scripts"
-$env:PSModulePath = $env:PSModulePath -replace ("$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules" -replace "\\", "\\"), "$(Split-Path $Profile)\Modules"
-
-$HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
-Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | Out-Null
-if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History }
-
-$WorkDocs = find-work-docs 2>$null;
-if ($null -ne $WorkDocs) {
-  $SyncRoot = $WorkDocs;
-}
-
-$OneDrive = find-onedrive 2>$null;
+$OneDrive = Find-OneDrive
 if ($null -ne $OneDrive) {
-  $SyncRoot = $OneDrive;
+  $SyncRoot = $OneDrive
 }
 
-environment-init;
+# $HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
+# Register-EngineEvent PowerShell.Exiting -Action { Get-History | Export-Clixml $HistoryFilePath } | Out-Null
+# if (Test-path $HistoryFilePath) { Import-Clixml $HistoryFilePath | Add-History }
+
+# environment-init;
 
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
+if (Test-Path $ChocolateyProfile) {
   Import-Module "$ChocolateyProfile"
 }
