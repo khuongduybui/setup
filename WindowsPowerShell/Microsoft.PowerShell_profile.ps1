@@ -4,7 +4,10 @@
 # Set up custom paths for functions, scripts, modules
 $Profile = $myInvocation.mycommand.path
 Write-Verbose "Profile detected at $Profile."
-$ProfilePath = $(Split-Path $Profile)
+$ProfilePath = Split-Path $Profile
+
+$HasGit = Get-Command git -ErrorAction Silent
+
 $Functions = @()
 $FunctionPath = "$ProfilePath\Functions"
 if (Test-Path $FunctionPath) {
