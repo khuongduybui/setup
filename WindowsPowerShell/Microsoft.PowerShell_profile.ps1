@@ -17,14 +17,17 @@ if (Test-Path $FunctionPath) {
 }
 $ScriptPath = "$ProfilePath\Scripts"
 if (Test-Path $ScriptPath) {
-  Write-Verbose "Importing functions from $ScriptPath."
+  Write-Verbose "Importing scripts from $ScriptPath."
   $env:Path += ";$ScriptPath"
 }
 $ModulePath = "$ProfilePath\Modules"
 if (Test-Path $ModulePath) {
-  Write-Verbose "Importing functions from $ModulePath."
-  $DefaultModulePath = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules"
+  Write-Verbose "Importing modules from $ModulePath."
+  $DefaultModulePath = "$([Environment]::GetFolderPath("MyDocuments"))\(Window)?PowerShell\Modules"
   $env:PSModulePath = $env:PSModulePath -replace ($DefaultModulePath -replace "\\", "\\"), "$ModulePath"
+  foreach ($ModuleFile in $(Get-ChildItem $ModulePath)) {
+    Import-Module "$ModulePath\$ModuleFile" -Force
+  }
 }
 
 # Set up common environment variables
