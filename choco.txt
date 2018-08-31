@@ -1,7 +1,7 @@
 notepad3
 git
-visualstudiocode
 vcxsrv
+powershell-core
 peazip
 googlechrome
 
@@ -28,3 +28,5 @@ deluge
 
 steam
 twitch
+
+visualstudiocode
