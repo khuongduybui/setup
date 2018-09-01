@@ -6,6 +6,9 @@ test -f ~/.config/fish/config.fish || ln -s ~/setup/config.fish ~/.config/fish/c
 test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
 test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
 
+test -d ~/.config/powershell && mv ~/.config/powershell ~/.config/powershell.`date +%Y-%m-%d`.bak
+ln -s ~/setup/WindowsPowerShell ~/.config/powershell
+
 mkdir -p ~/.config/micro
 test -f ~/.config/micro/settings.json || ln -s ~/setup/micro.json ~/.config/micro/settings.json
 

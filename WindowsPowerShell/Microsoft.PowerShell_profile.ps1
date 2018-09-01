@@ -46,6 +46,7 @@ foreach($name in $names)
 $OneDrive = Find-OneDrive
 if ($null -ne $OneDrive) {
   $SyncRoot = $OneDrive
+  Write-Verbose "SyncRoot selected at $OneDrive."
 }
 
 # $HistoryFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
