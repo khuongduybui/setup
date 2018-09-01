@@ -13,6 +13,8 @@ logitech-presentation
 
 postman
 unison
+docker-for-windows
+docker # CLI only
 
 microsoft-teams
 
