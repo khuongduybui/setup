@@ -5,6 +5,12 @@ powershell-core
 peazip
 googlechrome
 
+logitechgaming
+setpoint
+unifying
+logitech-options
+logitech-presentation
+
 postman
 unison
 
@@ -17,6 +23,8 @@ zerotier-one
 shrewsoftvpn
 rufus
 sdformatter
+reflect-free
+parsec-cloud
 
 anyvideoconverter
 audacity
