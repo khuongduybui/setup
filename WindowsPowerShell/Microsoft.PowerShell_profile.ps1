@@ -36,9 +36,8 @@ if (Test-Path $ModulePath) {
 # Set up common environment variables
 $SpecialFolders = @{}
 $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
-foreach($name in $names)
-{
-  if($path = [Environment]::GetFolderPath($name)){
+foreach ($name in $names) {
+  if ($path = [Environment]::GetFolderPath($name)) {
     $SpecialFolders[$name] = $path
     Write-Verbose "$name detected at $path."
   }
