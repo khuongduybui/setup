@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.cxtrxn/pfw.fish @ line 2
+# Defined in /tmp/fish.MuGhFa/pfw.fish @ line 2
 function pfw
 	if not which socat >/dev/null
 	    echo "Installing socat..."
@@ -11,7 +11,7 @@ function pfw
 		set destination $argv[2]
 	end
 	echo "Redirecting traffic from port $destination to $argv[1]"
-	if $destination -le 101
+	if test ($destination -le 101)
         sudo socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
     else
         socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
