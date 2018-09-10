@@ -20,10 +20,10 @@ if ((Test-Path $root\Essentials) -eq $True) {
       Write-Verbose "| - Skipping existing $f" -Verbose;
     } else {
       if (($file.Attributes -match "Directory") -Or ($file.Attributes -match 52)) {
-        mklink /D $f $root\Essentials\$file;
+        cmd /C mklink /D $f $root\Essentials\$file;
       } else {
 		Write-Verbose "| - Treating $f $($file.Attributes) as file" -Verbose;
-        mklink $f $root\Essentials\$file;
+        cmd /C mklink $f $root\Essentials\$file;
       }
     }
   }
@@ -60,9 +60,9 @@ if ((Test-Path $root\Essentials) -eq $True) {
             } else {
               $target = Resolve-Path $syncApp\$file
               if ($child.Attributes -match "Directory") {
-                mklink /D $local\$file $target;
+                cmd /C mklink /D $local\$file $target;
               } else {
-                mklink $local\$file $target;
+                cmd /C mklink $local\$file $target;
               }
             }
           }
