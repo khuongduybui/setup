@@ -11,10 +11,11 @@ sudo amazon-linux-extras install vim
 # @TODO mc screenfetch grc
 
 echo "Install dev tools"
-wget -O - https://rpm.nodesource.com/setup_9.x | sudo -E bash - > /dev/null
+wget -O - https://rpm.nodesource.com/setup_10.x | sudo -E bash - > /dev/null
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install -y \
 gcc-c++ make \
-nodejs \
+nodejs yarn \
 
 sudo amazon-linux-extras install python3
 

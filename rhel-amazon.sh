@@ -17,3 +17,5 @@
 
 # install XRDP
 sudo yum install -y xrdp x11rdp xorgxrdp tigervnc-server
+
+test -x /apollo/env/NodeJS/bin/npm && sudo /apollo/env/NodeJS/bin/npm install -g yarn

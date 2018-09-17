@@ -12,10 +12,11 @@ sudo zypper install -y mc screenfetch
 echo "Install dev tools"
 sudo zypper addrepo http://download.opensuse.org/repositories/devel:/languages:/nodejs/openSUSE_Leap_42.3/devel:languages:nodejs.repo
 sudo zypper addrepo http://download.opensuse.org/repositories/Cloud:Tools/openSUSE_Leap_42.3/Cloud:Tools.repo
+sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
 sudo zypper refresh
 sudo zypper install -y \
   awscli \
-  nodejs \
+  nodejs yarn \
   python-devel python-pip python3-devel python3-pip \
 
 echo "Update system"
