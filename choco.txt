@@ -5,6 +5,10 @@ powershell-core
 peazip
 googlechrome
 
+yarn (including nodejs)
+python
+ruby
+
 logitechgaming
 setpoint
 unifying
@@ -26,7 +30,6 @@ shrewsoftvpn
 rufus
 sdformatter
 reflect-free
-parsec-cloud
 
 anyvideoconverter
 audacity
@@ -38,5 +41,6 @@ deluge
 
 steam
 twitch
+parsec-cloud
 
-visualstudiocode
+vscode
