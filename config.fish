@@ -27,7 +27,7 @@ set -g theme_color_scheme terminal2-dark-white
 
 ## Plugins
 #fisher 2>/dev/null
-test (which npx); and source (npx --shell-auto-fallback | psub)
+test -f ~/setup/fallback.fish; and source ~/setup/fallback.fish
 
 ## Windows?
 if __is_win
