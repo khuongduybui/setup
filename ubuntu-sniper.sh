@@ -2,20 +2,12 @@
 
 sudo apt update
 sudo apt install -y curl git software-properties-common dirmngr python build-essential
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update
-sudo apt install -y yarn
 yarn global add forever npm-check-updates electron-forge nodemon aurelia-cli @feathersjs/cli
 
 sudo service dbus start
 # sudo apt install -y lubuntu-core
 
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
-echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
-sudo apt update
-which cmd.exe >/dev/null 2>&1 && sudo apt install -y mongodb
-sudo apt install -y mongodb-org
+bash ~/setup/ubuntu-mongodb.sh
 
 sudo apt install -y libfontconfig1 aha
 # sudo apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6

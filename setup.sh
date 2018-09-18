@@ -85,17 +85,22 @@ hostname -d | grep -q ant.amazon.com &&\
 echo "Ubuntu on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/ubuntu-amazon.sh
 
-test -f /etc/issue &&\
-grep -q -i "openSUSE" /etc/issue &&\
-which cmd.exe >/dev/null 2>&1 &&\
-echo "openSUSE on Windows detected. Installing additional modules..." &&\
-bash ~/setup/opensuse-win.sh
+which sw_vers 2>/dev/null >/dev/null &&\
+hostname -d | grep -q ant.amazon.com &&\
+echo "OS X on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/mac-amazon.sh
 
 test -f /etc/redhat-release &&\
 grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
 test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
+
+test -f /etc/issue &&\
+grep -q -i "openSUSE" /etc/issue &&\
+which cmd.exe >/dev/null 2>&1 &&\
+echo "openSUSE on Windows detected. Installing additional modules..." &&\
+bash ~/setup/opensuse-win.sh
 
 test -f /etc/issue &&\
 grep -q -Ei "kali" /etc/issue &&\

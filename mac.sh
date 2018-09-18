@@ -15,7 +15,7 @@ brew install \
 
 echo "Install dev tools" # @TODO awscli & python
 brew install \
-  node \
+  node yarn \
 
 echo "Update system"
 mkdir -p ~/.byobu
