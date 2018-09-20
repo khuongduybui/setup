@@ -2,8 +2,10 @@
 
 mkdir -p ~/opt
 cd ~/opt
-wget https://github.com/zyedidia/micro/releases/download/v1.4.0/micro-1.4.0-linux64.tar.gz
+rm -rf micro-*
+wget https://github.com/zyedidia/micro/releases/download/v1.4.1/micro-1.4.1-linux64.tar.gz
 tar -zxf micro-*.tar.gz
+rm -f ~/bin/micro
 ln -s ~/opt/micro-*/micro ~/bin
-rm ~/opt/*.tar.gz
+rm -f *.tar.gz
 cd -
