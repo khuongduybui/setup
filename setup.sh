@@ -118,7 +118,7 @@ bash ~/setup/kali-win.sh
 chmod +x bin/*.sh
 ls bin/*.sh
 
-which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink
+which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink forever
 
 # which npm >/dev/null 2>&1 &&\
 #   echo "Installing NPM tools..." &&\
