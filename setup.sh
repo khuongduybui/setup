@@ -26,6 +26,13 @@ test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.g
 test -f ~/.czrc && mv ~/.czrc ~/.czrc.`date +%Y-%m-%d`.bak
 ln -s ~/setup/.czrc ~/
 
+test -f ~/.editorconfig && mv ~/.editorconfig ~/.editorconfig.`date +%Y-%m-%d`.bak
+ln -s ~/setup/.editorconfig ~/
+test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.`date +%Y-%m-%d`.bak
+ln -s ~/setup/default.gitconfig ~/.gitconfig
+test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.`date +%Y-%m-%d`.bak
+ln -s ~/setup/default.gitignore ~/.gitignore
+
 # curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 # chmod u+x nvim.appimage
 # ./nvim.appimage
