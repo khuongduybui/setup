@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.5vuy34/bps.fish @ line 2
+# Defined in /tmp/fish.DCkYyX/bps.fish @ line 2
 function bps
 	set -lx BARK_ACCOUNT
     set -lx BARK_MS
@@ -22,7 +22,7 @@ function bps
     end
 
     if test -n "$BARK_PROFILE"
-        abbr bark 'bark -cf=~/.config/bark/profiles/'$BARK_PROFILE
+        abbr bark 'bark -cf=$HOME/.config/bark/profiles/'$BARK_PROFILE
     else
         abbr bark 'bark -a='$BARK_ACCOUNT' -ms='$BARK_MS' -ep=https://timber-corp-'$BARK_REGION'.'$BARK_REGION'.proxy.amazon.com'
     end
