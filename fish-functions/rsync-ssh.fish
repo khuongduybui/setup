@@ -1,4 +1,3 @@
-# Defined in /tmp/fish.Rnklzb/rsync-ssh.fish @ line 2
 function rsync-ssh
 	mkdir -p ~/.ssh
 	test -d ~/OneDrive; and rsync -r ~/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
@@ -9,4 +8,5 @@ function rsync-ssh
 	chmod 600 ~/.ssh/config
 	chmod 644 ~/.ssh/*.pub
 	chmod 600 ~/.ssh/*.pem-cert.pub
+	echo Done
 end
