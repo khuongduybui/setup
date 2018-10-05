@@ -45,10 +45,10 @@ if __is_win
 
     set -xg WHOME /mnt/$WDRIVE/Users/$WUSER
     set -xg W $WHOME
+    set -xg DISPLAY "localhost:0"
 
     # if which powershell.exe >/dev/null
     #     powershell.exe -ExecutionPolicy Unrestricted -File "$WDRIVE:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
-    #     set -xg DISPLAY "localhost:0"
     #     set -xg LIBGL_ALWAYS_INDIRECT 1
     #     set -xg XCURSOR_SIZE 64
     # end
