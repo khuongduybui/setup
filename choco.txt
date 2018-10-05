@@ -5,6 +5,7 @@ powershell-core
 peazip
 googlechrome
 
+vscode
 yarn (including nodejs)
 python
 ruby
@@ -42,5 +43,5 @@ deluge
 steam
 twitch
 parsec-cloud
-
-vscode
+geforce-game-ready-driver
+geforce-experience 
