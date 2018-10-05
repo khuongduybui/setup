@@ -1,8 +1,8 @@
 #! /bin/bash
 echo "=== Setting up global preferences ==="
 
-mkdir -p ~/.config/fish
-test -f ~/.config/fish/config.fish || ln -s ~/setup/config.fish ~/.config/fish/config.fish
+mkdir -p ~/.config/fish/conf.d
+test -f ~/.config/fish/conf.d/$USER.fish || ln -s ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
 test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
 test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
 
@@ -41,9 +41,7 @@ mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/code/test
 
-mkdir -p ~/.fonts
-test -f ~/.fonts/source-code-pro.ttf || ln -s ~/setup/source-code-pro.ttf ~/.fonts
-test -f ~/.fonts/fira-code-retina.otf || ln -s ~/setup/fira-code-retina.otf ~/.fonts
+sudo cp ~/setup/*.ttf /usr/share/fonts/truetype
 which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 
 echo "=== Installing modules ==="
@@ -66,6 +64,11 @@ test -f /etc/os-release &&\
 grep -q -i "Amazon Linux" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
+
+test -f /etc/os-release &&\
+grep -q -i "WLinux" /etc/os-release &&\
+echo "WLinux detected. Installing core modules..." &&\
+bash ~/setup/wlinux.sh
 
 test -f /etc/issue &&\
 grep -q -i "openSUSE" /etc/issue &&\
@@ -102,6 +105,18 @@ grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
 test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
+
+test -f /etc/os-release &&\
+grep -q -i "WLinux" /etc/os-release &&\
+grep -q -i "Microsoft" /proc/version &&\
+echo "WLinux on Windows detected. Installing additional modules..." &&\
+bash ~/setup/wlinux-win.sh
+
+test -f /etc/os-release &&\
+grep -q -i "WLinux" /etc/os-release &&\
+hostname -d | grep -q ant.amazon.com &&\
+echo "WLinux on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/wlinux-amazon.sh
 
 test -f /etc/issue &&\
 grep -q -i "openSUSE" /etc/issue &&\
