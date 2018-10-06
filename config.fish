@@ -72,12 +72,11 @@ complete -c code -x -a '(__fish_complete_code)'
 complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 ## Load byobu
-if status --is-login
-    and status --is-interactive
+if status --is-login; and status --is-interactive
     if __is_dev_desktop
         exec byobu-launcher -S ~/byobu new-session -A -s default
     else
-        exec byobu-launcher
+        exec byobu-launcher -S ~/byobu new-session -A -s default
     end
 end
 

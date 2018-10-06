@@ -1,6 +1,7 @@
 #! /bin/sh
 
 echo "Install package manager"
+sudo apt install -y apt-transport-https lsb-release curl
 
 echo "Install system utils"
 sudo apt install -y byobu grc rsync
