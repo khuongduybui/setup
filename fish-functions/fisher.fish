@@ -1,15 +1,16 @@
-set -g fisher_version 3.0.3
+set -g fisher_version 3.0.5
 
 type source >/dev/null; or function source; . $argv; end
 
-if command which perl >/dev/null
-    function _fisher_now -a elapsed
-        command perl -MTime::HiRes -e 'printf("%.0f\n", (Time::HiRes::time() * 1000) - $ARGV[0])' $elapsed
-    end
-else
-    function _fisher_now -a elapsed
-        command date "+%s%3N" | command awk "{ sub(/3N\$/,\"000\"); print \$0 - 0$elapsed }"
-    end
+switch (command uname)
+    case Darwin FreeBSD
+        function _fisher_now -a elapsed
+            command perl -MTime::HiRes -e 'printf("%.0f\n", (Time::HiRes::time() * 1000) - $ARGV[0])' $elapsed
+        end
+    case \*
+        function _fisher_now -a elapsed
+            command date "+%s%3N" | command awk "{ sub(/3N\$/,\"500\"); print \$0 - 0$elapsed }"
+        end
 end
 
 function fisher -a cmd -d "fish package manager"
@@ -131,11 +132,10 @@ end
 
 function _fisher_self_uninstall
     set -l current_pkgs $fisher_config/*/*/*
-    set -l removed_pkgs (_fisher_pkg_remove_all $current_pkgs)
-    printf "removing %s\n" $removed_pkgs $fisher_config $fisher_cache $fisher_path/{functions,completions}/fisher.fish $fish_config/fishfile | command sed "s|$HOME|~|"
-
-    command rm -rf $fisher_config $fisher_cache 2>/dev/null
-    command rm $fisher_path/{functions,completions}/fisher.fish $fish_config/fishfile 2>/dev/null
+    for path in $fisher_cache (_fisher_pkg_remove_all $current_pkgs) $fisher_config $fisher_path/{functions,completions}/fisher.fish $fish_config/fishfile
+        echo "removing $path"
+        command rm -rf $path 2>/dev/null
+    end | command sed "s|$HOME|~|" >&2
 
     set -e fisher_cache
     set -e fisher_config
@@ -144,6 +144,8 @@ function _fisher_self_uninstall
 
     complete -c fisher --erase
     functions -e (functions -a | command awk '/^_fisher/') fisher
+
+    echo "done -- see you again!" >&2
 end
 
 function _fisher_commit
@@ -162,7 +164,8 @@ function _fisher_commit
     command mv -f $fishfile@ $fishfile
     command rm -f $fishfile@
 
-    set -l added_pkgs (_fisher_pkg_fetch_all (_fisher_fishfile_load < $fishfile))
+    set -l expected_pkgs (_fisher_fishfile_load < $fishfile)
+    set -l added_pkgs (_fisher_pkg_fetch_all $expected_pkgs)
     set -l updated_pkgs (
         for pkg in $removed_pkgs
             set pkg (echo $pkg | command sed "s|$fisher_config/||")
@@ -171,7 +174,7 @@ function _fisher_commit
             end
         end)
 
-    if test -z "$added_pkgs$updated_pkgs$removed_pkgs" -a ! -s "$fishfile"
+    if test -z "$added_pkgs$updated_pkgs$removed_pkgs$expected_pkgs"
         echo "nothing to commit -- try adding some packages" >&2
         return 1
     end
@@ -190,7 +193,7 @@ function _fisher_pkg_fetch_all
     set -l pkg_jobs
     set -l local_pkgs
     set -l actual_pkgs
-    set -l fetched_pkgs
+    set -l expected_pkgs
 
     for name in $argv
         switch $name
@@ -206,7 +209,7 @@ function _fisher_pkg_fetch_all
             case \*/\*
                 set name "github.com/$name"
             case \*
-                echo "cannot install \"$name\" -- should be <owner>/$name" >&2
+                echo "cannot install \"$name\" without a prefix -- should be <owner>/$name" >&2
                 continue
         end
 
@@ -224,29 +227,31 @@ function _fisher_pkg_fetch_all
             ) "\t" pkg
         }' | read -l url pkg
 
-        fish -c "
-            echo fetching $url >&2
-            command mkdir -p \"$fisher_config/$pkg\"
+        if test ! -d "$fisher_config/$pkg"
+            fish -c "
+                echo fetching $url >&2
+                command mkdir -p \"$fisher_config/$pkg\"
 
-            if curl -Ss $url 2>&1 | tar -xzf- -C \"$fisher_config/$pkg\" --strip-components=1 2>/dev/null
-                command mkdir -p \"$fisher_cache/$pkg\"
-                command cp -Rf \"$fisher_config/$pkg\" \"$fisher_cache/$pkg/..\"
-            else if test -d \"$fisher_cache/$pkg\"
-                echo cannot connect to server -- using data from \"$fisher_cache/$pkg\" | command sed 's|$HOME|~|' >&2
-                command cp -Rf \"$fisher_cache/$pkg\" \"$fisher_config/$pkg/..\"
-            else
-                command rm -rf \"$fisher_config/$pkg\"
-                echo cannot install \"$pkg\" -- are you offline\? >&2
-            end
-        " >/dev/null &
+                if curl -Ss $url 2>&1 | tar -xzf- -C \"$fisher_config/$pkg\" --strip-components=1 2>/dev/null
+                    command mkdir -p \"$fisher_cache/$pkg\"
+                    command cp -Rf \"$fisher_config/$pkg\" \"$fisher_cache/$pkg/..\"
+                else if test -d \"$fisher_cache/$pkg\"
+                    echo cannot connect to server -- using data from \"$fisher_cache/$pkg\" | command sed 's|$HOME|~|' >&2
+                    command cp -Rf \"$fisher_cache/$pkg\" \"$fisher_config/$pkg/..\"
+                else
+                    command rm -rf \"$fisher_config/$pkg\"
+                    echo cannot install \"$pkg\" -- are you offline\? >&2
+                end
+            " >/dev/null &
 
-        set pkg_jobs $pkg_jobs (_fisher_jobs --last)
-        set fetched_pkgs $fetched_pkgs "$pkg"
+            set pkg_jobs $pkg_jobs (_fisher_jobs --last)
+            set expected_pkgs $expected_pkgs "$pkg"
+        end
     end
 
     if test ! -z "$pkg_jobs"
         _fisher_wait $pkg_jobs
-        for pkg in $fetched_pkgs
+        for pkg in $expected_pkgs
             if test -d "$fisher_config/$pkg"
                 set actual_pkgs $actual_pkgs $pkg
                 _fisher_pkg_install $fisher_config/$pkg
@@ -266,8 +271,8 @@ function _fisher_pkg_fetch_all
     end
 
     if test ! -z "$actual_pkgs"
-        printf "%s\n" $actual_pkgs
         _fisher_pkg_fetch_all (_fisher_pkg_get_deps $actual_pkgs | command sort --unique)
+        printf "%s\n" $actual_pkgs
     end
 end
 
@@ -284,7 +289,8 @@ end
 
 function _fisher_pkg_install -a pkg
     set -l name (echo $pkg | command sed "s|^.*/||")
-    for source in $pkg/{functions,completions,conf.d,}/*.fish
+    set -l files $pkg/{functions,completions,conf.d}/* $pkg/*.fish
+    for source in $files
         set -l target (echo "$source" | command sed 's|^.*/||')
         switch $source
             case $pkg/conf.d\*
@@ -303,35 +309,45 @@ function _fisher_pkg_install -a pkg
         end
         echo "linking $target" | command sed "s|$HOME|~|" >&2
         command ln -f $source $target
-        source $target >/dev/null 2>/dev/null
+        switch $target
+            case \*.fish
+                source $target >/dev/null 2>/dev/null
+        end
     end
 end
 
 function _fisher_pkg_uninstall -a pkg
     set -l name (echo $pkg | command sed "s|^.*/||")
-    for source in $pkg/{conf.d,completions,functions,}/*.fish
+    set -l files $pkg/{conf.d,completions,functions}/* $pkg/*.fish
+    for source in $files
         set -l target (echo "$source" | command sed 's|^.*/||')
         set -l filename (echo "$target" | command sed 's|.fish||')
         switch $source
             case $pkg/conf.d\*
-                emit {$filename}_uninstall
-                command rm -f $fisher_path/conf.d/$target
+                if test "$filename.fish" = "$target"
+                    emit "$filename"_uninstall
+                end
+                set target conf.d/$target
             case $pkg/completions\*
-                command rm -f $fisher_path/completions/$target
-                complete -ec $filename
+                if functions -q "$filename"
+                    complete -ec $filename
+                end
+                set target completions/$target
             case $pkg/{,functions}\*
                 switch $target
                     case uninstall.fish
                         source $source
                         continue
                     case init.fish key_bindings.fish
-                        set target $fisher_path/conf.d/$name\_$target
+                        set target conf.d/$name\_$target
                     case \*
-                        set target $fisher_path/functions/$target
+                        set target functions/$target
                 end
-                command rm -f $target
-                functions -e $filename
+                if functions -q "$filename"
+                    functions -e $filename
+                end
         end
+        command rm -f $fisher_path/$target
     end
     if not functions -q fish_prompt
         source "$__fish_datadir/functions/fish_prompt.fish"

@@ -73,3 +73,4 @@ wdiff.fish
 z.awk
 zadd.awk
 zclean.awk
+*.orig
