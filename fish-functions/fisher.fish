@@ -1,4 +1,4 @@
-set -g fisher_version 3.0.5
+set -g fisher_version 3.0.8
 
 type source >/dev/null; or function source; . $argv; end
 
@@ -9,7 +9,7 @@ switch (command uname)
         end
     case \*
         function _fisher_now -a elapsed
-            command date "+%s%3N" | command awk "{ sub(/3N\$/,\"500\"); print \$0 - 0$elapsed }"
+            command date "+%s%3N" | command awk "{ sub(/3N\$/,\"000\"); print \$0 - 0$elapsed }"
         end
 end
 
@@ -83,7 +83,7 @@ function _fisher_ls
     set -l pkgs $fisher_config/*/*/*
     for pkg in $pkgs
         command readlink $pkg; and continue; or echo $pkg
-    end | command sed "s|$fisher_config/||;s|github\.com/||"
+    end | command sed "s|$fisher_config/*||;s|github\.com/||"
 end
 
 function _fisher_version -a file
@@ -160,15 +160,13 @@ function _fisher_commit
         command touch $fishfile
         echo "created empty fishfile in $fishfile" | command sed "s|$HOME|~|" >&2
     end
-    _fisher_fishfile_indent (echo -s $argv\;) < $fishfile > $fishfile@
-    command mv -f $fishfile@ $fishfile
-    command rm -f $fishfile@
+    printf "%s\n" (_fisher_fishfile_indent (echo -s $argv\;) < $fishfile) > $fishfile
 
     set -l expected_pkgs (_fisher_fishfile_load < $fishfile)
     set -l added_pkgs (_fisher_pkg_fetch_all $expected_pkgs)
     set -l updated_pkgs (
         for pkg in $removed_pkgs
-            set pkg (echo $pkg | command sed "s|$fisher_config/||")
+            set pkg (echo $pkg | command sed "s|$fisher_config/*||")
             if contains -- $pkg $added_pkgs
                 echo $pkg
             end
@@ -260,8 +258,8 @@ function _fisher_pkg_fetch_all
     end
 
     for pkg in $local_pkgs
-        set -l path "local/$USER"
-        set -l name (echo "$pkg" | command sed 's|^.*/||')
+        set -l path local/$USER
+        set -l name (command basename $pkg)
 
         command mkdir -p $fisher_config/$path
         command ln -sf $pkg $fisher_config/$path
@@ -288,10 +286,10 @@ function _fisher_pkg_get_deps
 end
 
 function _fisher_pkg_install -a pkg
-    set -l name (echo $pkg | command sed "s|^.*/||")
+    set -l name (command basename $pkg)
     set -l files $pkg/{functions,completions,conf.d}/* $pkg/*.fish
     for source in $files
-        set -l target (echo "$source" | command sed 's|^.*/||')
+        set -l target (command basename $source)
         switch $source
             case $pkg/conf.d\*
                 set target $fisher_path/conf.d/$target
@@ -317,23 +315,20 @@ function _fisher_pkg_install -a pkg
 end
 
 function _fisher_pkg_uninstall -a pkg
-    set -l name (echo $pkg | command sed "s|^.*/||")
+    set -l name (command basename $pkg)
     set -l files $pkg/{conf.d,completions,functions}/* $pkg/*.fish
     for source in $files
-        set -l target (echo "$source" | command sed 's|^.*/||')
-        set -l filename (echo "$target" | command sed 's|.fish||')
+        set -l target (command basename $source)
+        set -l filename (command basename $target .fish)
         switch $source
             case $pkg/conf.d\*
-                if test "$filename.fish" = "$target"
-                    emit "$filename"_uninstall
-                end
+                test "$filename.fish" = "$target"; and emit "$filename"_uninstall
                 set target conf.d/$target
             case $pkg/completions\*
-                if functions -q "$filename"
-                    complete -ec $filename
-                end
+                test "$filename.fish" = "$target"; and complete -ec $filename
                 set target completions/$target
             case $pkg/{,functions}\*
+                test "$filename.fish" = "$target"; and functions -e $filename
                 switch $target
                     case uninstall.fish
                         source $source
@@ -343,21 +338,18 @@ function _fisher_pkg_uninstall -a pkg
                     case \*
                         set target functions/$target
                 end
-                if functions -q "$filename"
-                    functions -e $filename
-                end
         end
         command rm -f $fisher_path/$target
     end
     if not functions -q fish_prompt
-        source "$__fish_datadir/functions/fish_prompt.fish"
+        source "$__fish_datadir$__fish_data_dir/functions/fish_prompt.fish"
     end
 end
 
 function _fisher_fishfile_indent -a pkgs
     command awk -v PWD=$PWD -v HOME=$HOME -v PKGS="$pkgs" '
         function normalize(s) {
-            gsub(/^[ \t]*|[ \t]*$|^https?:\/\/|github\.com\/|\.git$|\/$/, "", s)
+            gsub(/^[ \t]*|[ \t]*$|https?:\/\/|github\.com\/|\.git$|\/$/, "", s)
             sub(/^\.\//, PWD"/", s)
             sub(HOME, "~", s)
             return s
@@ -416,14 +408,7 @@ function _fisher_status_report
 end
 
 function _fisher_jobs
-    jobs $argv | command awk -v FS=\t '
-        /[0-9]+\t/ {
-            jobs[++n] = $1
-        } END {
-            for (i in jobs) print(jobs[i])
-            exit n == 0
-        }
-    '
+    jobs $argv | command awk '/[0-9]+\t/ { print $1 }'
 end
 
 function _fisher_wait
