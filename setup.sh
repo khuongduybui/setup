@@ -133,15 +133,9 @@ bash ~/setup/kali-win.sh
 chmod +x bin/*.sh
 ls bin/*.sh
 
-which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink forever
-
-# which npm >/dev/null 2>&1 &&\
-#   echo "Installing NPM tools..." &&\
-#   sudo npm install -g mocha express-generator nodemon > /dev/null
-
-# which pip >/dev/null 2>&1 &&\
-#   echo "Installing virtualenv..." &&\
-#   sudo pip install virtualenv nodeenv
+which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
+which pip3 >/dev/null && pip3 install --user pylint autopep8
+which gem >/dev/null && gem install rubocop rufo
 
 # mkdir -p ~/.byobu
 # echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
