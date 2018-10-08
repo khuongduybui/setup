@@ -63,7 +63,6 @@ bash /tmp/toolbox-install.sh ubuntu
 
 # CR tool
 ~/.toolbox/bin/toolbox install cr
-# /usr/bin/curl --cacert /etc/ssl/certs/Amazon.com_Internal_Root_Certificate_Authority.pem --location-trusted --negotiate -u: -c /tmp/d20181007-24275-1bidb6s/sentry_cookie_jar -b /tmp/d20181007-24275-1bidb6s/sentry_cookie_jar --silent --output /tmp/d20181007-24275-1bidb6s/crux-cr.tar.gz https://code.amazon.com/crux-cli/download
 
 # Brazil 2.0
 sudo apt install -y openjdk-8-jdk-headless
@@ -71,6 +70,35 @@ sudo apt install -y openjdk-8-jdk-headless
 # @TODO brazil 2.0 fails with
 # WARN[0000] Unable to determine Linux platform, defaulting to alinux
 # /apollo is empty
+
+# WORKAROUND:
+# mv ~/.toolbox ~/.toolbox.bak
+# cp ~/.toolbox & /apollo from Ubuntu over
+# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
+# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
+# sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+# edit /home/duybui/.toolbox/tools/brazilcli/2.0.200620.0/ruby2.1.x/lib/ruby/site_ruby/2.1.0/amazon/brazil/any_os/linux.rb
+# 111   #
+# 112   # Assume Ubuntu (at this time)
+# 113   #
+# 114   def self.lsb_release
+# 115     path = '/etc/lsb-release'
+# 116     path2 = '/etc/os-release'
+# 117     return nil unless File.exist?(path) or File.exists?(path2)
+# 118     if File.exist?(path)
+# 119       if File.open(path, 'rb'){ |f| f.read } =~ /^DISTRIB_ID=Ubuntu/
+# 120         return "UBUNTU"
+# 121       end
+# 122     end
+# 123     if File.exist?(path2)
+# 124       if File.open(path2, 'rb'){ |f| f.read } =~ /WLinux/
+# 125         return "UBUNTU"
+# 126       end
+# 127     end
+# 128     return nil
+# 129     raise "Unrecognized LSB release"
+# 130   end
+
 # ~/.toolbox/bin/brazil setup --java
 # ~/.toolbox/bin/brazil setup --ruby
 # ~/.toolbox/bin/brazil setup --python
