@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.zbmZhi/aps.fish @ line 2
+# Defined in /tmp/fish.Tm1ujH/aps.fish @ line 2
 function aps
 	set -lx ADDITIONAL_PATH $PATH
     test -d /apollo/env/envImprovement
@@ -25,13 +25,16 @@ function aps
     set -q BRAZIL_CLI_BIN
     or set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
     set -lx SDE_CLI_BIN /apollo/env/SDETools/bin
-
+    set -x BRAZIL_PLATFORM_OVERRIDE RHEL5_64
+    
     getopts $argv | while read -l key value
         switch $key
             case legacy
                 test -x $SDE_CLI_BIN/brazil; and set -x APS_PATH $SDE_CLI_BIN
             case exec
                 set -x EXEC true
+            case al2012
+                set -x BRAZIL_PLATFORM_OVERRIDE AL2012
         end
     end
 

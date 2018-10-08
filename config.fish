@@ -27,7 +27,6 @@ and set -g theme_display_hostname no
 __is_dev_desktop
 and set -g theme_display_user no
 set -g theme_color_scheme terminal2-dark-white
-__is_dev_desktop; and set -xg BRAZIL_PLATFORM_OVERRIDE AL2012
 
 ## Plugins
 #fisher 2>/dev/null
