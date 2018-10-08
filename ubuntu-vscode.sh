@@ -8,3 +8,6 @@ sudo apt update -y
 sudo apt install -y code
 # sudo sed -i 's/BIG-REQUESTS/_IG-REQUESTS/' /usr/lib/x86_64-linux-gnu/libxcb.so.1
 which gsettings && gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
+
+# for vscode liveshare
+# sudo apt install -yq libunwind8 liblttng-ust0 libicu?? libuuid1 libkrb5-3 zlib1g gnome-keyring libsecret-1-0 desktop-file-utils gettext x11-utils libcurl3
