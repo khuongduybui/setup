@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.OhMNBv/aps.fish @ line 2
+# Defined in /tmp/fish.zbmZhi/aps.fish @ line 2
 function aps
 	set -lx ADDITIONAL_PATH $PATH
     test -d /apollo/env/envImprovement
@@ -30,19 +30,29 @@ function aps
         switch $key
             case legacy
                 test -x $SDE_CLI_BIN/brazil; and set -x APS_PATH $SDE_CLI_BIN
+            case exec
+                set -x EXEC true
         end
     end
 
     if test -z $APS_PATH
         test -x $BRAZIL_CLI_BIN/brazil; and set -x APS_PATH $BRAZIL_CLI_BIN
     end
-    
+  
     if not test -z $APS_PATH
         set -lx PATH $ADDITIONAL_PATH $APS_PATH
-        if __is_mac
-            /usr/local/bin/fish
+        if test -z $EXEC
+            if __is_mac
+                /usr/local/bin/fish
+            else
+                /usr/bin/fish                          
+            end
         else
-            /usr/bin/fish
+            if __is_mac
+                exec /usr/local/bin/fish
+            else
+                exec /usr/bin/fish
+            end
         end
     else
         echo "Cannot find `brazil` under $BRAZIL_CLI_BIN or $SDE_CLI_BIN"
