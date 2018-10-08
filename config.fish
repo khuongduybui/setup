@@ -1,7 +1,10 @@
 ## Global
 mkdir -p ~/.yarn/bin
 mkdir -p ~/.local/bin
-set -xg PATH $PATH ~/bin ~/.yarn/bin ~/.local/bin
+mkdir -p ~/.rbenv/bin
+mkdir -p ~/.rbenv/shims
+set -xg PATH ~/bin ~/.yarn/bin ~/.local/bin ~/.rbenv/bin ~/.rbenv/shims $PATH
+varclear PATH
 set -xg HOME ~
 
 ## Editors
@@ -82,5 +85,6 @@ end
 
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[ -f /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish ]
-and . /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
+if test -f /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
+    and . /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
+end

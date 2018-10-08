@@ -1,21 +1,10 @@
-# Defined in /tmp/fish.pANRF4/reload.fish @ line 2
 function reload
 	if test -f ~/.config/fish/config.fish
 		source ~/.config/fish/config.fish
-
+	else if test -f ~/.config/fish/conf.d/$USER.fish
+	  source ~/.config/fish/conf.d/$USER.fish
 	else
 		set_color $fish_color_error
-		echo -n "ERROR: "
-
-		set_color normal
-		set_color $fish_color_param[1]
-		echo -n "config.fish "
-
-		set_color $fish_color_error
-		echo -n "not found under "
-
-		set_color normal
-		set_color $fish_color_param[2]
-		echo "~/.config/fish/"
+		echo -n "ERROR: config.fish not found under ~/.config/fish/"
 	end
 end
