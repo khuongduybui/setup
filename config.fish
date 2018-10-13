@@ -1,16 +1,14 @@
 ## Global
-mkdir -p ~/.yarn/bin
-mkdir -p ~/.local/bin
-mkdir -p ~/.rbenv/bin
-mkdir -p ~/.rbenv/shims
-set -xg PATH ~/bin ~/.yarn/bin ~/.local/bin ~/.rbenv/bin ~/.rbenv/shims $PATH
+test -d ~/bin; and set -xg PATH ~/bin $PATH
+test -d ~/.yarn/bin; and set -xg PATH ~/.yarn/bin $PATH
+test -p ~/.local/bin; and set -xg PATH ~/.local/bin $PATH
+test -p ~/.rbenv/bin; and set -xg PATH ~/.rbenv/bin $PATH
+test -p ~/.rbenv/shims; and set -xg PATH ~/.rbenv/shims $PATH
 varclear PATH
 set -xg HOME ~
 
 ## Editors
 set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
-#set -xg VISUAL $EDITOR
-#set -xg VIEWER "$EDITOR -R"
 
 ## DOCKER
 set -xg DOCKER_HOST "unix:///var/run/docker.sock"
@@ -22,10 +20,8 @@ set -xg LANG en_US.UTF-8
 set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
-__is_dev_desktop
-and set -g theme_display_hostname no
-__is_dev_desktop
-and set -g theme_display_user no
+__is_dev_desktop; and set -g theme_display_hostname no
+__is_dev_desktop; and set -g theme_display_user no
 set -g theme_color_scheme terminal2-dark-white
 
 ## Plugins
@@ -48,16 +44,11 @@ if __is_win
 
     set -xg WHOME /mnt/$WDRIVE/Users/$WUSER
     set -xg W $WHOME
-    set -xg DISPLAY "localhost:0"
+    set -xg DISPLAY :0
+    set -xg LIBGL_ALWAYS_INDIRECT 1
+    set -xg NO_AT_BRIDGE 1
 
-    # if which powershell.exe >/dev/null
-    #     powershell.exe -ExecutionPolicy Unrestricted -File "$WDRIVE:\Users\\$WUSER\setup\WindowsPowerShell\Scripts\x-init.ps1" >/dev/null
-    #     set -xg LIBGL_ALWAYS_INDIRECT 1
-    #     set -xg XCURSOR_SIZE 64
-    # end
-
-    test (umask) -eq 0022
-    or umask 0022
+    test (umask) -eq 0022; or umask 0022
 
     mount-workdocs
 end
@@ -76,15 +67,5 @@ complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 ## Load byobu
 if status --is-login; and status --is-interactive
-    if __is_dev_desktop
-        exec byobu-launcher -S ~/byobu new-session -A -s default
-    else
-        exec byobu-launcher -S ~/byobu new-session -A -s default
-    end
-end
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-if test -f /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
-    and . /home/duybui/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
+    exec byobu-launcher -S ~/byobu new-session -A -s default
 end
