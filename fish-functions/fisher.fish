@@ -1,4 +1,4 @@
-set -g fisher_version 3.0.8
+set -g fisher_version 3.0.9
 
 type source >/dev/null; or function source; . $argv; end
 
@@ -9,7 +9,7 @@ switch (command uname)
         end
     case \*
         function _fisher_now -a elapsed
-            command date "+%s%3N" | command awk "{ sub(/3N\$/,\"000\"); print \$0 - 0$elapsed }"
+            command date "+%s%3N" | command awk -v ELAPSED="$elapsed" '{ sub(/%?3N$/, "000") } $0 -= ELAPSED'
         end
 end
 
@@ -160,7 +160,7 @@ function _fisher_commit
         command touch $fishfile
         echo "created empty fishfile in $fishfile" | command sed "s|$HOME|~|" >&2
     end
-    printf "%s\n" (_fisher_fishfile_indent (echo -s $argv\;) < $fishfile) > $fishfile
+    printf "%s\n" (_fisher_fishfile_format (echo -s $argv\;) < $fishfile) > $fishfile
 
     set -l expected_pkgs (_fisher_fishfile_load < $fishfile)
     set -l added_pkgs (_fisher_pkg_fetch_all $expected_pkgs)
@@ -177,7 +177,7 @@ function _fisher_commit
         return 1
     end
 
-    echo (count $added_pkgs) (count $updated_pkgs) (count $removed_pkgs) (_fisher_now $elapsed) | _fisher_status_report >&2
+    _fisher_status (count $added_pkgs) (count $updated_pkgs) (count $removed_pkgs) (_fisher_now $elapsed) >&2
 end
 
 function _fisher_pkg_remove_all
@@ -193,52 +193,49 @@ function _fisher_pkg_fetch_all
     set -l actual_pkgs
     set -l expected_pkgs
 
-    for name in $argv
-        switch $name
+    for id in $argv
+        switch $id
             case \~\* /\*
-                set -l path (echo "$name" | command sed "s|~|$HOME|")
+                set -l path (echo "$id" | command sed "s|~|$HOME|")
                 if test -e "$path"
                     set local_pkgs $local_pkgs $path
                 else
-                    echo "cannot install \"$name\" -- is this a valid file?" >&2
+                    echo "cannot install \"$id\" -- is this a valid file?" >&2
                 end
-                continue
-            case https://\* ssh://\* {github,gitlab}.com/\* bitbucket.org/\*
-            case \*/\*
-                set name "github.com/$name"
-            case \*
-                echo "cannot install \"$name\" without a prefix -- should be <owner>/$name" >&2
                 continue
         end
 
-        echo $name | command awk '{
-            split($0, tmp, /@/)
-
-            pkg = tmp[1]
-            tag = tmp[2] ? tmp[2] : "master"
-            name = tmp[split(pkg, tmp, "/")]
-
-            print (\
-                pkg ~ /^github\.com/ ? "https://codeload."pkg"/tar.gz/"tag : \
-                pkg ~ /^gitlab\.com/ ? "https://"pkg"/-/archive/"tag"/"name"-"tag".tar.gz" : \
-                pkg ~ /^bitbucket\.org/ ? "https://"pkg"/get/"tag".tar.gz" : pkg \
-            ) "\t" pkg
-        }' | read -l url pkg
+        command awk -v ID=$id -v FS=/  'BEGIN {
+            if (split(ID, tmp, /@+|:/) > 2) {
+                if (tmp[4]) sub("@"tmp[4], "", ID)
+                print ID "\t" tmp[2]"/"tmp[1]"/"tmp[3] "\t" (tmp[4] ? tmp[4] : "master")
+            } else {
+                pkg = split(ID, _, "/") <= 2 ? "github.com/"tmp[1] : tmp[1]
+                tag = tmp[2] ? tmp[2] : "master"
+                print (\
+                    pkg ~ /^github/ ? "https://codeload."pkg"/tar.gz/"tag : \
+                    pkg ~ /^gitlab/ ? "https://"pkg"/-/archive/"tag"/"tmp[split(pkg, tmp, "/")]"-"tag".tar.gz" : \
+                    pkg ~ /^bitbucket/ ? "https://"pkg"/get/"tag".tar.gz" : pkg \
+                ) "\t" pkg
+            }
+        }' | read -l url pkg tag
 
         if test ! -d "$fisher_config/$pkg"
             fish -c "
                 echo fetching $url >&2
                 command mkdir -p \"$fisher_config/$pkg\"
-
-                if curl -Ss $url 2>&1 | tar -xzf- -C \"$fisher_config/$pkg\" --strip-components=1 2>/dev/null
+                if test ! -z \"$tag\"
+                    command git clone $url \"$fisher_config/$pkg\" --branch $tag --depth 1 2>/dev/null
+                    or echo cannot clone \"$url\" -- is this a valid url\? >&2
+                else if curl -Ss $url 2>&1 | tar -xzf- -C \"$fisher_config/$pkg\" --strip-components=1 2>/dev/null
                     command mkdir -p \"$fisher_cache/$pkg\"
                     command cp -Rf \"$fisher_config/$pkg\" \"$fisher_cache/$pkg/..\"
                 else if test -d \"$fisher_cache/$pkg\"
-                    echo cannot connect to server -- using data from \"$fisher_cache/$pkg\" | command sed 's|$HOME|~|' >&2
+                    echo cannot connect to server -- searching in \"$fisher_cache/$pkg\" | command sed 's|$HOME|~|' >&2
                     command cp -Rf \"$fisher_cache/$pkg\" \"$fisher_config/$pkg/..\"
                 else
                     command rm -rf \"$fisher_config/$pkg\"
-                    echo cannot install \"$pkg\" -- are you offline\? >&2
+                    echo cannot install \"$pkg\" -- is this a valid package\? >&2
                 end
             " >/dev/null &
 
@@ -280,7 +277,7 @@ function _fisher_pkg_get_deps
         if test ! -d "$path"
             echo $pkg
         else if test -s "$path/fishfile"
-            _fisher_pkg_get_deps (_fisher_fishfile_indent < $path/fishfile | _fisher_fishfile_load)
+            _fisher_pkg_get_deps (_fisher_fishfile_format < $path/fishfile | _fisher_fishfile_load)
         end
     end
 end
@@ -306,7 +303,7 @@ function _fisher_pkg_install -a pkg
                 end
         end
         echo "linking $target" | command sed "s|$HOME|~|" >&2
-        command ln -f $source $target
+        command cp -f $source $target
         switch $target
             case \*.fish
                 source $target >/dev/null 2>/dev/null
@@ -346,30 +343,20 @@ function _fisher_pkg_uninstall -a pkg
     end
 end
 
-function _fisher_fishfile_indent -a pkgs
+function _fisher_fishfile_format -a pkgs
     command awk -v PWD=$PWD -v HOME=$HOME -v PKGS="$pkgs" '
-        function normalize(s) {
-            gsub(/^[ \t]*|[ \t]*$|https?:\/\/|github\.com\/|\.git$|\/$/, "", s)
-            sub(/^\.\//, PWD"/", s)
-            sub(HOME, "~", s)
-            return s
-        }
-        function get_pkg_name(s) {
-            split(s, tmp, /[@# ]+/)
-            return tmp[1]
-        }
         BEGIN {
             pkg_count = split(PKGS, pkgs, ";") - 1
             cmd = pkgs[1]
             for (i = 2; i <= pkg_count; i++) {
-                pkg_ids[i - 1] = get_pkg_name( pkgs[i] = normalize(pkgs[i]) )
+                pkg_ids[i - 1] = get_pkg_id( pkgs[i] = normalize(pkgs[i]) )
             }
         } {
             if (NF) {
-                nl = nl > 0 ? "" : nl
-                pkg_id = get_pkg_name( $0 = normalize($0) )
-                if (/^#/) print nl$0
-                else if (!seen[pkg_id]++) {
+                $0 = normalize($0)
+                newln = newln > 0 ? "" : newln
+                if (/^#/) print newln$0
+                else if (!seen[(pkg_id = get_pkg_id($0))]++) {
                     for (i = 1; i < pkg_count; i++) {
                         if (pkg_ids[i] == pkg_id) {
                             if (cmd == "rm") next
@@ -377,16 +364,25 @@ function _fisher_fishfile_indent -a pkgs
                             break
                         }
                     }
-                    print nl$0
+                    print newln$0
                 }
-                nl = NF
-            } else if (nl) nl = (nl > 0 ? "" : nl)"\n"
+                newln = NF
+            } else if (newln) newln = "\n"(newln > 0 ? "" : newln)
         }
         END {
             if (cmd == "rm" || pkg_count <= 1) exit
             for (i = 2; i <= pkg_count; i++) {
                 if (!seen[pkg_ids[i - 1]]) print pkgs[i]
             }
+        }
+        function normalize(s) {
+            gsub(/^[ \t]*(https?:\/\/)?(github\.com\/)?|[\/ \t]*$/, "")
+            sub(/^\.\//, PWD"/", s)
+            sub(HOME, "~", s)
+            return s
+        }
+        function get_pkg_id(s) {
+            return (split(s, tmp, /@+|:/) > 2) ? tmp[2]"/"tmp[1]"/"tmp[3] : tmp[1]
         }
     '
 end
@@ -395,15 +391,17 @@ function _fisher_fishfile_load
     command awk -v FS=\# '!/^#/ && NF { print $1 }'
 end
 
-function _fisher_status_report
-    command awk '
+function _fisher_status -a added updated removed elapsed
+    command awk -v ADDED=$added -v UPDATED=$updated -v REMOVED=$removed -v ELAPSED=$elapsed '
+        BEGIN {
+            if (ADDED = ADDED - UPDATED) res = msg(res, "added", ADDED)
+            if (UPDATED) res = msg(res, "updated", UPDATED)
+            if (REMOVED = REMOVED - UPDATED) res = msg(res, "removed", REMOVED)
+            printf((res ? res : "done") " in %.2fs\n", ELAPSED / 1000)
+        }
         function msg(res, str, n) {
             return (res ? res ", " : "") str " " n " package" (n > 1 ? "s" : "")
         }
-        $1 = $1 - $2 { res = msg(res, "added", $1) }
-                  $2 { res = msg(res, "updated", $2) }
-        $3 = $3 - $2 { res = msg(res, "removed", $3) }
-                     { printf((res ? res : "done") " in %.2fs\n", ($4 / 1000)) }
     '
 end
 
