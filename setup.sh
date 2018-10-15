@@ -41,10 +41,16 @@ mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/code/test
 
-sudo cp ~/setup/Fira*.ttf /usr/share/fonts/truetype
+# @TODO: ArchLinux
+test -d /usr/share/fonts/trutype && sudo cp ~/setup/Fira*.ttf /usr/share/fonts/truetype
 which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 
 echo "=== Installing modules ==="
+
+test -f /etc/issue &&\
+grep -q -Ei "arch" /etc/issue &&\
+echo "Arch Linux detected. Installing core modules..." &&\
+bash ~/setup/arch.sh
 
 test -f /etc/issue &&\
 grep -q -Ei "elementary|ubuntu" /etc/issue &&\
@@ -83,6 +89,12 @@ bash ~/setup/kali.sh
 echo 'Core modules have been installed.'
 
 echo '=== Additional modules ==='
+test -f /etc/issue &&\
+grep -q -Ei "arch" /etc/issue &&\
+grep -q -i "Microsoft" /proc/version &&\
+echo "Arch Linux on Windows detected. Installing core modules..." &&\
+bash ~/setup/arch-win.sh
+
 test -f /etc/issue &&\
 grep -q -Ei "elementary|ubuntu" /etc/issue &&\
 grep -q -i "Microsoft" /proc/version &&\
@@ -129,9 +141,6 @@ grep -q -Ei "kali" /etc/issue &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
-
-chmod +x bin/*.sh
-ls bin/*.sh
 
 which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
 which pip3 >/dev/null && pip3 install --user pylint autopep8
