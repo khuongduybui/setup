@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.tAi93h/__is_win.fish @ line 2
 function __is_win
-	test (which cmd.exe 2>/dev/null)
+	grep -q -i "Microsoft" /proc/version
 end
