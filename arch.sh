@@ -10,7 +10,7 @@ echo "Install package manager"
 # fakeroot is not working correctly due to Sys IPC not implemented
 
 echo "Install system utils"
-sudo pacman -S --noconfirm fish neovim xsel xclip grc mc screenfetch scrot
+sudo pacman -S --noconfirm fish neovim xsel xclip grc mc screenfetch scrot rsync
 # @TODO install byobu
 
 echo "Install dev tools"

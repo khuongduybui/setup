@@ -1,9 +1,10 @@
 ## Global
 test -d ~/bin; and set -xg PATH ~/bin $PATH
 test -d ~/.yarn/bin; and set -xg PATH ~/.yarn/bin $PATH
-test -p ~/.local/bin; and set -xg PATH ~/.local/bin $PATH
-test -p ~/.rbenv/bin; and set -xg PATH ~/.rbenv/bin $PATH
-test -p ~/.rbenv/shims; and set -xg PATH ~/.rbenv/shims $PATH
+test -d ~/.local/bin; and set -xg PATH ~/.local/bin $PATH
+test -d ~/.rbenv/bin; and set -xg PATH ~/.rbenv/bin $PATH
+test -d ~/.rbenv/shims; and set -xg PATH ~/.rbenv/shims $PATH
+test -d ~/.gem/ruby/2.5.0/bin; and set -xg PATH ~/.gem/ruby/2.5.0/bin $PATH
 varclear PATH
 set -xg HOME ~
 
@@ -67,5 +68,5 @@ complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 ## Load byobu
 if status --is-login; and status --is-interactive
-    exec byobu-launcher -S ~/byobu new-session -A -s default
+    which byobu >/dev/null 2>&1; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
 end
