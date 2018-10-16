@@ -69,8 +69,4 @@ complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 ## Load byobu
 if status --is-login; and status --is-interactive
     which byobu >/dev/null 2>&1; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
-    if which abduco >/dev/null 2>&1
-        set -x DVTM_TERM xterm
-        abduco | grep duybui; and exec abduco -a duybui; or exec abduco -c duybui 
-    end
 end
