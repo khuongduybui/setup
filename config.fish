@@ -23,7 +23,8 @@ set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 __is_dev_desktop; and set -g theme_display_hostname no
 __is_dev_desktop; and set -g theme_display_user no
-set -g theme_color_scheme terminal2-dark-white
+# set -g theme_color_scheme terminal2-dark-white
+set -g theme_color_scheme solarized-light
 
 ## Plugins
 #fisher 2>/dev/null
