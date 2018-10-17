@@ -9,7 +9,12 @@ varclear PATH
 set -xg HOME ~
 
 ## Editors
-set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
+if which subl >/dev/null 2>&1
+	set -xg EDITOR 'subl -nw'
+else
+	set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
+	set -xg MICRO_TRUECOLOR 1
+end
 
 ## DOCKER
 set -xg DOCKER_HOST "unix:///var/run/docker.sock"
@@ -21,13 +26,12 @@ set -xg LANG en_US.UTF-8
 set -g theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
+set -g theme_color_scheme solarized-light
 __is_dev_desktop; and set -g theme_display_hostname no
 __is_dev_desktop; and set -g theme_display_user no
 # set -g theme_color_scheme terminal2-dark-white
-set -g theme_color_scheme solarized-light
 
 ## Plugins
-#fisher 2>/dev/null
 source ~/setup/fallback.fish
 
 ## Windows?

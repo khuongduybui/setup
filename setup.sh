@@ -42,7 +42,7 @@ mkdir -p ~/opt
 mkdir -p ~/code/test
 
 # @TODO: ArchLinux
-test -d /usr/share/fonts/trutype && sudo cp ~/setup/Fira*.ttf /usr/share/fonts/truetype
+test -d /usr/share/fonts/truetype && sudo cp ~/setup/Fira*.ttf /usr/share/fonts/truetype
 which fc-cache >/dev/null 2>&1 && sudo fc-cache -f -v
 
 echo "=== Installing modules ==="
