@@ -13,10 +13,6 @@ wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/client
 echo deb http://cascadia.corp.amazon.com/amazon trusty-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
 echo deb http://cascadia.corp.amazon.com/amazon trusty-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
 echo deb http://cascadia.corp.amazon.com/amazon trusty-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/upstream trusty main restricted universe | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/upstream trusty-updates main restricted universe | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/upstream trusty-backports main restricted universe | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/upstream trusty-security main restricted universe | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update
 sudo apt install -y amazon-desktop-management
 
@@ -69,9 +65,10 @@ bash /tmp/toolbox-install.sh
 # Brazil 2.0
 sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/toolbox install brazilcli
-# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
-# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
-# sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
+curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
+sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+sudo apt autoremove -y
 
 ~/.toolbox/bin/brazil setup --java
 ~/.toolbox/bin/brazil setup --ruby
