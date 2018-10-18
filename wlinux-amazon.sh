@@ -65,10 +65,10 @@ bash /tmp/toolbox-install.sh
 # Brazil 2.0
 sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/toolbox install brazilcli
-curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
-curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
-sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
-sudo apt autoremove -y
+# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
+# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
+# sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+# sudo apt autoremove -y
 
 ~/.toolbox/bin/brazil setup --java
 ~/.toolbox/bin/brazil setup --ruby
