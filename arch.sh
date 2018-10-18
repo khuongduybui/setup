@@ -1,25 +1,33 @@
 #! /bin/sh
 
 echo "Install package manager"
-# sudo pacman -S --noconfirm --needed base-devel
+sudo pacman -S --needed base-devel
 test -d /tmp/yay || git clone https://aur.archlinux.org/yay.git /tmp/yay
 cd /tmp/yay
-which yay >/dev/null || makepkg -si
+which yay >/dev/null 2>&1 || makepkg -si --noconfirm
 cd -
 
 echo "Install system utils"
-sudo pacman -Sy --noconfirm rsync openssh xorg-xauth x11-ssh-askpass
-sudo pacman -Sy --noconfirm fish neovim xsel xclip grc mc screenfetch scrot
-sudo yay -Sy --noconfirm byobu
+yay -S --needed --noconfirm rsync openssh xorg-xauth x11-ssh-askpass
+yay -S --needed --noconfirm fish neovim xsel xclip grc mc screenfetch scrot
+yay -S --needed --noconfirm byobu
+# @TODO: wslu (https://github.com/wslutilities/wslu/issues/33)
 
 echo "Install dev tools"
-sudo pacman -Sy --noconfirm nodejs yarn
-sudo pacman -Sy --noconfirm python2 python2-setuptools python2-pip
-sudo pacman -Sy --noconfirm python python-setuptools python-pip
-sudo pacman -Sy --noconfirm ruby
+yay -S --needed --noconfirm nodejs-n
+which node >dev/null 2>&1 || sudo n latest
+yay -S --needed --noconfirm --assume-installed nodejs yarn 
+yay -S --needed --noconfirm python2 python2-setuptools python2-pip
+yay -S --needed --noconfirm python python-setuptools python-pip
+yay -S --needed --noconfirm rbenv ruby-build
+rbenv versions | grep -q 2.5.1 || rbenv install 2.5.1
+rbenv global 2.5.1
+eval "$(rbenv init -)"
+gem install bundler
+rbenv rehash
 
 echo "Update system"
 sudo pacman -Syu --noconfirm
-which yay >/dev/null 2>&1 && yay -Syu --noconfirm
+yay -Syu --noconfirm
 
-which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
+which fish >/dev/null 2>&1 && sudo chsh -s $(which fish) $(whoami)

@@ -142,9 +142,9 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
-which yarn >/dev/null && yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
-which pip3 >/dev/null && pip3 install --user pylint autopep8
-which gem >/dev/null && gem install rdoc rubocop rufo
+which yarn >/dev/null 2>&1 && yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
+which pip3 >/dev/null 2>&1 && pip3 install --user pylint autopep8
+which gem >/dev/null 2>&1 && gem install rubocop rufo
 
 # mkdir -p ~/.byobu
 # echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
