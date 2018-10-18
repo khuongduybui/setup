@@ -9,11 +9,14 @@ varclear PATH
 set -xg HOME ~
 
 ## Editors
+which dbus-launch >/dev/null 2>&1; and bass (dbus-launch --auto-syntax)
 if which subl >/dev/null 2>&1
-	set -xg EDITOR 'subl -nw'
+    set -xg EDITOR 'subl -nw'
+else if which io.elementary.code >/dev/null 2>&1
+    set -xg EDITOR io.elementary.code
 else
-	set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
-	set -xg MICRO_TRUECOLOR 1
+    set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
+    set -xg MICRO_TRUECOLOR 1
 end
 
 ## DOCKER
