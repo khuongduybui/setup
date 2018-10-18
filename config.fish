@@ -2,12 +2,9 @@
 test -d ~/bin; and set -xg PATH ~/bin $PATH
 test -d ~/.yarn/bin; and set -xg PATH ~/.yarn/bin $PATH
 test -d ~/.local/bin; and set -xg PATH ~/.local/bin $PATH
-if test -x ~/.rbenv/bin/rbenv
-    set -xg PATH ~/.rbenv/bin $PATH
-    status --is-interactive; and source (~/.rbenv/bin/rbenv init -|psub)
-    test -d ~/.rbenv/plugins/ruby-build/bin; and set -xg PATH ~/.rbenv/plugins/ruby-build/bin $PATH
-end
-test -d ~/.gem/ruby/2.5.0/bin; and set -xg PATH ~/.gem/ruby/2.5.0/bin $PATH
+test -x ~/.rbenv/bin/rbenv; and set -xg PATH ~/.rbenv/bin $PATH
+test -d ~/.rbenv/plugins/ruby-build/bin; and set -xg PATH ~/.rbenv/plugins/ruby-build/bin $PATH
+which rbenv >/dev/null 2>&1; and source (rbenv init - | psub)
 varclear PATH
 set -xg HOME ~
 
