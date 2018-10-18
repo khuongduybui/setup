@@ -62,10 +62,6 @@ if __is_win
     mount-workdocs
 end
 
-## Greetings
-#which screenfetch >/dev/null 2>&1; and sudo screenfetch
-cat ~/setup/banner.md
-
 ## Abbreviations
 source ~/setup/abbreviations.fish
 # test -f /etc/brazilcli.env; and bass source /etc/brazilcli.env
