@@ -15,7 +15,7 @@ yay -S --needed --noconfirm byobu
 
 echo "Install dev tools"
 yay -S --needed --noconfirm nodejs-n
-which node >dev/null 2>&1 || sudo n latest
+which node >/dev/null 2>&1 || sudo n latest
 yay -S --needed --noconfirm --assume-installed nodejs yarn 
 yay -S --needed --noconfirm python2 python2-setuptools python2-pip
 yay -S --needed --noconfirm python python-setuptools python-pip
