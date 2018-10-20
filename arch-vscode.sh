@@ -1,3 +1,3 @@
 #! /bin/bash
 
-yay -Sy code
+yay -S --needed --noconfirm visual-studio-code-bin
