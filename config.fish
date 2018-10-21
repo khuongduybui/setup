@@ -15,7 +15,7 @@ if which subl >/dev/null 2>&1
 else if which io.elementary.code >/dev/null 2>&1
     set -xg EDITOR io.elementary.code
 else
-    set -xg EDITOR (which micro; or which nvim; or which vim; or which vi; or which nano)
+    set -xg EDITOR (which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
     set -xg MICRO_TRUECOLOR 1
 end
 

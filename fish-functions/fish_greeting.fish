@@ -1,6 +1,6 @@
-function fish_greeting --description What\'s\ up,\ fish\?
-	if which brazil >/dev/null 2>&1
-	else if which wslfetch >/dev/null 2>&1
+function fish_greeting -d What\'s\ up,\ fish\?
+  if which brazil >/dev/null 2>&1
+  else if which wslfetch >/dev/null 2>&1
     wslfetch
   else
     set_color $fish_color_autosuggestion
