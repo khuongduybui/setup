@@ -1,4 +1,4 @@
-set -g fisher_version 3.1.0
+set -g fisher_version 3.1.1
 
 type source >/dev/null; or function source; . $argv; end
 
@@ -189,7 +189,10 @@ function _fisher_commit
         command touch $fishfile
         echo "created empty fishfile in $fishfile" | command sed "s|$HOME|~|" >&2
     end
-    printf "%s\n" (_fisher_fishfile_format (echo -s $argv\;) < $fishfile) > $fishfile
+    printf "%s\n" (_fisher_fishfile_format (
+        echo -s $argv\;) (
+        echo -s $removed_pkgs\;
+    ) < $fishfile) > $fishfile
 
     set -l expected_pkgs (_fisher_fishfile_read < $fishfile)
     set -l added_pkgs (_fisher_pkg_fetch_all $expected_pkgs)
@@ -374,8 +377,8 @@ function _fisher_fishfile_read
     command awk -v FS=\# '!/^#/ && NF { print $1 }'
 end
 
-function _fisher_fishfile_format -a pkgs
-    command awk -v PWD=$PWD -v HOME=$HOME -v PKGS="$pkgs" '
+function _fisher_fishfile_format -a pkgs removed_pkgs
+    command awk -v PWD=$PWD -v HOME=$HOME -v PKGS="$pkgs" -v REMOVED_PKGS="$removed_pkgs" '
         BEGIN {
             pkg_count = split(PKGS, pkgs, ";") - 1
             cmd = pkgs[1]
@@ -387,7 +390,7 @@ function _fisher_fishfile_format -a pkgs
                 $0 = normalize($0)
                 newln = newln > 0 ? "" : newln
                 if (/^#/) print newln$0
-                else if (!seen[(pkg_id = get_pkg_id($0))]++) {
+                else if (!seen_pkgs[(pkg_id = get_pkg_id($0))]++) {
                     for (i = 1; i < pkg_count; i++) {
                         if (pkg_ids[i] == pkg_id) {
                             if (cmd == "rm") next
@@ -401,13 +404,18 @@ function _fisher_fishfile_format -a pkgs
             } else if (newln) newln = "\n"(newln > 0 ? "" : newln)
         }
         END {
-            if (cmd == "rm" || pkg_count <= 1) exit
-            for (i = 2; i <= pkg_count; i++) {
-                if (!seen[pkg_ids[i - 1]]) print pkgs[i]
+            if (cmd == "rm" || pkg_count <= 1) {
+                split(REMOVED_PKGS, tmp, ";")
+                for (i in tmp) removed_pkgs[normalize(tmp[i])] = i
+                for (i in pkg_ids) if (!(pkg_ids[i] in removed_pkgs)) {
+                    print "cannot remove \"" pkg_ids[i] "\" -- package not found" > "/dev/stderr"
+                }
+                exit
             }
+            for (i in pkg_ids) if (!seen_pkgs[pkg_ids[i]]) print pkgs[i+1]
         }
         function normalize(s) {
-            gsub(/^[ \t]*(https?:\/\/)?(github\.com\/)?|[\/ \t]*$/, "", s)
+            gsub(/^[ \t]*(https?:\/\/)?(.*github\.com\/)?|[\/ \t]*$/, "", s)
             sub(/^\.\//, PWD"/", s)
             sub(HOME, "~", s)
             return s
