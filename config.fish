@@ -8,7 +8,9 @@ complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 if test -z $INIT
     ## Global  
     ### PATH
+    set_color $fish_color_operator
     echo Calculating PATH
+    set_color normal  
     test -d ~/bin; and set -x PATH ~/bin $PATH
     test -d ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
     test -d ~/.local/bin; and set -x PATH ~/.local/bin $PATH
@@ -20,7 +22,9 @@ if test -z $INIT
     set -x HOME ~
 
     ### Editors
+    set_color $fish_color_operator
     echo Searching for Editors
+    set_color normal  
     which dbus-launch >/dev/null 2>&1; and bass (dbus-launch --auto-syntax)
     if which subl >/dev/null 2>&1
         set -x EDITOR 'subl -nw'
@@ -78,7 +82,9 @@ if test -z $INIT
 
     ## Load byobu
     if status --is-login; and status --is-interactive
+        set_color $fish_color_operator
         echo Launching Byobu
+        set_color normal
         which byobu >/dev/null 2>&1; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
     end
 end
