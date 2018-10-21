@@ -1,4 +1,5 @@
 function reload
+	set -u INIT
 	if test -f ~/.config/fish/config.fish
 		source ~/.config/fish/config.fish
 	else if test -f ~/.config/fish/conf.d/$USER.fish

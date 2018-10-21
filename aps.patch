@@ -37,7 +37,7 @@
      case '*'
        set parent    (__bobthefish_pretty_parent "$current_dir")
        set directory (__bobthefish_basename "$current_dir")
-@@ -918,5 +934,71 @@
+@@ -922,5 +938,72 @@
      __bobthefish_prompt_dir
    end
 
@@ -51,7 +51,8 @@
 +      echo -n " "
 +    end
 +
-+    if test (mwinit -k ~/.ssh/primary.pem.pub -l | grep cookie; or mwinit -l | grep cookie)
++    if test -f ~/.ssh/primary.pem.pub; and mwinit -k ~/.ssh/primary.pem.pub -l | grep -q cookie
++    else if test -f ~/.ssh/id_rsa.pub; and mwinit -l | grep -q cookie
 +    else
 +      __bobthefish_start_segment white red
 +      echo -n " "

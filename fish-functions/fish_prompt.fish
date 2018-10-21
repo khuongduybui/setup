@@ -955,7 +955,8 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
       echo -n " "
     end
 
-    if test (mwinit -k ~/.ssh/primary.pem.pub -l | grep cookie; or mwinit -l | grep cookie)
+    if test -f ~/.ssh/primary.pem.pub; and mwinit -k ~/.ssh/primary.pem.pub -l | grep -q cookie
+    else if test -f ~/.ssh/id_rsa.pub; and mwinit -l | grep -q cookie
     else
       __bobthefish_start_segment white red
       echo -n " "

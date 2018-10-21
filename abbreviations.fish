@@ -42,7 +42,7 @@ abbr mongodb 'sudo service mongodb'
 abbr rethinkdb 'sudo service rethinkdb'
 abbr dbus 'sudo service dbus'
 
-abbr fisher-update 'fisher self-update; fisher; patch ~/.config/fish/functions/fish_prompt.fish ~/setup/aps.patch'
+abbr fisher-update 'fisher self-update; fisher; patch ~/setup/fish-functions/fish_prompt.fish ~/setup/aps.patch; rm -f ~/setup/fish-functions/fish_greeting.fish'
 
 abbr tpm 'npm install --save --package-lock-only'
 abbr tpd 'npm install --save-dev --only=dev'
