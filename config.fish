@@ -23,9 +23,9 @@ if test -z $INIT
     set_color $fish_color_operator; echo Searching for Editors; set_color normal
     which dbus-launch >/dev/null 2>&1; and bass (dbus-launch --auto-syntax)
     if which subl >/dev/null 2>&1
-        set -x EDITOR 'subl -nw'
+        set -x EDITOR (which subl) -nw
     else if which io.elementary.code >/dev/null 2>&1
-        set -x EDITOR io.elementary.code
+        set -x EDITOR (which io.elementary.code)
     else
         set -x EDITOR (which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
         set -x MICRO_TRUECOLOR 1
