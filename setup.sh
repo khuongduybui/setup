@@ -9,6 +9,10 @@ test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/
 test -d ~/.config/powershell && mv ~/.config/powershell ~/.config/powershell.`date +%Y-%m-%d`.bak
 ln -s ~/setup/WindowsPowerShell ~/.config/powershell
 
+mkdir -p ~/.config/sublime-text-3/Packages/User
+test -f ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings && mv ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings.`date +%Y-%m-%d`.bak
+ln -s ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
+
 mkdir -p ~/.config/micro
 test -f ~/.config/micro/settings.json || ln -s ~/setup/micro.json ~/.config/micro/settings.json
 
