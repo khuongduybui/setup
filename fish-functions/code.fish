@@ -1,4 +1,3 @@
-# Defined in /tmp/fish.sFYViX/code.fish @ line 2
 function code
 	if not test -d ~/code
 		set_color $fish_color_error
@@ -38,12 +37,12 @@ function code
 					bass source ./BitScripts/envsetup.sh
 				end
 			end
-				if test (count $argv) = 2
-					cd ./(command ls | grep --color=none -i $argv[2])
-				else if test (count (command ls)) = 1
-					cd (command ls)
-				end
-		end	
+			if test (count $argv) -ge 1
+				cd ./(command ls | command grep --color=none -i $argv[2..-1])
+			else if test (count (command ls)) = 1
+				cd (command ls)
+			end
+		end
 	end
 	if test -d ./.git
 		git status
