@@ -1,0 +1,33 @@
+function font-init
+	set_color $fish_color_operator; echo Checking Windows fonts into WSL; set_color normal
+	if test -f /etc/fonts/local.conf
+		echo -n User fonts...
+		if grep -q /etc/fonts/local.conf -e 'AppData/Local/Microsoft/Windows/Fonts'
+			echo Done
+		else
+			echo You need to add the following
+			echo ----
+			echo "<dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>"
+			echo ----
+			echo to /etc/fonts/local.conf
+		end
+		echo -n System fonts...			
+		if grep -q /etc/fonts/local.conf -e '/mnt/c/Windows/Fonts'
+			echo Done
+		else
+			echo You need to add the following
+			echo ----
+			echo "<dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>"
+			echo ----
+			echo to /etc/fonts/local.conf
+		end
+	else
+		echo '<?xml version="1.0"?>' | sudo tee /etc/fonts/local.conf
+		echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' | sudo tee -a /etc/fonts/local.conf
+		echo '<fontconfig>' | sudo tee -a /etc/fonts/local.conf
+    	echo '<dir>/mnt/c/Windows/Fonts</dir>' | sudo tee -a /etc/fonts/local.conf
+    	echo "<dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>" | sudo tee -a /etc/fonts/local.conf
+		echo '</fontconfig>' | sudo tee -a /etc/fonts/local.conf
+		echo Done
+	end
+end

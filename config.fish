@@ -73,6 +73,7 @@ if test -z $INIT
 
         mount-workdocs
         x-init
+        font-init
     end
 
     set -x INIT true
