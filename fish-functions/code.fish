@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.RkwzgG/code.fish @ line 2
 function code
 	if not test -d ~/code
 		set_color $fish_color_error
@@ -37,7 +38,7 @@ function code
 					bass source ./BitScripts/envsetup.sh
 				end
 			end
-			if test (count $argv) -ge 1
+			if test (count $argv) -gt 1
 				cd ./(command ls | command grep --color=none -i $argv[2..-1])
 			else if test (count (command ls)) = 1
 				cd (command ls)
