@@ -1,5 +1,5 @@
-# Defined in /tmp/fish.RkwzgG/code.fish @ line 2
-function code
+# Defined in /tmp/fish.Tumsnw/c2c.fish @ line 2
+function c2c
 	if not test -d ~/code
 		set_color $fish_color_error
 		echo -n "ERROR: "

@@ -12,7 +12,7 @@ abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git
 
 abbr acc 'accounts'
 abbr d 'dot'
-abbr c 'code'
+abbr c 'c2c'
 abbr v 'view'
 abbr e 'edit'
 abbr se 'sudo -E $EDITOR'

@@ -2,7 +2,7 @@
 source ~/setup/fallback.fish
 
 ## Completions
-complete -c code -x -a '(__fish_complete_code)'
+complete -c c2c -x -a '(__fish_complete_c2c)'
 complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 if test -z $INIT
