@@ -6,7 +6,7 @@ complete -c c2c -x -a '(__fish_complete_c2c)'
 complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 if test -z $INIT
-    ## Global  
+    ## Global
     ### PATH
     set_color $fish_color_operator; echo Calculating PATH; set_color normal
     test -d ~/bin; and set -x PATH ~/bin $PATH
@@ -23,9 +23,9 @@ if test -z $INIT
     set_color $fish_color_operator; echo Searching for Editors; set_color normal
     which dbus-launch >/dev/null 2>&1; and bass (dbus-launch --auto-syntax)
     if which code >/dev/null 2>&1
-        set -x EDITOR (which code) -nw
+        set -x EDITOR (which code)' -nw'
     else if which subl >/dev/null 2>&1
-        set -x EDITOR (which subl) -nw
+        set -x EDITOR (which subl)' -nw'
     else
         set -x EDITOR (which io.elementary.code 2>/dev/null; or which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
         set -x MICRO_TRUECOLOR 1
