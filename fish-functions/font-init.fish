@@ -1,5 +1,7 @@
+# Defined in /tmp/fish.hPitFj/font-init.fish @ line 2
 function font-init
 	set_color $fish_color_operator; echo Checking Windows fonts into WSL; set_color normal
+	sudo mkdir -p /etc/fonts
 	if test -f /etc/fonts/local.conf
 		echo -n User fonts...
 		if grep -q /etc/fonts/local.conf -e 'AppData/Local/Microsoft/Windows/Fonts'
