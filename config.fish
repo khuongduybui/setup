@@ -21,7 +21,9 @@ if test -z $INIT
 
     ### Editors
     set_color $fish_color_operator; echo Searching for Editors; set_color normal
-    which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
+    if not __is_dev_desktop
+        which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
+    end
     if which code >/dev/null 2>&1
         set -x EDITOR (which code)' -nw'
     else if which subl >/dev/null 2>&1
