@@ -1,12 +1,22 @@
-# Defined in /tmp/fish.9BGI3z/brazil-sync.fish @ line 2
 function brazil-sync
-	set -l here (pwd)
+	which toolbox >/dev/null 2>&1
+    and toolbox update
+
+    set -l here (pwd)
     cd ~/code
     for workspace in (ls | grep -v .code-workspace)
-        echo Updating $workspace
-        cd $workspace
-        brazil ws sync
-        cd -
+        if test -f $workspace/packageInfo
+            set_color $fish_color_operator
+            echo Updating $workspace
+            set_color normal
+            cd $workspace
+            brazil ws sync
+            cd -
+        else
+            set_color $fish_color_operator
+            echo Skipping $workspace as packageInfo not found inside
+            set_color normal
+        end
     end
     cd $here
 end
