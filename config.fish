@@ -81,6 +81,7 @@ if test -z $INIT
     ## Load byobu
     if status --is-login; and status --is-interactive
         set_color $fish_color_operator; echo Launching Byobu; set_color normal
-        which byobu >/dev/null 2>&1; and exec byobu-launcher -S ~/byobu new-session -A -s default; or true
+        rm -f ~/.byobu/disable-autolaunch
+        which byobu-launcher >/dev/null 2>&1; and exec byobu-launcher; or true
     end
 end
