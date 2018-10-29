@@ -38,6 +38,7 @@ abbr gamz 'git config --global user.email duybui@amazon.com'
 abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr region 'aws configure set region'
 abbr lsenv 'l /apollo/env/'
+abbr nds 'nohup ninja-dev-sync > (mktemp) &'
 
 abbr mongodb 'sudo service mongodb'
 abbr rethinkdb 'sudo service rethinkdb'
@@ -50,4 +51,4 @@ abbr tpd 'npm install --save-dev --only=dev'
 
 abbr wlinux-setup 'test -f /etc/setup; and bash /etc/setup'
 abbr wlinux-help 'test -f /etc/helpme; and bash /etc/helpme'
-abbr nds 'nohup ninja-dev-sync > (mktemp) &'
+abbr cdw 'cd $WHOME'
