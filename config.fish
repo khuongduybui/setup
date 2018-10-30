@@ -81,9 +81,12 @@ if test -z $INIT
     set -x INIT true
 
     ## Load byobu
-    if status --is-login; and status --is-interactive
+    if status --is-login; and status --is-interactive; and which byobu-launcher >/dev/null 2>&1
         set_color $fish_color_operator; echo Launching Byobu; set_color normal
-        rm -f ~/.byobu/disable-autolaunch
-        which byobu-launcher >/dev/null 2>&1; and exec byobu-launcher; or true
+        if test -e ~/.byobu/disable-autolaunch
+            echo Suppress byobu due to the presence of ~/.byobu/disable-autolaunch
+        else
+            exec byobu-launcher
+        end
     end
 end
