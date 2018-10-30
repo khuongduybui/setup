@@ -63,15 +63,19 @@ bash /tmp/toolbox-install.sh
 ~/.toolbox/bin/toolbox install cr
 
 # Brazil 2.0
-sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/toolbox install brazilcli
 # curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
 # curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
 # sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
 # sudo apt autoremove -y
 
+sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/brazil setup --java
+
+rbenv install jruby-9.1.9.0
+rbenv install jruby-9.2.1.0-dev
 ~/.toolbox/bin/brazil setup --ruby
+
 ~/.toolbox/bin/brazil setup --python
 
 # Ninja Dev Sync
