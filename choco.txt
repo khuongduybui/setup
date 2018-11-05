@@ -1,13 +1,13 @@
 notepad3
 git
-vcxsrv
 powershell-core
 peazip
 googlechrome
 
 vscode
-yarn (including nodejs)
-python
+nodist
+yarn (including nodejs-lts)
+python python2
 ruby
 
 logitechgaming
@@ -45,3 +45,5 @@ twitch
 parsec-cloud
 geforce-game-ready-driver
 geforce-experience 
+
+vcxsrv
