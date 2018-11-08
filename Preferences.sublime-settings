@@ -1,10 +1,14 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
+	"color_scheme": "Packages/Theme - Monokai Pro/Monokai Pro.tmTheme",
+	"default_line_ending": "unix",
+	"ensure_newline_at_eof_on_save": true,
 	"font_face": "FuraCode Nerd Font",
 	"font_size": 12,
-	"theme": "Adaptive.sublime-theme",
+	"ignored_packages":
+	[
+		"Vintage"
+	],
 	"tab_size": 2,
-	"translate_tabs_to_spaces": true,
-	"ensure_newline_at_eof_on_save": true,
-	"default_line_ending": "unix"
+	"theme": "Monokai Pro.sublime-theme",
+	"translate_tabs_to_spaces": true
 }
