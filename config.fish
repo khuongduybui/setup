@@ -15,6 +15,10 @@ if test -z $INIT
     test -x ~/.rbenv/bin/rbenv; and set -x PATH ~/.rbenv/bin $PATH
     test -d ~/.rbenv/plugins/ruby-build/bin; and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
     which rbenv >/dev/null 2>&1; and source (rbenv init - | psub)
+    test -d /usr/local/go; and set -x GOROOT /usr/local/go;
+    test -n "$GOROOT"; and test -d $GOROOT/bin; and set -x PATH $GOROOT/bin $PATH
+    test -d ~/go; and set -x GOPATH ~/go
+    test -n "$GOPATH"; and test -d $GOPATH/bin; and set -x PATH $GOPATH/bin $PATH
     varclear PATH
     echo $PATH
     set -x HOME ~
