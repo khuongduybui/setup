@@ -13,3 +13,5 @@ Plugin 'ssh://git.amazon.com:2222/pkg/VimAmazonWiki.git'
 syntax enable
 filetype plugin indent on
 set number
+set ff=unix
+set ft=markdown
