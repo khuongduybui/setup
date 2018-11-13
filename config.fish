@@ -74,7 +74,12 @@ if test -z $INIT
             set -x WDRIVE c
         end
 
-        set -x WHOME /mnt/$WDRIVE/Users/$WUSER
+        if test -f /etc/wsl.conf; and grep -q -e root= /etc/wsl.conf
+            set -x WROOT (command grep -e root= /etc/wsl.conf | command sed s/root=// | command sed s:/\$::)
+        else
+            set -x WROOT /mnt
+        end
+        set -x WHOME $WROOT/$WDRIVE/Users/$WUSER
         set -x W $WHOME
         set -x DISPLAY :0
         set -x LIBGL_ALWAYS_INDIRECT 1

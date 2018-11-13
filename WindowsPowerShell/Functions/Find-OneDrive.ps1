@@ -19,7 +19,7 @@ function global:Find-OneDrive {
   }
   # Check commonly used custom location in WSL
   if ($Null -eq $OneDrive) {
-    $OneDrive = (Resolve-Path -ErrorAction Silent "/mnt/d/OneDrive").Path
+    $OneDrive = (Resolve-Path -ErrorAction Silent "$WROOT/d/OneDrive").Path
   }
   if ($Null -eq $OneDrive) {
     Write-Verbose "OneDrive not found."

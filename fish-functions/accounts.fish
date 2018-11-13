@@ -12,17 +12,17 @@ function accounts
         else
             egrep --color -i -e $argv[1] $WHOME/OneDrive/Essentials/accounts.ini
         end
-    else if test -f /mnt/d/OneDrive/Essentials/accounts.ini
+    else if test -f $WROOT/d/OneDrive/Essentials/accounts.ini
         if test (count $argv) = 0
-            edit /mnt/d/OneDrive/Essentials/accounts.ini
+            edit $WROOT/d/OneDrive/Essentials/accounts.ini
         else
-            egrep --color -i -e $argv[1] /mnt/d/OneDrive/Essentials/accounts.ini
+            egrep --color -i -e $argv[1] $WROOT/d/OneDrive/Essentials/accounts.ini
         end
-    else if test -f /mnt/w/My\ Documents/Essentials/accounts.ini
+    else if test -f $WROOT/w/My\ Documents/Essentials/accounts.ini
         if test (count $argv) = 0
-            edit /mnt/w/My\ Documents/Essentials/accounts.ini
+            edit $WROOT/w/My\ Documents/Essentials/accounts.ini
         else
-            egrep --color -i -e $argv[1] /mnt/w/My\ Documents/Essentials/accounts.ini
+            egrep --color -i -e $argv[1] $WROOT/w/My\ Documents/Essentials/accounts.ini
         end
     else
         set_color $fish_color_error
@@ -34,7 +34,7 @@ function accounts
         echo -n "not found under "
         set_color normal
         # set_color $fish_color_param[2]
-        echo "~/OneDrive/Essentials" or "$WHOME/OneDrive/Essentials" or "/mnt/d/OneDrive/Essentials" or "/mnt/w/My Documents/OneDrive/Essentials"
+        echo "~/OneDrive/Essentials" or "$WHOME/OneDrive/Essentials" or "$WROOT/d/OneDrive/Essentials" or "$WROOT/w/My Documents/OneDrive/Essentials"
         return
     end
 end
