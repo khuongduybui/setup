@@ -140,16 +140,16 @@ echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-which node 2>&1 | grep -iv mnt &&\
-which yarn 2>&1 | grep -iv mnt &&\
+which node 2>&1 | grep -q -v mnt &&\
+which yarn 2>&1 | grep -q -v mnt &&\
 yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-which pip 2>&1 | grep -iv mnt &&\
+which pip 2>&1 | grep -q -v mnt &&\
 pip install --user pylint autopep8
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
-which gem 2>&1 | grep -iv mnt &&\
+which gem 2>&1 | grep -q -v mnt &&\
 gem install rubocop rufo
 
 # mkdir -p ~/.byobu
