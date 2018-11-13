@@ -10,7 +10,11 @@ if test -z $INIT
     ### PATH
     set_color $fish_color_operator; echo Calculating PATH; set_color normal
     test -d ~/bin; and set -x PATH ~/bin $PATH
+    test -x ~/.nodenv/bin/nodenv; and set -x PATH ~/.nodenv/bin $PATH
+    which nodenv >/dev/null 2>&1; and source (nodenv init - | psub)
     test -d ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
+    test -x ~/.pyenv/bin/pyenv; and set -x PATH ~/.pyenv/bin $PATH
+    which pyenv >/dev/null 2>&1; and source (pyenv init - | psub)
     test -d ~/.local/bin; and set -x PATH ~/.local/bin $PATH
     test -x ~/.rbenv/bin/rbenv; and set -x PATH ~/.rbenv/bin $PATH
     test -d ~/.rbenv/plugins/ruby-build/bin; and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH

@@ -71,8 +71,7 @@ grep -q -i "Amazon Linux" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
-test -f /etc/os-release &&\
-grep -q -i "WLinux" /etc/os-release &&\
+which wslfetch >/dev/null 2>&1 &&\
 echo "WLinux detected. Installing core modules..." &&\
 bash ~/setup/wlinux.sh
 
@@ -118,14 +117,12 @@ test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
 
-test -f /etc/os-release &&\
-grep -q -i "WLinux" /etc/os-release &&\
+which wslfetch >/dev/null 2>&1 &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "WLinux on Windows detected. Installing additional modules..." &&\
 bash ~/setup/wlinux-win.sh
 
-test -f /etc/os-release &&\
-grep -q -i "WLinux" /etc/os-release &&\
+which wslfetch >/dev/null 2>&1 &&\
 hostname -d | grep -q ant.amazon.com &&\
 echo "WLinux on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/wlinux-amazon.sh
@@ -142,9 +139,18 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
-which yarn >/dev/null 2>&1 && yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
-which pip3 >/dev/null 2>&1 && pip3 install --user pylint autopep8
-which gem >/dev/null 2>&1 && gem install rubocop rufo
+test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
+which node 2>&1 | grep -iv mnt &&\
+which yarn 2>&1 | grep -iv mnt &&\
+yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
+
+test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
+which pip 2>&1 | grep -iv mnt &&\
+pip install --user pylint autopep8
+
+test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
+which gem 2>&1 | grep -iv mnt &&\
+gem install rubocop rufo
 
 # mkdir -p ~/.byobu
 # echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
