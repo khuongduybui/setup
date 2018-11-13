@@ -64,21 +64,40 @@ bash /tmp/toolbox-install.sh
 
 # Brazil 2.0
 ~/.toolbox/bin/toolbox install brazilcli
+https://ubuntu.pkgs.org/14.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
 sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
 sudo apt autoremove -y
 
+sudo apt install -y openjdk-11-jdk-headless
+sudo apt install -y openjdk-10-jdk-headless
+sudo apt install -y openjdk-9-jdk-headless
 sudo apt install -y openjdk-8-jdk-headless
+# sudo apt install -y openjdk-7-jdk-headless
+# sudo apt install -y openjdk-6-jdk-headless
 ~/.toolbox/bin/brazil setup --java
 
-~/.rbenv/bin/rbenv install jruby-9.1.9.0
-~/.rbenv/bin/rbenv install jruby-9.2.1.0
+~/.nodenv/bin/nodenv install 10.13.0
+~/.nodenv/bin/nodenv install 8.12.0
+# ~/.nodenv/bin/nodenv install 6.14.4
+~/.toolbox/bin/brazil setup --node
+
+~/.rbenv/bin/rbenv install 2.4.5
+~/.rbenv/bin/rbenv install 2.3.8
+~/.rbenv/bin/rbenv install 2.1.10
+~/.rbenv/bin/rbenv install jruby-1.7.27 # 1.9 is still required for ridiculous reasons
 ~/.toolbox/bin/brazil setup --ruby
 
-sudo apt install -y -t testing python-pip
-/usr/bin/pip2 install -U pip
-~/.local/bin/pip install --user awscli
+~/.pyenv/bin/pyenv install 3.5.6
+~/.pyenv/bin/pyenv install 3.4.9
+~/.pyenv/bin/pyenv install 3.3.6 # no patching provided for 3.3.7
+~/.pyenv/bin/pyenv install 3.2.6
+~/.pyenv/bin/pyenv install 3.1.5
+~/.pyenv/bin/pyenv install 2.7.15
+# ~/.pyenv/bin/pyenv install 2.6.9
+# ~/.pyenv/bin/pyenv install 2.5.6
+# ~/.pyenv/bin/pyenv install 2.4.6
 ~/.toolbox/bin/brazil setup --python
 
 # Ninja Dev Sync
