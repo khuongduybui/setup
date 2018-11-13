@@ -42,13 +42,14 @@ if test -z $INIT
     end
     echo $EDITOR
 
-    ### DOCKER
-    set -x DOCKER_HOST "unix:///var/run/docker.sock"
+    ### DOCKER for CCD 2.0
+    # set -x DOCKER_HOST "unix:///var/run/docker.sock"
 
     ### Languages
     set -x LANG en_US.UTF-8
 
     ### Colors
+    set_color $fish_color_operator; echo Setting color theme; set_color normal
     set -x theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
     set -x theme_powerline_fonts yes
     set -x theme_nerd_fonts yes
@@ -78,6 +79,10 @@ if test -z $INIT
         set -x DISPLAY :0
         set -x LIBGL_ALWAYS_INDIRECT 1
         set -x NO_AT_BRIDGE 1
+
+        if test -f $W/setup/win-utils/ColorTool.exe
+            __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
+        end
 
         test (umask) -eq 0022; or umask 0022
 
