@@ -7,21 +7,17 @@ function font-init
         if grep -q /etc/fonts/local.conf -e 'AppData/Local/Microsoft/Windows/Fonts'
             echo Done
         else
-            echo You need to add the following
-            echo ----
-            echo "<dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>"
-            echo ----
-            echo to /etc/fonts/local.conf
+            echo -n Adding...
+            sudo sed -i "s/<fontconfig>/<fontconfig>\n<dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>" /etc/wsl.conf
+            echo Done
         end
         echo -n System fonts...
         if grep -q /etc/fonts/local.conf -e "$WROOT/c/Windows/Fonts"
             echo Done
         else
-            echo You need to add the following
-            echo ----
-            echo "<dir>$WROOT/c/Windows/Fonts</dir>"
-            echo ----
-            echo to /etc/fonts/local.conf
+            echo -n Adding...
+            sudo sed -i "s/<fontconfig>/<fontconfig>\n<dir>$WROOT/c/Windows/Fonts</dir>" /etc/wsl.conf
+            echo Done
         end
     else
         echo '<?xml version="1.0"?>' | sudo tee /etc/fonts/local.conf
