@@ -14,7 +14,7 @@ if test -z $INIT
     which nodenv >/dev/null 2>&1; and source (nodenv init - | psub)
     test -d ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
     test -x ~/.pyenv/bin/pyenv; and set -x PATH ~/.pyenv/bin $PATH
-    which pyenv >/dev/null 2>&1; and source (pyenv init - | psub)
+    which pyenv >/dev/null 2>&1; and source (pyenv init - | psub); and source (pyenv virtualenv-init - | psub)
     test -d ~/.local/bin; and set -x PATH ~/.local/bin $PATH
     test -x ~/.rbenv/bin/rbenv; and set -x PATH ~/.rbenv/bin $PATH
     test -d ~/.rbenv/plugins/ruby-build/bin; and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
