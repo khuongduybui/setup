@@ -32,9 +32,9 @@ if test -z $INIT
     if not __is_dev_desktop
         which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
     end
-    if which code >/dev/null 2>&1
+    if which code >/dev/null 2>&1; and not test -e ~/.disable-vscode
         set -x EDITOR (which code)' -nw'
-    else if which subl >/dev/null 2>&1
+    else if which subl >/dev/null 2>&1; and not test -e ~/.disable-sublime
         set -x EDITOR (which subl)' -nw'
     else
         set -x EDITOR (which io.elementary.code 2>/dev/null; or which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)

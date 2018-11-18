@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Theme - Monokai Pro/Monokai Pro.tmTheme",
+	"color_scheme": "Monokai.sublime-color-scheme",
 	"default_line_ending": "unix",
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "FuraCode Nerd Font",
@@ -9,6 +9,6 @@
 		"Vintage"
 	],
 	"tab_size": 2,
-	"theme": "Monokai Pro.sublime-theme",
+	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true
 }
