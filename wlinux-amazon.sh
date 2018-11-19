@@ -101,7 +101,7 @@ sudo apt install -y openjdk-8-jdk-headless
 ~/.toolbox/bin/brazil setup --python
 
 # Ninja Dev Sync
-curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.1.0.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
+curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.2.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
 chmod 755 ~/.toolbox/bin/ninja-dev-sync
 ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
 sudo apt install -y inotify-tools
