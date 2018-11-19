@@ -3,6 +3,7 @@ source ~/setup/fallback.fish
 
 ## Completions
 complete -c c2c -x -a '(__fish_complete_c2c)'
+complete -c ips -x -a '(__fish_complete_ips)'
 complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 if test -z $INIT
