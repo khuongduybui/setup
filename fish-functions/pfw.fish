@@ -11,7 +11,7 @@ function pfw
 		set destination $argv[2]
 	end
 	echo "Redirecting traffic from port $destination to $argv[1]"
-	if test ($destination -le 101)
+	if test $destination -le 101
         sudo socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
     else
         socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
