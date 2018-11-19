@@ -107,3 +107,7 @@ ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
 sudo apt install -y inotify-tools
 echo "fs.inotify.max_user_watches = 1000000" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
+
+# AWS CLI Plugins
+~/.pyenv/shims/pip install --user git+ssh://git.amazon.com/pkg/BenderLibIsengard
+~/.pyenv/shims/pip install --user git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
