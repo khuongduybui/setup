@@ -3,8 +3,8 @@ function aps
 	set -lx ADDITIONAL_PATH $PATH
     test -d /apollo/env/envImprovement
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/envImprovement/bin
-    test -d /apollo/env/AmazonAwsCli
-    and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/AmazonAwsCli/bin
+    # test -d /apollo/env/AmazonAwsCli
+    # and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/AmazonAwsCli/bin
     test -d /apollo/env/BarkCLI
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/BarkCLI/bin
     test -d /apollo/env/OdinTools
@@ -26,7 +26,7 @@ function aps
     or set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
     set -lx SDE_CLI_BIN /apollo/env/SDETools/bin
     set -x BRAZIL_PLATFORM_OVERRIDE RHEL5_64
-    
+
     getopts $argv | while read -l key value
         switch $key
             case legacy
@@ -41,14 +41,14 @@ function aps
     if test -z $APS_PATH
         test -x $BRAZIL_CLI_BIN/brazil; and set -x APS_PATH $BRAZIL_CLI_BIN
     end
-  
+
     if not test -z $APS_PATH
         set -lx PATH $ADDITIONAL_PATH $APS_PATH
         if test -z $EXEC
             if __is_mac
                 /usr/local/bin/fish
             else
-                /usr/bin/fish                          
+                /usr/bin/fish
             end
         else
             if __is_mac
