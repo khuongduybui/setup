@@ -54,11 +54,12 @@ if test -z $INIT
     set -x theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
     set -x theme_powerline_fonts yes
     set -x theme_nerd_fonts yes
-    __is_night; and set -x theme_color_scheme solarized-dark; or set -x theme_color_scheme solarized-light
+    # __is_night; and set -x theme_color_scheme solarized-dark; or set -x theme_color_scheme solarized-light
+    set -x theme_color_scheme terminal2-dark-white
     __is_dev_desktop; and set -x theme_display_hostname no
     __is_dev_desktop; and set -x theme_display_user no
-    __is_dev_desktop; and set -x theme_color_scheme terminal-dark-white
-
+    __is_dev_desktop; and set -x theme_color_scheme terminal2-dark-white
+    
     ### Abbreviations
     source ~/setup/abbreviations.fish
 
@@ -88,7 +89,8 @@ if test -z $INIT
         set -x NO_AT_BRIDGE 1
 
         if test -f $W/setup/win-utils/ColorTool.exe
-            __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
+            # __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
+            eval $W/setup/win-utils/ColorTool.exe -x BirdsOfParadise
         end
 
         test (umask) -eq 0022; or umask 0022
