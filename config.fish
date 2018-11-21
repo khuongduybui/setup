@@ -57,6 +57,7 @@ if test -z $INIT
     __is_night; and set -x theme_color_scheme solarized-dark; or set -x theme_color_scheme solarized-light
     __is_dev_desktop; and set -x theme_display_hostname no
     __is_dev_desktop; and set -x theme_display_user no
+    __is_dev_desktop; and set -x theme_color_scheme terminal-dark-white
 
     ### Abbreviations
     source ~/setup/abbreviations.fish
