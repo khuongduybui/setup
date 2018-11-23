@@ -44,7 +44,10 @@ if test -z $INIT
     echo $EDITOR
 
     ### DOCKER for CCD 2.0
-    # set -x DOCKER_HOST "unix:///var/run/docker.sock"
+    if test -x /usr/bin/docker-relay
+        sudo /usr/bin/docker-relay
+        set -x DOCKER_HOST "unix:///var/run/docker.sock"
+    end
 
     ### Languages
     set -x LANG en_US.UTF-8
