@@ -146,7 +146,7 @@ yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip 2>&1 | grep -q -v mnt &&\
-pip install --user pylint autopep8
+pip install --user --no-warn-script-location pylint autopep8
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem 2>&1 | grep -q -v mnt &&\
@@ -156,5 +156,5 @@ gem install rubocop rufo
 # echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
 # echo 'set -g default-command /usr/bin/fish' >> ~/.byobu/.tmux.conf
 
-which gsettings 2>/dev/null && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
+# which gsettings 2>/dev/null && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
 echo '=== Goodbye ==='
