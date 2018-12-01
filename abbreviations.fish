@@ -10,6 +10,7 @@ abbr ssh-odin 'ssh -N um-odin'
 
 abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 
+abbr a abbr
 abbr acc 'accounts'
 abbr d 'dot'
 abbr c 'c2c'
@@ -53,3 +54,8 @@ abbr tpd 'npm install --save-dev --only=dev'
 abbr wlinux-setup 'test -f /etc/setup; and bash /etc/setup'
 abbr wlinux-help 'test -f /etc/helpme; and bash /etc/helpme'
 abbr cdw 'cd $WHOME'
+
+abbr fp feathers-plus
+abbr fpg feathers-plus generate
+abbr fpgs feathers-plus generate service
+abbr fpgh feathers-plus generate hook

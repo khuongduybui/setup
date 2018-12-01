@@ -8,7 +8,7 @@ function rsync-aws
     if test -f ~/.aws/config
         ls -R ~/.local/lib | grep -q BenderLibIsengard; and sed -i 's/;isengard = isengard.plugin/isengard = isengard.plugin/' ~/.aws/config
         ls -R ~/.local/lib | grep -q GoshawkBotocore; and sed -i 's/;goshawk = goshawk/goshawk = goshawk/' ~/.aws/config
-        host duybui.aka.amazon.com >/dev/null; and scp ~/.aws/* duybui.aka.amazon.com:~/.aws/
+        getent hosts duybui.aka.amazon.com >/dev/null; and scp ~/.aws/* duybui.aka.amazon.com:~/.aws/
     end
     echo Done
 end
