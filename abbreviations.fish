@@ -10,7 +10,7 @@ abbr ssh-odin 'ssh -N um-odin'
 
 abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 
-abbr a abbr
+abbr a add-abbr
 abbr acc 'accounts'
 abbr d 'dot'
 abbr c 'c2c'
@@ -24,6 +24,7 @@ abbr bdf 'bit diff --ignore-space-change'
 abbr gdf 'git diff --ignore-space-change'
 abbr bdft 'git difftool -y --ignore-space-change'
 abbr gdft 'git difftool -y --ignore-space-change'
+abbr gbe git checkout --orphan
 abbr gb 'git branch'
 abbr gbr 'git branch -r'
 abbr gbD 'git branch -D'
