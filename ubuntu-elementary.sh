@@ -13,6 +13,3 @@ sudo mkdir -p /etc/io.elementary.appcenter
 sudo touch /etc/io.elementary.appcenter/appcenter.blacklist
 
 gconftool --set --type=string /orgs/pantheon/-terminal/settings/encoding UTF-8
-
-mkdir -p ~/.config
-ln -s ~/setup/gtk-3.0 ~/.config

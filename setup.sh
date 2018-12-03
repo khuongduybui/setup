@@ -1,6 +1,11 @@
 #! /bin/bash
 echo "=== Setting up global preferences ==="
 
+mkdir -p ~/.config
+test -d ~/.config/gtk-3.0 && mv ~/.config/gtk-3.0 mv ~/.config/gtk-3.0.`date +%Y-%m-%d`.bak
+ln -s ~/setup/gtk-3.0 ~/.config
+test -f ~/.gtkrc-2.0 || ln -s ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
+
 mkdir -p ~/.config/fish/conf.d
 test -f ~/.config/fish/conf.d/$USER.fish || ln -s ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
 test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
