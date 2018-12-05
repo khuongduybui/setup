@@ -1,18 +1,15 @@
-# Defined in /tmp/fish.RYYt16/__read_confirm.fish @ line 2
 function __read_confirm
-	set -l default n
+	set -l title 'Confirm'
+  set -l message 'Do you want to continue?'
 
 	getopts $argv | while read -l key value
 		switch $key
-			case default
-				set default $value
+			case title
+				set title $value
+      case message
+        set message $value
 		end
 	end
 
-	switch (get --prompt="Do you want to continute? [y/n, default: $default]" --default=$default --rule=[yn] --no-case --silent=1)
-		case y
-			return 0
-		case n
-			return 1
-	end
+  whiptail --title $title --yesno $message 8 64
 end
