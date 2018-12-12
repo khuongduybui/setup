@@ -10,20 +10,20 @@ if test -z $INIT
     ## Global
     ### PATH
     set_color $fish_color_operator; echo Calculating PATH; set_color normal
-    test -d ~/bin; and set -x PATH ~/bin $PATH
-    test -x ~/.nodenv/bin/nodenv; and set -x PATH ~/.nodenv/bin $PATH
-    which nodenv >/dev/null 2>&1; and source (nodenv init - | psub)
-    test -d ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
-    test -x ~/.pyenv/bin/pyenv; and set -x PATH ~/.pyenv/bin $PATH
-    which pyenv >/dev/null 2>&1; and source (pyenv init - | psub); and source (pyenv virtualenv-init - | psub)
-    test -d ~/.local/bin; and set -x PATH ~/.local/bin $PATH
-    test -x ~/.rbenv/bin/rbenv; and set -x PATH ~/.rbenv/bin $PATH
-    test -d ~/.rbenv/plugins/ruby-build/bin; and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
-    which rbenv >/dev/null 2>&1; and source (rbenv init - | psub)
+    __missing_path ~/bin; and set -x PATH ~/bin $PATH
+    __missing_path ~/.nodenv/bin; and set -x PATH ~/.nodenv/bin $PATH
+    test -z $NODENV_SHELL; and which nodenv >/dev/null 2>&1; and source (nodenv init - | psub)
+    __missing_path ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
+    __missing_path ~/.pyenv/bin; and set -x PATH ~/.pyenv/bin $PATH
+    test -z $PYENV_SHELL; which pyenv >/dev/null 2>&1; and source (pyenv init - | psub); and source (pyenv virtualenv-init - | psub)
+    __missing_path ~/.local/bin; and set -x PATH ~/.local/bin $PATH
+    __missing_path ~/.rbenv/bin; and set -x PATH ~/.rbenv/bin $PATH
+    __missing_path ~/.rbenv/plugins/ruby-build/bin; and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
+    test -z $RBENV_SHELL; which rbenv >/dev/null 2>&1; and source (rbenv init - | psub)
     test -d /usr/local/go; and set -x GOROOT /usr/local/go;
-    test -n "$GOROOT"; and test -d $GOROOT/bin; and set -x PATH $GOROOT/bin $PATH
+    test -n "$GOROOT"; and __missing_path $GOROOT/bin; and set -x PATH $GOROOT/bin $PATH
     test -d ~/go; and set -x GOPATH ~/go
-    test -n "$GOPATH"; and test -d $GOPATH/bin; and set -x PATH $GOPATH/bin $PATH
+    test -n "$GOPATH"; and __missing_path $GOPATH/bin; and set -x PATH $GOPATH/bin $PATH
     varclear PATH
     # echo $PATH
     set -x HOME ~
