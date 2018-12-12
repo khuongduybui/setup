@@ -25,7 +25,7 @@ if test -z $INIT
     test -d ~/go; and set -x GOPATH ~/go
     test -n "$GOPATH"; and test -d $GOPATH/bin; and set -x PATH $GOPATH/bin $PATH
     varclear PATH
-    echo $PATH
+    # echo $PATH
     set -x HOME ~
 
     ### Editors
@@ -43,7 +43,7 @@ if test -z $INIT
     end
     echo $EDITOR
 
-    ### DOCKER for CCD 2.0
+    ### DOCKER bridge
     if test -x /usr/bin/docker-relay
         sudo /usr/bin/docker-relay
         set -x DOCKER_HOST "unix:///var/run/docker.sock"
@@ -61,8 +61,7 @@ if test -z $INIT
     set -x theme_color_scheme terminal2-dark-white
     __is_dev_desktop; and set -x theme_display_hostname no
     __is_dev_desktop; and set -x theme_display_user no
-    __is_dev_desktop; and set -x theme_color_scheme terminal2-dark-white
-    
+
     ### Abbreviations
     source ~/setup/abbreviations.fish
 
@@ -91,14 +90,14 @@ if test -z $INIT
         set -x LIBGL_ALWAYS_INDIRECT 1
         set -x NO_AT_BRIDGE 1
 
-        if test -f $W/setup/win-utils/ColorTool.exe
+        if status --is-login; and status --is-interactive; and test -f $W/setup/win-utils/ColorTool.exe
             # __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
             eval $W/setup/win-utils/ColorTool.exe -x BirdsOfParadise
         end
 
         test (umask) -eq 0022; or umask 0022
 
-        mount-workdocs
+        # mount-workdocs
         x-init
         font-init
     end
