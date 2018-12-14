@@ -16,7 +16,7 @@ abbr d 'dot'
 abbr c 'c2c'
 abbr v 'view'
 abbr e 'edit'
-abbr se 'sudo -E $EDITOR'
+abbr se 'eval "sudo -E $EDITOR --user-data-dir $HOME"'
 abbr s 'settings'
 abbr cmd command
 
