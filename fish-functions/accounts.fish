@@ -1,40 +1,35 @@
-# Defined in /var/folders/dz/y2q7pw153pz7gm62rj5n25_9qzr_wy/T//fish.unCYdU/accounts.fish @ line 2
+# Defined in /tmp/fish.t77qRE/accounts.fish @ line 2
 function accounts
-	if test -f ~/OneDrive/Essentials/accounts.ini
-        if test (count $argv) = 0
-            edit ~/OneDrive/Essentials/accounts.ini
-        else
-            egrep --color -i -e $argv[1] ~/OneDrive/Essentials/accounts.ini
-        end
-    else if test -f $WHOME/OneDrive/Essentials/accounts.ini
-        if test (count $argv) = 0
-            edit $WHOME/OneDrive/Essentials/accounts.ini
-        else
-            egrep --color -i -e $argv[1] $WHOME/OneDrive/Essentials/accounts.ini
-        end
-    else if test -f $WROOT/d/OneDrive/Essentials/accounts.ini
-        if test (count $argv) = 0
-            edit $WROOT/d/OneDrive/Essentials/accounts.ini
-        else
-            egrep --color -i -e $argv[1] $WROOT/d/OneDrive/Essentials/accounts.ini
-        end
-    else if test -f $WROOT/w/My\ Documents/Essentials/accounts.ini
-        if test (count $argv) = 0
-            edit $WROOT/w/My\ Documents/Essentials/accounts.ini
-        else
-            egrep --color -i -e $argv[1] $WROOT/w/My\ Documents/Essentials/accounts.ini
-        end
-    else
+    set -l location
+    test -f ~/OneDrive/Essentials/accounts.ini; and set location ~/OneDrive/Essentials/accounts.ini
+    test -f $WHOME/OneDrive/Essentials/accounts.ini; and set location $WHOME/OneDrive/Essentials/accounts.ini
+    wslpath 'D:/OneDrive/Essentials/accounts.ini' >/dev/null 2>&1; and set location (wslpath 'D:/OneDrive/Essentials/accounts.ini')
+    wslpath 'W:/My\ Documents/Essentials/accounts.ini' >/dev/null 2>&1; and set location (wslpath 'W:/My\ Documents/Essentials/accounts.ini' 2>/dev/null)
+
+    if test -z "$location"
         set_color $fish_color_error
         echo -n "ERROR: "
         set_color normal
         set_color $fish_color_param[1]
         echo -n "accounts.ini "
         set_color $fish_color_error
-        echo -n "not found under "
+        echo "not found in these locations:"
         set_color normal
-        # set_color $fish_color_param[2]
-        echo "~/OneDrive/Essentials" or "$WHOME/OneDrive/Essentials" or "$WROOT/d/OneDrive/Essentials" or "$WROOT/w/My Documents/OneDrive/Essentials"
-        return
+        echo "~/OneDrive/Essentials"
+        echo "$WDRIVE:/Users/$WUSER/OneDrive/Essentials"
+        echo "D:/OneDrive/Essentials"
+        echo "W:/My Documents/OneDrive/Essentials"
+        return -1
+    end
+
+    if test (count $argv) = 0
+        edit $location
+    else
+        set query $argv[1]
+        if grep -Ei -e $query $location | grep -q '= {'
+            grep --color=none -Eizo -e "[a-z0-9 .]*"$query"[^{]+\{[^}]+}" $location
+        else
+            grep -Ei -e $query $location
+        end
     end
 end
