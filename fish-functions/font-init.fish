@@ -11,18 +11,18 @@ function font-init
             echo Done
         end
         echo -n System fonts...
-        if grep -q /etc/fonts/local.conf -e "$WROOT/c/Windows/Fonts"
+        if grep -q /etc/fonts/local.conf -e (wslpath 'C:/Windows/Fonts')
             echo Done
         else
             echo -n Adding...
-            sudo sed -i "s|<fontconfig>|<fontconfig>\n    <dir>$WROOT/c/Windows/Fonts</dir>|" /etc/fonts/local.conf
+            sudo sed -i "s|<fontconfig>|<fontconfig>\n    <dir>"(wslpath 'C:/Windows/Fonts')"</dir>|" /etc/fonts/local.conf
             echo Done
         end
     else
         echo '<?xml version="1.0"?>' | sudo tee /etc/fonts/local.conf
         echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' | sudo tee -a /etc/fonts/local.conf
         echo '<fontconfig>' | sudo tee -a /etc/fonts/local.conf
-        echo "    <dir>$WROOT/c/Windows/Fonts</dir>" | sudo tee -a /etc/fonts/local.conf
+        echo "    <dir>"(wslpath 'C:/Windows/Fonts')"</dir>" | sudo tee -a /etc/fonts/local.conf
         echo "    <dir>$W/AppData/Local/Microsoft/Windows/Fonts</dir>" | sudo tee -a /etc/fonts/local.conf
         echo '</fontconfig>' | sudo tee -a /etc/fonts/local.conf
         echo Done

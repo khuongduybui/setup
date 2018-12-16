@@ -84,7 +84,7 @@ if test -z $INIT
         else
             set -x WROOT /mnt
         end
-        set -x WHOME $WROOT/$WDRIVE/Users/$WUSER
+        set -x WHOME (wslpath "$WDRIVE:/Users/$WUSER")
         set -x W $WHOME
         set -x DISPLAY :0
         set -x LIBGL_ALWAYS_INDIRECT 1
