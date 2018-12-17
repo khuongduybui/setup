@@ -104,6 +104,9 @@ if test -z $INIT
 
     set -x INIT true
 
+    ## Preload WPS
+    wps-init
+
     ## Load byobu
     if status --is-login; and status --is-interactive; and which byobu-launcher >/dev/null 2>&1
         set_color $fish_color_operator; echo Launching Byobu; set_color normal
