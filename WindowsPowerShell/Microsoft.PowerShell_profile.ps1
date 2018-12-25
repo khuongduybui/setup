@@ -1,5 +1,5 @@
 # Turn-on Verbose output as needed
-# $VerbosePreference = "Continue"
+$VerbosePreference = "Continue"
 
 # Set up custom paths for functions, scripts, modules
 $Profile = $myInvocation.mycommand.path
@@ -13,9 +13,9 @@ $FunctionPath = "$ProfilePath\Functions"
 if (Test-Path $FunctionPath) {
   Write-Verbose "Importing functions from $FunctionPath."
   foreach ($FunctionFile in $(Get-ChildItem $FunctionPath)) {
-    $FunctionName = $FunctionFile -replace "\.ps1", ""
+    $FunctionName = $($FunctionFile -replace "\.ps1", "").Replace($FunctionPath + "\", "")
     $Functions += $FunctionName
-    Import-Module "$FunctionPath\$FunctionFile" -Force
+    Import-Module "$FunctionPath\$FunctionName.ps1" -Force
   }
 }
 $ScriptPath = "$ProfilePath\Scripts"
@@ -29,7 +29,8 @@ if (Test-Path $ModulePath) {
   $DefaultModulePath = "$([Environment]::GetFolderPath("MyDocuments"))\(Window)?PowerShell\Modules"
   $env:PSModulePath = $env:PSModulePath -replace ($DefaultModulePath -replace "\\", "\\"), "$ModulePath"
   foreach ($ModuleFile in $(Get-ChildItem $ModulePath)) {
-    Import-Module "$ModulePath\$ModuleFile" -Force
+    $ModuleName = "$ModuleFile".Replace($ModulePath + "\", "")
+    Import-Module "$ModulePath\$ModuleName" -Force
   }
 }
 
@@ -39,7 +40,7 @@ $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
 foreach ($name in $names) {
   if ($path = [Environment]::GetFolderPath($name)) {
     $SpecialFolders[$name] = $path
-    Write-Verbose "$name detected at $path."
+    # Write-Verbose "$name detected at $path."
   }
 }
 $OneDrive = Find-OneDrive
