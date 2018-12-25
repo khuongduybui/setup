@@ -90,10 +90,10 @@ if test -z $INIT
         set -x LIBGL_ALWAYS_INDIRECT 1
         set -x NO_AT_BRIDGE 1
 
-        if status --is-login; and status --is-interactive; and test -f $W/setup/win-utils/ColorTool.exe
-            # __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
-            eval $W/setup/win-utils/ColorTool.exe -x BirdsOfParadise
-        end
+        # if status --is-login; and status --is-interactive; and test -f $W/setup/win-utils/ColorTool.exe
+        #     # __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
+        #     eval $W/setup/win-utils/ColorTool.exe -x BirdsOfParadise
+        # end
 
         test (umask) -eq 0022; or umask 0022
 

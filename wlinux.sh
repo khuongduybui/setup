@@ -4,7 +4,6 @@ echo "Install package manager"
 # sudo apt install -y gdebi
 
 echo "Install system utils"
-sudo apt install -t testing -y fish
 sudo apt install -y gtk3-engines-breeze
 sudo apt install -y byobu grc rsync
 sudo apt install -y mc
