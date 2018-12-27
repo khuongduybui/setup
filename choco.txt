@@ -1,8 +1,14 @@
-notepad3
 git
-powershell-core
 peazip
-googlechrome
+vivaldi
+
+powershell-core
+docker-for-windows
+docker # CLI only
+
+microsoft-teams
+
+postman
 
 vscode
 nodist
@@ -15,13 +21,7 @@ setpoint
 unifying
 logitech-options
 logitech-presentation
-
-postman
-unison
-docker-for-windows
-docker # CLI only
-
-microsoft-teams
+logitech-webcam-software
 
 advanced-renamer
 hwmonitor
@@ -47,3 +47,6 @@ geforce-game-ready-driver
 geforce-experience 
 
 vcxsrv
+notepad3
+googlechrome
+unison
