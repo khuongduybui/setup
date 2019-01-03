@@ -48,7 +48,7 @@ ln -s ~/setup/default.gitignore ~/.gitignore
 
 mkdir -p ~/bin
 mkdir -p ~/opt
-mkdir -p ~/code/test
+mkdir -p ~/code/test/src
 
 echo "=== Installing modules ==="
 
