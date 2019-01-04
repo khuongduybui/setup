@@ -1,6 +1,6 @@
 #! /bin/sh
 
-sudo apt -t testing install -y \
+sudo apt install -y \
 git-core wget curl build-essential software-properties-common xz-utils \
 libffi-dev libreadline-dev libsqlite3-dev libssl1.0-dev \
 zlib1g-dev libbz2-dev liblzma-dev \
