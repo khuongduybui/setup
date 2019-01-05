@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 sudo add-apt-repository -y ppa:elementary-os/stable
 sudo apt update -y
@@ -9,7 +9,7 @@ sudo apt upgrade -y
 # sudo apt install -y elementary-os-overlay
 # sudo apt upgrade -y
 
-sudo mkdir -p /etc/io.elementary.appcenter
-sudo touch /etc/io.elementary.appcenter/appcenter.blacklist
+# sudo mkdir -p /etc/io.elementary.appcenter
+# sudo touch /etc/io.elementary.appcenter/appcenter.blacklist
 
-gconftool --set --type=string /orgs/pantheon/-terminal/settings/encoding UTF-8
+# gconftool --set --type=string /orgs/pantheon/-terminal/settings/encoding UTF-8

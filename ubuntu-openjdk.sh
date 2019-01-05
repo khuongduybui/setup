@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 sudo apt install -y dirmngr
 sudo add-apt-repository -y ppa:openjdk-r/ppa

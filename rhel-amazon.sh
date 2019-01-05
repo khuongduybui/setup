@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 # install unison (disabled in favor of ninja-dev-sync)
 # unison_ver=2.48.3

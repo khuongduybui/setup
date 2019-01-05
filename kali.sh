@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 echo "Install package manager"
 sudo apt install -y wget gnupg2 rsync psmisc

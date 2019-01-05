@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 brew update; brew upgrade; brew cleanup
 updated=`brew cask outdated --quiet`

@@ -1,3 +1,5 @@
+#! /bin/bash
+
 sudo apt install -y mongodb # @TODO: test the following alternative
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian/#install-mongodb-community-edition
 # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4

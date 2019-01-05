@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 sudo apt install -y \
 git-core wget curl build-essential software-properties-common xz-utils \

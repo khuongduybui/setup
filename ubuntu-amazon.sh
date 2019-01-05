@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Latest GIT
 test -f ~/.gitignore.bak && rm ~/.gitignore.bak

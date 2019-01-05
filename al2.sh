@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 echo "Install package manager"
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 bash ~/setup/kali-mongodb.sh
 sudo apt install -y libfontconfig1 aha

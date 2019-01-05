@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 cd /etc/yum.repos.d/
 sudo wget http://download.opensuse.org/repositories/shells:fish:release:2/RedHat_RHEL-5/shells:fish:release:2.repo

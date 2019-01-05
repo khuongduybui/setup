@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/bash
 
 if which pip; then
     pip install --user awscli

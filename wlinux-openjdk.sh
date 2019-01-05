@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 sudo apt install -y dirmngr
 # From https://launchpad.net/~openjdk-r/+archive/ubuntu/ppa

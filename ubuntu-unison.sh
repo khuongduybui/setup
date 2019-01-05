@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 unison_ver=2.48.4
 sudo apt install ocaml

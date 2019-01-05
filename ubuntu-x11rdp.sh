@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/bash
 
 sudo apt install -y automake autoconf build-essential pkgconf zlib1g-dev
 sudo mkdir -p /opt/X11rdp
