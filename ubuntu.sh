@@ -16,6 +16,7 @@ sudo apt install -y vim byobu grc rsync jq
 sudo apt install -y mc screenfetch
 
 echo "Install dev tools"
+sudo apt install -y build-essential
 bash ~/setup/ubuntu-nodejs.sh
 bash ~/setup/ubuntu-openjdk.sh
 bash ~/setup/ubuntu-python.sh

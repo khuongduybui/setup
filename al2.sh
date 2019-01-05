@@ -1,25 +1,30 @@
 #! /bin/bash
 
 echo "Install package manager"
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+# sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install -y deltarpm
+sudo amazon-linux-extras install -y epel mate-desktop1.x
 
 echo "Install system utils"
-cd /etc/yum.repos.d/
-sudo wget https://download.opensuse.org/repositories/shells:fish:release:2/RHEL_7/shells:fish:release:2.repo
-sudo yum install -y fish neovim byobu
-sudo amazon-linux-extras install vim
-# @TODO mc screenfetch grc
+curl -L https://download.opensuse.org/repositories/shells:fish:release:2/RHEL_7/shells:fish:release:2.repo | sudo tee /etc/yum.repos.d/fish.repo
+sudo yum install -y fish
+
+sudo yum install -y neovim
+
+sudo amazon-linux-extras enable vim
+sudo yum install -y vim byobu rsync jq
+sudo yum install -y mc
+# TODO screenfetch grc
 
 echo "Install dev tools"
-wget -O - https://rpm.nodesource.com/setup_10.x | sudo -E bash - > /dev/null
-curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-sudo yum install -y \
-gcc-c++ make \
-nodejs yarn \
-
-sudo amazon-linux-extras install python3
+sudo yum groupinstall -y "Development Tools"
+bash ~/setup/al2-nodejs.sh
+bash ~/setup/al2-openjdk.sh
+bash ~/setup/al2-python.sh
+bash ~/setup/al2-ruby.sh
+~/.pyenv/shims/pip install --user --no-warn-script-location awscli
 
 echo "Update system"
-# sudo yum update -y
+sudo yum update -y
 
 which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)

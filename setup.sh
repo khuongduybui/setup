@@ -72,7 +72,7 @@ echo "RHEL detected. Installing core modules..." &&\
 bash ~/setup/rhel.sh
 
 test -f /etc/os-release &&\
-grep -q -i "Amazon Linux" /etc/os-release &&\
+grep -q -i "Amazon Linux 2" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
@@ -122,6 +122,18 @@ test -d /apollo/env &&\
 echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
 bash ~/setup/rhel-amazon.sh
 
+test -f /etc/os-release &&\
+grep -q -i "Amazon Linux 2" /etc/os-release &&\
+grep -q -i "Microsoft" /proc/version &&\
+echo "AL2 on Windows detected. Installing additional modules..." &&\
+bash ~/setup/al2-win.sh
+
+test -f /etc/os-release &&\
+grep -q -i "Amazon Linux 2" /etc/os-release &&\
+hostname -d | grep -q ant.amazon.com &&\
+echo "AL2 on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/al2-amazon.sh
+
 which wslfetch >/dev/null 2>&1 &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "WLinux on Windows detected. Installing additional modules..." &&\
@@ -147,7 +159,7 @@ bash ~/setup/kali-win.sh
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
 which node 2>&1 | grep -q -v mnt &&\
 which yarn 2>&1 | grep -q -v mnt &&\
-yarn global add commitizen cz-conventional-changelog npm/tink forever eslint
+yarn global add forever eslint
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip 2>&1 | grep -q -v mnt &&\
