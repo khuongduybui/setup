@@ -10,9 +10,9 @@ ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Amazon
 wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
-echo deb http://cascadia.corp.amazon.com/amazon trusty-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-echo deb http://cascadia.corp.amazon.com/amazon trusty-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
-echo deb http://cascadia.corp.amazon.com/amazon trusty-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon xenial-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update
 sudo apt install -y amazon-desktop-management
 
@@ -54,7 +54,7 @@ kinit -f
 # Toolbox
 echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
 echo 'DISTRIB_RELEASE=14.04' | sudo tee -a /etc/lsb-release
-echo 'DISTRIB_CODENAME=trusty' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_CODENAME=xenial' | sudo tee -a /etc/lsb-release
 echo 'DISTRIB_DESCRIPTION="Ubuntu 14.04 LTS"' | sudo tee -a /etc/lsb-release
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh

@@ -3,7 +3,7 @@
 sudo apt install -y dirmngr
 # From https://launchpad.net/~openjdk-r/+archive/ubuntu/ppa
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 86F44E2A
-echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/openjdk.list
+echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/openjdk.list
 sudo apt update -y
 sudo apt install -y default-jdk-headless
 
