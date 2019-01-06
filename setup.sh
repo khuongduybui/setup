@@ -172,9 +172,4 @@ test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem 2>&1 | grep -q -v mnt &&\
 gem install rubocop rufo
 
-# mkdir -p ~/.byobu
-# echo 'set -g default-shell /usr/bin/fish' > ~/.byobu/.tmux.conf
-# echo 'set -g default-command /usr/bin/fish' >> ~/.byobu/.tmux.conf
-
-# which gsettings 2>/dev/null && gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
 echo '=== Goodbye ==='

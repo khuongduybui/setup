@@ -13,7 +13,7 @@ bash ~/setup/wlinux-nodejs.sh
 bash ~/setup/wlinux-openjdk.sh
 bash ~/setup/wlinux-python.sh
 bash ~/setup/wlinux-ruby.sh
-~/.pyenv/shims/pip install --user --no-warn-script-location awscli
+test -e ~/.local/bin/awscli || ~/.pyenv/shims/pip install --user --no-warn-script-location awscli
 
 echo "Update system"
 sudo apt update -y
