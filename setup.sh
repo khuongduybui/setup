@@ -76,7 +76,8 @@ grep -q -i "Amazon Linux 2" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
-which wslfetch >/dev/null 2>&1 &&\
+which wslsys >/dev/null 2>&1 &&\
+wslsys 2>&1 | grep -q "WLinux" &&\
 echo "WLinux detected. Installing core modules..." &&\
 bash ~/setup/wlinux.sh
 
@@ -134,12 +135,14 @@ hostname -d | grep -q ant.amazon.com &&\
 echo "AL2 on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/al2-amazon.sh
 
-which wslfetch >/dev/null 2>&1 &&\
+which wslsys >/dev/null 2>&1 &&\
+wslsys 2>&1 | grep -q "WLinux" &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "WLinux on Windows detected. Installing additional modules..." &&\
 bash ~/setup/wlinux-win.sh
 
-which wslfetch >/dev/null 2>&1 &&\
+which wslsys >/dev/null 2>&1 &&\
+wslsys 2>&1 | grep -q "WLinux" &&\
 hostname -d | grep -q ant.amazon.com &&\
 echo "WLinux on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/wlinux-amazon.sh
