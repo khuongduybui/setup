@@ -32,7 +32,7 @@ fi
 sudo apt install -y krb5-user # krb5-multidev libkrb5-dev
 ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
 scp duybui.aka.amazon.com:/etc/krb5.conf ~
-sudo cp ~/krb5.conf /etc/krb5.conf
+sudo mv ~/krb5.conf /etc/krb5.conf
 sudo chown root:root /etc/krb5.conf
 kinit -f
 

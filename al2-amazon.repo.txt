@@ -1,0 +1,29 @@
+[dev-dsk-main]
+name=Amazon Developer Desktop GUI
+baseurl=http://cascadia.corp.amazon.com/dev-desktop-repos/main
+gpgcheck=0
+enabled=1
+
+[dev-dsk-updates]
+name=Amazon Developer Desktop GUI - Updates
+baseurl=http://cascadia.corp.amazon.com/dev-desktop-repos/updates
+gpgcheck=0
+enabled=1
+
+[al-main]
+name=2012.03 $basearch Server
+baseurl=http://kickstart.corp.amazon.com/amazon-linux/2012.03/main/$basearch
+gpgcheck=0
+enabled=1
+
+[al-updates]
+name=2012.03 $basearch Updates
+baseurl=http://kickstart.corp.amazon.com/amazon-linux/2012.03/updates/$basearch
+gpgcheck=0
+enabled=1
+
+[al-amazon]
+name=basearch Amazon
+baseurl=http://kickstart.corp.amazon.com/amazon-linux/2012.03/amazon/$basearch
+gpgcheck=0
+enabled=1
