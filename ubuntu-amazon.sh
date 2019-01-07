@@ -1,11 +1,9 @@
 #! /bin/bash
 
 # Latest GIT
-test -f ~/.gitignore.bak && rm ~/.gitignore.bak
-test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.bak
+test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.`date +%Y-%m-%d`.bak
 ln -s ~/setup/amazon.gitignore ~/.gitignore
-test -f ~/.gitconfig.bak && rm ~/.gitconfig.bak
-test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.bak
+test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.`date +%Y-%m-%d`.bak
 ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Amazon
@@ -14,17 +12,21 @@ echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-amazon main |
 echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
 echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update
-sudo apt install -y amazon-desktop-management
+sudo apt install -y amazon-ca-certificates
 # WSL doesn't need the following:
-# sudo apt install -y openssh-server apt-transport-https amazon-desktop-dhcp-config amazon-firstboot2 amazon-firefoxconfig-dev amazon-pbis-config
+# sudo apt install -y amazon-desktop-management openssh-server apt-transport-https amazon-desktop-dhcp-config amazon-firstboot2 amazon-firefoxconfig-dev amazon-pbis-config
 
 # Midway
-sudo apt install mwinit
+sudo apt install -y mwinit
 mkdir -p ~/bin
 curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh > ~/bin/mcurl
 chmod +x ~/bin/mcurl
-test -f ~/.ssh/id_rsa.pub || ssh-keygen
-mwinit -o
+if [ -f ~/.ssh/primary.pem.pub ]; then
+    test -f ~/.ssh/id_rsa.pub || ssh-keygen
+    mwinit -o
+else
+    mwinit -o -k ~/.ssh/primary.pem.pub
+fi
 
 # Kerberos
 sudo apt install -y krb5-user # krb5-multidev libkrb5-dev

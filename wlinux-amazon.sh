@@ -1,61 +1,64 @@
 #! /bin/bash
 
 # Latest GIT
-test -f ~/.gitignore.bak && rm ~/.gitignore.bak
-test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.bak
+test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.`date +%Y-%m-%d`.bak
 ln -s ~/setup/amazon.gitignore ~/.gitignore
-test -f ~/.gitconfig.bak && rm ~/.gitconfig.bak
-test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.bak
+test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.`date +%Y-%m-%d`.bak
 ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
-# # Amazon
-# wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
-# echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/amazon xenial-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
-# sudo apt update
+# Amazon
+wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
+echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon xenial-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
+sudo apt update -y
+sudo apt install -y amazon-ca-certificates
 # sudo apt install -y amazon-desktop-management
 
-# # Midway
-# curl http://http.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.2l-1~bpo8+1_amd64.deb -o /tmp/libssl1.0.0.deb
-# sudo apt install -y /tmp/libssl1.0.0.deb
-# sudo apt install -y mwinit
-# mkdir -p ~/bin
-# curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh -o ~/bin/mcurl
-# chmod +x ~/bin/mcurl
-# test -f ~/.ssh/id_rsa.pub || ssh-keygen
-# mwinit -o
+# Midway
+curl http://http.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.2l-1~bpo8+1_amd64.deb -o /tmp/libssl1.0.0.deb
+sudo apt install -y /tmp/libssl1.0.0.deb
+sudo apt install -y mwinit
+mkdir -p ~/bin
+curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh -o ~/bin/mcurl
+chmod +x ~/bin/mcurl
+if [ -f ~/.ssh/primary.pem.pub ]; then
+    test -f ~/.ssh/id_rsa.pub || ssh-keygen
+    mwinit -o
+else
+    mwinit -o -k ~/.ssh/primary.pem.pub
+fi
 
-# # Kerberos
-# sudo apt install -y krb5-user # krb5-multidev libkrb5-dev
-# ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
-# scp duybui.aka.amazon.com:/etc/krb5.conf ~
-# sudo cp ~/krb5.conf /etc/krb5.conf
-# sudo chown root:root /etc/krb5.conf
-# kinit -f
-# # If you have problems with your Kerberos credentials syncing to your xrdp session:
-# # Then add the following under the [libdefaults] section in /etc/krb5.conf:
-# # default_ccache_name = /tmp/krb5cc_%{uid}
+# Kerberos
+sudo apt install -y krb5-user # krb5-multidev libkrb5-dev
+ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
+scp duybui.aka.amazon.com:/etc/krb5.conf ~
+sudo cp ~/krb5.conf /etc/krb5.conf
+sudo chown root:root /etc/krb5.conf
+kinit -f
+# If you have problems with your Kerberos credentials syncing to your xrdp session:
+# Then add the following under the [libdefaults] section in /etc/krb5.conf:
+# default_ccache_name = /tmp/krb5cc_%{uid}
 
-# # yubi_age=$(( $(date +"%s") - $(stat -c "%Y" ~/.ssh/id_rsa-cert.pub) ))
-# # if [ "$yubi_age" -gt "36000" ] || ! klist -s; then
-# #     PASSWD=$(systemd-ask-password)
-# #     # Kinit checker
-# #     if ! klist -s; then
-# #         kinit -f <<< "$PASSWD" > /dev/null
-# #     fi
-# #     # mwinit checker
-# #     if [ "$yubi_age" -gt "36000" ]; then
-# #         mwinit -o < <(echo "$PASSWD" && cat) | sed -n '1!p'
-# #     fi
-# #     env -u PASSWD > /dev/null
-# # fi
+# yubi_age=$(( $(date +"%s") - $(stat -c "%Y" ~/.ssh/id_rsa-cert.pub) ))
+# if [ "$yubi_age" -gt "36000" ] || ! klist -s; then
+#     PASSWD=$(systemd-ask-password)
+#     # Kinit checker
+#     if ! klist -s; then
+#         kinit -f <<< "$PASSWD" > /dev/null
+#     fi
+#     # mwinit checker
+#     if [ "$yubi_age" -gt "36000" ]; then
+#         mwinit -o < <(echo "$PASSWD" && cat) | sed -n '1!p'
+#     fi
+#     env -u PASSWD > /dev/null
+# fi
 
 # # Toolbox
 # echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
-# echo 'DISTRIB_RELEASE=14.04' | sudo tee -a /etc/lsb-release
+# echo 'DISTRIB_RELEASE=16.04' | sudo tee -a /etc/lsb-release
 # echo 'DISTRIB_CODENAME=xenial' | sudo tee -a /etc/lsb-release
-# echo 'DISTRIB_DESCRIPTION="Ubuntu 14.04 LTS"' | sudo tee -a /etc/lsb-release
+# echo 'DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"' | sudo tee -a /etc/lsb-release
 # curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 # bash /tmp/toolbox-install.sh
 
@@ -64,7 +67,7 @@ ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # # Brazil 2.0
 # ~/.toolbox/bin/toolbox install brazilcli
-# https://ubuntu.pkgs.org/14.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
+# https://ubuntu.pkgs.org/16.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
 # curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
 # curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
 # sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
