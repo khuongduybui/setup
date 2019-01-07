@@ -22,10 +22,10 @@ mkdir -p ~/bin
 curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh > ~/bin/mcurl
 chmod +x ~/bin/mcurl
 if [ -f ~/.ssh/primary.pem.pub ]; then
+    mwinit -o -k ~/.ssh/primary.pem.pub
+else
     test -f ~/.ssh/id_rsa.pub || ssh-keygen
     mwinit -o
-else
-    mwinit -o -k ~/.ssh/primary.pem.pub
 fi
 
 # Kerberos
@@ -85,5 +85,5 @@ printf "\nfs.inotify.max_user_watches = 1000000\n" | sudo tee -a /etc/sysctl.con
 sudo sysctl -p
 
 # AWS CLI Plugins
-~/.pyenv/shims/pip install --user git+ssh://git.amazon.com/pkg/BenderLibIsengard
-~/.pyenv/shims/pip install --user git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
+~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
+~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1

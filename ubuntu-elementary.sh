@@ -1,6 +1,6 @@
 #! /bin/bash
 
-sudo add-apt-repository -y ppa:elementary-os/stable
+sudo add-apt-repository -y ppa:elementary-os/daily
 sudo apt update -y
 sudo apt install -y elementary-desktop
 sudo apt upgrade -y
