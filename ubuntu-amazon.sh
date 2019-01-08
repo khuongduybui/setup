@@ -44,6 +44,7 @@ bash /tmp/toolbox-install.sh
 ~/.toolbox/bin/toolbox install cr
 
 # Brazil 2.0
+sudo apt install -y libreadline6
 ~/.toolbox/bin/toolbox install brazilcli
 
 # sudo apt install -y openjdk-11-jdk-headless
