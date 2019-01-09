@@ -13,7 +13,6 @@ echo deb http://cascadia.corp.amazon.com/amazon xenial-thirdparty-partner partne
 echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update -y
 sudo apt install -y amazon-ca-certificates
-# sudo apt install -y amazon-desktop-management
 
 # Midway
 curl http://http.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.2l-1~bpo8+1_amd64.deb -o /tmp/libssl1.0.0.deb
@@ -30,7 +29,7 @@ else
 fi
 
 # Kerberos
-sudo apt install -y krb5-user # krb5-multidev libkrb5-dev
+sudo apt install -y krb5-user
 ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
 scp duybui.aka.amazon.com:/etc/krb5.conf ~
 sudo mv ~/krb5.conf /etc/krb5.conf
@@ -54,24 +53,24 @@ kinit -f
 #     env -u PASSWD > /dev/null
 # fi
 
-# # Toolbox
-# echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
-# echo 'DISTRIB_RELEASE=16.04' | sudo tee -a /etc/lsb-release
-# echo 'DISTRIB_CODENAME=xenial' | sudo tee -a /etc/lsb-release
-# echo 'DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"' | sudo tee -a /etc/lsb-release
-# curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
-# bash /tmp/toolbox-install.sh
+# Toolbox
+echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
+echo 'DISTRIB_RELEASE=16.04' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_CODENAME=xenial' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"' | sudo tee -a /etc/lsb-release
+curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
+bash /tmp/toolbox-install.sh
 
-# # CR tool
-# ~/.toolbox/bin/toolbox install cr
+# CR tool
+~/.toolbox/bin/toolbox install cr
 
-# # Brazil 2.0
-# ~/.toolbox/bin/toolbox install brazilcli
-# https://ubuntu.pkgs.org/16.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
-# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
-# curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
-# sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
-# sudo apt autoremove -y
+# Brazil 2.0
+~/.toolbox/bin/toolbox install brazilcli
+https://ubuntu.pkgs.org/16.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
+curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
+curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
+sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+sudo apt autoremove -y
 
 # sudo apt install -y openjdk-11-jdk-headless
 # sudo apt install -y openjdk-10-jdk-headless
@@ -103,14 +102,14 @@ kinit -f
 # # ~/.pyenv/bin/pyenv install 2.4.6
 # ~/.toolbox/bin/brazil setup --python
 
-# # Ninja Dev Sync
-# curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.2.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
-# chmod 755 ~/.toolbox/bin/ninja-dev-sync
-# ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
-# sudo apt install -y inotify-tools
-# echo "fs.inotify.max_user_watches = 1000000" | sudo tee -a /etc/sysctl.conf
-# sudo sysctl -p
+# Ninja Dev Sync
+curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.2.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
+chmod 755 ~/.toolbox/bin/ninja-dev-sync
+ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
+sudo apt install -y inotify-tools
+echo "fs.inotify.max_user_watches = 1000000" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
 
-# # AWS CLI Plugins
-# ~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
-# ~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
+# AWS CLI Plugins
+~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
+~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
