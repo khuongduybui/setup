@@ -19,9 +19,9 @@ bash ~/setup/wlinux-python.sh
 bash ~/setup/wlinux-ruby.sh
 test -e ~/.local/bin/awscli || ~/.pyenv/shims/pip install --user --no-warn-script-location awscli
 
-# echo "Update system"
-# sudo apt update -y
-# sudo apt upgrade -y
-# sudo apt autoremove -y
+echo "Update system"
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt autoremove -y
 
 which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
