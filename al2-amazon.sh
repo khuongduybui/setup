@@ -36,12 +36,13 @@ kinit -f
 # Toolbox
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh alinux
+~/.toolbox/bin/toolbox install --channel bh toolbox
 
 # CR tool
 ~/.toolbox/bin/toolbox install cr
 
 # Brazil 2.0
-~/.toolbox/bin/toolbox install brazilcli
+~/.toolbox/bin/toolbox install --channel bh brazilcli
 
 # Ninja Dev Sync
 curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.2.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync

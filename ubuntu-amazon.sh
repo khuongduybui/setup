@@ -39,13 +39,14 @@ kinit -f
 # Toolbox
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh
+~/.toolbox/bin/toolbox install --channel bh toolbox
 
 # CR tool
 ~/.toolbox/bin/toolbox install cr
 
 # Brazil 2.0
 sudo apt install -y libreadline6
-~/.toolbox/bin/toolbox install brazilcli
+~/.toolbox/bin/toolbox install --channel bh brazilcli
 
 # sudo apt install -y openjdk-11-jdk-headless
 # sudo apt install -y openjdk-10-jdk-headless

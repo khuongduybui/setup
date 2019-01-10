@@ -63,16 +63,17 @@ wget http://ftp.us.debian.org/debian/pool/main/c/curl/libcurl3_7.52.1-5+deb9u8_a
 sudo apt install -y --allow-downgrades /tmp/curl.deb /tmp/libcurl3.dev
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh
+~/.toolbox/bin/toolbox install --channel bh toolbox
 
 # CR tool
 ~/.toolbox/bin/toolbox install cr
 
 # Brazil 2.0
-~/.toolbox/bin/toolbox install brazilcli
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
 sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
 sudo apt autoremove -y
+~/.toolbox/bin/toolbox install --channel bh brazilcli
 
 # sudo apt install -y openjdk-11-jdk-headless
 # sudo apt install -y openjdk-10-jdk-headless
