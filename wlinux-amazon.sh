@@ -8,9 +8,9 @@ ln -s ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Amazon
 wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
-echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-echo deb http://cascadia.corp.amazon.com/amazon xenial-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
-echo deb http://cascadia.corp.amazon.com/amazon xenial-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon bionic-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon bionic-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
+echo deb http://cascadia.corp.amazon.com/amazon bionic-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
 sudo apt update -y
 sudo apt install -y amazon-ca-certificates
 
@@ -55,9 +55,9 @@ kinit -f
 
 # Toolbox
 echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
-echo 'DISTRIB_RELEASE=16.04' | sudo tee -a /etc/lsb-release
-echo 'DISTRIB_CODENAME=xenial' | sudo tee -a /etc/lsb-release
-echo 'DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_RELEASE=18.04' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_CODENAME=bionic' | sudo tee -a /etc/lsb-release
+echo 'DISTRIB_DESCRIPTION="Ubuntu 18.04 LTS"' | sudo tee -a /etc/lsb-release
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh
 
@@ -66,7 +66,6 @@ bash /tmp/toolbox-install.sh
 
 # Brazil 2.0
 ~/.toolbox/bin/toolbox install brazilcli
-https://ubuntu.pkgs.org/16.04/ubuntu-main-amd64/libjpeg8-dev_8c-2ubuntu8_amd64.deb.html
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
 curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
 sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
