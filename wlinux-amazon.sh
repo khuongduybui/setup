@@ -58,6 +58,9 @@ echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
 echo 'DISTRIB_RELEASE=18.04' | sudo tee -a /etc/lsb-release
 echo 'DISTRIB_CODENAME=bionic' | sudo tee -a /etc/lsb-release
 echo 'DISTRIB_DESCRIPTION="Ubuntu 18.04 LTS"' | sudo tee -a /etc/lsb-release
+wget http://ftp.us.debian.org/debian/pool/main/c/curl/curl_7.52.1-5+deb9u8_amd64.deb -O /tmp/curl.deb
+wget http://ftp.us.debian.org/debian/pool/main/c/curl/libcurl3_7.52.1-5+deb9u8_amd64.deb -O /tmp/libcurl3.deb
+sudo apt install -y --allow-downgrades /tmp/curl.deb /tmp/libcurl3.dev
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
 bash /tmp/toolbox-install.sh
 
