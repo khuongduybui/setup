@@ -58,7 +58,11 @@ echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
 echo 'DISTRIB_RELEASE=18.04' | sudo tee -a /etc/lsb-release
 echo 'DISTRIB_CODENAME=bionic' | sudo tee -a /etc/lsb-release
 echo 'DISTRIB_DESCRIPTION="Ubuntu 18.04 LTS"' | sudo tee -a /etc/lsb-release
-sudo apt install -y --allow-downgrades -t stretch-backports curl=7.52.1-5+deb9u8 libcurl3=7.52.1-5+deb9u8
+echo 'deb https://deb.debian.org/debian stable main contrib non-free' | sudo tee /etc/apt/sources.list.d/stretch.list
+echo 'deb https://deb.debian.org/debian stable-updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
+echo 'deb https://deb.debian.org/debian-security stable/updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
+sudo apt update -y
+sudo apt install -y --allow-downgrades curl=7.52.1-5+deb9u8 libcurl3=7.52.1-5+deb9u8
 sudo apt-mark hold curl libcurl3
 
 curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
