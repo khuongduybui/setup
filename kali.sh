@@ -1,24 +1,28 @@
 #! /bin/bash
 
 echo "Install package manager"
-sudo apt install -y wget gnupg2 rsync psmisc
-# sudo apt install -y gdebi
+sudo apt install -y curl wget gnupg2 psmisc
+sudo apt install -y gdebi apt-transport-https
 
 echo "Install system utils"
-sudo apt install -y fish vim neovim byobu
+sudo apt install -y fish
+
+sudo apt install -y neovim
+
+sudo apt install -y vim byobu grc rsync jq
 sudo apt install -y mc screenfetch
 
 echo "Install dev tools"
-wget -O - https://deb.nodesource.com/setup_9.x | sudo -E bash - > /dev/null
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update -y
-sudo apt install -y \
-build-essential dkms debhelper awscli \
-nodejs yarn \
-python-dev python-pip python3-dev python3-pip \
+sudo apt install -y build-essential
+bash ~/setup/kali-nodejs.sh
+bash ~/setup/kali-openjdk.sh
+bash ~/setup/kali-python.sh
+bash ~/setup/kali-ruby.sh
+test -e ~/.local/bin/awscli || ~/.pyenv/shims/pip install --user --no-warn-script-location awscli
 
 echo "Update system"
+sudo apt update -y
 sudo apt upgrade -y
+sudo apt autoremove -y
 
 which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
