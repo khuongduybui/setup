@@ -1,112 +1,112 @@
 --- /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:16:57.219047900 -0400
 +++ /home/duybui/.config/fisherman/bobthefish/fish_prompt.fish	2018-05-11 16:18:49.583681700 -0400
-@@ -87,6 +87,7 @@
-   # Replace $HOME with ~
-   set -l real_home ~
-   set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $current_dir))
-+  set -l parent_dir (string replace -r '^'"$WHOME"'($|/)' '$1' $parent_dir)
+@@ -88,6 +88,7 @@
+     # Replace $HOME with ~
+     set -l real_home ~
+     set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $child_dir))
++    set -l parent_dir (string replace -r '^'"$WHOME"'($|/)' '$1' $parent_dir)
 
-   # Must check whether `$parent_dir = /` if using native dirname
-   if [ -z "$parent_dir" ]
-@@ -303,6 +305,28 @@
-       set directory '/'
-     case "$HOME"
-       set directory '~'
-+    case "$WHOME"
-+      set directory ''
-+    case "$HOME/code/*/src/*"
-+      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
-+      set directory (string sub -s (math 7 + (string length $HOME) + 4 + (string length $parent) - 2) "$current_dir")
-+    case "$HOME/code/*"
-+      set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$current_dir"))[1]
-+      set directory (string sub -s (math 7 + (string length $HOME) + (string length $parent) + 1) "$current_dir")
-+      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
-+    case "$WHOME/code/aws/*/src/*"
-+      set parent    (string split "/" (string sub -s (math 24 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
-+      set directory (string sub -s (math 24 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
-+    case "$WHOME/code/*/src/*"
-+      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]' '$right_arrow_glyph' '(pwe)
-+      set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$current_dir")
-+    case "$WHOME/code/personal/*"
-+      set parent    (string split "/" (string sub -s (math 28 + (string length $WUSER)) "$current_dir"))[1]
-+      set directory (string sub -s (math 28 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
-+    case "$WHOME/code/*"
-+      set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$current_dir"))[1]
-+      set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$current_dir")
-+      [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
-     case '*'
-       set parent    (__bobthefish_pretty_parent "$current_dir")
-       set directory (__bobthefish_basename "$current_dir")
-@@ -922,5 +938,72 @@
-     __bobthefish_prompt_dir
-   end
+     # Must check whether `$parent_dir = /` if using native dirname
+     if [ -z "$parent_dir" ]
+@@ -335,6 +336,28 @@
+             set directory '/'
+         case "$HOME"
+             set directory '~'
++        case "$WHOME"
++            set directory ''
++        case "$HOME/code/*/src/*"
++            set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
++            set directory (string sub -s (math 7 + (string length $HOME) + 4 + (string length $parent) - 2) "$segment_dir")
++        case "$HOME/code/*"
++            set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$segment_dir"))[1]
++            set directory (string sub -s (math 7 + (string length $HOME) + (string length $parent) + 1) "$segment_dir")
++            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
++        case "$WHOME/code/aws/*/src/*"
++            set parent    (string split "/" (string sub -s (math 24 + (string length $WUSER)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
++            set directory (string sub -s (math 24 + (string length $WUSER) + 4 + (string length $parent) - 2) "$segment_dir")
++        case "$WHOME/code/*/src/*"
++            set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
++            set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$segment_dir")
++        case "$WHOME/code/personal/*"
++            set parent    (string split "/" (string sub -s (math 28 + (string length $WUSER)) "$segment_dir"))[1]
++            set directory (string sub -s (math 28 + (string length $WUSER) + (string length $parent) + 1) "$segment_dir")
++        case "$WHOME/code/*"
++            set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$segment_dir"))[1]
++            set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$segment_dir")
++            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
+         case '*'
+             set parent (__bobthefish_pretty_parent "$segment_dir")
+             set directory (__bobthefish_basename "$segment_dir")
+@@ -995,5 +1018,72 @@
+         __bobthefish_prompt_dir
+     end
 
-+  if test (which brazil 2>/dev/null)
-+    __bobthefish_start_segment yellow white
-+    echo -n " "
++    if test (which brazil 2>/dev/null)
++        __bobthefish_start_segment yellow white
++        echo -n " "
 +
-+    if klist -s
-+    else
-+      __bobthefish_start_segment red white
-+      echo -n " "
++        if klist -s
++        else
++            __bobthefish_start_segment red white
++            echo -n " "
++        end
++
++        if test -f ~/.ssh/primary.pem.pub; and mwinit -k ~/.ssh/primary.pem.pub -l | grep -q cookie
++        else if test -f ~/.ssh/id_rsa.pub; and mwinit -l | grep -q cookie
++        else
++            __bobthefish_start_segment white red
++            echo -n " "
++        end
 +    end
 +
-+    if test -f ~/.ssh/primary.pem.pub; and mwinit -k ~/.ssh/primary.pem.pub -l | grep -q cookie
-+    else if test -f ~/.ssh/id_rsa.pub; and mwinit -l | grep -q cookie
-+    else
-+      __bobthefish_start_segment white red
-+      echo -n " "
++    if test (which aws 2>/dev/null)
++        if test -n "$OPS"
++            __bobthefish_start_segment brblue white
++            echo -n " $OPS "
++        end
++
++        if test -n "$AWS_PROFILE"
++            __bobthefish_start_segment brblue white
++            echo -n " $AWS_PROFILE "
++        end
++
++        if test -n "$OPS"; or test -n "$AWS_PROFILE"
++            set -l aws_region (aws configure get region)
++            if test $aws_region != "us-east-1"
++                __bobthefish_start_segment white brblue
++                echo -n " $aws_region "
++            end
++        end
 +    end
-+  end
 +
-+  if test (which aws 2>/dev/null)
-+    if test -n "$OPS"
-+      __bobthefish_start_segment brblue white
-+      echo -n " $OPS "
++    if test (which rde 2>/dev/null)
++        if echo $DOCKER_HOST | grep -q tcp
++            __bobthefish_start_segment brblue white
++            echo -n " "
++        end
 +    end
 +
-+    if test -n "$AWS_PROFILE"
-+      __bobthefish_start_segment brblue white
-+      echo -n " $AWS_PROFILE "
++    if test (which bark 2>/dev/null)
++        if test -n "$BARK_PROFILE"
++            __bobthefish_start_segment brblue white
++            echo -n " $BARK_PROFILE "
++        else
++            if test -n "$BARK_ACCOUNT"
++                __bobthefish_start_segment brblue white
++                echo -n " $BARK_ACCOUNT "
++            end
++
++            if test -n "$BARK_MS"
++                __bobthefish_start_segment brblue white
++                echo -n " $BARK_MS "
++            end
++
++            if test -n "$BARK_REGION"; and [ $BARK_REGION != "iad" ]
++                __bobthefish_start_segment white brblue
++                echo -n " $BARK_REGION "
++            end
++        end
 +    end
 +
-+    if test -n "$OPS"; or test -n "$AWS_PROFILE"
-+      set -l aws_region (aws configure get region)
-+      if test $aws_region != "us-east-1"
-+        __bobthefish_start_segment white brblue
-+        echo -n " $aws_region "
-+      end
-+    end
-+  end
-+
-+  if test (which rde 2>/dev/null)
-+    if echo $DOCKER_HOST | grep -q tcp
-+      __bobthefish_start_segment brblue white
-+      echo -n " "
-+    end
-+  end
-+
-+  if test (which bark 2>/dev/null)
-+    if test -n "$BARK_PROFILE"
-+      __bobthefish_start_segment brblue white
-+      echo -n " $BARK_PROFILE "
-+    else
-+      if test -n "$BARK_ACCOUNT"
-+        __bobthefish_start_segment brblue white
-+        echo -n " $BARK_ACCOUNT "
-+      end
-+
-+      if test -n "$BARK_MS"
-+        __bobthefish_start_segment brblue white
-+        echo -n " $BARK_MS "
-+      end
-+
-+      if test -n "$BARK_REGION"; and [ $BARK_REGION != "iad" ]
-+        __bobthefish_start_segment white brblue
-+        echo -n " $BARK_REGION "
-+      end
-+    end
-+  end
-+
-   __bobthefish_finish_segments
+     __bobthefish_finish_segments
  end
