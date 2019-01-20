@@ -1,50 +1,53 @@
 #! /bin/bash
 echo "=== Setting up global preferences ==="
 
+backup-and-link() {
+    source="$1"
+    destination="$2"
+    [[ $2 =~ /$ ]] && destination="$2`basename $1`"
+    echo "$ ln -s $source $destination"
+    rm -rf "$destination.`date +%Y-%m-%d`.bak"
+    test -e "$destination" && mv "$destination" "$destination.`date +%Y-%m-%d`.bak"
+    ln -s "$source" "$destination"
+}
+
 mkdir -p ~/.config
-test -d ~/.config/gtk-3.0 && mv ~/.config/gtk-3.0 mv ~/.config/gtk-3.0.`date +%Y-%m-%d`.bak
-ln -s ~/setup/gtk-3.0 ~/.config
-test -f ~/.gtkrc-2.0 || ln -s ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
+backup-and-link ~/setup/gtk-3.0 ~/.config/
+backup-and-link ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
 
 mkdir -p ~/.config/fish/conf.d
-test -f ~/.config/fish/conf.d/$USER.fish || ln -s ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
-test -f ~/.config/fish/fishfile || ln -s ~/setup/fishfile ~/.config/fish/fishfile
-test -d ~/.config/fish/functions || ln -s ~/setup/fish-functions ~/.config/fish/functions
+backup-and-link ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
+backup-and-link ~/setup/fishfile ~/.config/fish/
+backup-and-link ~/setup/fish-functions ~/.config/fish/functions
 
-test -d ~/.config/powershell && mv ~/.config/powershell ~/.config/powershell.`date +%Y-%m-%d`.bak
-ln -s ~/setup/WindowsPowerShell ~/.config/powershell
+backup-and-link ~/setup/WindowsPowerShell ~/.config/powershell
 
 mkdir -p ~/.config/sublime-text-3/Packages/User
-test -f ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings && mv ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings.`date +%Y-%m-%d`.bak
-ln -s ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
+backup-and-link ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
 
 mkdir -p ~/.config/micro
-test -f ~/.config/micro/settings.json || ln -s ~/setup/micro.json ~/.config/micro/settings.json
+backup-and-link ~/setup/micro.json ~/.config/micro/settings.json
 
 mkdir -p ~/.config/bark
-test -d ~/.config/bark/profiles || ln -s ~/setup/bark-profiles ~/.config/bark/profiles
+backup-and-link ~/setup/bark-profiles ~/.config/bark/profiles
 
-test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.`date +%Y-%m-%d`.bak
-ln -s ~/setup/.vimrc ~/
+backup-and-link ~/setup/.vimrc ~/
 mkdir -p ~/.config/nvim
-test -f ~/.config/nvim/init.vim && mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.`date +%Y-%m-%d`.bak
-ln -s ~/setup/.vimrc ~/.config/nvim/init.vim
-test -d ~/.vim/bundle || mkdir -p ~/.vim/bundle
-test -d ~/.vim/bundle/vundle || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+backup-and-link ~/setup/.vimrc ~/.config/nvim/init.vim
+mkdir -p ~/.vim/bundle
+if [ -d ~/.vim/bundle/vundle ]; then
+    echo "$ cd  ~/.vim/bundle/vundle; git pull; cd -"
+    cd ~/.vim/bundle/vundle; git pull; cd -
+else
+    echo "$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle"
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+fi
 
-test -f ~/.czrc && mv ~/.czrc ~/.czrc.`date +%Y-%m-%d`.bak
-ln -s ~/setup/.czrc ~/
+backup-and-link ~/setup/.editorconfig ~/
 
-test -f ~/.editorconfig && mv ~/.editorconfig ~/.editorconfig.`date +%Y-%m-%d`.bak
-ln -s ~/setup/.editorconfig ~/
-test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.`date +%Y-%m-%d`.bak
-ln -s ~/setup/default.gitconfig ~/.gitconfig
-test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.`date +%Y-%m-%d`.bak
-ln -s ~/setup/default.gitignore ~/.gitignore
-
-# curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-# chmod u+x nvim.appimage
-# ./nvim.appimage
+backup-and-link ~/setup/.czrc ~/
+backup-and-link ~/setup/default.gitconfig ~/.gitconfig
+backup-and-link ~/setup/default.gitignore ~/.gitignore
 
 mkdir -p ~/bin
 mkdir -p ~/opt
