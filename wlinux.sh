@@ -12,12 +12,14 @@ sudo apt install -y vim byobu grc rsync jq
 sudo apt install -y mc screenfetch
 
 echo "Install dev tools"
-sudo apt install -y build-essential
+sudo apt install -y build-essential python python-pip # python2
 bash ~/setup/wlinux-nodejs.sh
 bash ~/setup/wlinux-openjdk.sh
 bash ~/setup/wlinux-python.sh
 bash ~/setup/wlinux-ruby.sh
 test -e ~/.local/bin/awscli || ~/.pyenv/shims/pip install --user --no-warn-script-location awscli
+sudo /usr/bin/pip install --upgrade pip
+sudo /usr/bin/pip install --upgrade neovim
 
 echo "Update system"
 sudo apt update -y

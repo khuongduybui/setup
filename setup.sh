@@ -165,14 +165,15 @@ bash ~/setup/kali-win.sh
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
 which node 2>&1 | grep -q -v mnt &&\
 which yarn 2>&1 | grep -q -v mnt &&\
-yarn global add forever eslint
+yarn global add forever eslint neovim
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip 2>&1 | grep -q -v mnt &&\
-pip install --user --no-warn-script-location pylint autopep8
+pip install --user --no-warn-script-location pylint autopep8 neovim
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem 2>&1 | grep -q -v mnt &&\
-gem install rubocop rufo
+gem install rubocop rufo neovim
+rbenv rehash
 
 echo '=== Goodbye ==='
