@@ -6,4 +6,7 @@ echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" 
 sudo apt update -y
 sudo apt install -y code libxss1 libasound2 libx11-xcb-dev
 
-grep -q /etc/sysctl.conf -e "fs.inotify.max_user_watches" || (echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf && sudo sysctl -p)
+if ! grep -q /etc/sysctl.conf -e "fs.inotify.max_user_watches"; then
+    echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+    sudo sysctl -p
+fi

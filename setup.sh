@@ -1,15 +1,15 @@
 #! /bin/bash
-echo "=== Setting up global preferences ==="
 
 backup-and-link() {
     source="$1"
     destination="$2"
     [[ $2 =~ /$ ]] && destination="$2`basename $1`"
-    echo "$ ln -s $source $destination"
     rm -rf "$destination.`date +%Y-%m-%d`.bak"
     test -e "$destination" && mv "$destination" "$destination.`date +%Y-%m-%d`.bak"
     ln -s "$source" "$destination"
 }
+
+echo "=== Setting up global preferences ==="
 
 mkdir -p ~/.config
 backup-and-link ~/setup/gtk-3.0 ~/.config/
@@ -36,10 +36,8 @@ mkdir -p ~/.config/nvim
 backup-and-link ~/setup/.vimrc ~/.config/nvim/init.vim
 mkdir -p ~/.vim/bundle
 if [ -d ~/.vim/bundle/vundle ]; then
-    echo "$ cd  ~/.vim/bundle/vundle; git pull; cd -"
     cd ~/.vim/bundle/vundle; git pull; cd -
 else
-    echo "$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle"
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 fi
 
@@ -94,9 +92,8 @@ grep -q -Ei "kali" /etc/issue &&\
 echo "Kali detected. Installing core modules..." &&\
 bash ~/setup/kali.sh
 
-echo 'Core modules have been installed.'
-
 echo '=== Additional modules ==='
+
 test -f /etc/issue &&\
 grep -q -Ei "arch" /etc/issue &&\
 grep -q -i "Microsoft" /proc/version &&\
@@ -162,6 +159,8 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
+echo '=== Common development tools ==='
+
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
 which node 2>&1 | grep -q -v mnt &&\
 which yarn 2>&1 | grep -q -v mnt &&\
@@ -169,7 +168,7 @@ yarn global add forever eslint neovim
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip 2>&1 | grep -q -v mnt &&\
-pip install --user --no-warn-script-location pylint autopep8 neovim
+pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem 2>&1 | grep -q -v mnt &&\

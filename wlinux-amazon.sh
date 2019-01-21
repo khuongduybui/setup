@@ -1,10 +1,17 @@
 #! /bin/bash
 
+backup-and-link() {
+    source="$1"
+    destination="$2"
+    [[ $2 =~ /$ ]] && destination="$2`basename $1`"
+    rm -rf "$destination.`date +%Y-%m-%d`.bak"
+    test -e "$destination" && mv "$destination" "$destination.`date +%Y-%m-%d`.bak"
+    ln -s "$source" "$destination"
+}
+
 # Latest GIT
-test -f ~/.gitignore && mv ~/.gitignore ~/.gitignore.`date +%Y-%m-%d`.bak
-ln -s ~/setup/amazon.gitignore ~/.gitignore
-test -f ~/.gitconfig && mv ~/.gitconfig ~/.gitconfig.`date +%Y-%m-%d`.bak
-ln -s ~/setup/amazon.gitconfig ~/.gitconfig
+backup-and-link ~/setup/amazon.gitignore ~/.gitignore
+backup-and-link ~/setup/amazon.gitconfig ~/.gitconfig
 
 # Amazon
 wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
@@ -15,108 +22,106 @@ sudo apt update -y
 sudo apt install -y amazon-ca-certificates
 
 # Midway
-curl http://http.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.2l-1~bpo8+1_amd64.deb -o /tmp/libssl1.0.0.deb
-sudo apt install -y /tmp/libssl1.0.0.deb
-sudo apt install -y mwinit
-mkdir -p ~/bin
-curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh -o ~/bin/mcurl
-chmod +x ~/bin/mcurl
-if [ -f ~/.ssh/primary.pem.pub ]; then
-    mwinit -o -k ~/.ssh/primary.pem.pub
-else
-    test -f ~/.ssh/id_rsa.pub || ssh-keygen
-    mwinit -o
+if ! which mwinit >/dev/null 2>&1; then
+    curl http://http.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.2l-1~bpo8+1_amd64.deb -o /tmp/libssl1.0.0.deb
+    sudo apt install -y /tmp/libssl1.0.0.deb
+    sudo apt install -y mwinit
+    mkdir -p ~/bin
+    curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh -o ~/bin/mcurl
+    chmod +x ~/bin/mcurl
+    if [ -f ~/.ssh/primary.pem.pub ]; then
+        mwinit -o -k ~/.ssh/primary.pem.pub
+    else
+        test -f ~/.ssh/id_rsa.pub || ssh-keygen
+        mwinit -o
+    fi
 fi
 
 # Kerberos
-sudo apt install -y krb5-user
-ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
-scp duybui.aka.amazon.com:/etc/krb5.conf ~
-sudo mv ~/krb5.conf /etc/krb5.conf
-sudo chown root:root /etc/krb5.conf
-kinit -f
-# If you have problems with your Kerberos credentials syncing to your xrdp session:
-# Then add the following under the [libdefaults] section in /etc/krb5.conf:
-# default_ccache_name = /tmp/krb5cc_%{uid}
-
-# yubi_age=$(( $(date +"%s") - $(stat -c "%Y" ~/.ssh/id_rsa-cert.pub) ))
-# if [ "$yubi_age" -gt "36000" ] || ! klist -s; then
-#     PASSWD=$(systemd-ask-password)
-#     # Kinit checker
-#     if ! klist -s; then
-#         kinit -f <<< "$PASSWD" > /dev/null
-#     fi
-#     # mwinit checker
-#     if [ "$yubi_age" -gt "36000" ]; then
-#         mwinit -o < <(echo "$PASSWD" && cat) | sed -n '1!p'
-#     fi
-#     env -u PASSWD > /dev/null
-# fi
+if ! which kinit >/dev/null 2>&1; then
+    sudo apt install -y krb5-user
+    ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
+    scp duybui.aka.amazon.com:/etc/krb5.conf ~
+    sudo mv ~/krb5.conf /etc/krb5.conf
+    sudo chown root:root /etc/krb5.conf
+    kinit -f
+fi
 
 # Toolbox
-echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
-echo 'DISTRIB_RELEASE=18.04' | sudo tee -a /etc/lsb-release
-echo 'DISTRIB_CODENAME=bionic' | sudo tee -a /etc/lsb-release
-echo 'DISTRIB_DESCRIPTION="Ubuntu 18.04 LTS"' | sudo tee -a /etc/lsb-release
-echo 'deb https://deb.debian.org/debian stable main contrib non-free' | sudo tee /etc/apt/sources.list.d/stretch.list
-echo 'deb https://deb.debian.org/debian stable-updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
-echo 'deb https://deb.debian.org/debian-security stable/updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
-sudo apt update -y
-sudo apt install -y --allow-downgrades curl=7.52.1-5+deb9u8 libcurl3=7.52.1-5+deb9u8
-sudo apt-mark hold curl libcurl3
+if [ ! -e ~/.toolbox/bin/toolbox ]; then
+    echo 'DISTRIB_ID=Ubuntu' | sudo tee /etc/lsb-release
+    echo 'DISTRIB_RELEASE=18.04' | sudo tee -a /etc/lsb-release
+    echo 'DISTRIB_CODENAME=bionic' | sudo tee -a /etc/lsb-release
+    echo 'DISTRIB_DESCRIPTION="Ubuntu 18.04 LTS"' | sudo tee -a /etc/lsb-release
+    echo 'deb https://deb.debian.org/debian stable main contrib non-free' | sudo tee /etc/apt/sources.list.d/stretch.list
+    echo 'deb https://deb.debian.org/debian stable-updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
+    echo 'deb https://deb.debian.org/debian-security stable/updates main' | sudo tee -a /etc/apt/sources.list.d/stretch.list
+    sudo apt update -y
+    sudo apt install -y --allow-downgrades curl=7.52.1-5+deb9u8 libcurl3=7.52.1-5+deb9u8
+    sudo apt-mark hold curl libcurl3
 
-curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
-bash /tmp/toolbox-install.sh
-~/.toolbox/bin/toolbox install --channel bh toolbox
+    curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
+    bash /tmp/toolbox-install.sh
+    ~/.toolbox/bin/toolbox install --channel bh toolbox
+else
+     ~/.toolbox/bin/toolbox update
+fi
 
 # CR tool
-~/.toolbox/bin/toolbox install cr
+if [ ! -e ~/.toolbox/bin/cr ]; then
+    ~/.toolbox/bin/toolbox install cr
+fi
 
 # Brazil 2.0
-curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
-curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
-sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
-sudo apt autoremove -y
-~/.toolbox/bin/toolbox install --channel bh brazilcli
+if [ ! -e ~/.toolbox/bin/brazil ]; then
+    curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb -o /tmp/libreadline6.deb
+    curl http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6-dev_6.3-8+b3_amd64.deb -o /tmp/libreadline6-dev.deb
+    sudo apt install -y /tmp/libreadline6.deb /tmp/libreadline6-dev.deb
+    sudo apt autoremove -y
+    ~/.toolbox/bin/toolbox install --channel bh brazilcli
 
-# sudo apt install -y openjdk-11-jdk-headless
-# sudo apt install -y openjdk-10-jdk-headless
-# sudo apt install -y openjdk-9-jdk-headless
-# sudo apt install -y openjdk-8-jdk-headless
-# # sudo apt install -y openjdk-7-jdk-headless
-# # sudo apt install -y openjdk-6-jdk-headless
-# ~/.toolbox/bin/brazil setup --java
+    # sudo apt install -y openjdk-11-jdk-headless
+    # sudo apt install -y openjdk-10-jdk-headless
+    # sudo apt install -y openjdk-9-jdk-headless
+    # sudo apt install -y openjdk-8-jdk-headless
+    # # sudo apt install -y openjdk-7-jdk-headless
+    # # sudo apt install -y openjdk-6-jdk-headless
+    # ~/.toolbox/bin/brazil setup --java
 
-# ~/.nodenv/bin/nodenv install 10.13.0
-# ~/.nodenv/bin/nodenv install 8.12.0
-# # ~/.nodenv/bin/nodenv install 6.14.4
-# ~/.toolbox/bin/brazil setup --node
+    # ~/.nodenv/bin/nodenv install 10.13.0
+    # ~/.nodenv/bin/nodenv install 8.12.0
+    # # ~/.nodenv/bin/nodenv install 6.14.4
+    # ~/.toolbox/bin/brazil setup --node
 
-# ~/.rbenv/bin/rbenv install 2.4.5
-# ~/.rbenv/bin/rbenv install 2.3.8
-# ~/.rbenv/bin/rbenv install 2.1.10
-# ~/.rbenv/bin/rbenv install jruby-1.7.27 # 1.9 is still required for ridiculous reasons
-# ~/.toolbox/bin/brazil setup --ruby
+    # ~/.rbenv/bin/rbenv install 2.4.5
+    # ~/.rbenv/bin/rbenv install 2.3.8
+    # ~/.rbenv/bin/rbenv install 2.1.10
+    # ~/.rbenv/bin/rbenv install jruby-1.7.27 # 1.9 is still required for ridiculous reasons
+    # ~/.toolbox/bin/brazil setup --ruby
 
-# ~/.pyenv/bin/pyenv install 3.5.6
-# ~/.pyenv/bin/pyenv install 3.4.9
-# ~/.pyenv/bin/pyenv install 3.3.6 # no patching provided for 3.3.7
-# ~/.pyenv/bin/pyenv install 3.2.6
-# ~/.pyenv/bin/pyenv install 3.1.5
-# ~/.pyenv/bin/pyenv install 2.7.15
-# # ~/.pyenv/bin/pyenv install 2.6.9
-# # ~/.pyenv/bin/pyenv install 2.5.6
-# # ~/.pyenv/bin/pyenv install 2.4.6
-# ~/.toolbox/bin/brazil setup --python
+    # ~/.pyenv/bin/pyenv install 3.5.6
+    # ~/.pyenv/bin/pyenv install 3.4.9
+    # ~/.pyenv/bin/pyenv install 3.3.6 # no patching provided for 3.3.7
+    # ~/.pyenv/bin/pyenv install 3.2.6
+    # ~/.pyenv/bin/pyenv install 3.1.5
+    # ~/.pyenv/bin/pyenv install 2.7.15
+    # # ~/.pyenv/bin/pyenv install 2.6.9
+    # # ~/.pyenv/bin/pyenv install 2.5.6
+    # # ~/.pyenv/bin/pyenv install 2.4.6
+    # ~/.toolbox/bin/brazil setup --python
+fi
 
 # Ninja Dev Sync
-curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.2.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
+curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.8.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
 chmod 755 ~/.toolbox/bin/ninja-dev-sync
+rm -f ~/.toolbox/bin/nds
 ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
-sudo apt install -y inotify-tools
-echo "fs.inotify.max_user_watches = 1000000" | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p
+if ! grep -q /etc/sysctl.conf -e "fs.inotify.max_user_watches"; then
+    sudo apt install -y inotify-tools
+    echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+    sudo sysctl -p
+fi
 
 # AWS CLI Plugins
-~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
-~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
+~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade git+ssh://git.amazon.com/pkg/BenderLibIsengard
+~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
