@@ -19,6 +19,7 @@ sudo yum install -y mc # @TODO: screenfetch
 
 echo "---Install dev tools---"
 sudo yum groupinstall -y "Development Tools"
+sudo yum install -y python2 python2-pip
 bash ~/setup/al2-nodejs.sh
 bash ~/setup/al2-openjdk.sh
 bash ~/setup/al2-python.sh
