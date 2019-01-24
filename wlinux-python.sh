@@ -11,6 +11,7 @@ if ! [ -e ~/.pyenv/bin/pyenv ]; then
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
     ~/.pyenv/bin/pyenv install 3.7.1
     ~/.pyenv/bin/pyenv global 3.7.1
-    ~/.pyenv/shims/pip install --upgrade pip
-    ~/.pyenv/bin/pyenv rehash
 fi
+
+~/.pyenv/shims/pip install --upgrade pip
+~/.pyenv/bin/pyenv rehash
