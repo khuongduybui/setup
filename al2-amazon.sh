@@ -24,7 +24,7 @@ fi
 echo "--- Install Midway ---"
 if ! which mwinit >/dev/null 2>&1; then
     # From https://w.amazon.com/index.php/NextGenMidway/UserGuide#Linux
-    sudo yum install amazon-midway-init
+    sudo yum install -y amazon-midway-init
 fi
 mkdir -p ~/bin
 curl https://s3.amazonaws.com/com.amazon.aws.midway.software/linux/mcurl.sh > ~/bin/mcurl
