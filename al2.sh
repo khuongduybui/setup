@@ -6,8 +6,10 @@ sudo yum install -y deltarpm
 sudo amazon-linux-extras install -y epel mate-desktop1.x
 
 echo "--- Install system utils ---"
-curl -L https://download.opensuse.org/repositories/shells:fish:release:2/RHEL_7/shells:fish:release:2.repo | sudo tee /etc/yum.repos.d/fish.repo
-sudo yum install -y fish
+if [ ! -e /etc/yum.repos.d/fish.repo ]; then
+    curl -L https://download.opensuse.org/repositories/shells:fish:release:2/RHEL_7/shells:fish:release:2.repo | sudo tee /etc/yum.repos.d/fish.repo
+    sudo yum install -y fish
+fi
 
 sudo yum install -y neovim
 
