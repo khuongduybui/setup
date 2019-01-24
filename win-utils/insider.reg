@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection]
+"UIContentType"="Skip"
+"UIBranch"="external"
+"UIRing"="WIF"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\Applicability]
+"UseSettingsExperience"=dword:00000000
+"EnablePreviewBuilds"=dword:00000002
+"IsRetailOS"=dword:00000000
+"IsConfigSettingsFlightingEnabled"=dword:00000001
+"IsConfigExpFlightingEnabled"=dword:00000000
+"FlightingOwnerSID"="S-1-5-21-1407069837-2091007605-538272213-16101904"
+"ContentType"="Skip"
+"BranchName"="external"
+"Ring"="WIF"
+"RingId"=dword:0000000a
+"IsBuildFlightingEnabled"=dword:00000001

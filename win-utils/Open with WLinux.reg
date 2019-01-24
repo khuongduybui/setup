@@ -1,9 +1,13 @@
-    Windows Registry Editor Version 5.00
-    [HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\WLinux]
-    @="Open with WLinux"
-    [HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\WLinux\command]
-    @="wlinux.exe run bash -c '\"cd \\\"$(wslpath \\\"%V\\\")\\\" && $(getent passwd $LOGNAME | cut -d: -f7)\"'"
-    [HKEY_CURRENT_USER\Software\Classes\Directory\shell\WLinux]
-    @="Open with WLinux"
-    [HKEY_CURRENT_USER\Software\Classes\Directory\shell\WLinux\command]
-    @="wlinux.exe run bash -c '\"cd \\\"$(wslpath \\\"%V\\\")\\\" && $(getent passwd $LOGNAME | cut -d: -f7)\"'"
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\WLinux]
+@="Open with WLinux"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\WLinux\command]
+@="wlinux.exe run bash -c '\"cd \\\"$(wslpath \\\"%V\\\")\\\" && $(getent passwd $LOGNAME | cut -d: -f7)\"'"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\WLinux]
+@="Open with WLinux"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\WLinux\command]
+@="wlinux.exe run bash -c '\"cd \\\"$(wslpath \\\"%V\\\")\\\" && $(getent passwd $LOGNAME | cut -d: -f7)\"'"
