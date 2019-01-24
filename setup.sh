@@ -159,6 +159,12 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
+test -f /etc/issue &&\
+grep -q -Ei "kali" /etc/issue &&\
+hostname -d | grep -q ant.amazon.com &&\
+echo "Kali on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/kali-amazon.sh
+
 echo '=== Common development tools ==='
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
