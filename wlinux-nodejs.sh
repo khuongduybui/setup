@@ -6,7 +6,7 @@ if ! [ -e ~/.nodenv/bin/nodenv ]; then
     ~/.nodenv/bin/nodenv global 11.1.0
 fi
 
-if ! which yarn >/dev/null 2>&1; then
+if ! [ -e /etc/apt/sources.list.d/yarn.list ]; then
     # From https://yarnpkg.com/en/docs/install#debian-stable
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
