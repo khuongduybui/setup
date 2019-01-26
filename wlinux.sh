@@ -18,7 +18,7 @@ bash ~/setup/wlinux-openjdk.sh
 bash ~/setup/wlinux-python.sh
 bash ~/setup/wlinux-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
-sudo /usr/bin/pip install --upgrade pip
+sudo /usr/bin/pip* install --upgrade pip
 
 echo "--- Update system ---"
 sudo apt update -y
