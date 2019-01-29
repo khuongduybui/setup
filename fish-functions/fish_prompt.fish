@@ -1038,19 +1038,19 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
 
     if test (which aws 2>/dev/null)
         if test -n "$OPS"
-            __bobthefish_start_segment brblue white
+            __bobthefish_start_segment blue white
             echo -n " $OPS "
         end
 
         if test -n "$AWS_PROFILE"
-            __bobthefish_start_segment brblue white
+            __bobthefish_start_segment blue white
             echo -n " $AWS_PROFILE "
         end
 
         if test -n "$OPS"; or test -n "$AWS_PROFILE"
             set -l aws_region (aws configure get region)
             if test $aws_region != "us-east-1"
-                __bobthefish_start_segment white brblue
+                __bobthefish_start_segment white blue
                 echo -n " $aws_region "
             end
         end
@@ -1058,28 +1058,28 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
 
     if test (which rde 2>/dev/null)
         if echo $DOCKER_HOST | grep -q tcp
-            __bobthefish_start_segment brblue white
+            __bobthefish_start_segment blue white
             echo -n " "
         end
     end
 
     if test (which bark 2>/dev/null)
         if test -n "$BARK_PROFILE"
-            __bobthefish_start_segment brblue white
+            __bobthefish_start_segment blue white
             echo -n " $BARK_PROFILE "
         else
             if test -n "$BARK_ACCOUNT"
-                __bobthefish_start_segment brblue white
+                __bobthefish_start_segment blue white
                 echo -n " $BARK_ACCOUNT "
             end
 
             if test -n "$BARK_MS"
-                __bobthefish_start_segment brblue white
+                __bobthefish_start_segment blue white
                 echo -n " $BARK_MS "
             end
 
             if test -n "$BARK_REGION"; and [ $BARK_REGION != "iad" ]
-                __bobthefish_start_segment white brblue
+                __bobthefish_start_segment white blue
                 echo -n " $BARK_REGION "
             end
         end

@@ -102,6 +102,13 @@ if test -z $INIT
         font-init
     end
 
+    ### Amazon
+    if test -z $REQUESTS_CA_BUNDLE
+        test -e /etc/ssl/certs/ca-certificates.crt; and set -x REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
+        test -e /etc/ssl/certs/ca-bundle.crt; and set -x REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-bundle.crt
+        echo $REQUESTS_CA_BUNDLE
+    end
+
     set -x INIT true
 
     ## Preload WPS
