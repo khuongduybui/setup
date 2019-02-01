@@ -25,7 +25,8 @@ bash ~/setup/al2-openjdk.sh
 bash ~/setup/al2-python.sh
 bash ~/setup/al2-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
-sudo /usr/bin/pip* install --upgrade pip
+test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
+test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip
 
 echo "Update system"
 sudo yum update -y

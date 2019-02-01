@@ -22,7 +22,8 @@ bash ~/setup/ubuntu-openjdk.sh
 bash ~/setup/ubuntu-python.sh
 bash ~/setup/ubuntu-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
-sudo /usr/bin/pip* install --upgrade pip
+test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
+test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip
 
 echo "--- Update system ---"
 sudo apt update -y
