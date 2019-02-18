@@ -165,6 +165,12 @@ hostname -d | grep -q ant.amazon.com &&\
 echo "Kali on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/kali-amazon.sh
 
+if grep -q -i "Microsoft" /proc/version; then
+    echo '=== WSL detected. Running additional config ==='
+    sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
+    sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
+fi
+
 echo '=== Common development tools ==='
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"

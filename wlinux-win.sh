@@ -10,5 +10,3 @@ backup-and-link() {
 }
 
 backup-and-link ~/setup/wsl.conf /etc/
-
-sudo wslview -r 2>/dev/null || (sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/wslview 1 && sudo update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/wslview 1)
