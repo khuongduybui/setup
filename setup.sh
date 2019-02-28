@@ -185,6 +185,6 @@ pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovi
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem 2>&1 | grep -q -v mnt &&\
 gem install rubocop rufo neovim
-rbenv rehash
+~/.rbenv/bin/rbenv rehash
 
 echo '=== Goodbye ==='
