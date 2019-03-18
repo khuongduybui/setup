@@ -40,33 +40,34 @@ fi
 echo "--- Install Kerberos ---"
 if ! which kinit >/dev/null 2>&1; then
     sudo yum install -y krb5-workstation
-    ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
-    scp duybui.aka.amazon.com:/etc/krb5.conf ~
-    sudo mv ~/krb5.conf /etc/krb5.conf
+    sudo cp ~/setup/amazon-krb5.conf /etc/krb5.conf
     sudo chown root:root /etc/krb5.conf
 fi
 klist -s || kinit -f
 
 # Toolbox
 echo "--- Install Builder Toolbox ---"
-if [ ! -e ~/.toolbox/bin/toolbox ]; then
-    curl --negotiate -fLSsu: 'https://drive.corp.amazon.com/view/BuilderToolbox/toolbox-install.sh' -o /tmp/toolbox-install.sh
-    bash /tmp/toolbox-install.sh alinux
-    ~/.toolbox/bin/toolbox install --channel bh toolbox
+if ! which toolbox >/dev/null 2>&1; then
+    sudo yum install -y toolbox
+    toolbox install --channel bh toolbox
 else
-    ~/.toolbox/bin/toolbox update
+    toolbox update
 fi
 
 # CR tool
 echo "--- Install CR util ---"
 if [ ! -e ~/.toolbox/bin/cr ]; then
-    ~/.toolbox/bin/toolbox install cr
+    toolbox install cr
 fi
 
 # Brazil 2.0
 echo "--- Install Brazil 2.0 ---"
 if [ ! -e ~/.toolbox/bin/brazil ]; then
-    ~/.toolbox/bin/toolbox install --channel bh brazilcli
+    toolbox install --channel bh brazilcli
+fi
+if [ ! -e /apollo/sbin/envroot ]; then
+    sudo mkdir -p /apollo/sbin
+    sudo cp ~/setup/al2-envroot.bin /apollo/sbin/envroot
 fi
 
 # Ninja Dev Sync
