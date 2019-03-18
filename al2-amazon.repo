@@ -1,5 +1,5 @@
 [cloud-dev-dsk]
 name=Cloud Developer Desktop
-baseurl=http://kingfisher/v1/CLOUD-DESKTOP-LIVE-$$AZ$$/dev-dsk-al2-poc/
+baseurl=http://kingfisher-iad6.iad.corp.amazon.com/v1/CLOUD-DESKTOP-LIVE-IAD6/dev-dsk-al2-poc/
 gpgcheck=0
 enabled=1
