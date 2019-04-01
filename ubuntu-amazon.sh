@@ -17,9 +17,9 @@ backup-and-link ~/setup/amazon.gitconfig ~/.gitconfig
 echo "--- Install Amazon repositories ---"
 if ! [ -e /etc/apt/sources.list.d/amazon.list ]; then
     wget --no-check-certificate -qO - https://cascadia.corp.amazon.com/amazon/clienteng.gpg | sudo apt-key add -
-    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
-    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
-    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs)-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
+    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
+    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
+    echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
     sudo apt update
     sudo apt install -y amazon-ca-certificates
 fi
