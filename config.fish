@@ -33,7 +33,7 @@ if test -z $INIT
     if not __is_dev_desktop; and not test -e ~/.disable-dbus
         which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
     end
-    if which code >/dev/null 2>&1; and begin; not __is_win; or not wslpath -w (which code) >/dev/null 2>&1; end; and not test -e ~/.disable-vscode; and not test -e ~/.disable-dbus
+    if which code >/dev/null 2>&1; and begin; not __is_win; or not __is_win_path (which code); end; and not test -e ~/.disable-vscode; and not test -e ~/.disable-dbus
         set -x EDITOR (which code)' -nw'
     else if which subl >/dev/null 2>&1; and not test -e ~/.disable-sublime; and not test -e ~/.disable-dbus
         set -x EDITOR (which subl)' -nw'
