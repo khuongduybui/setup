@@ -41,7 +41,7 @@ abbr gamz 'git config --global user.email duybui@amazon.com'
 abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr region 'aws configure set region'
 abbr lsenv 'l /apollo/env/'
-abbr nds 'nohup ~/.toolbox/bin/ninja-dev-sync > (mktemp) &'
+abbr nds 'killall -9 ninja-dev-sync 2>/dev/null; nohup ~/.toolbox/bin/ninja-dev-sync > (mktemp) &'
 
 abbr mongodb 'sudo service mongodb'
 abbr rethinkdb 'sudo service rethinkdb'
