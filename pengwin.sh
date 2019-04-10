@@ -13,10 +13,10 @@ sudo apt install -y mc screenfetch
 
 echo "--- Install dev tools ---"
 sudo apt install -y build-essential python python-pip # python2
-bash ~/setup/wlinux-nodejs.sh
-bash ~/setup/wlinux-openjdk.sh
-bash ~/setup/wlinux-python.sh
-bash ~/setup/wlinux-ruby.sh
+bash ~/setup/pengwin-nodejs.sh
+bash ~/setup/pengwin-openjdk.sh
+bash ~/setup/pengwin-python.sh
+bash ~/setup/pengwin-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
 test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
 test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip

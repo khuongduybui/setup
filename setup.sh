@@ -77,10 +77,10 @@ grep -q -i "Amazon Linux 2" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
-which wslsys >/dev/null 2>&1 &&\
-wslsys 2>&1 | grep -q "WLinux" &&\
-echo "WLinux detected. Installing core modules..." &&\
-bash ~/setup/wlinux.sh
+test -f /etc/issue &&\
+grep -q -i "Pengwin" /etc/issue &&\
+echo "Pengwin detected. Installing core modules..." &&\
+bash ~/setup/pengwin.sh
 
 test -f /etc/issue &&\
 grep -q -i "openSUSE" /etc/issue &&\
@@ -135,17 +135,17 @@ hostname -d | grep -q ant.amazon.com &&\
 echo "AL2 on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/al2-amazon.sh
 
-which wslsys >/dev/null 2>&1 &&\
-wslsys 2>&1 | grep -q "WLinux" &&\
+test -f /etc/issue &&\
+grep -q -i "Pengwin" /etc/issue &&\
 grep -q -i "Microsoft" /proc/version &&\
-echo "WLinux on Windows detected. Installing additional modules..." &&\
-bash ~/setup/wlinux-win.sh
+echo "Pengwin on Windows detected. Installing additional modules..." &&\
+bash ~/setup/pengwin-win.sh
 
-which wslsys >/dev/null 2>&1 &&\
-wslsys 2>&1 | grep -q "WLinux" &&\
+test -f /etc/issue &&\
+grep -q -i "Pengwin" /etc/issue &&\
 hostname -d | grep -q ant.amazon.com &&\
-echo "WLinux on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/wlinux-amazon.sh
+echo "Pengwin on Amazon device detected. Installing additional modules..." &&\
+bash ~/setup/pengwin-amazon.sh
 
 test -f /etc/issue &&\
 grep -q -i "openSUSE" /etc/issue &&\
