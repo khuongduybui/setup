@@ -77,8 +77,8 @@ grep -q -i "Amazon Linux 2" /etc/os-release &&\
 echo "AL2 detected. Installing core modules..." &&\
 bash ~/setup/al2.sh
 
-test -f /etc/issue &&\
-grep -q -i "Pengwin" /etc/issue &&\
+test -f /etc/os-release &&\
+grep -q -i "Pengwin" /etc/os-release &&\
 echo "Pengwin detected. Installing core modules..." &&\
 bash ~/setup/pengwin.sh
 
@@ -135,14 +135,14 @@ hostname -d | grep -q ant.amazon.com &&\
 echo "AL2 on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/al2-amazon.sh
 
-test -f /etc/issue &&\
-grep -q -i "Pengwin" /etc/issue &&\
+test -f /etc/os-release &&\
+grep -q -i "Pengwin" /etc/os-release &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "Pengwin on Windows detected. Installing additional modules..." &&\
 bash ~/setup/pengwin-win.sh
 
-test -f /etc/issue &&\
-grep -q -i "Pengwin" /etc/issue &&\
+test -f /etc/os-release &&\
+grep -q -i "Pengwin" /etc/os-release &&\
 hostname -d | grep -q ant.amazon.com &&\
 echo "Pengwin on Amazon device detected. Installing additional modules..." &&\
 bash ~/setup/pengwin-amazon.sh
