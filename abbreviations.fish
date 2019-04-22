@@ -38,6 +38,8 @@ abbr y 'yarn'
 abbr gll 'git config --global user.email duy.bui@lunarline.com'
 abbr gamz 'git config --global user.email duybui@amazon.com'
 
+abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
+
 abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr region 'aws configure set region'
 abbr lsenv 'l /apollo/env/'
