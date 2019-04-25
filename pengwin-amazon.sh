@@ -45,13 +45,14 @@ fi
 echo "--- Install Kerberos ---"
 if ! which kinit >/dev/null 2>&1; then
     sudo apt install -y krb5-user
+fi
+if getent hosts duybui.aka.amazon.com >/dev/null; then
     ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
     scp duybui.aka.amazon.com:/etc/krb5.conf ~
     sudo mv ~/krb5.conf /etc/krb5.conf
     sudo chown root:root /etc/krb5.conf
+    klist -s || kinit -f
 fi
-klist -s || kinit -f
-
 # Toolbox
 echo "--- Install Builder Toolbox ---"
 if [ ! -e ~/.toolbox/bin/toolbox ]; then
