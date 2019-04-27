@@ -18,8 +18,7 @@ bash ~/setup/pengwin-openjdk.sh
 bash ~/setup/pengwin-python.sh
 bash ~/setup/pengwin-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
-test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
-test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip
+bash ~/setup/debian-aws-ssm.sh
 
 echo "--- Update system ---"
 test -e /etc/apt/sources.list.d/yarn.list && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
