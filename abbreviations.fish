@@ -41,6 +41,7 @@ abbr gamz 'git config --global user.email duybui@amazon.com'
 abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
 
 abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
+abbr ssm 'aws ssm start-session --target'
 abbr region 'aws configure set region'
 abbr lsenv 'l /apollo/env/'
 abbr nds 'killall -9 ninja-dev-sync 2>/dev/null; nohup ~/.toolbox/bin/ninja-dev-sync > (mktemp) &'
