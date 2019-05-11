@@ -50,7 +50,10 @@ if test -z $INIT
     end
 
     ### Languages
-    set -x LANG en_US.UTF-8
+    grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment || echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+    grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen || echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+    echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
+    sudo locale-gen en_US.UTF-8
 
     ### Colors
     set_color $fish_color_operator; echo Setting color theme; set_color normal
