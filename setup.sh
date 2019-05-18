@@ -49,7 +49,9 @@ backup-and-link ~/setup/default.gitignore ~/.gitignore
 
 mkdir -p ~/bin
 mkdir -p ~/opt
-mkdir -p ~/code/test/src
+mkdir -p ~/code
+
+backup-and-link ~/setup/sqs-copy.config.json ~/config.json
 
 echo "=== Installing modules ==="
 
@@ -176,7 +178,7 @@ echo '=== Common development tools ==='
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
 which node 2>&1 | grep -q -v mnt &&\
 which yarn 2>&1 | grep -q -v mnt &&\
-yarn global add forever eslint neovim
+yarn global add forever eslint neovim sqs-copy
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip 2>&1 | grep -q -v mnt &&\
