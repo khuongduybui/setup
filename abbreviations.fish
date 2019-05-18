@@ -44,6 +44,8 @@ abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr ssm 'aws ssm start-session --target'
 abbr region 'aws configure set region'
 abbr lsenv 'l /apollo/env/'
+abbr nds-start 'nohup ~/.toolbox/bin/ninja-dev-sync > (mktemp) &'
+abbr nds-stop 'killall -9 ninja-dev-sync 2>/dev/null'
 abbr nds 'killall -9 ninja-dev-sync 2>/dev/null; nohup ~/.toolbox/bin/ninja-dev-sync > (mktemp) &'
 
 abbr mongodb 'sudo service mongodb'
