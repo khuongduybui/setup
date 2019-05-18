@@ -49,10 +49,14 @@ fi
 if getent hosts duybui.aka.amazon.com >/dev/null; then
     ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
     scp duybui.aka.amazon.com:/etc/krb5.conf ~
+    cp ~/krb5.conf ~/setup/amazon-krb5.conf
     sudo mv ~/krb5.conf /etc/krb5.conf
-    sudo chown root:root /etc/krb5.conf
-    klist -s || kinit -f
+else
+    sudo cp ~/setup/amazon-krb5.conf /etc/krb5.conf
 fi
+sudo chown root:root /etc/krb5.conf
+klist -s || kinit -f
+
 # Toolbox
 echo "--- Install Builder Toolbox ---"
 if [ ! -e ~/.toolbox/bin/toolbox ]; then

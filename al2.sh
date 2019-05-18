@@ -4,6 +4,7 @@ echo "--- Install package manager ---"
 # sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum install -y deltarpm
 sudo amazon-linux-extras install -y epel mate-desktop1.x
+curl -L https://download.opensuse.org/repositories/utilities/RHEL_7/utilities.repo | sudo tee /etc/yum.repos.d/opensuse-utilities.repo
 
 echo "--- Install system utils ---"
 if [ ! -e /etc/yum.repos.d/fish.repo ]; then
@@ -14,7 +15,7 @@ fi
 sudo yum install -y neovim
 
 sudo amazon-linux-extras install -y vim
-sudo yum install -y byobu rsync jq # @TODO: grc
+sudo yum install -y byobu rsync jq grc
 sudo yum install -y mc # @TODO: screenfetch
 
 echo "---Install dev tools---"
@@ -27,6 +28,7 @@ bash ~/setup/al2-ruby.sh
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade awscli
 test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
 test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip
+bash ~/setup/al2-aws-ssm.sh
 
 echo "Update system"
 sudo yum update -y
