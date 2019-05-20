@@ -33,9 +33,9 @@ if test -z $INIT
     if not __is_dev_desktop; and not test -e ~/.disable-dbus
         which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
     end
-    if __is_win; and not test -e ~/.disable-vscode; and which Code.exe >/dev/null 2>&1
-        set -x EDITOR '"'(which Code.exe)'"'
-    else if __is_win; and not test -e ~/.disable-vscode; and test -e (wslpath "C:\Program Files\Microsoft VS Code\Code.exe")
+    if which code >/dev/null 2>&1; and not test -e ~/.disable-vscode
+        set -x EDITOR '"'(which code)'"'
+    else if __is_win; and test -e (wslpath "C:\Program Files\Microsoft VS Code\Code.exe"); and not test -e ~/.disable-vscode
         set -x EDITOR '"'(wslpath 'C:\Program Files\Microsoft VS Code\Code.exe')'"'
     else if which subl >/dev/null 2>&1; and not test -e ~/.disable-sublime; and not test -e ~/.disable-dbus
         set -x EDITOR (which subl)' -nw'
