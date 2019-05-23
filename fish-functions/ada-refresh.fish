@@ -1,8 +1,13 @@
 # Defined in /tmp/fish.KINvyX/ada-refresh.fish @ line 2
 function ada-refresh
-	if test -z $AWS_PROFILE
-		echo "AWS_PROFILE must be set. Consider calling ips"
-		return
+  set -l AWSPROFILE $AWS_PROFILE
+	if test -z $AWSPROFILE
+	  if test (count $argv) = 1
+			set -x AWSPROFILE $argv[1]
+		else
+			echo "AWS_PROFILE must be set. Consider calling ips"
+			return
+		end
 	end
 
 	if not test -e ~/.aws/config
@@ -10,8 +15,8 @@ function ada-refresh
 		return
 	end
 
-	if not grep -q ~/.aws/config -e $AWS_PROFILE
-		echo "Profile $AWS_PROFILE not found in ~/.aws/config. Here are the list of available profiles:"
+	if not grep -q ~/.aws/config -e $AWSPROFILE
+		echo "Profile $AWSPROFILE not found in ~/.aws/config. Here are the list of available profiles:"
 		grep ~/.aws/config -e "profile"
 		return
 	end
@@ -25,7 +30,7 @@ function ada-refresh
 		return
 	end
 
-	echo '$ ada credentials update --once --profile='$AWS_PROFILE' --provider=isengard --account='(cat ~/.aws/config | ini "profile $AWS_PROFILE" "account")' --role='(cat ~/.aws/config | ini "profile $AWS_PROFILE" "role")
+	echo '$ ada credentials update --once --profile='$AWSPROFILE' --provider=isengard --account='(cat ~/.aws/config | ini "profile $AWSPROFILE" "account")' --role='(cat ~/.aws/config | ini "profile $AWSPROFILE" "role")
 
-	ada credentials update --once --profile=$AWS_PROFILE --provider=isengard --account=(cat ~/.aws/config | ini "profile $AWS_PROFILE" "account") --role=(cat ~/.aws/config | ini "profile $AWS_PROFILE" "role")
+	ada credentials update --once --profile=$AWSPROFILE --provider=isengard --account=(cat ~/.aws/config | ini "profile $AWSPROFILE" "account") --role=(cat ~/.aws/config | ini "profile $AWSPROFILE" "role")
 end
