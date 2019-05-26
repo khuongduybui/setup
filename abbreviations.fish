@@ -59,7 +59,7 @@ abbr tpd 'npm install --save-dev --only=dev'
 
 abbr cdw 'cd $WHOME'
 
-abbr fp feathers-plus
-abbr fpg feathers-plus generate
-abbr fpgs feathers-plus generate service
-abbr fpgh feathers-plus generate hook
+abbr fp 'feathers-plus'
+abbr fpg 'feathers-plus generate'
+abbr fpgs 'feathers-plus generate service'
+abbr fpgh 'feathers-plus generate hook'
