@@ -11,6 +11,7 @@ if test -z $INIT
     ### PATH
     set_color $fish_color_operator; echo Calculating PATH; set_color normal
     __missing_path ~/bin; and set -x PATH ~/bin $PATH
+    __missing_path /home/linuxbrew/.linuxbrew/bin; and set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
     __missing_path ~/.nodenv/bin; and set -x PATH ~/.nodenv/bin $PATH
     test -z $NODENV_SHELL; and which nodenv >/dev/null 2>&1; and source (nodenv init - | psub)
     __missing_path ~/.yarn/bin; and set -x PATH ~/.yarn/bin $PATH
