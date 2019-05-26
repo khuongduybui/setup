@@ -92,14 +92,8 @@ if test -z $INIT
         end
         set -x WHOME (wslpath "$WDRIVE:/Users/$WUSER")
         set -x W $WHOME
-        set -x DISPLAY :0
-        set -x LIBGL_ALWAYS_INDIRECT 1
-        set -x NO_AT_BRIDGE 1
-
-        # if status --is-login; and status --is-interactive; and test -f $W/setup/win-utils/ColorTool.exe
-        #     # __is_night; and eval $W/setup/win-utils/ColorTool.exe -x solarized_dark; or eval $W/setup/win-utils/ColorTool.exe -x solarized_light
-        #     eval $W/setup/win-utils/ColorTool.exe -x BirdsOfParadise
-        # end
+	rm -f ~/winhome
+	ln -s $WHOME ~/winhome
 
         test (umask) -eq 0022; or umask 0022
 
