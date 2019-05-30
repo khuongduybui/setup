@@ -16,9 +16,9 @@
 # sudo mv ./unison-fsmonitor /usr/bin
 
 # install XRDP
-sudo yum install -y xrdp x11rdp xorgxrdp tigervnc-server
+# sudo yum install -y xrdp x11rdp xorgxrdp tigervnc-server
 
-test -x /apollo/env/NodeJS/bin/npm && sudo /apollo/env/NodeJS/bin/npm install -g yarn
+# test -x /apollo/env/NodeJS/bin/npm && sudo /apollo/env/NodeJS/bin/npm install -g yarn
 
-curl https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
-python3 /tmp/get-pip.py --user
+# curl https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+# python3 /tmp/get-pip.py --user

@@ -53,10 +53,12 @@ if test -z $INIT
     end
 
     ### Languages
-    grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
-    grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
-    echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
-    which locale-gen > /dev/null 2>&1; and sudo locale-gen en_US.UTF-8
+    if not __is_dev_desktop
+        grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+        grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+        echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
+        which locale-gen > /dev/null 2>&1; and sudo locale-gen en_US.UTF-8
+    end
 
     ### Colors
     set_color $fish_color_operator; echo Setting color theme; set_color normal
