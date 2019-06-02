@@ -35,9 +35,9 @@ if test -z $INIT
         which dbus-launch >/dev/null 2>&1; and test -f ~/.config/fish/functions/bass.fish; and bass (dbus-launch --auto-syntax)
     end
     if which code >/dev/null 2>&1; and not test -e ~/.disable-vscode
-        set -x EDITOR '"'(which code)'"'
+        set -x EDITOR ~/setup/vscode.fish
     else if __is_win; and test -e (wslpath "C:\Program Files\Microsoft VS Code\Code.exe"); and not test -e ~/.disable-vscode
-        set -x EDITOR '"'(wslpath 'C:\Program Files\Microsoft VS Code\Code.exe')'"'
+        set -x EDITOR '"'(wslpath 'C:\Program Files\Microsoft VS Code\Code.exe')'" -w'
     else if which subl >/dev/null 2>&1; and not test -e ~/.disable-sublime; and not test -e ~/.disable-dbus
         set -x EDITOR (which subl)' -nw'
     else
@@ -47,13 +47,16 @@ if test -z $INIT
     echo $EDITOR
 
     ### DOCKER bridge
-    if test -x /usr/bin/docker-relay
-        sudo /usr/bin/docker-relay
-        set -x DOCKER_HOST "unix:///var/run/docker.sock"
+    if which docker >/dev/null 2>&1; and test -e ~/winhome/.npiperelay/npiperelay.exe
+        set_color $fish_color_operator; echo Launching Docker relay; set_color normal
+        bash -c 'sudo /usr/bin/docker-relay "$PATH"'
+        # set -x DOCKER_HOST "unix:///var/run/docker.sock"
+        ps aux | grep -q 'socat UNIX-LISTEN:/var/run/docker.sock'; and echo "Done"
     end
 
     ### Languages
     if not __is_dev_desktop
+        set_color $fish_color_operator; echo Setting locale; set_color normal
         grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
         grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
         echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
