@@ -92,4 +92,4 @@ fi
 # AWS CLI Plugins
 echo "--- Install AWS CLI plugins ---"
 ~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade git+ssh://git.amazon.com/pkg/BenderLibIsengard
-~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
+~/.pyenv/shims/pip install --user --no-warn-script-location --upgrade git+ssh://git.amazon.com/pkg/GoshawkBotocore

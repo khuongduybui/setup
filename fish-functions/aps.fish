@@ -21,7 +21,7 @@ function aps
         test -x $BRAZIL_CLI_BIN/brazil; and set -x APS_PATH $BRAZIL_CLI_BIN
     end
 
-	  set -lx ADDITIONAL_PATH
+    set -lx ADDITIONAL_PATH
     if not test -z $WIN
         set -x ADDITIONAL_PATH $PATH
     else
@@ -34,8 +34,8 @@ function aps
 
     test -d /apollo/env/envImprovement
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/envImprovement/bin
-    # test -d /apollo/env/AmazonAwsCli
-    # and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/AmazonAwsCli/bin
+    __is_dev_desktop; and test -d /apollo/env/AmazonAwsCli
+    and set -x ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/AmazonAwsCli/bin
     test -d /apollo/env/BarkCLI
     and set -lx ADDITIONAL_PATH $ADDITIONAL_PATH /apollo/env/BarkCLI/bin
     test -d /apollo/env/OdinTools

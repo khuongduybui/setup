@@ -20,11 +20,11 @@ sudo rpm -Uvh \
 --force --nodeps
 
 # Update libstdc++
-wget https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-4.8.2-16.3.el6.x86_64.rpm
-wget  https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-devel-4.8.2-16.3.el6.x86_64.rpm
-wget https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-static-4.8.2-16.3.el6.x86_64.rpm
-sudo rpm -Uvh \
-    libstdc++-4.8.2-16.3.el6.x86_64.rpm \
-    libstdc++-devel-4.8.2-16.3.el6.x86_64.rpm \
-    libstdc++-static-4.8.2-16.3.el6.x86_64.rpm \
---force --nodeps
+# wget https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-4.8.2-16.3.el6.x86_64.rpm
+# wget  https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-devel-4.8.2-16.3.el6.x86_64.rpm
+# wget https://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/gcc-4.8.2-16.3.fc20/libstdc++-static-4.8.2-16.3.el6.x86_64.rpm
+# sudo rpm -Uvh \
+#     libstdc++-4.8.2-16.3.el6.x86_64.rpm \
+#     libstdc++-devel-4.8.2-16.3.el6.x86_64.rpm \
+#     libstdc++-static-4.8.2-16.3.el6.x86_64.rpm \
+# --force --nodeps

@@ -9,25 +9,25 @@ backup-and-link() {
     ln -s "$source" "$destination"
 }
 
-# cd /etc/yum.repos.d/
-# sudo wget http://download.opensuse.org/repositories/shells:fish:release:2/RedHat_RHEL-5/shells:fish:release:2.repo
-# sudo yum install -y fish
-# cd -
+echo "--- Install package manager ---"
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+curl -L https://download.opensuse.org/repositories/utilities/RHEL_7/utilities.repo | sudo tee /etc/yum.repos.d/opensuse-utilities.repo
 
-# wget http://dl.fedoraproject.org/pub/archive/epel/5/i386/epel-release-5-4.noarch.rpm
-# sudo yum install -y epel-release-5-4.noarch.rpm
-# sudo yum check-update
-# sudo yum install -y byobu
+echo "--- Install system utils ---"
+# fish, jq provided by envImprovement
+sudo yum install -y byobu
 
-# test -f ~/.zshrc && mv ~/.zshrc ~/.zshrc.`date +%Y-%m-%d`.bak
-# test -f ~/.zprofile && mv ~/.zprofile ~/.zprofile.`date +%Y-%m-%d`.bak
-# # echo "_byobu_sourced=1 byobu -S ~/duybui new-session -A -s duybui" > ~/.zprofile
-# ln -s ~/setup/rhel.zprofile ~/.zprofile
-# mkdir -p ~/.byobu
-# echo "set -g default-shell /usr/bin/fish" > ~/.byobu/.tmux.conf
-# echo "set -g default-command /usr/bin/fish" >> ~/.byobu/.tmux.conf
+echo "---Install dev tools---"
+sudo yum install -y python2 python2-pip
+# nodejs provided by NodeJS
+sudo /apollo/env/NodeJS/bin/npm install -g yarn
+# no jdk
+# pythons (no pips) provided by envImprovement
 
+# rubyenv provided by envImprovement
+bash ~/setup/al2-aws-ssm.sh
 # # yum install -y w3m
-backup-and-link ~/setup/rhel.zprofile ~/.zprofile
 
-sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+echo "---Update system---"
+sudo yum update -y
+backup-and-link ~/setup/rhel.zprofile ~/.zprofile

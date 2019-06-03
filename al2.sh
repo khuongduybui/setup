@@ -30,7 +30,7 @@ test -x /usr/bin/pip && sudo /usr/bin/pip install --upgrade pip
 test -x /usr/bin/pip2 && sudo /usr/bin/pip2 install --upgrade pip
 bash ~/setup/al2-aws-ssm.sh
 
-echo "Update system"
+echo "---Update system---"
 sudo yum update -y
 
 which fish >/dev/null && sudo chsh -s $(which fish) $(whoami)
