@@ -1,6 +1,5 @@
-# Defined in /tmp/fish.H7wLFw/ops.fish @ line 2
 function ops
-	set -lx ODIN_GET_BIN
+    set -lx ODIN_GET_BIN
     if test -x /apollo/env/envImprovement/bin/odin-get
         set -x ODIN_GET_BIN "/apollo/env/envImprovement/bin/odin-get"
     else
@@ -18,6 +17,8 @@ function ops
 
     if __is_mac
         /usr/local/bin/fish
+    else if __is_dev_desktop
+        /apollo/env/envImprovement/bin/fish
     else
         /usr/bin/fish
     end

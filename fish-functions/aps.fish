@@ -1,6 +1,5 @@
-# Defined in /tmp/fish.3bZzv7/aps.fish @ line 2
 function aps
-	set -q BRAZIL_CLI_BIN
+    set -q BRAZIL_CLI_BIN
     or set -lx BRAZIL_CLI_BIN ~/.toolbox/bin
     set -lx SDE_CLI_BIN /apollo/env/SDETools/bin
     set -x BRAZIL_PLATFORM_OVERRIDE RHEL5_64
@@ -56,16 +55,20 @@ function aps
 
     if not test -z $APS_PATH
         set -lx PATH $ADDITIONAL_PATH $APS_PATH
-        
+
         if test -z $EXEC
             if __is_mac
                 /usr/local/bin/fish
+            else if __is_dev_desktop
+                /apollo/env/envImprovement/bin/fish
             else
                 /usr/bin/fish
             end
         else
             if __is_mac
                 exec /usr/local/bin/fish
+            else if __is_dev_desktop
+                exec /apollo/env/envImprovement/bin/fish
             else
                 exec /usr/bin/fish
             end

@@ -1,6 +1,5 @@
-# Defined in /tmp/fish.DCkYyX/bps.fish @ line 2
 function bps
-	set -lx BARK_ACCOUNT
+    set -lx BARK_ACCOUNT
     set -lx BARK_MS
     set -lx BARK_REGION iad
 
@@ -26,9 +25,11 @@ function bps
     else
         abbr bark 'bark -a='$BARK_ACCOUNT' -ms='$BARK_MS' -ep=https://timber-corp-'$BARK_REGION'.'$BARK_REGION'.proxy.amazon.com'
     end
-    
+
     if __is_mac
         /usr/local/bin/fish
+    else if __is_dev_desktop
+        /apollo/env/envImprovement/bin/fish
     else
         /usr/bin/fish
     end
