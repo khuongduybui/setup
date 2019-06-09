@@ -1,10 +1,8 @@
 #! /bin/bash
 
-if ! [ -e ~/.nodenv/bin/nodenv ]; then
-    curl -fsSL https://github.com/nodenv/nodenv-installer/raw/master/bin/nodenv-installer | bash
-    ~/.nodenv/bin/nodenv install 11.1.0
-    ~/.nodenv/bin/nodenv global 11.1.0
-fi
+curl -fsSL https://github.com/nodenv/nodenv-installer/raw/master/bin/nodenv-installer | bash
+~/.nodenv/bin/nodenv versions | grep -q 11.1.0 || ~/.nodenv/bin/nodenv install 11.1.0
+~/.nodenv/bin/nodenv global 11.1.0
 
 if ! [ -e /etc/apt/sources.list.d/yarn.list ]; then
     # From https://yarnpkg.com/en/docs/install#debian-stable

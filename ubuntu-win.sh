@@ -11,10 +11,7 @@ backup-and-link() {
 
 backup-and-link ~/setup/wsl.conf /etc/
 
-if ! [ -e /etc/apt/sources.list.d/wslu.list ]; then
-    sudo apt install -y apt-transport-https
-    wget -O - https://api.patrickwu.space/public.key | sudo apt-key add -
-    echo "deb https://apt.patrickwu.space/ stable main" | sudo tee /etc/apt/sources.list.d/wslu.list
-    sudo apt update -y
+if ! [ -e /etc/apt/sources.list.d/whitewaterfoundry_wslu.list ]; then
+    curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo bash
     sudo apt install -y wslu
 fi
