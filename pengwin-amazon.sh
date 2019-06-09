@@ -21,7 +21,8 @@ if ! [ -e /etc/apt/sources.list.d/amazon.list ]; then
     echo deb http://cascadia.corp.amazon.com/amazon bionic-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
     echo deb http://cascadia.corp.amazon.com/amazon bionic-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
     sudo apt update -y
-    sudo apt install -y amazon-ca-certificates
+    sudo apt install -y amazon-ca-certificates amazon-security-bastion-prod
+    /opt/amazon/bin/security-bastion-setup.sh
 fi
 
 # Midway

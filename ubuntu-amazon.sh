@@ -20,8 +20,9 @@ if ! [ -e /etc/apt/sources.list.d/amazon.list ]; then
     echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-amazon main | sudo tee /etc/apt/sources.list.d/amazon.list
     echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-amazon-bh main | sudo tee -a /etc/apt/sources.list.d/amazon.list
     echo deb http://cascadia.corp.amazon.com/amazon $(lsb_release -cs | sed 's/juno/bionic/')-thirdparty-partner partner | sudo tee -a /etc/apt/sources.list.d/amazon.list
-    sudo apt update
-    sudo apt install -y amazon-ca-certificates
+    sudo apt update -y
+    sudo apt install -y amazon-ca-certificates amazon-security-bastion-prod
+    /opt/amazon/bin/security-bastion-setup.sh
 fi
 
 # Midway
@@ -43,11 +44,16 @@ fi
 echo "--- Install Kerberos ---"
 if ! which kinit >/dev/null 2>&1; then
     sudo apt install -y krb5-user
+fi
+if getent hosts duybui.aka.amazon.com >/dev/null; then
     ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R duybui.aka.amazon.com
     scp duybui.aka.amazon.com:/etc/krb5.conf ~
+    cp ~/krb5.conf ~/setup/amazon-krb5.conf
     sudo mv ~/krb5.conf /etc/krb5.conf
-    sudo chown root:root /etc/krb5.conf
+else
+    sudo cp ~/setup/amazon-krb5.conf /etc/krb5.conf
 fi
+sudo chown root:root /etc/krb5.conf
 klist -s || kinit -f
 
 # Toolbox
@@ -104,18 +110,21 @@ if [ ! -e ~/.toolbox/bin/brazil ]; then
 fi
 
 # Ninja Dev Sync
-echo "--- Install Ninja Dev Sync ---"
-curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.8.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
-chmod 755 ~/.toolbox/bin/ninja-dev-sync
-rm -f ~/.toolbox/bin/nds
-ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
-if ! grep -q /etc/sysctl.conf -e "fs.inotify.max_user_watches"; then
-    sudo apt install -y inotify-tools
-    echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
-    sudo sysctl -p
-fi
+# echo "--- Install Ninja Dev Sync ---"
+# curl --negotiate -fu: 'https://devcentral.amazon.com/ac/brazil/package-master/package/view/NinjaDevSync%3B2.x.8.0%3BRHEL5_64%3BDEV.STD.PTHREAD%3Bbin/ninja-dev-sync.linux64' -o ~/.toolbox/bin/ninja-dev-sync
+# chmod 755 ~/.toolbox/bin/ninja-dev-sync
+# rm -f ~/.toolbox/bin/nds
+# ln -s ~/.toolbox/bin/ninja-dev-sync ~/.toolbox/bin/nds
+# if ! grep -q /etc/sysctl.conf -e "fs.inotify.max_user_watches"; then
+#     sudo apt install -y inotify-tools
+#     echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+#     sudo sysctl -p
+# fi
 
 # AWS CLI Plugins
 echo "--- Install AWS CLI plugins ---"
-~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
-~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
+if [ ! -e ~/.toolbox/bin/ada ]; then
+    ~/.toolbox/bin/toolbox install ada
+fi
+# ~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/BenderLibIsengard
+# ~/.pyenv/shims/pip install --user --no-warn-script-location git+ssh://git.amazon.com/pkg/GoshawkBotocore@mainline-1.1
