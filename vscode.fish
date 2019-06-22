@@ -1,2 +1,3 @@
-#! /apollo/env/envImprovement/bin/fish
-exec code --wait $argv
+#! /bin/bash
+
+exec code --wait $@
