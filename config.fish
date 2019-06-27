@@ -26,6 +26,7 @@ if test -z $INIT
     test -d ~/go; and set -x GOPATH ~/go
     test -n "$GOPATH"; and __missing_path $GOPATH/bin; and set -x PATH $GOPATH/bin $PATH
     varclear PATH
+    __clean_missing PATH
     # echo $PATH
     set -x HOME ~
 
