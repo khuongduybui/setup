@@ -91,8 +91,12 @@ if test -z $INIT
         end
         set -x WHOME (wslpath "$WDRIVE:/Users/$WUSER")
         set -x W $WHOME
-	rm -f ~/winhome
-	ln -s $WHOME ~/winhome
+        rm -f ~/winhome
+        ln -s $WHOME ~/winhome
+
+        set -x WIP (grep -e 'nameserver' /etc/resolv.conf | sed 's/nameserver //')
+        echo $WIP > ~/.wip
+        set -x DISPLAY $WIP:0.0
 
         test (umask) -eq 0022; or umask 0022
 

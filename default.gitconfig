@@ -15,3 +15,5 @@
 	tool = default-difftool
 [difftool "default-difftool"]
 	cmd = code -nw --diff $LOCAL $REMOTE
+[credential]
+	helper = cache
