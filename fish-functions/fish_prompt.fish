@@ -99,6 +99,7 @@ function __bobthefish_pretty_parent -S -a child_dir -d 'Print a parent directory
     # Replace $HOME with ~
     set -l real_home ~
     set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $child_dir))
+    set -l parent_dir (string replace -r '^'"$WHOME"'($|/)' '$1' $parent_dir)
 
     # Must check whether `$parent_dir = /` if using native dirname
     if [ -z "$parent_dir" ]
@@ -357,6 +358,16 @@ function __bobthefish_path_segment -S -a segment_dir -d 'Display a shortened for
             set directory '/'
         case "$HOME"
             set directory '~'
+        case "$WHOME"
+            set directory ''
+        case "$HOME/code/*"
+            set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$segment_dir"))[1]
+            set directory (string sub -s (math 7 + (string length $HOME) + (string length $parent) + 1) "$segment_dir")
+            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
+        case "$WHOME/code/*"
+            set parent    (string split "/" (string sub -s (math 7 + (string length $WHOME)) "$segment_dir"))[1]
+            set directory (string sub -s (math 7 + (string length $WHOME) + (string length $parent) + 1) "$segment_dir")
+            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
         case '*'
             set parent (__bobthefish_pretty_parent "$segment_dir")
             set directory (__bobthefish_basename "$segment_dir")
@@ -1060,6 +1071,18 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
         __bobthefish_prompt_hg $hg_root_dir $real_pwd
     else
         __bobthefish_prompt_dir $real_pwd
+    end
+
+    if test (which aws 2>/dev/null)
+        if test -n "$AWS_PROFILE"
+            __bobthefish_start_segment blue white
+            echo -n " $AWS_PROFILE "
+            set -l aws_region (aws configure get region)
+            if test $aws_region != "us-east-1"
+                __bobthefish_start_segment white blue
+                echo -n " $aws_region "
+            end
+        end
     end
 
     __bobthefish_finish_segments
