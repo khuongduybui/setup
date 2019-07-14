@@ -94,7 +94,11 @@ if test -z $INIT
         rm -f ~/winhome
         ln -s $WHOME ~/winhome
 
-        set -x WIP (grep -e 'nameserver' /etc/resolv.conf | sed 's/nameserver //')
+        if __is_wsl_2
+            set -x WIP (grep -e 'nameserver' /etc/resolv.conf | sed 's/nameserver //')
+        else
+            set -x WIP 127.0.0.1
+        end
         echo $WIP > ~/.wip
         set -x DISPLAY $WIP:0.0
 
