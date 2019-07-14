@@ -59,7 +59,6 @@ if test -z $INIT
     set -x theme_date_format '+%Y-%m-%d %H:%M:%S %Z'
     set -x theme_powerline_fonts yes
     set -x theme_nerd_fonts yes
-    # __is_night; and set -x theme_color_scheme solarized-dark; or set -x theme_color_scheme solarized-light
     set -x theme_color_scheme terminal2-dark-white
 
     ### Abbreviations
