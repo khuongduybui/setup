@@ -1,39 +1,30 @@
 #! /bin/bash
 
-backup-and-link() {
-    source="$1"
-    destination="$2"
-    [[ $2 =~ /$ ]] && destination="$2`basename $1`"
-    rm -rf "$destination.`date +%Y-%m-%d`.bak"
-    test -e "$destination" && mv "$destination" "$destination.`date +%Y-%m-%d`.bak"
-    ln -s "$source" "$destination"
-}
-
 echo "=== Setting up global preferences ==="
 
 mkdir -p ~/.config
-backup-and-link ~/setup/gtk-3.0 ~/.config/
-backup-and-link ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
+bash ~/setup/backup-and-link.sh ~/setup/gtk-3.0 ~/.config/
+bash ~/setup/backup-and-link.sh ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
 
 mkdir -p ~/.config/fish/conf.d
-backup-and-link ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
-backup-and-link ~/setup/fishfile ~/.config/fish/
-backup-and-link ~/setup/fish-functions ~/.config/fish/functions
+bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
+bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/
+bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
 
-backup-and-link ~/setup/WindowsPowerShell ~/.config/powershell
+bash ~/setup/backup-and-link.sh ~/setup/WindowsPowerShell ~/.config/powershell
 
 mkdir -p ~/.config/sublime-text-3/Packages/User
-backup-and-link ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
+bash ~/setup/backup-and-link.sh ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
 
 mkdir -p ~/.config/micro
-backup-and-link ~/setup/micro.json ~/.config/micro/settings.json
+bash ~/setup/backup-and-link.sh ~/setup/micro.json ~/.config/micro/settings.json
 
 mkdir -p ~/.config/bark
-backup-and-link ~/setup/bark-profiles ~/.config/bark/profiles
+bash ~/setup/backup-and-link.sh ~/setup/bark-profiles ~/.config/bark/profiles
 
-backup-and-link ~/setup/.vimrc ~/
+bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/
 mkdir -p ~/.config/nvim
-backup-and-link ~/setup/.vimrc ~/.config/nvim/init.vim
+bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/.config/nvim/init.vim
 mkdir -p ~/.vim/bundle
 if [ -d ~/.vim/bundle/vundle ]; then
     cd ~/.vim/bundle/vundle; git pull; cd -
@@ -41,11 +32,11 @@ else
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 fi
 
-backup-and-link ~/setup/.editorconfig ~/
+bash ~/setup/backup-and-link.sh ~/setup/.editorconfig ~/
 
-backup-and-link ~/setup/.czrc ~/
-backup-and-link ~/setup/default.gitconfig ~/.gitconfig
-backup-and-link ~/setup/default.gitignore ~/.gitignore
+bash ~/setup/backup-and-link.sh ~/setup/.czrc ~/
+bash ~/setup/backup-and-link.sh ~/setup/default.gitconfig ~/.gitconfig
+bash ~/setup/backup-and-link.sh ~/setup/default.gitignore ~/.gitignore
 
 mkdir -p ~/bin
 mkdir -p ~/opt
@@ -106,23 +97,6 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Ubuntu on Windows detected. Installing additional modules..." &&\
 bash ~/setup/ubuntu-win.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "elementary|ubuntu" /etc/issue &&\
-hostname -d | grep -q ant.amazon.com &&\
-echo "Ubuntu on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/ubuntu-amazon.sh
-
-which sw_vers 2>/dev/null >/dev/null &&\
-hostname -d | grep -q ant.amazon.com &&\
-echo "OS X on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/mac-amazon.sh
-
-test -f /etc/redhat-release &&\
-grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
-test -d /apollo/env &&\
-echo "RHEL on Amazon DevDesktop detected. Installing additional modules..." &&\
-bash ~/setup/rhel-amazon.sh
-
 test -f /etc/os-release &&\
 grep -q -i "Amazon Linux 2" /etc/os-release &&\
 grep -q -i "Microsoft" /proc/version &&\
@@ -130,22 +104,10 @@ echo "AL2 on Windows detected. Installing additional modules..." &&\
 bash ~/setup/al2-win.sh
 
 test -f /etc/os-release &&\
-grep -q -i "Amazon Linux 2" /etc/os-release &&\
-hostname -d | grep -q ant.amazon.com &&\
-echo "AL2 on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/al2-amazon.sh
-
-test -f /etc/os-release &&\
 grep -q -i "Pengwin" /etc/os-release &&\
 grep -q -i "Microsoft" /proc/version &&\
 echo "Pengwin on Windows detected. Installing additional modules..." &&\
 bash ~/setup/pengwin-win.sh
-
-test -f /etc/os-release &&\
-grep -q -i "Pengwin" /etc/os-release &&\
-hostname -d | grep -q ant.amazon.com &&\
-echo "Pengwin on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/pengwin-amazon.sh
 
 test -f /etc/issue &&\
 grep -q -i "openSUSE" /etc/issue &&\
@@ -159,14 +121,9 @@ grep -q -i "Microsoft" /proc/version &&\
 echo "Kali on Windows detected. Installing additional modules..." &&\
 bash ~/setup/kali-win.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "kali" /etc/issue &&\
-hostname -d | grep -q ant.amazon.com &&\
-echo "Kali on Amazon device detected. Installing additional modules..." &&\
-bash ~/setup/kali-amazon.sh
-
 if grep -q -i "Microsoft" /proc/version; then
     echo '=== WSL detected. Running additional config ==='
+    bash ~/setup/backup-and-link.sh ~/setup/wsl.conf /etc/
     sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
     sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
 fi
