@@ -4,7 +4,6 @@ source ~/setup/fallback.fish
 ## Completions
 complete -c c2c -x -a '(__fish_complete_c2c)'
 complete -c ips -x -a '(__fish_complete_ips)'
-complete -c bps -l profile -x -a '(__fish_complete_bps_profile)'
 
 if test -z $INIT
     ## Global
@@ -33,29 +32,27 @@ if test -z $INIT
     ### Editors
     set_color $fish_color_operator; echo Searching for Editors; set_color normal
     if which code >/dev/null 2>&1; and not test -e ~/.disable-vscode
-        set -x EDITOR ~/setup/vscode.fish
+        set -x EDITOR ~/setup/vscode.sh
     else
         set -x EDITOR (which io.elementary.code 2>/dev/null; or which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
         set -x MICRO_TRUECOLOR 1
     end
     echo $EDITOR
 
-    ### DOCKER bridge
-    if which docker >/dev/null 2>&1; and test -e ~/winhome/.npiperelay/npiperelay.exe
-        set_color $fish_color_operator; echo Launching Docker relay; set_color normal
-        bash -c 'sudo /usr/bin/docker-relay "$PATH"'
-        # set -x DOCKER_HOST "unix:///var/run/docker.sock"
-        ps aux | grep -q 'socat UNIX-LISTEN:/var/run/docker.sock'; and echo "Done"
-    end
+    # ### DOCKER bridge
+    # if which docker >/dev/null 2>&1; and test -e ~/winhome/.npiperelay/npiperelay.exe
+    #     set_color $fish_color_operator; echo Launching Docker relay; set_color normal
+    #     bash -c 'sudo /usr/bin/docker-relay "$PATH"'
+    #     # set -x DOCKER_HOST "unix:///var/run/docker.sock"
+    #     ps aux | grep -q 'socat UNIX-LISTEN:/var/run/docker.sock'; and echo "Done"
+    # end
 
     ### Languages
-    if not __is_dev_desktop
-        set_color $fish_color_operator; echo Setting locale; set_color normal
-        grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
-        grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
-        echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
-        which locale-gen > /dev/null 2>&1; and sudo locale-gen en_US.UTF-8
-    end
+    set_color $fish_color_operator; echo Setting locale; set_color normal
+    grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+    grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+    echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
+    which locale-gen > /dev/null 2>&1; and sudo locale-gen en_US.UTF-8
 
     ### Colors
     set_color $fish_color_operator; echo Setting color theme; set_color normal
@@ -64,8 +61,6 @@ if test -z $INIT
     set -x theme_nerd_fonts yes
     # __is_night; and set -x theme_color_scheme solarized-dark; or set -x theme_color_scheme solarized-light
     set -x theme_color_scheme terminal2-dark-white
-    __is_dev_desktop; and set -x theme_display_hostname no
-    __is_dev_desktop; and set -x theme_display_user no
 
     ### Abbreviations
     source ~/setup/abbreviations.fish
@@ -104,22 +99,15 @@ if test -z $INIT
 
         test (umask) -eq 0022; or umask 0022
 
-        # mount-workdocs
         x-init
         font-init
     end
 
-    ### Amazon
-    if test -z $REQUESTS_CA_BUNDLE
-        test -e /etc/ssl/certs/ca-certificates.crt; and set -x REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
-        test -e /etc/ssl/certs/ca-bundle.crt; and set -x REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-bundle.crt
-        echo $REQUESTS_CA_BUNDLE
-    end
-
-    set -x INIT true
-
     ## Preload WPS
     wps-init
+
+    ## Done INIT
+    set -x INIT true
 
     ## Load byobu
     if status --is-login; and status --is-interactive; and which byobu-launcher >/dev/null 2>&1

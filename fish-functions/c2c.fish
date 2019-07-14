@@ -31,13 +31,6 @@ function c2c
 		else
 			cd $argv[1]
 			set -xg DEBUG "*$argv[1]*:*"
-			if test -d ./src
-				cd src
-				set -gx BRAZIL_PACKAGES_DIR (pwd)
-				if test -d ./BitScripts
-					bass source ./BitScripts/envsetup.sh
-				end
-			end
 			if test (count $argv) -gt 1
 				cd ./(command ls | command grep --color=none -i $argv[2..-1])
 			else if test (count (command ls)) = 1

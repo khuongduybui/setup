@@ -1,7 +1,0 @@
-[Authentication]
-EndPoint=https://timber-corp-iad.iad.proxy.amazon.com
-
-[Params]
-LogGroup=MidwayAuthPortal/IAD/Prod/service_log
-MaterialSetName=com.amazon.credentials.isengard.904124704533.user/pickaxe-log-reader
-Owner=241566439406

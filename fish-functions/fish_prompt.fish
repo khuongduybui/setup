@@ -34,6 +34,7 @@
 #     set -g theme_display_user ssh
 #     set -g theme_display_hostname ssh
 #     set -g theme_display_vi no
+#     set -g theme_display_nvm yes
 #     set -g theme_avoid_ambiguous_glyphs yes
 #     set -g theme_powerline_fonts no
 #     set -g theme_nerd_fonts yes
@@ -98,7 +99,6 @@ function __bobthefish_pretty_parent -S -a child_dir -d 'Print a parent directory
     # Replace $HOME with ~
     set -l real_home ~
     set -l parent_dir (string replace -r '^'"$real_home"'($|/)' '~$1' (__bobthefish_dirname $child_dir))
-    set -l parent_dir (string replace -r '^'"$WHOME"'($|/)' '$1' $parent_dir)
 
     # Must check whether `$parent_dir = /` if using native dirname
     if [ -z "$parent_dir" ]
@@ -357,28 +357,6 @@ function __bobthefish_path_segment -S -a segment_dir -d 'Display a shortened for
             set directory '/'
         case "$HOME"
             set directory '~'
-        case "$WHOME"
-            set directory ''
-        case "$HOME/code/*/src/*"
-            set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
-            set directory (string sub -s (math 7 + (string length $HOME) + 4 + (string length $parent) - 2) "$segment_dir")
-        case "$HOME/code/*"
-            set parent    (string split "/" (string sub -s (math 7 + (string length $HOME)) "$segment_dir"))[1]
-            set directory (string sub -s (math 7 + (string length $HOME) + (string length $parent) + 1) "$segment_dir")
-            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
-        case "$WHOME/code/aws/*/src/*"
-            set parent    (string split "/" (string sub -s (math 24 + (string length $WUSER)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
-            set directory (string sub -s (math 24 + (string length $WUSER) + 4 + (string length $parent) - 2) "$segment_dir")
-        case "$WHOME/code/*/src/*"
-            set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$segment_dir"))[1]' '$right_arrow_glyph' '(pwe)
-            set directory (string sub -s (math 20 + (string length $WUSER) + 4 + (string length $parent) - 2) "$segment_dir")
-        case "$WHOME/code/personal/*"
-            set parent    (string split "/" (string sub -s (math 28 + (string length $WUSER)) "$segment_dir"))[1]
-            set directory (string sub -s (math 28 + (string length $WUSER) + (string length $parent) + 1) "$segment_dir")
-        case "$WHOME/code/*"
-            set parent    (string split "/" (string sub -s (math 20 + (string length $WUSER)) "$segment_dir"))[1]
-            set directory (string sub -s (math 20 + (string length $WUSER) + (string length $parent) + 1) "$segment_dir")
-            [ (string length $directory) != 0 ]; and set parent $parent' '$right_arrow_glyph' '
         case '*'
             set parent (__bobthefish_pretty_parent "$segment_dir")
             set directory (__bobthefish_basename "$segment_dir")
@@ -601,10 +579,7 @@ function __bobthefish_prompt_docker -S -d 'Display Docker machine name'
     echo -ns $DOCKER_MACHINE_NAME ' '
 end
 
-function __bobthefish_prompt_k8s_context -S -d 'Show current Kubernetes context'
-    [ "$theme_display_k8s_context" = 'yes' ]
-    or return
-
+function __bobthefish_k8s_context -S -d 'Get the current k8s context'
     set -l config_paths "$HOME/.kube/config"
     [ -n "$KUBECONFIG" ]
     and set config_paths (string split ':' "$KUBECONFIG") $config_paths
@@ -617,14 +592,36 @@ function __bobthefish_prompt_k8s_context -S -d 'Show current Kubernetes context'
             if [ "$key" = 'current-context:' ]
                 set -l context (string trim -c '"\' ' -- $val)
                 [ -z "$context" ]
-                and return
+                and return 1
 
-                __bobthefish_start_segment $color_k8s
-                echo -ns $context ' '
+                echo $context
                 return
             end
         end <$file
     end
+
+    return 1
+end
+
+function __bobthefish_k8s_namespace -S -d 'Get the current k8s namespace'
+    kubectl config view --minify --output "jsonpath={..namespace}"
+end
+
+function __bobthefish_prompt_k8s_context -S -d 'Show current Kubernetes context'
+    [ "$theme_display_k8s_context" = 'yes' ]
+    or return
+
+    set -l context (__bobthefish_k8s_context)
+    or return
+
+    set -l namespace (__bobthefish_k8s_namespace)
+
+    set -l segment $k8s_glyph " " $context
+    [ -n "$namespace" ]
+    and set segment $segment ":" $namespace
+
+    __bobthefish_start_segment $color_k8s
+    echo -ns $segment " "
 end
 
 
@@ -821,6 +818,20 @@ function __bobthefish_prompt_desk -S -d 'Display current desk environment'
 
     __bobthefish_start_segment $color_desk
     echo -ns $desk_glyph ' ' (basename  -a -s ".fish" "$DESK_ENV") ' '
+    set_color normal
+end
+
+function __bobthefish_prompt_nvm -S -d 'Display current node version through NVM'
+    [ "$theme_display_nvm" = 'yes' -a -n "$NVM_DIR" ]
+    or return
+
+    set -l node_version (nvm current 2> /dev/null)
+
+    [ -z $node_version -o "$node_version" = 'none' -o "$node_version" = 'system' ]
+    and return
+
+    __bobthefish_start_segment $color_nvm
+    echo -ns $node_glyph $node_version ' '
     set_color normal
 end
 
@@ -1027,6 +1038,7 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
     __bobthefish_prompt_rubies
     __bobthefish_prompt_virtualfish
     __bobthefish_prompt_virtualgo
+    __bobthefish_prompt_nvm
 
     set -l real_pwd (__bobthefish_pwd)
 
@@ -1048,73 +1060,6 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
         __bobthefish_prompt_hg $hg_root_dir $real_pwd
     else
         __bobthefish_prompt_dir $real_pwd
-    end
-
-    if test (which brazil 2>/dev/null)
-        __bobthefish_start_segment yellow white
-        echo -n " "
-
-        if klist -s
-        else
-            __bobthefish_start_segment red white
-            echo -n " "
-        end
-
-        if test -f ~/.ssh/primary.pem.pub; and mwinit -k ~/.ssh/primary.pem.pub -l | grep -q cookie
-        else if test -f ~/.ssh/id_rsa.pub; and mwinit -l | grep -q cookie
-        else
-            __bobthefish_start_segment white red
-            echo -n " "
-        end
-    end
-
-    if test (which aws 2>/dev/null)
-        if test -n "$OPS"
-            __bobthefish_start_segment blue white
-            echo -n " $OPS "
-        end
-
-        if test -n "$AWS_PROFILE"
-            __bobthefish_start_segment blue white
-            echo -n " $AWS_PROFILE "
-        end
-
-        if test -n "$OPS"; or test -n "$AWS_PROFILE"
-            set -l aws_region (aws configure get region)
-            if test $aws_region != "us-east-1"
-                __bobthefish_start_segment white blue
-                echo -n " $aws_region "
-            end
-        end
-    end
-
-    if test (which rde 2>/dev/null)
-        if echo $DOCKER_HOST | grep -q tcp
-            __bobthefish_start_segment blue white
-            echo -n " "
-        end
-    end
-
-    if test (which bark 2>/dev/null)
-        if test -n "$BARK_PROFILE"
-            __bobthefish_start_segment blue white
-            echo -n " $BARK_PROFILE "
-        else
-            if test -n "$BARK_ACCOUNT"
-                __bobthefish_start_segment blue white
-                echo -n " $BARK_ACCOUNT "
-            end
-
-            if test -n "$BARK_MS"
-                __bobthefish_start_segment blue white
-                echo -n " $BARK_MS "
-            end
-
-            if test -n "$BARK_REGION"; and [ $BARK_REGION != "iad" ]
-                __bobthefish_start_segment white blue
-                echo -n " $BARK_REGION "
-            end
-        end
     end
 
     __bobthefish_finish_segments
