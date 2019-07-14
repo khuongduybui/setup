@@ -1,19 +1,27 @@
 [user]
-	name = Duy K. Bui
-	email = duy@buifamily.info
+name = Duy K. Bui
+email = duy@buifamily.info
+
 [push]
-	default = upstream
+default = upstream
+
 [color]
-	ui = auto
+ui = auto
+
 [core]
-	pager = less -FMRiX
-	excludesfile = ~/.gitignore
-	fileMode = false
+pager = less -FMRiX
+excludesfile = ~/.gitignore
+fileMode = false
+
 [alias]
-	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
 [diff]
-	tool = default-difftool
+tool = default-difftool
+
 [difftool "default-difftool"]
-	cmd = code -nw --diff $LOCAL $REMOTE
+cmd = code -nw --diff $LOCAL $REMOTE
+
 [credential]
-	helper = cache
+helper = !aws codecommit credential-helper $@
+UseHttpPath = true
