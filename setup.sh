@@ -19,15 +19,14 @@ bash ~/setup/backup-and-link.sh ~/setup/Preferences.sublime-settings ~/.config/s
 mkdir -p ~/.config/micro
 bash ~/setup/backup-and-link.sh ~/setup/micro.json ~/.config/micro/settings.json
 
-mkdir -p ~/.config/bark
-bash ~/setup/backup-and-link.sh ~/setup/bark-profiles ~/.config/bark/profiles
-
 bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/
 mkdir -p ~/.config/nvim
 bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/.config/nvim/init.vim
 mkdir -p ~/.vim/bundle
 if [ -d ~/.vim/bundle/vundle ]; then
-    cd ~/.vim/bundle/vundle; git pull; cd -
+    cd ~/.vim/bundle/vundle
+    git pull
+    cd -
 else
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 fi
@@ -44,82 +43,82 @@ mkdir -p ~/code
 
 echo "=== Installing modules ==="
 
-test -f /etc/issue &&\
-grep -q -Ei "arch" /etc/issue &&\
-echo "Arch Linux detected. Installing core modules..." &&\
-bash ~/setup/arch.sh
+test -f /etc/issue &&
+    grep -q -Ei "arch" /etc/issue &&
+    echo "Arch Linux detected. Installing core modules..." &&
+    bash ~/setup/arch.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "elementary|ubuntu" /etc/issue &&\
-echo "Ubuntu detected. Installing core modules..." &&\
-bash ~/setup/ubuntu.sh
+test -f /etc/issue &&
+    grep -q -Ei "elementary|ubuntu" /etc/issue &&
+    echo "Ubuntu detected. Installing core modules..." &&
+    bash ~/setup/ubuntu.sh
 
-which sw_vers 2>/dev/null >/dev/null &&\
-echo "OS X detected. Installing core modules..." &&\
-sh ~/setup/mac.sh
+which sw_vers 2>/dev/null >/dev/null &&
+    echo "OS X detected. Installing core modules..." &&
+    sh ~/setup/mac.sh
 
-test -f /etc/redhat-release &&\
-grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&\
-echo "RHEL detected. Installing core modules..." &&\
-bash ~/setup/rhel.sh
+test -f /etc/redhat-release &&
+    grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&
+    echo "RHEL detected. Installing core modules..." &&
+    bash ~/setup/rhel.sh
 
-test -f /etc/os-release &&\
-grep -q -i "Amazon Linux 2" /etc/os-release &&\
-echo "AL2 detected. Installing core modules..." &&\
-bash ~/setup/al2.sh
+test -f /etc/os-release &&
+    grep -q -i "Amazon Linux 2" /etc/os-release &&
+    echo "AL2 detected. Installing core modules..." &&
+    bash ~/setup/al2.sh
 
-test -f /etc/os-release &&\
-grep -q -i "Pengwin" /etc/os-release &&\
-echo "Pengwin detected. Installing core modules..." &&\
-bash ~/setup/pengwin.sh
+test -f /etc/os-release &&
+    grep -q -i "Pengwin" /etc/os-release &&
+    echo "Pengwin detected. Installing core modules..." &&
+    bash ~/setup/pengwin.sh
 
-test -f /etc/issue &&\
-grep -q -i "openSUSE" /etc/issue &&\
-echo "openSUSE detected. Installing core modules..." &&\
-bash ~/setup/opensuse.sh
+test -f /etc/issue &&
+    grep -q -i "openSUSE" /etc/issue &&
+    echo "openSUSE detected. Installing core modules..." &&
+    bash ~/setup/opensuse.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "kali" /etc/issue &&\
-echo "Kali detected. Installing core modules..." &&\
-bash ~/setup/kali.sh
+test -f /etc/issue &&
+    grep -q -Ei "kali" /etc/issue &&
+    echo "Kali detected. Installing core modules..." &&
+    bash ~/setup/kali.sh
 
 echo '=== Additional modules ==='
 
-test -f /etc/issue &&\
-grep -q -Ei "arch" /etc/issue &&\
-grep -q -i "Microsoft" /proc/version &&\
-echo "Arch Linux on Windows detected. Installing core modules..." &&\
-bash ~/setup/arch-win.sh
+test -f /etc/issue &&
+    grep -q -Ei "arch" /etc/issue &&
+    grep -q -i "Microsoft" /proc/version &&
+    echo "Arch Linux on Windows detected. Installing core modules..." &&
+    bash ~/setup/arch-win.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "elementary|ubuntu" /etc/issue &&\
-grep -q -i "Microsoft" /proc/version &&\
-echo "Ubuntu on Windows detected. Installing additional modules..." &&\
-bash ~/setup/ubuntu-win.sh
+test -f /etc/issue &&
+    grep -q -Ei "elementary|ubuntu" /etc/issue &&
+    grep -q -i "Microsoft" /proc/version &&
+    echo "Ubuntu on Windows detected. Installing additional modules..." &&
+    bash ~/setup/ubuntu-win.sh
 
-test -f /etc/os-release &&\
-grep -q -i "Amazon Linux 2" /etc/os-release &&\
-grep -q -i "Microsoft" /proc/version &&\
-echo "AL2 on Windows detected. Installing additional modules..." &&\
-bash ~/setup/al2-win.sh
+test -f /etc/os-release &&
+    grep -q -i "Amazon Linux 2" /etc/os-release &&
+    grep -q -i "Microsoft" /proc/version &&
+    echo "AL2 on Windows detected. Installing additional modules..." &&
+    bash ~/setup/al2-win.sh
 
-test -f /etc/os-release &&\
-grep -q -i "Pengwin" /etc/os-release &&\
-grep -q -i "Microsoft" /proc/version &&\
-echo "Pengwin on Windows detected. Installing additional modules..." &&\
-bash ~/setup/pengwin-win.sh
+test -f /etc/os-release &&
+    grep -q -i "Pengwin" /etc/os-release &&
+    grep -q -i "Microsoft" /proc/version &&
+    echo "Pengwin on Windows detected. Installing additional modules..." &&
+    bash ~/setup/pengwin-win.sh
 
-test -f /etc/issue &&\
-grep -q -i "openSUSE" /etc/issue &&\
-which cmd.exe >/dev/null 2>&1 &&\
-echo "openSUSE on Windows detected. Installing additional modules..." &&\
-bash ~/setup/opensuse-win.sh
+test -f /etc/issue &&
+    grep -q -i "openSUSE" /etc/issue &&
+    which cmd.exe >/dev/null 2>&1 &&
+    echo "openSUSE on Windows detected. Installing additional modules..." &&
+    bash ~/setup/opensuse-win.sh
 
-test -f /etc/issue &&\
-grep -q -Ei "kali" /etc/issue &&\
-grep -q -i "Microsoft" /proc/version &&\
-echo "Kali on Windows detected. Installing additional modules..." &&\
-bash ~/setup/kali-win.sh
+test -f /etc/issue &&
+    grep -q -Ei "kali" /etc/issue &&
+    grep -q -i "Microsoft" /proc/version &&
+    echo "Kali on Windows detected. Installing additional modules..." &&
+    bash ~/setup/kali-win.sh
 
 if grep -q -i "Microsoft" /proc/version; then
     echo '=== WSL detected. Running additional config ==='
@@ -131,17 +130,17 @@ fi
 echo '=== Common development tools ==='
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-which node 2>&1 | grep -q -v mnt &&\
-which yarn 2>&1 | grep -q -v mnt &&\
-yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git
+which node 2>&1 | grep -q -v mnt &&
+    which yarn 2>&1 | grep -q -v mnt &&
+    yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-which pip 2>&1 | grep -q -v mnt &&\
-pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
+which pip 2>&1 | grep -q -v mnt &&
+    pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
-which gem 2>&1 | grep -q -v mnt &&\
-gem install rubocop rufo neovim lolcat
+which gem 2>&1 | grep -q -v mnt &&
+    gem install rubocop rufo neovim lolcat
 test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
 
 echo '=== Goodbye ==='

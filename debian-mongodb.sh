@@ -6,4 +6,5 @@ echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu $(lsb_release -cs | 
 sudo apt update -y
 sudo apt install -y mongodb-org
 
-grep -q -i "Microsoft" /proc/version && sudo cp ~/setup/mongodb.init.d /etc/init.d/mongodb # systemd not supported in WSL
+grep -q -i "Microsoft" /proc/version && sudo cp ~/setup/mongodb.init.d /etc/init.d/mongodb                  # systemd not supported in WSL
+grep -q -i "Microsoft" /proc/version && sudo cp ~/setup/mongodb.service /lib/systemd/system/mongodb.service # systemd not supported in WSL
