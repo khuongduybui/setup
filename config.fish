@@ -5,6 +5,13 @@ source ~/setup/fallback.fish
 complete -c c2c -x -a '(__fish_complete_c2c)'
 complete -c ips -x -a '(__fish_complete_ips)'
 
+## Fisher
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+
 if test -z $INIT
     ## Global
     ### PATH

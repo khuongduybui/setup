@@ -1,6 +1,6 @@
 # Fish abbreviations, sourced in ~/.config/fish/config.fish
 
-abbr fisher-update 'fisher self-update; fisher; patch ~/setup/fish-functions/fish_prompt.fish ~/setup/aps.patch'
+abbr fisher-update 'fisher self-update; fisher'
 abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 abbr ssh-ec2 'ssh -i ~/.ssh/ec2.pem -l ec2-user'
 
