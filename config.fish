@@ -12,67 +12,62 @@ source ~/setup/abbreviations.fish
 if test -z $INIT
     ## Global
     ### PATH
-    if not test -e ~/.path
-        info 'Calculating PATH'
+    info 'Calculating PATH'
 
-        __missing_path ~/bin
-        and set -x PATH ~/bin $PATH
+    __missing_path ~/bin
+    and set -x PATH ~/bin $PATH
 
-        __missing_path /home/linuxbrew/.linuxbrew/bin
-        and set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
+    __missing_path /home/linuxbrew/.linuxbrew/bin
+    and set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
 
-        __missing_path ~/.nodenv/bin
-        and set -x PATH ~/.nodenv/bin $PATH
+    __missing_path ~/.nodenv/bin
+    and set -x PATH ~/.nodenv/bin $PATH
 
-        test -z $NODENV_SHELL
-        and which nodenv >/dev/null 2>&1
-        and source (nodenv init - | psub)
+    test -z $NODENV_SHELL
+    and which nodenv >/dev/null 2>&1
+    and source (nodenv init - | psub)
 
-        __missing_path ~/.yarn/bin
-        and set -x PATH ~/.yarn/bin $PATH
+    __missing_path ~/.yarn/bin
+    and set -x PATH ~/.yarn/bin $PATH
 
-        __missing_path ~/.pyenv/bin
-        and set -x PATH ~/.pyenv/bin $PATH
+    __missing_path ~/.pyenv/bin
+    and set -x PATH ~/.pyenv/bin $PATH
 
-        test -z $PYENV_SHELL
-        and which pyenv >/dev/null 2>&1
-        and source (pyenv init - | psub)
-        and source (pyenv virtualenv-init - | psub)
+    test -z $PYENV_SHELL
+    and which pyenv >/dev/null 2>&1
+    and source (pyenv init - | psub)
+    and source (pyenv virtualenv-init - | psub)
 
-        __missing_path ~/.local/bin
-        and set -x PATH ~/.local/bin $PATH
+    __missing_path ~/.local/bin
+    and set -x PATH ~/.local/bin $PATH
 
-        __missing_path ~/.rbenv/bin
-        and set -x PATH ~/.rbenv/bin $PATH
+    __missing_path ~/.rbenv/bin
+    and set -x PATH ~/.rbenv/bin $PATH
 
-        __missing_path ~/.rbenv/plugins/ruby-build/bin
-        and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
+    __missing_path ~/.rbenv/plugins/ruby-build/bin
+    and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
 
-        test -z $RBENV_SHELL
-        and which rbenv >/dev/null 2>&1
-        and source (rbenv init - | psub)
+    test -z $RBENV_SHELL
+    and which rbenv >/dev/null 2>&1
+    and source (rbenv init - | psub)
 
-        test -d /usr/local/go
-        and set -x GOROOT /usr/local/go
+    test -d /usr/local/go
+    and set -x GOROOT /usr/local/go
 
-        test -n "$GOROOT"
-        and __missing_path $GOROOT/bin
-        and set -x PATH $GOROOT/bin $PATH
+    test -n "$GOROOT"
+    and __missing_path $GOROOT/bin
+    and set -x PATH $GOROOT/bin $PATH
 
-        test -d ~/go
-        and set -x GOPATH ~/go
+    test -d ~/go
+    and set -x GOPATH ~/go
 
-        test -n "$GOPATH"
-        and __missing_path $GOPATH/bin
-        and set -x PATH $GOPATH/bin $PATH
+    test -n "$GOPATH"
+    and __missing_path $GOPATH/bin
+    and set -x PATH $GOPATH/bin $PATH
 
-        varclear PATH
-        __clean_missing PATH
-        set -xU PATH $PATH
-        echo $PATH >~/.path
-    else
-        __clean_missing PATH
-    end
+    varclear PATH
+    __clean_missing PATH
+    set -xU PATH $PATH
     set -x HOME ~
 
     ### Editors
