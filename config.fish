@@ -5,6 +5,7 @@ source ~/setup/fallback.fish
 ## Completions
 complete -c c2c -x -a '(__fish_complete_c2c)'
 complete -c ips -x -a '(__fish_complete_ips)'
+complete -c ssm-env -x -a '(__fish_complete_ssm-env)'
 
 ## Abbreviations
 source ~/setup/abbreviations.fish
