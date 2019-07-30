@@ -123,7 +123,7 @@ if test -z $INIT
         ln -s $WHOME ~/winhome
 
         if __is_wsl_2
-            set -x WIP (grep -e 'nameserver' /etc/resolv.conf | sed 's/nameserver //')
+            set -x WIP (ip route show default | grep -Po 'via \K\S+')
         else
             set -x WIP 127.0.0.1
         end
@@ -133,7 +133,9 @@ if test -z $INIT
         test (umask) -eq 0022
         or umask 0022
 
-        x-init
+        if not __is_wsl_2
+		x-init
+	end
         font-init
     end
 
