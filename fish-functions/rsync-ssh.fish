@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.QqRcnu/rsync-ssh.fish @ line 2
 function rsync-ssh
-	mkdir -p ~/.ssh
+    mkdir -p ~/.ssh
 
     test -d ~/OneDrive
     and rsync -r ~/OneDrive/Essentials/dotfile.ssh/* ~/.ssh

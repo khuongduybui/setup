@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.kGWeOW/__clean_missing.fish @ line 1
 function __clean_missing
-	if test (count $argv) = 1
+    if test (count $argv) = 1
         set -l newvar
         for v in $$argv
             if test -d $v

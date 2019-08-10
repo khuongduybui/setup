@@ -15,38 +15,30 @@ if test -z $INIT
     ### PATH
     info 'Calculating PATH'
 
-    __missing_path ~/bin
-    and set -x PATH ~/bin $PATH
+    __ensure_path ~/bin
 
-    __missing_path /home/linuxbrew/.linuxbrew/bin
-    and set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
+    __ensure_path /home/linuxbrew/.linuxbrew/bin
 
-    __missing_path ~/.nodenv/bin
-    and set -x PATH ~/.nodenv/bin $PATH
+    __ensure_path ~/.nodenv/bin
 
     test -z $NODENV_SHELL
     and which nodenv >/dev/null 2>&1
     and source (nodenv init - | psub)
 
-    __missing_path ~/.yarn/bin
-    and set -x PATH ~/.yarn/bin $PATH
+    __ensure_path ~/.yarn/bin
 
-    __missing_path ~/.pyenv/bin
-    and set -x PATH ~/.pyenv/bin $PATH
+    __ensure_path ~/.pyenv/bin
 
     test -z $PYENV_SHELL
     and which pyenv >/dev/null 2>&1
     and source (pyenv init - | psub)
     and source (pyenv virtualenv-init - | psub)
 
-    __missing_path ~/.local/bin
-    and set -x PATH ~/.local/bin $PATH
+    __ensure_path ~/.local/bin
 
-    __missing_path ~/.rbenv/bin
-    and set -x PATH ~/.rbenv/bin $PATH
+    __ensure_path ~/.rbenv/bin
 
-    __missing_path ~/.rbenv/plugins/ruby-build/bin
-    and set -x PATH ~/.rbenv/plugins/ruby-build/bin $PATH
+    __ensure_path ~/.rbenv/plugins/ruby-build/bin
 
     test -z $RBENV_SHELL
     and which rbenv >/dev/null 2>&1
@@ -56,15 +48,15 @@ if test -z $INIT
     and set -x GOROOT /usr/local/go
 
     test -n "$GOROOT"
-    and __missing_path $GOROOT/bin
-    and set -x PATH $GOROOT/bin $PATH
+    and __ensure_path $GOROOT/bin
 
     test -d ~/go
     and set -x GOPATH ~/go
 
     test -n "$GOPATH"
-    and __missing_path $GOPATH/bin
-    and set -x PATH $GOPATH/bin $PATH
+    and __ensure_path $GOPATH/bin
+
+    __ensure_path /z/Microsoft\ VS\ Code/bin
 
     varclear PATH
     __clean_missing PATH
@@ -134,8 +126,8 @@ if test -z $INIT
         or umask 0022
 
         if not __is_wsl_2
-		x-init
-	end
+            x-init
+        end
         font-init
     end
 

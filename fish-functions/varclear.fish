@@ -1,5 +1,5 @@
 function varclear --description 'Remove duplicates from environment variable'
-	if test (count $argv) = 1
+    if test (count $argv) = 1
         set -l newvar
         for v in $$argv
             if not contains -- $v $newvar

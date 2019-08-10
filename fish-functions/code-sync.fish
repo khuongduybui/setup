@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.UhGFP6/code-sync.fish @ line 2
 function code-sync
-	cd ~/code
+    cd ~/code
     for workspace in (ls | grep -v .code-workspace)
         echo -n "Syncing $workspace... "
         echo '{"folders":[' >"$workspace.code-workspace"

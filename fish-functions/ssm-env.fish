@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.5vzJ5j/ssm-env.fish @ line 2
 function ssm-env
-	set -l asg
+    set -l asg
     if test (count $argv) = 1
         set -x asg $argv[1]
     else

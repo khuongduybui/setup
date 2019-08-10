@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.oik5gT/rsync-aws.fish @ line 2
 function rsync-aws
-	mkdir -p ~/.aws
+    mkdir -p ~/.aws
 
     test -d ~/OneDrive
     and rsync -r ~/OneDrive/Essentials/dotfile.aws/* ~/.aws
