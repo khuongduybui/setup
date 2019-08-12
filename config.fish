@@ -14,6 +14,7 @@ if test -z $INIT
     ## Global
     ### PATH
     info 'Calculating PATH'
+    __clean_missing PATH
 
     __ensure_path ~/bin
 
