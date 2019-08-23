@@ -57,6 +57,13 @@ if test -z $INIT
     test -n "$GOPATH"
     and __ensure_path $GOPATH/bin
 
+    test -d /usr/local/android/sdk/tools
+    and set -x ANDROID_HOME /usr/local/android/sdk
+
+    test -n "$ANDROID_HOME"
+    and __ensure_path $ANDROID_HOME/tools
+    and __ensure_path $ANDROID_HOME/platform-tools
+
     __ensure_path /z/Microsoft\ VS\ Code/bin
 
     varclear PATH
