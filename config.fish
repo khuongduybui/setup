@@ -164,4 +164,4 @@ end
 
 ### Shell
 which starship >/dev/null 2>&1
-and eval (starship init fish)
+and source (starship init fish --print-full-init | psub)
