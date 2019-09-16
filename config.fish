@@ -57,6 +57,9 @@ if test -z $INIT
     test -n "$GOPATH"
     and __ensure_path $GOPATH/bin
 
+    test -d ~/.cargo
+    and source ~/.cargo/env
+
     if test -d /usr/local/android/sdk/tools
         set -x ANDROID_HOME /usr/local/android/sdk
         __ensure_path $ANDROID_HOME/tools
@@ -158,3 +161,7 @@ if test -z $INIT
         end
     end
 end
+
+### Shell
+which starship >/dev/null 2>&1
+and eval (starship init fish)
