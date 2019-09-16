@@ -57,12 +57,12 @@ if test -z $INIT
     test -n "$GOPATH"
     and __ensure_path $GOPATH/bin
 
-    test -d /usr/local/android/sdk/tools
-    and set -x ANDROID_HOME /usr/local/android/sdk
-
-    test -n "$ANDROID_HOME"
-    and __ensure_path $ANDROID_HOME/tools
-    and __ensure_path $ANDROID_HOME/platform-tools
+    if test -d /usr/local/android/sdk/tools
+        set -x ANDROID_HOME /usr/local/android/sdk
+        __ensure_path $ANDROID_HOME/tools
+        __ensure_path $ANDROID_HOME/platform-tools
+        set -x JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+    end
 
     __ensure_path /z/Microsoft\ VS\ Code/bin
 
@@ -152,8 +152,9 @@ if test -z $INIT
         info 'Launching Byobu'
         if test -e ~/.byobu/disable-autolaunch
             echo Suppress byobu due to the presence of ~/.byobu/disable-autolaunch
+            exec genie -s
         else
-            exec byobu-launcher
+            exec genie -c byobu-launcher
         end
     end
 end

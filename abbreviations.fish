@@ -12,7 +12,7 @@ abbr c 'c2c'
 abbr v 'view'
 abbr e 'edit'
 abbr s 'settings'
-abbr cmd 'command'
+abbr cmd command
 abbr cdw 'cd $WHOME'
 
 abbr bdf 'bit diff --ignore-space-change'
@@ -37,9 +37,13 @@ abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr ssm 'aws ssm start-session --target'
 abbr region 'aws configure set region'
 
+abbr snapd 'sudo service snapd'
+abbr mongod 'sudo service mongod'
 abbr mongodb 'sudo service mongodb'
 abbr rethinkdb 'sudo service rethinkdb'
 abbr dbus 'sudo service dbus'
+
+abbr heroku 'snap run heroku'
 
 abbr fp 'feathers-plus'
 abbr fpg 'feathers-plus generate'

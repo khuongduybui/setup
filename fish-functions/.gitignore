@@ -8,3 +8,4 @@ menu.fish
 segment*.fish
 spin.fish
 fish_*prompt.fish
+ev.fish
