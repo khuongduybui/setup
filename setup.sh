@@ -13,6 +13,8 @@ bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
 
 bash ~/setup/backup-and-link.sh ~/setup/WindowsPowerShell ~/.config/powershell
 
+bash ~/setup/backup-and-link.sh ~/setup/starship.toml ~/.config/
+
 mkdir -p ~/.config/sublime-text-3/Packages/User
 bash ~/setup/backup-and-link.sh ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
 
