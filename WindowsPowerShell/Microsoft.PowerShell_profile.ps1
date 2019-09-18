@@ -1,5 +1,5 @@
 # Turn-on Verbose output as needed
-$VerbosePreference = "Continue"
+# $VerbosePreference = "Continue"
 
 # Set up custom paths for functions, scripts, modules
 $Profile = $myInvocation.mycommand.path
