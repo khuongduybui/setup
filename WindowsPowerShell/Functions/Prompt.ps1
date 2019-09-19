@@ -1,4 +1,4 @@
-function global:Prompt {
+﻿function global:Prompt {
   $origLastExitCode = $LASTEXITCODE
 
   $prompt = "

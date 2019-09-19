@@ -9,9 +9,9 @@ function global:Reload {
 
     Write-Verbose "Importing functions from $FunctionPath."
     foreach ($FunctionFile in $(Get-ChildItem $FunctionPath)) {
-      $Function = $FunctionFile -replace "\.ps1", ""
-      $Functions += $Function
-      Import-Module -Force -Global "$FunctionPath\$FunctionFile"
+      $FunctionName = $($FunctionFile -replace "\.ps1", "").Replace($FunctionPath + "\", "")
+      $Functions += $FunctionName
+      Import-Module "$FunctionPath\$FunctionName.ps1" -Force
     }
 
     $EI = Get-ChildItem "Function:/Environment-Init" -ErrorAction SilentlyContinue
