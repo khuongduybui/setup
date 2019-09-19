@@ -145,4 +145,7 @@ which gem 2>&1 | grep -q -v mnt &&
     gem install rubocop rufo neovim lolcat
 test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
 
+bash ~/setup/linux-rust.sh
+test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install lsd starship
+
 echo '=== Goodbye ==='
