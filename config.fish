@@ -1,14 +1,16 @@
-## Plugins
-source ~/setup/verify-fisher.fish
-source ~/setup/fallback.fish
+if status --is-interactive
+    ## Plugins
+    source ~/setup/verify-fisher.fish
+    source ~/setup/fallback.fish
 
-## Completions
-complete -c c2c -x -a '(__fish_complete_c2c)'
-complete -c ips -x -a '(__fish_complete_ips)'
-complete -c ssm-env -x -a '(__fish_complete_ssm-env)'
+    ## Completions
+    complete -c c2c -x -a '(__fish_complete_c2c)'
+    complete -c ips -x -a '(__fish_complete_ips)'
+    complete -c ssm-env -x -a '(__fish_complete_ssm-env)'
 
-## Abbreviations
-source ~/setup/abbreviations.fish
+    ## Abbreviations
+    source ~/setup/abbreviations.fish
+end
 
 if test -z $INIT
     ## Global
@@ -74,30 +76,32 @@ if test -z $INIT
     set -xU PATH $PATH
     set -x HOME ~
 
-    ### Editors
-    if not test -e ~/.editor
-        info 'Searching for Editors'
-        if which code >/dev/null 2>&1
-            and not test -e ~/.disable-vscode
-            set -x EDITOR ~/setup/vscode.sh
-        else
-            set -x EDITOR (which io.elementary.code 2>/dev/null; or which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
+    if status --is-interactive
+        ### Editors
+        if not test -e ~/.editor
+            info 'Searching for Editors'
+            if which code >/dev/null 2>&1
+                and not test -e ~/.disable-vscode
+                set -x EDITOR ~/setup/vscode.sh
+            else
+                set -x EDITOR (which io.elementary.code 2>/dev/null; or which micro 2>/dev/null; or which nvim 2>/dev/null; or which vim 2>/dev/null; or which vi 2>/dev/null; or which nano 2>/dev/null)
+            end
+            set -xU MICRO_TRUECOLOR 1
+            set -xU EDITOR $EDITOR
+            echo $EDITOR >~/.editor
         end
-        set -xU MICRO_TRUECOLOR 1
-        set -xU EDITOR $EDITOR
-        echo $EDITOR >~/.editor
-    end
 
-    ### Languages
-    if not grep -q -e "LANG=en_US.UTF-8" /etc/locale.conf
-        info 'Setting locale'
-        grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment
-        or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
-        grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen
-        or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
-        echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
-        which locale-gen >/dev/null 2>&1
-        and sudo locale-gen en_US.UTF-8
+        ### Languages
+        if not grep -q -e "LANG=en_US.UTF-8" /etc/locale.conf
+            info 'Setting locale'
+            grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment
+            or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+            grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen
+            or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+            echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
+            which locale-gen >/dev/null 2>&1
+            and sudo locale-gen en_US.UTF-8
+        end
     end
 
     ### Windows?
