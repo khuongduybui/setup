@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.QqRcnu/rsync-ssh.fish @ line 2
+# Defined in /tmp/fish.Y03aVj/rsync-ssh.fish @ line 2
 function rsync-ssh
-    mkdir -p ~/.ssh
+	mkdir -p ~/.ssh
 
     test -d ~/OneDrive
     and rsync -r ~/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
@@ -11,11 +11,16 @@ function rsync-ssh
     test -d (wslpath 'D:/OneDrive')
     and rsync -r (wslpath 'D:/OneDrive/Essentials/dotfile.ssh')/* ~/.ssh
 
+    chmod 600 ~/.ssh/private*
     chmod 600 ~/.ssh/*.pem
     chmod 600 ~/.ssh/config
+    chmod 644 ~/.ssh/public*
     chmod 644 ~/.ssh/*.pub
     chmod 644 ~/.ssh/known_hosts
     chmod 644 ~/.ssh/authorized_keys
+
+    gpg --import ~/.ssh/private.gpg
+    gpg --import ~/.ssh/public.gpg
 
     echo Done
 end
