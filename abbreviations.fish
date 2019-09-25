@@ -3,6 +3,8 @@
 abbr fisher-update 'fisher self-update; fisher'
 abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 abbr ssh-ec2 'ssh -i ~/.ssh/ec2.pem -l ec2-user'
+abbr update-git-ll 'git config user.email "duy.bui@lunarline.com"; git config user.signingkey 083EF93045D6B22C'
+abbr update-git-ct 'git config user.email "duy.bui@clevertech.biz"; git config user.signingkey 603790593AB493EA'
 
 abbr a 'add-abbr'
 abbr acc 'accounts'
