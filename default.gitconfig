@@ -1,6 +1,7 @@
 [user]
 name = Duy K. Bui
 email = duy@buifamily.info
+signingkey = D09B20421B84FD32
 
 [push]
 default = upstream
@@ -15,6 +16,7 @@ fileMode = false
 
 [alias]
 dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [diff]
 tool = default-difftool
@@ -25,3 +27,9 @@ cmd = code -nw --diff $LOCAL $REMOTE
 [credential]
 helper = !aws codecommit credential-helper $@
 UseHttpPath = true
+
+[commit]
+gpgsign = true
+
+[tag]
+gpgsign = true
