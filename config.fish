@@ -15,66 +15,72 @@ end
 if test -z $INIT
     ## Global
     ### PATH
-    info 'Calculating PATH'
-    __clean_missing PATH
+    if test -e ~/.path
+        set -eg PATH
+    else
+        info 'Calculating PATH'
+        __clean_missing PATH
 
-    __ensure_path ~/bin
+        __ensure_path ~/bin
 
-    __ensure_path /home/linuxbrew/.linuxbrew/bin
+        __ensure_path /home/linuxbrew/.linuxbrew/bin
 
-    __ensure_path ~/.nodenv/bin
+        __ensure_path ~/.nodenv/bin
 
-    test -z $NODENV_SHELL
-    and which nodenv >/dev/null 2>&1
-    and source (nodenv init - | psub)
+        test -z $NODENV_SHELL
+        and which nodenv >/dev/null 2>&1
+        and source (nodenv init - | psub)
 
-    __ensure_path ~/.yarn/bin
+        __ensure_path ~/.yarn/bin
 
-    __ensure_path ~/.pyenv/bin
+        __ensure_path ~/.pyenv/bin
 
-    test -z $PYENV_SHELL
-    and which pyenv >/dev/null 2>&1
-    and source (pyenv init - | psub)
-    and source (pyenv virtualenv-init - | psub)
+        test -z $PYENV_SHELL
+        and which pyenv >/dev/null 2>&1
+        and source (pyenv init - | psub)
+        and source (pyenv virtualenv-init - | psub)
 
-    __ensure_path ~/.local/bin
+        __ensure_path ~/.local/bin
 
-    __ensure_path ~/.rbenv/bin
+        __ensure_path ~/.rbenv/bin
 
-    __ensure_path ~/.rbenv/plugins/ruby-build/bin
+        __ensure_path ~/.rbenv/plugins/ruby-build/bin
 
-    test -z $RBENV_SHELL
-    and which rbenv >/dev/null 2>&1
-    and source (rbenv init - | psub)
+        test -z $RBENV_SHELL
+        and which rbenv >/dev/null 2>&1
+        and source (rbenv init - | psub)
 
-    test -d /usr/local/go
-    and set -x GOROOT /usr/local/go
+        test -d /usr/local/go
+        and set -x GOROOT /usr/local/go
 
-    test -n "$GOROOT"
-    and __ensure_path $GOROOT/bin
+        test -n "$GOROOT"
+        and __ensure_path $GOROOT/bin
 
-    test -d ~/go
-    and set -x GOPATH ~/go
+        test -d ~/go
+        and set -x GOPATH ~/go
 
-    test -n "$GOPATH"
-    and __ensure_path $GOPATH/bin
+        test -n "$GOPATH"
+        and __ensure_path $GOPATH/bin
 
-    test -d ~/.cargo
-    and source ~/.cargo/env
+        test -d ~/.cargo
+        and source ~/.cargo/env
 
-    if test -d /usr/local/android/sdk/tools
-        set -x ANDROID_HOME /usr/local/android/sdk
-        __ensure_path $ANDROID_HOME/tools
-        __ensure_path $ANDROID_HOME/platform-tools
-        set -x JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+        if test -d /usr/local/android/sdk/tools
+            set -x ANDROID_HOME /usr/local/android/sdk
+            __ensure_path $ANDROID_HOME/tools
+            __ensure_path $ANDROID_HOME/platform-tools
+            set -x JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+        end
+
+        __ensure_path /z/Microsoft\ VS\ Code/bin
+
+        varclear PATH
+        __clean_missing PATH
+        set -xU PATH $PATH
+        set -x HOME ~
+
+        echo $PATH >~/.path
     end
-
-    __ensure_path /z/Microsoft\ VS\ Code/bin
-
-    varclear PATH
-    __clean_missing PATH
-    set -xU PATH $PATH
-    set -x HOME ~
 
     if status --is-interactive
         ### Editors
