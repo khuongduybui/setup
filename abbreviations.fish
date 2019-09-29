@@ -35,6 +35,8 @@ abbr b 'bit status'
 abbr g 'git status'
 abbr y 'yarn'
 abbr yx 'yarn exec'
+abbr ya 'yarn add'
+abbr yad 'yarn add -D'
 abbr p 'pnpm'
 abbr px 'pnpx'
 abbr pi 'pnpm install'
@@ -42,7 +44,7 @@ abbr pid 'pnpm install --save-dev'
 
 abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
 
-abbr awscc 'git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
+abbr awscc 'git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/'
 abbr ssm 'aws ssm start-session --target'
 abbr region 'aws configure set region'
 
