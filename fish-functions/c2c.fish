@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.Tumsnw/c2c.fish @ line 2
+# Defined in /tmp/fish.1xCLs8/c2c.fish @ line 2
 function c2c
-    if not test -d ~/code
+	if not test -d ~/code
         set_color $fish_color_error
         echo -n "ERROR: "
         set_color normal
@@ -38,12 +38,14 @@ function c2c
             end
         end
     end
+
+    if test -f .env
+        dotenv
+    end
+
     if test -d ./.git
         git status
     else
         l
-    end
-    if test -f ./env/bin/activate.fish
-        . ./env/bin/activate.fish
     end
 end
