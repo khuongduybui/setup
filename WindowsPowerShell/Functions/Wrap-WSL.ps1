@@ -1,7 +1,11 @@
 function global:Wrap-WSL {
   $args | ForEach-Object {
     Invoke-Expression @"
-      Remove-Alias $_ -Force -ErrorAction Ignore
+      try {
+        Remove-Alias $_ -Force -ErrorAction Throw
+      } catch {
+        # Remove-Alias is only available in powershell core 6
+      }
       function global:$_() {
         for (`$i = 0; `$i -lt `$args.Count; `$i++) {
             # If a path is absolute with a qualifier (e.g. C:), run it through wslpath to map it to the appropriate mount point.
