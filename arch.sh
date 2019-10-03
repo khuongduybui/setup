@@ -10,7 +10,7 @@ cd -
 
 echo "Install system utils"
 yay -S --needed --noconfirm rsync openssh xorg-xauth x11-ssh-askpass
-yay -S --needed --noconfirm fish neovim xsel xclip grc mc screenfetch scrot
+yay -S --needed --noconfirm fish neovim xsel xclip grc mc screenfetch scrot direnv
 yay -S --needed --noconfirm byobu
 # @TODO: wslu (https://github.com/wslutilities/wslu/issues/33)
 

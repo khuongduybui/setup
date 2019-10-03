@@ -175,3 +175,6 @@ end
 ### Shell
 which starship >/dev/null 2>&1
 and source (starship init fish --print-full-init | psub)
+
+which direnv >/dev/null 2>&1
+and direnv hook fish | source
