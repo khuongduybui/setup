@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.MuGhFa/pfw.fish @ line 2
+# Defined in /tmp/fish.pAc7Ml/pfw.fish @ line 2
 function pfw
-    if not which socat >/dev/null
+	if not which socat >/dev/null
         echo "Installing socat..."
         which yum >/dev/null
         and sudo yum install -y socat
@@ -13,7 +13,7 @@ function pfw
     if test (count $argv) = 2
         set destination $argv[2]
     end
-    echo "Redirecting traffic from port $destination to $argv[1]"
+    echo "Redirecting incoming traffic targetting port $destination to $argv[1]"
     if test $destination -le 101
         sudo socat "tcp-listen:$destination,reuseaddr,fork" "tcp:localhost:$argv[1]"
     else
