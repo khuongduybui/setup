@@ -70,6 +70,11 @@ test -f /etc/os-release &&
     bash ~/setup/al2.sh
 
 test -f /etc/os-release &&
+    grep -q -i "clear-linux-os" /etc/os-release &&
+    echo "Clear Linux detected. Installing core modules..." &&
+    bash ~/setup/clear.sh
+
+test -f /etc/os-release &&
     grep -q -i "Pengwin" /etc/os-release &&
     echo "Pengwin detected. Installing core modules..." &&
     bash ~/setup/pengwin.sh
@@ -84,65 +89,42 @@ test -f /etc/issue &&
     echo "Kali detected. Installing core modules..." &&
     bash ~/setup/kali.sh
 
-echo '=== Additional modules ==='
-
-test -f /etc/issue &&
-    grep -q -Ei "arch" /etc/issue &&
-    grep -q -i "Microsoft" /proc/version &&
-    echo "Arch Linux on Windows detected. Installing core modules..." &&
-    bash ~/setup/arch-win.sh
-
-test -f /etc/issue &&
-    grep -q -Ei "elementary|ubuntu" /etc/issue &&
-    grep -q -i "Microsoft" /proc/version &&
-    echo "Ubuntu on Windows detected. Installing additional modules..." &&
-    bash ~/setup/ubuntu-win.sh
-
-test -f /etc/os-release &&
-    grep -q -i "Amazon Linux 2" /etc/os-release &&
-    grep -q -i "Microsoft" /proc/version &&
-    echo "AL2 on Windows detected. Installing additional modules..." &&
-    bash ~/setup/al2-win.sh
-
-test -f /etc/os-release &&
-    grep -q -i "Pengwin" /etc/os-release &&
-    grep -q -i "Microsoft" /proc/version &&
-    echo "Pengwin on Windows detected. Installing additional modules..." &&
-    bash ~/setup/pengwin-win.sh
-
-test -f /etc/issue &&
-    grep -q -i "openSUSE" /etc/issue &&
-    which cmd.exe >/dev/null 2>&1 &&
-    echo "openSUSE on Windows detected. Installing additional modules..." &&
-    bash ~/setup/opensuse-win.sh
-
-test -f /etc/issue &&
-    grep -q -Ei "kali" /etc/issue &&
-    grep -q -i "Microsoft" /proc/version &&
-    echo "Kali on Windows detected. Installing additional modules..." &&
-    bash ~/setup/kali-win.sh
-
 if grep -q -i "Microsoft" /proc/version; then
     echo '=== WSL detected. Running additional config ==='
-    bash ~/setup/backup-and-link.sh ~/setup/wsl.conf /etc/
-    sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
-    sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
+    bash ~/setup/linux-win.sh
+
+    test -f /etc/issue &&
+        grep -q -Ei "elementary|ubuntu" /etc/issue &&
+        grep -q -i "Microsoft" /proc/version &&
+        echo "Ubuntu on Windows detected. Installing additional modules..." &&
+        bash ~/setup/ubuntu-win.sh
+
+    test -f /etc/os-release &&
+        grep -q -i "Pengwin" /etc/os-release &&
+        grep -q -i "Microsoft" /proc/version &&
+        echo "Pengwin on Windows detected. Installing additional modules..." &&
+        bash ~/setup/pengwin-win.sh
+
+    test -f /etc/issue &&
+        grep -q -Ei "kali" /etc/issue &&
+        grep -q -i "Microsoft" /proc/version &&
+        echo "Kali on Windows detected. Installing additional modules..." &&
+        bash ~/setup/kali-win.sh
+
+    which update-alternatives && sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
+    which update-alternatives && sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
 fi
 
 echo '=== Common development tools ==='
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-which node 2>&1 | grep -q -v mnt &&
-    which yarn 2>&1 | grep -q -v mnt &&
-    yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git
+which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-which pip 2>&1 | grep -q -v mnt &&
-    pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
+which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
-which gem 2>&1 | grep -q -v mnt &&
-    gem install rubocop rufo neovim lolcat
+which gem && gem install rubocop rufo neovim lolcat
 test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
 
 bash ~/setup/linux-rust.sh
