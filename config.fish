@@ -165,9 +165,17 @@ if test -z $INIT
         info 'Launching Byobu'
         if test -e ~/.byobu/disable-autolaunch
             echo Suppress byobu due to the presence of ~/.byobu/disable-autolaunch
-            exec genie -s
+            if not test -e ~/.disable-genie
+                and which genie >/dev/null 2>&1
+                exec genie -s
+            end
         else
-            exec genie -c byobu-launcher
+            if not test -e ~/.disable-genie
+                and which genie >/dev/null 2>&1
+                exec genie -c byobu-launcher
+            else
+                exec byobu-launcher
+            end
         end
     end
 end
