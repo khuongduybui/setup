@@ -9,3 +9,5 @@ os=ubuntu dist=bionic sudo -E bash /tmp/genie.sh
 
 sudo apt update -y
 sudo apt install -y systemd-genie
+
+test -e /usr/sbin/daemonize || sudo ln -s /usr/bin/daemonize /usr/sbin
