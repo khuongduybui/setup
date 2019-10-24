@@ -1,5 +1,5 @@
 function global:Environment-Init {
   Write-Verbose "Wrapping WSL."
-  Wrap-WSL l accounts git ssh aws
+  Import-WslCommand accounts, aws, git, l, ssh
   Write-Verbose "Environment ready."
 }
