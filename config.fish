@@ -146,9 +146,7 @@ if test -z $INIT
         test (umask) -eq 0022
         or umask 0022
 
-        if not __is_wsl_2
-            x-init
-        end
+        # x-init
         font-init
     end
 
