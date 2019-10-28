@@ -56,8 +56,6 @@ abbr mongodb 'sudo service mongodb'
 abbr rethinkdb 'sudo service rethinkdb'
 abbr dbus 'sudo service dbus'
 
-abbr heroku 'snap run heroku'
-
 abbr fp 'feathers-plus'
 abbr fpg 'feathers-plus generate'
 abbr fpgs 'feathers-plus generate service'

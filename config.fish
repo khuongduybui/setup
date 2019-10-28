@@ -25,6 +25,8 @@ if test -z $INIT
 
         __ensure_path /home/linuxbrew/.linuxbrew/bin
 
+        __ensure_path /snap/bin
+
         __ensure_path ~/.nodenv/bin
 
         test -z $NODENV_SHELL
