@@ -1,22 +1,20 @@
-# Defined in /tmp/fish.UhGFP6/code-sync.fish @ line 2
+# Defined in /tmp/fish.jyM7aG/code-sync.fish @ line 2
 function code-sync
-    cd ~/code
-    for workspace in (ls | grep -v .code-workspace)
-        echo -n "Syncing $workspace... "
-        echo '{"folders":[' >"$workspace.code-workspace"
+    cd ~/setup/code-sync
 
-        if test -e "$workspace/packageInfo"
-            echo '{"path": "'$workspace'"},' >>"$workspace.code-workspace"
+    if not test -d node_modules
+        if which pnpm >/dev/null 2>&1
+            pnpm install
+        else if which npx >/dev/null 2>&1
+            npx pnpm install
+        else if which yarn >/dev/null 2>&1
+            yarn
         else
-            for package in (ls "$workspace/")
-                echo '{"path": "'$workspace/$package'"},' >>"$workspace.code-workspace"
-            end
+            echo "Install npm, yarn, or pnpm"
+            return
         end
-
-        echo '],"settings":{' >>"$workspace.code-workspace"
-
-        echo '}}' >>"$workspace.code-workspace"
-        echo 'done'
     end
+    node .
+
     cd -
 end
