@@ -68,10 +68,10 @@ if test -z $INIT
         and source ~/.cargo/env
 
         if test -d /usr/local/android/sdk/tools
-            set -x ANDROID_HOME /usr/local/android/sdk
+            set -xU ANDROID_HOME /usr/local/android/sdk
             __ensure_path $ANDROID_HOME/tools
             __ensure_path $ANDROID_HOME/platform-tools
-            set -x JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+            set -xU JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
         end
 
         __ensure_path /z/Microsoft\ VS\ Code/bin
@@ -158,24 +158,22 @@ if test -z $INIT
     ## Done INIT
     set -x INIT true
 
-    ## Load byobu
+    ## Load genie & byobu
     if status --is-login
         and status --is-interactive
-        and which byobu-launcher >/dev/null 2>&1
-        info 'Launching Byobu'
-        if test -e ~/.byobu/disable-autolaunch
-            echo Suppress byobu due to the presence of ~/.byobu/disable-autolaunch
-            if not test -e ~/.disable-genie
-                and which genie >/dev/null 2>&1
-                exec genie -s
-            end
-        else
-            if not test -e ~/.disable-genie
-                and which genie >/dev/null 2>&1
-                exec genie -c byobu-launcher
-            else
-                exec byobu-launcher
-            end
+
+        if test -z $INSIDE_GENIE
+            and not test -e ~/.disable-genie
+            and which genie >/dev/null 2>&1
+            info 'Summoning genie'
+            exec genie -s
+        end
+
+        if test -z $BYOBU_WINDOW_NAME
+            and not test -e ~/.byobu/disable-autolaunch
+            and which byobu-launcher >/dev/null 2>&1
+            info 'Launching Byobu'
+            exec byobu-launcher
         end
     end
 end
