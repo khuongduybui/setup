@@ -1,10 +1,10 @@
-# Defined in /tmp/fish.5vzJ5j/ssm-env.fish @ line 2
+# Defined in /tmp/fish.qTKLmf/ssm-env.fish @ line 2
 function ssm-env
-    set -l asg
+	set -l asg
     if test (count $argv) = 1
         set -x asg $argv[1]
     else
-        set -l asgs (aws autoscaling describe-auto-scaling-instances | jq -r '.AutoScalingInstances[].AutoScalingGroupName')
+        set -l asgs (aws autoscaling describe-auto-scaling-instances | jq -r '.AutoScalingInstances[].AutoScalingGroupName' | uniq)
         set -l menu_cursor_glyph \uf7c2
         menu $asgs
         set -x asg $asgs[$menu_selected_index]
