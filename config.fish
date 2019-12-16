@@ -148,7 +148,7 @@ if test -z $INIT
         test (umask) -eq 0022
         or umask 0022
 
-        x-init
+        x-init &
         font-init
     end
 
