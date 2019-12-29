@@ -6,7 +6,8 @@ const path = require('path');
 const workspaceExtension = '.code-workspace';
 const encoding = 'utf8';
 
-const codepath = path.resolve(__dirname, '..', '..', 'code');
+// const codepath = path.resolve(__dirname, '..', '..', 'code');
+const codepath = path.resolve(process.env.HOME, 'code');
 const dirs = fs.readdirSync(codepath).filter((dir) => fs.lstatSync(path.resolve(codepath, dir)).isDirectory());
 
 dirs.forEach((dir) => {
