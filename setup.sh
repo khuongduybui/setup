@@ -118,7 +118,7 @@ fi
 echo '=== Common development tools ==='
 
 test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git
+which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
 which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
