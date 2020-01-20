@@ -28,11 +28,11 @@ dirs.forEach((dir) => {
       fs
         .readdirSync(dirpath)
         .filter((name) => fs.lstatSync(path.resolve(dirpath, name)).isDirectory())
-        .map((name) => ({ path: path.join(dir, name) })),
+        .map((name) => ({ path: path.join(dir, name) }))
+        .sort(({ path: a }, { path: b }) => a.localeCompare(b)),
     )
     .filter(({ path: folder }, index, folders) => folders.map(({ path: folder }) => folder).indexOf(folder) === index)
-    .filter(({ path: folder }) => fs.existsSync(path.join(codepath, folder)))
-    .sort(({ path: a }, { path: b }) => a.localeCompare(b));
+    .filter(({ path: folder }) => fs.existsSync(path.join(codepath, folder)));
 
   console.log('>', 'Syncing to', workspacePath.cyan.underline);
   fs.writeFileSync(workspacePath, JSON.stringify(workspace), { encoding });

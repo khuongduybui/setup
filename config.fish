@@ -155,6 +155,10 @@ if test -z $INIT
     ## Preload WPS
     wps-init
 
+    ## Create /run/user/(id -u)
+    sudo mkdir -p /run/user/(id -u)
+    sudo chown -R (id -un):(id -gn) /run/user/(id -u)
+
     ## Done INIT
     set -x INIT true
 
