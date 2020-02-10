@@ -19,11 +19,11 @@ if ((Test-Path $root\Essentials) -eq $True) {
       # don't do anything
       Write-Verbose "| - Skipping existing $f" -Verbose;
     } else {
-      if (($file.Attributes -match "Directory") -Or ($file.Attributes -match 52)) {
-        cmd /C mklink /D $f $root\Essentials\$file;
+      if (($file.Attributes -match "Directory") -Or ($file.Attributes -match 526352) -Or ($file.Attributes -match 526384)) {
+        cmd /C mklink /D $f $file;
       } else {
-		Write-Verbose "| - Treating $f $($file.Attributes) as file" -Verbose;
-        cmd /C mklink $f $root\Essentials\$file;
+	Write-Verbose "| - Treating $f $($file.Attributes) as file" -Verbose;
+        cmd /C mklink $f $file;
       }
     }
   }
