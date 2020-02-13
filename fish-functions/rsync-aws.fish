@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.X0qdGd/rsync-aws.fish @ line 2
+# Defined in /tmp/fish.0TsA3z/rsync-aws.fish @ line 2
 function rsync-aws
 	test -d ~/OneDrive
     and bash ~/setup/backup-and-link.sh ~/OneDrive/Essentials/dotfile.aws ~/.aws
