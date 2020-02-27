@@ -43,6 +43,7 @@ mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/code
 
+if [ ! -f /.dockerenv ]; then
 echo "=== Installing modules ==="
 
 test -f /etc/issue &&
@@ -113,6 +114,7 @@ if grep -q -i "Microsoft" /proc/version; then
 
     which update-alternatives && sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
     which update-alternatives && sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
+fi
 fi
 
 echo '=== Common development tools ==='
