@@ -14,9 +14,9 @@ sudo swupd bundle-add rsync jq # TODO: byobu direnv, don't need bim grc
 echo "--- Install dev tools ---"
 sudo swupd bundle-add package-builder network-basic
 # TODO: nodejs
-# TODO: nodejs
-# TODO: nodejs
-# TODO: nodejs
+# TODO: openjkd
+# TODO: python
+# TODO: ruby
 sudo swupd bundle-add cloud-api
 # TODO: aws-ssm
 bash ~/setup/linux-inotify.sh

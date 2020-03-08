@@ -14,9 +14,9 @@ sudo apt install -y mc screenfetch
 echo "--- Install dev tools ---"
 sudo apt install -y build-essential python python-pip # python2
 bash ~/setup/debian-nodejs.sh
-bash ~/setup/debian-openjdk.sh
-bash ~/setup/debian-python.sh
-bash ~/setup/debian-ruby.sh
+# bash ~/setup/debian-openjdk.sh
+# bash ~/setup/debian-python.sh
+# bash ~/setup/debian-ruby.sh
 sudo apt install -y awscli
 bash ~/setup/debian-aws-ssm.sh
 bash ~/setup/linux-inotify.sh
