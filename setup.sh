@@ -123,7 +123,7 @@ test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
 which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
 test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim
+which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim git-remote-codecommit
 
 test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
 which gem && gem install rubocop rufo neovim lolcat

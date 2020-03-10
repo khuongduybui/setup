@@ -32,9 +32,9 @@ tool = default-difftool
 [difftool "default-difftool"]
 cmd = code -nw --diff $LOCAL $REMOTE
 
-[credential]
-helper = !aws codecommit credential-helper $@
-UseHttpPath = true
+# [credential]
+# helper = !aws codecommit credential-helper $@
+# UseHttpPath = true
 
 [commit]
 gpgsign = true
