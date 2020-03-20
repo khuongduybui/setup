@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.tKXtaS/aws-console.fish @ line 2
+# Defined in /tmp/fish.RdVZur/aws-console.fish @ line 2
 function aws-console
 	set -l profile $AWS_PROFILE
     if test (count $argv) -gt 0
@@ -30,7 +30,8 @@ function aws-console
     # echo "$signinUrl"
 
     set -l short (urlencode -p $signinUrl)
-    set -l cuttly (curl -s "https://cutt.ly/api/api.php?key=a2967c0ad7db4197d8244182b087888e05a64&short=$short")
+    set -l name aws-(whoami)-$profile-(npx uuid@)
+    set -l cuttly (curl -s "https://cutt.ly/api/api.php?key=a2967c0ad7db4197d8244182b087888e05a64&name=$name&short=$short")
     set -l url (echo $cuttly | jq -r '.url.shortLink')
     echo $url
     explorer.exe $url
