@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.RdVZur/aws-console.fish @ line 2
+# Defined in /tmp/fish.MoVwWN/aws-console.fish @ line 2
 function aws-console
 	set -l profile $AWS_PROFILE
     if test (count $argv) -gt 0
@@ -10,6 +10,9 @@ function aws-console
 
     which urlencode >/dev/null 2>&1
     or yarn global add url-cli
+
+    which uuid >/dev/null 2>&1
+    or yarn global add uuid
 
     set -l foo (aws --profile $profile sts get-federation-token --name (whoami) --policy '{"Statement":[{"Effect":"Allow","Action":"*","Resource":"*"}]}')
     # echo $foo | jq
