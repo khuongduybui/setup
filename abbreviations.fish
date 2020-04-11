@@ -48,7 +48,7 @@ abbr pid 'pnpm install --save-dev'
 abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
 
 abbr awscc 'git clone codecommit://'
-abbr ssm 'aws ssm start-session --target'
+abbr ssm 'aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="bash -l" --target'
 abbr bsm 'aws ssm start-session --document-name SSM-Bitnami --target'
 abbr region 'aws configure set region'
 abbr r53-ip 'curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r \'.prefixes[] | select(.service == "ROUTE53_HEALTHCHECKS") | .ip_prefix\''
