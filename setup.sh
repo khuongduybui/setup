@@ -44,77 +44,74 @@ mkdir -p ~/opt
 mkdir -p ~/code
 
 if [ ! -f /.dockerenv ]; then
-echo "=== Installing modules ==="
+    echo "=== Installing modules ==="
 
-test -f /etc/issue &&
-    grep -q -Ei "arch" /etc/issue &&
-    echo "Arch Linux detected. Installing core modules..." &&
-    bash ~/setup/arch.sh
-
-test -f /etc/issue &&
-    grep -q -Ei "elementary|ubuntu" /etc/issue &&
-    echo "Ubuntu detected. Installing core modules..." &&
-    bash ~/setup/ubuntu.sh
-
-which sw_vers 2>/dev/null >/dev/null &&
-    echo "OS X detected. Installing core modules..." &&
-    sh ~/setup/mac.sh
-
-test -f /etc/redhat-release &&
-    grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&
-    echo "RHEL detected. Installing core modules..." &&
-    bash ~/setup/rhel.sh
-
-test -f /etc/os-release &&
-    grep -q -i "Amazon Linux 2" /etc/os-release &&
-    echo "AL2 detected. Installing core modules..." &&
-    bash ~/setup/al2.sh
-
-test -f /etc/os-release &&
-    grep -q -i "clear-linux-os" /etc/os-release &&
-    echo "Clear Linux detected. Installing core modules..." &&
-    bash ~/setup/clear.sh
-
-test -f /etc/os-release &&
-    grep -q -i "Pengwin" /etc/os-release &&
-    echo "Pengwin detected. Installing core modules..." &&
-    bash ~/setup/pengwin.sh
-
-test -f /etc/issue &&
-    grep -q -i "openSUSE" /etc/issue &&
-    echo "openSUSE detected. Installing core modules..." &&
-    bash ~/setup/opensuse.sh
-
-test -f /etc/issue &&
-    grep -q -Ei "kali" /etc/issue &&
-    echo "Kali detected. Installing core modules..." &&
-    bash ~/setup/kali.sh
-
-if grep -q -i "Microsoft" /proc/version; then
-    echo '=== WSL detected. Running additional config ==='
-    bash ~/setup/linux-win.sh
+    test -f /etc/issue &&
+        grep -q -Ei "arch" /etc/issue &&
+        echo "Arch Linux detected. Installing core modules..." &&
+        bash ~/setup/arch.sh
 
     test -f /etc/issue &&
         grep -q -Ei "elementary|ubuntu" /etc/issue &&
-        grep -q -i "Microsoft" /proc/version &&
-        echo "Ubuntu on Windows detected. Installing additional modules..." &&
-        bash ~/setup/ubuntu-win.sh
+        echo "Ubuntu detected. Installing core modules..." &&
+        bash ~/setup/ubuntu.sh
+
+    which sw_vers 2>/dev/null >/dev/null &&
+        echo "OS X detected. Installing core modules..." &&
+        sh ~/setup/mac.sh
+
+    test -f /etc/redhat-release &&
+        grep -q -i "Red Hat Enterprise Linux" /etc/redhat-release &&
+        echo "RHEL detected. Installing core modules..." &&
+        bash ~/setup/rhel.sh
+
+    test -f /etc/os-release &&
+        grep -q -i "Amazon Linux 2" /etc/os-release &&
+        echo "AL2 detected. Installing core modules..." &&
+        bash ~/setup/al2.sh
+
+    test -f /etc/os-release &&
+        grep -q -i "clear-linux-os" /etc/os-release &&
+        echo "Clear Linux detected. Installing core modules..." &&
+        bash ~/setup/clear.sh
 
     test -f /etc/os-release &&
         grep -q -i "Pengwin" /etc/os-release &&
-        grep -q -i "Microsoft" /proc/version &&
-        echo "Pengwin on Windows detected. Installing additional modules..." &&
-        bash ~/setup/pengwin-win.sh
+        echo "Pengwin detected. Installing core modules..." &&
+        bash ~/setup/pengwin.sh
+
+    test -f /etc/issue &&
+        grep -q -i "openSUSE" /etc/issue &&
+        echo "openSUSE detected. Installing core modules..." &&
+        bash ~/setup/opensuse.sh
 
     test -f /etc/issue &&
         grep -q -Ei "kali" /etc/issue &&
-        grep -q -i "Microsoft" /proc/version &&
-        echo "Kali on Windows detected. Installing additional modules..." &&
-        bash ~/setup/kali-win.sh
+        echo "Kali detected. Installing core modules..." &&
+        bash ~/setup/kali.sh
 
-    which update-alternatives && sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser $(which explorer.exe) 1
-    which update-alternatives && sudo update-alternatives --install /usr/bin/www-browser www-browser $(which explorer.exe) 1
-fi
+    if grep -q -i "Microsoft" /proc/version; then
+        echo '=== WSL detected. Running additional config ==='
+        bash ~/setup/linux-win.sh
+
+        test -f /etc/issue &&
+            grep -q -Ei "elementary|ubuntu" /etc/issue &&
+            grep -q -i "Microsoft" /proc/version &&
+            echo "Ubuntu on Windows detected. Installing additional modules..." &&
+            bash ~/setup/ubuntu-win.sh
+
+        test -f /etc/os-release &&
+            grep -q -i "Pengwin" /etc/os-release &&
+            grep -q -i "Microsoft" /proc/version &&
+            echo "Pengwin on Windows detected. Installing additional modules..." &&
+            bash ~/setup/pengwin-win.sh
+
+        test -f /etc/issue &&
+            grep -q -Ei "kali" /etc/issue &&
+            grep -q -i "Microsoft" /proc/version &&
+            echo "Kali on Windows detected. Installing additional modules..." &&
+            bash ~/setup/kali-win.sh
+    fi
 fi
 
 echo '=== Common development tools ==='
@@ -130,6 +127,6 @@ which gem && gem install rubocop rufo neovim lolcat
 test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
 
 bash ~/setup/linux-rust.sh
-test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install --force lsd starship
+test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install --force lsd starship deno
 
 echo '=== Goodbye ==='
