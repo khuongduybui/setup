@@ -67,6 +67,12 @@ if test -z $INIT
         test -d ~/.cargo
         and source ~/.cargo/env
 
+        test -d ~/.deno
+        and set -x DENO_INSTALL ~/.deno
+
+        test -n "$DENO_INSTALL"
+        and __ensure_path $DENO_INSTALL/bin
+
         if test -d /usr/local/android/sdk/tools
             set -xU ANDROID_HOME /usr/local/android/sdk
             __ensure_path $ANDROID_HOME/tools
@@ -139,6 +145,7 @@ if test -z $INIT
 
         if __is_wsl_2
             set -x WIP (ip route show default | grep -Po 'via \K\S+')
+            set -x DOCKER_BUILDKIT 1
         else
             set -x WIP 127.0.0.1
         end
