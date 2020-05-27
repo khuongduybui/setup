@@ -115,18 +115,41 @@ if [ ! -f /.dockerenv ]; then
 fi
 
 echo '=== Common development tools ==='
+bash ~/setup/linux-inotify.sh
+bash ~/setup/linux-micro.sh
 
-test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+. ~/.asdf/asdf.sh
 
-test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim git-remote-codecommit
+asdf plugin add deno
+asdf install deno latest
+asdf global deno $(asdf latest deno)
 
-test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
-which gem && gem install rubocop rufo neovim lolcat
-test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
+asdf plugin add nodejs
+bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf install nodejs latest
+asdf global nodejs $(asdf latest nodejs)
+npm install -g yarn
+yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
+asdf reshim
 
-bash ~/setup/linux-rust.sh
-test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install --force lsd starship deno
+asdf plugin add rust
+asdf install rust latest
+asdf global rust $(asdf latest rust)
+cargo install lsd starship
+asdf reshim
+
+#test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
+#which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
+
+#test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
+#which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim git-remote-codecommit
+
+#test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
+#which gem && gem install rubocop rufo neovim lolcat
+#test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
+
+#bash ~/setup/linux-rust.sh
+#test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install --force lsd starship deno
 
 echo '=== Goodbye ==='

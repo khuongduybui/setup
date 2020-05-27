@@ -27,60 +27,60 @@ if test -z $INIT
 
         __ensure_path /snap/bin
 
-        __ensure_path ~/.nodenv/bin
+        test -f ~/.asdf/asdf.fish
+        and source ~/.asdf/asdf.fish
 
-        test -z $NODENV_SHELL
-        and which nodenv >/dev/null 2>&1
-        and source (nodenv init - | psub)
+        # __ensure_path ~/.nodenv/bin
 
-        __ensure_path ~/.yarn/bin
+        # test -z $NODENV_SHELL
+        # and which nodenv >/dev/null 2>&1
+        # and source (nodenv init - | psub)
 
-        __ensure_path ~/.pyenv/bin
+        # __ensure_path ~/.yarn/bin
 
-        test -z $PYENV_SHELL
-        and which pyenv >/dev/null 2>&1
-        and source (pyenv init - | psub)
-        and source (pyenv virtualenv-init - | psub)
+        # __ensure_path ~/.pyenv/bin
 
-        __ensure_path ~/.local/bin
+        # test -z $PYENV_SHELL
+        # and which pyenv >/dev/null 2>&1
+        # and source (pyenv init - | psub)
+        # and source (pyenv virtualenv-init - | psub)
 
-        __ensure_path ~/.rbenv/bin
+        # __ensure_path ~/.local/bin
 
-        __ensure_path ~/.rbenv/plugins/ruby-build/bin
+        # __ensure_path ~/.rbenv/bin
 
-        test -z $RBENV_SHELL
-        and which rbenv >/dev/null 2>&1
-        and source (rbenv init - | psub)
+        # __ensure_path ~/.rbenv/plugins/ruby-build/bin
 
-        test -d /usr/local/go
-        and set -x GOROOT /usr/local/go
+        # test -z $RBENV_SHELL
+        # and which rbenv >/dev/null 2>&1
+        # and source (rbenv init - | psub)
 
-        test -n "$GOROOT"
-        and __ensure_path $GOROOT/bin
+        # test -d /usr/local/go
+        # and set -x GOROOT /usr/local/go
 
-        test -d ~/go
-        and set -x GOPATH ~/go
+        # test -d ~/go
+        # and set -x GOPATH ~/go
 
-        test -n "$GOPATH"
-        and __ensure_path $GOPATH/bin
+        # test -n "$GOPATH"
+        # and __ensure_path $GOPATH/bin
 
-        test -d ~/.cargo
-        and source ~/.cargo/env
+        # test -d ~/.cargo
+        # and source ~/.cargo/env
 
-        test -d ~/.deno
-        and set -x DENO_INSTALL ~/.deno
+        # test -d ~/.deno
+        # and set -x DENO_INSTALL ~/.deno
 
-        test -n "$DENO_INSTALL"
-        and __ensure_path $DENO_INSTALL/bin
+        # test -n "$DENO_INSTALL"
+        # and __ensure_path $DENO_INSTALL/bin
 
-        if test -d /usr/local/android/sdk/tools
-            set -xU ANDROID_HOME /usr/local/android/sdk
-            __ensure_path $ANDROID_HOME/tools
-            __ensure_path $ANDROID_HOME/platform-tools
-            set -xU JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
-        end
+        # if test -d /usr/local/android/sdk/tools
+        #     set -xU ANDROID_HOME /usr/local/android/sdk
+        #     __ensure_path $ANDROID_HOME/tools
+        #     __ensure_path $ANDROID_HOME/platform-tools
+        #     set -xU JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+        # end
 
-        __ensure_path /z/Microsoft\ VS\ Code/bin
+        # __ensure_path /z/Microsoft\ VS\ Code/bin
 
         varclear PATH
         __clean_missing PATH
