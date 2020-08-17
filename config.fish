@@ -81,6 +81,7 @@ if test -z $INIT
         # end
 
         # __ensure_path /z/Microsoft\ VS\ Code/bin
+        __ensure_path /c/Program\ Files/Oracle/VirtualBox
 
         varclear PATH
         __clean_missing PATH
@@ -151,6 +152,8 @@ if test -z $INIT
         end
         echo $WIP >~/.wip
         set -x DISPLAY $WIP:0.0
+
+        set -xg VAGRANT_WSL_ENABLE_WINDOWS_ACCESS 1
 
         test (umask) -eq 0022
         or umask 0022

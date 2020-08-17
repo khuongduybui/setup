@@ -1,10 +1,7 @@
-# Defined in /tmp/fish.t77qRE/accounts.fish @ line 2
 function accounts
     set -l location
     test -f ~/OneDrive/Essentials/accounts.ini; and set location ~/OneDrive/Essentials/accounts.ini
     test -f $WHOME/OneDrive/Essentials/accounts.ini; and set location $WHOME/OneDrive/Essentials/accounts.ini
-    wslpath 'D:/OneDrive/Essentials/accounts.ini' >/dev/null 2>&1; and set location (wslpath 'D:/OneDrive/Essentials/accounts.ini')
-    wslpath 'W:/My\ Documents/Essentials/accounts.ini' >/dev/null 2>&1; and set location (wslpath 'W:/My\ Documents/Essentials/accounts.ini' 2>/dev/null)
 
     if test -z "$location"
         set_color $fish_color_error

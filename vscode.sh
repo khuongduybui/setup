@@ -1,3 +1,3 @@
 #! /bin/bash
 
-exec code --wait $@ || exec micro $@ || exec vim $@
+exec code --wait $@
