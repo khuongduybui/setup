@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.YukeFZ/c2c.fish @ line 2
+# Defined in /tmp/fish.WpAmvS/c2c.fish @ line 2
 function c2c
-	if not test -d ~/code
+    if not test -d ~/code
         set_color $fish_color_error
         echo -n "ERROR: "
         set_color normal
@@ -31,8 +31,8 @@ function c2c
         else
             cd $argv[1]
             set -xg DEBUG "*$argv[1]*:*"
-            if test (count $argv) -gt 1
-                cd ./(command ls | command grep --color=none -i $argv[2..-1])
+            if test (count $argv) = 2
+                cd ./(command ls | fzf -1 -q $argv[2])
             else if test (count (command ls)) = 1
                 cd (command ls)
             end

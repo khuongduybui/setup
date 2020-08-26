@@ -47,6 +47,7 @@ abbr pid 'pnpm install --save-dev'
 
 abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
 
+abbr aps 'aws-shell'
 abbr awscc 'git clone codecommit://'
 abbr ssm 'aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="bash -l" --target'
 abbr bsm 'aws ssm start-session --document-name SSM-Bitnami --target'
