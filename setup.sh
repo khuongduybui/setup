@@ -117,6 +117,7 @@ fi
 echo '=== Common development tools ==='
 bash ~/setup/linux-inotify.sh
 bash ~/setup/linux-micro.sh
+bash ~/setup/linux-aws-cli-v2.sh
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 . ~/.asdf/asdf.sh
@@ -136,7 +137,7 @@ asdf reshim
 asdf plugin add rust
 asdf install rust latest
 asdf global rust $(asdf latest rust)
-cargo install lsd starship
+cargo install lsd starship bat exa git-delta zoxide
 asdf reshim
 
 #test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"

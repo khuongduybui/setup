@@ -13,9 +13,21 @@ pushdefault = origin
 ui = auto
 
 [core]
-pager = less -FMRiX
+pager = delta
 excludesfile = ~/.gitignore
 fileMode = false
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+features = line-numbers decorations
+whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+commit-decoration-style = bold yellow box ul
+file-style = bold yellow ul
+file-decoration-style = none
 
 [alias]
 dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
@@ -32,9 +44,9 @@ tool = default-difftool
 [difftool "default-difftool"]
 cmd = code -nw --diff $LOCAL $REMOTE
 
-# [credential]
-# helper = !aws codecommit credential-helper $@
-# UseHttpPath = true
+[credential]
+helper = !aws codecommit credential-helper $@
+UseHttpPath = true
 
 [commit]
 gpgsign = true

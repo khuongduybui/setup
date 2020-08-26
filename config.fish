@@ -198,3 +198,6 @@ and source (starship init fish --print-full-init | psub)
 
 which direnv >/dev/null 2>&1
 and direnv hook fish | source
+
+which zoxide >/dev/null 2>&1
+and zoxide init fish | source

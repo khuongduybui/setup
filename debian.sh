@@ -17,7 +17,7 @@ sudo apt install -y build-essential librust-openssl-dev
 # bash ~/setup/debian-openjdk.sh
 # bash ~/setup/debian-python.sh
 # bash ~/setup/debian-ruby.sh
-sudo apt install -y awscli
+# sudo apt install -y awscli
 bash ~/setup/debian-aws-ssm.sh
 
 echo "--- Update system ---"
