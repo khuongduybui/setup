@@ -146,8 +146,7 @@ if test -z $INIT
 
         if __is_wsl_2
             set -x WIP (ip route show default | grep -Po 'via \K\S+')
-            set -x DOCKER_BUILDKIT 1
-            find ~/.docker -empty -name config.json; and echo '{}' >~/.docker/config.json
+            docker-init
         else
             set -x WIP 127.0.0.1
         end

@@ -1,5 +1,7 @@
-# Defined in /tmp/fish.Ge6VN5/docker-init.fish @ line 2
+# Defined in /tmp/fish.YZ2zuw/docker-init.fish @ line 2
 function docker-init
+    set -gx DOCKER_BUILDKIT 1
+    find ~/.docker -empty -name config.json >/dev/null; and echo '{}' >~/.docker/config.json
     if ps aux | grep -q [d]ocker-desktop-proxy
     else
         info 'Launching Docker Desktop Proxy'
