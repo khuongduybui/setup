@@ -16,6 +16,7 @@ ui = auto
 pager = delta
 excludesfile = ~/.gitignore
 fileMode = false
+editor = code -w
 
 [interactive]
 diffFilter = delta --color-only
@@ -39,10 +40,16 @@ unhide = update-index --no-skip-worktree
 unhide-all = ! git hidden | xargs git unhide
 
 [diff]
-tool = default-difftool
+tool = vscode
 
-[difftool "default-difftool"]
-cmd = code -nw --diff $LOCAL $REMOTE
+[difftool "vscode"]
+cmd = code -w --diff $LOCAL $REMOTE
+
+[merge]
+tool = vscode
+
+[mergetool "vscode"]
+cmd = code -w $MERGED
 
 [credential]
 helper = !aws codecommit credential-helper $@
