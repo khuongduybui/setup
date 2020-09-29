@@ -22,6 +22,8 @@ function __fish_command_not_found_on_interactive --on-event fish_prompt
             end
             if string match -q -r @ $argv[1]
                 npx $argv
+            else if [ $argv[1] = "ncu" ]
+                yarn upgrade-interactive --latest
             else
                 npx --no-install $argv
             end

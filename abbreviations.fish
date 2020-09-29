@@ -64,3 +64,4 @@ abbr fp 'feathers-plus'
 abbr fpg 'feathers-plus generate'
 abbr fpgs 'feathers-plus generate service'
 abbr fpgh 'feathers-plus generate hook'
+abbr ycu yarn upgrade-interactive --latest
