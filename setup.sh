@@ -39,6 +39,10 @@ bash ~/setup/backup-and-link.sh ~/setup/.czrc ~/
 bash ~/setup/backup-and-link.sh ~/setup/default.gitconfig ~/.gitconfig
 bash ~/setup/backup-and-link.sh ~/setup/default.gitignore ~/.gitignore
 
+bash ~/setup/backup-and-link.sh ~/setup/.password-store ~/
+mkdir -p ~/.gnupg
+bash ~/setup/backup-and-link.sh ~/setup/gpg.conf ~/.gnupg/gpg.conf
+
 mkdir -p ~/bin
 mkdir -p ~/opt
 mkdir -p ~/code

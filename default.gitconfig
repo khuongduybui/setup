@@ -45,6 +45,9 @@ tool = vscode
 [difftool "vscode"]
 cmd = code -w --diff $LOCAL $REMOTE
 
+[diff "gpg"]
+textconv = gpg --no-tty --decrypt
+
 [merge]
 tool = vscode
 
