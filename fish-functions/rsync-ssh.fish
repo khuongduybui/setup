@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.4ZH5Ny/rsync-ssh.fish @ line 2
+# Defined in /tmp/fish.cOl329/rsync-ssh.fish @ line 2
 function rsync-ssh
     mkdir -p ~/.ssh
 
@@ -6,8 +6,8 @@ function rsync-ssh
     and bash ~/setup/backup-and-link.sh ~/OneDrive/Essentials/dotfile.ssh ~/.ssh
     # and rsync -r ~/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
 
-    test -d $WHOME/OneDrive
-    and bash ~/setup/backup-and-link.sh $WHOME/OneDrive/Essentials/dotfile.ssh ~/.ssh
+    test -d ~/winhome/OneDrive
+    and bash ~/setup/backup-and-link.sh ~/winhome/OneDrive/Essentials/dotfile.ssh ~/.ssh
     # and rsync -r $WHOME/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
 
     test -d (wslpath 'D:/OneDrive')
