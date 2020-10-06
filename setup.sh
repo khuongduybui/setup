@@ -124,8 +124,13 @@ bash ~/setup/linux-inotify.sh
 bash ~/setup/linux-micro.sh
 bash ~/setup/linux-aws-cli-v2.sh
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+if [ ! -d ~/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+fi
 . ~/.asdf/asdf.sh
+mkdir -p ~/.config/fish/completions
+cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+asdf update
 
 asdf plugin add deno
 asdf install deno latest
@@ -137,25 +142,17 @@ asdf install nodejs latest
 asdf global nodejs $(asdf latest nodejs)
 npm install -g npm yarn
 yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
-asdf reshim
 
 asdf plugin add rust
 asdf install rust latest
 asdf global rust $(asdf latest rust)
 cargo install lsd starship bat exa git-delta zoxide
+
+asdf plugin add python
+asdf install python latest
+asdf global python $(asdf latest python)
+pip install cfn-lint cloudformation-cli cloudformation-cli-python-plugin
+
 asdf reshim
-
-#test -x ~/.nodenv/bin/nodenv && eval "$(~/.nodenv/bin/nodenv init -)"
-#which node && which yarn && yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
-
-#test -x ~/.pyenv/bin/pyenv && eval "$(~/.pyenv/bin/pyenv init -)"
-#which pip && pip install --user --no-warn-script-location --upgrade pip pylint autopep8 neovim git-remote-codecommit
-
-#test -x ~/.rbenv/bin/rbenv && eval "$(~/.rbenv/bin/rbenv init -)"
-#which gem && gem install rubocop rufo neovim lolcat
-#test -x ~/.rbenv/bin/rbenv && ~/.rbenv/bin/rbenv rehash
-
-#bash ~/setup/linux-rust.sh
-#test -x ~/.cargo/bin/cargo && ~/.cargo/bin/cargo install --force lsd starship deno
 
 echo '=== Goodbye ==='
