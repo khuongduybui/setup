@@ -12,7 +12,8 @@ sudo apt install -y vim byobu grc rsync jq direnv fzf
 sudo apt install -y mc screenfetch
 
 echo "--- Install dev tools ---"
-sudo apt install -y build-essential librust-openssl-dev
+sudo apt install -y build-essential pkg-config
+sudo apt install -y librust-openssl-dev || sudo apt install -y libssl-dev
 # bash ~/setup/debian-nodejs.sh
 # bash ~/setup/debian-openjdk.sh
 # bash ~/setup/debian-python.sh
