@@ -41,7 +41,7 @@ bash ~/setup/backup-and-link.sh ~/setup/default.gitignore ~/.gitignore
 
 bash ~/setup/backup-and-link.sh ~/setup/.password-store ~/
 mkdir -p ~/.gnupg
-chmod 755 ~/.gnupg
+chmod 700 ~/.gnupg
 bash ~/setup/backup-and-link.sh ~/setup/gpg.conf ~/.gnupg/gpg.conf
 
 mkdir -p ~/bin
