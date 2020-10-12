@@ -67,3 +67,5 @@ abbr fp 'feathers-plus'
 abbr fpg 'feathers-plus generate'
 abbr fpgs 'feathers-plus generate service'
 abbr fpgh 'feathers-plus generate hook'
+abbr winget winget.exe
+abbr winst winget.exe install
