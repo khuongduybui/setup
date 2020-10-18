@@ -6,6 +6,9 @@ signingkey = D09B20421B84FD32
 [push]
 default = upstream
 
+[pull]
+rebase = true
+
 [remote]
 pushdefault = origin
 
