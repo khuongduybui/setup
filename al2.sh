@@ -3,7 +3,7 @@
 echo "--- Install package manager ---"
 # sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum install -y deltarpm
-sudo amazon-linux-extras install -y epel
+sudo amazon-linux-extras install -y epel util-linux-user
 curl -L https://download.opensuse.org/repositories/utilities/RHEL_7/utilities.repo | sudo tee /etc/yum.repos.d/opensuse-utilities.repo
 
 echo "--- Install system utils ---"
@@ -20,6 +20,7 @@ sudo yum install -y mc # @TODO: screenfetch
 
 echo "---Install dev tools---"
 sudo yum groupinstall -y "Development Tools"
+sudo yum install -y openssl-devel
 # sudo yum install -y python2 python2-pip
 # bash ~/setup/al2-nodejs.sh
 # bash ~/setup/al2-openjdk.sh
