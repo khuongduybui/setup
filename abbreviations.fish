@@ -9,7 +9,7 @@ abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git
 abbr update-git-ll 'git config user.email "duy.bui@lunarline.com"; git config user.signingkey 083EF93045D6B22C'
 abbr update-git-ct 'git config user.email "duy.bui@clevertech.biz"; git config user.signingkey 603790593AB493EA'
 abbr update-git-msi 'git config user.email "duy.bui@motorolasolutions.com"; git config user.signingkey F9F596B7934A7B17'
-abbr update-font 'curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"omplete.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Complete.ttf'
+abbr update-font 'curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Complete.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Complete.ttf; curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Book.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Book.ttf'
 abbr rclone-code 'rclone sync ~/code onedrive:code --exclude \'**/node_modules/**/*\' --links'
 
 abbr a 'add-abbr'
