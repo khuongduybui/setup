@@ -1,3 +1,4 @@
 .env.fish
 .env
 .envrc
+local-tests*

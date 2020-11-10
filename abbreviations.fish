@@ -22,6 +22,7 @@ abbr e 'edit'
 abbr s 'settings'
 abbr cmd command
 abbr cdw 'cd ~/winhome'
+abbr exit 'true; exit'
 
 abbr bdf 'bit diff --ignore-space-change'
 abbr gdf 'git diff --ignore-space-change'
@@ -67,6 +68,8 @@ abbr fp 'feathers-plus'
 abbr fpg 'feathers-plus generate'
 abbr fpgs 'feathers-plus generate service'
 abbr fpgh 'feathers-plus generate hook'
+
 abbr winget winget.exe
 abbr winst winget.exe install
 abbr edge microsoft-edge
+abbr wsl wsl.exe

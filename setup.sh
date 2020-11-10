@@ -151,7 +151,7 @@ cargo install lsd starship bat exa git-delta zoxide
 asdf plugin add python
 asdf install python latest
 asdf global python $(asdf latest python)
-pip install cfn-lint cloudformation-cli cloudformation-cli-python-plugin
+pip install cfn-lint cloudformation-cli cloudformation-cli-python-plugin awslogs
 
 asdf reshim
 
