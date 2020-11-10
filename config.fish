@@ -30,49 +30,6 @@ if test -z $INIT
         test -f ~/.asdf/asdf.fish
         and source ~/.asdf/asdf.fish
 
-        # __ensure_path ~/.nodenv/bin
-
-        # test -z $NODENV_SHELL
-        # and which nodenv >/dev/null 2>&1
-        # and source (nodenv init - | psub)
-
-        # __ensure_path ~/.yarn/bin
-
-        # __ensure_path ~/.pyenv/bin
-
-        # test -z $PYENV_SHELL
-        # and which pyenv >/dev/null 2>&1
-        # and source (pyenv init - | psub)
-        # and source (pyenv virtualenv-init - | psub)
-
-        # __ensure_path ~/.local/bin
-
-        # __ensure_path ~/.rbenv/bin
-
-        # __ensure_path ~/.rbenv/plugins/ruby-build/bin
-
-        # test -z $RBENV_SHELL
-        # and which rbenv >/dev/null 2>&1
-        # and source (rbenv init - | psub)
-
-        # test -d /usr/local/go
-        # and set -x GOROOT /usr/local/go
-
-        # test -d ~/go
-        # and set -x GOPATH ~/go
-
-        # test -n "$GOPATH"
-        # and __ensure_path $GOPATH/bin
-
-        # test -d ~/.cargo
-        # and source ~/.cargo/env
-
-        # test -d ~/.deno
-        # and set -x DENO_INSTALL ~/.deno
-
-        # test -n "$DENO_INSTALL"
-        # and __ensure_path $DENO_INSTALL/bin
-
         # if test -d /usr/local/android/sdk/tools
         #     set -xU ANDROID_HOME /usr/local/android/sdk
         #     __ensure_path $ANDROID_HOME/tools
@@ -81,7 +38,7 @@ if test -z $INIT
         # end
 
         # __ensure_path /z/Microsoft\ VS\ Code/bin
-        __ensure_path /c/Program\ Files/Oracle/VirtualBox
+        # __ensure_path /c/Program\ Files/Oracle/VirtualBox
 
         varclear PATH
         __clean_missing PATH
