@@ -8,7 +8,7 @@ bash ~/setup/backup-and-link.sh ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
 
 mkdir -p ~/.config/fish/conf.d
 bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
-bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/
+bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/fish_plugins
 bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
 
 bash ~/setup/backup-and-link.sh ~/setup/WindowsPowerShell ~/.config/powershell
