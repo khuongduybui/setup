@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.OSAYVx/aws-console.fish @ line 2
+# Defined in /tmp/fish.Sv9T9u/aws-console.fish @ line 2
 function aws-console
     set -l profile $AWS_PROFILE
     if test (count $argv) -gt 0
@@ -32,19 +32,19 @@ function aws-console
 
         set -l signinToken (echo $bar | jq -r .SigninToken)
         set -l signinUrl "https://signin.aws.amazon.com/federation?Action=login&Destination=https%3A%2F%2Fconsole.aws.amazon.com&SigninToken=$signinToken"
-
-        set -l short (urlencode -p "$signinUrl")
-        set -l name "aws-(whoami)-$profile-(uuid)"
+        echo "$signinUrl"
+        # set -l short (urlencode -p "$signinUrl")
+        # set -l name "aws-(whoami)-$profile-(uuid)"
         # echo "$short"
-        set -l cuttly (curl -s "https://cutt.ly/api/api.php?key=a2967c0ad7db4197d8244182b087888e05a64&name=$name&short=$short")
+        # set -l cuttly (curl -s "https://cutt.ly/api/api.php?key=a2967c0ad7db4197d8244182b087888e05a64&name=$name&short=$short")
         # echo $cuttly | jq
-        set -l url (echo "$cuttly" | jq -r '.url.shortLink' | grep -v null)
-        if test -n "$url"
-            echo "$url"
-            explorer.exe "$url"
-        else
-            echo "$signinUrl"
-            explorer.exe "$signinUrl"
-        end
+        # set -l url (echo "$cuttly" | jq -r '.url.shortLink' | grep -v null)
+        # if test -n "$url"
+        #     echo "$url"
+        #     explorer.exe "$url"
+        # else
+        #     echo "$signinUrl"
+        #     explorer.exe "$signinUrl"
+        # end
     end
 end
