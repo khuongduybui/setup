@@ -61,6 +61,11 @@ if [ ! -f /.dockerenv ]; then
         echo "Ubuntu detected. Installing core modules..." &&
         bash ~/setup/ubuntu.sh
 
+    test -f /etc/issue &&
+        grep -q -Ei "elementary" /etc/issue &&
+        echo "ElementaryOS detected. Installing additional modules..." &&
+        bash ~/setup/elementary.sh
+
     which sw_vers 2>/dev/null >/dev/null &&
         echo "OS X detected. Installing core modules..." &&
         sh ~/setup/mac.sh
