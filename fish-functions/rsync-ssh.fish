@@ -4,16 +4,10 @@ function rsync-ssh
 
     test -d ~/OneDrive
     and bash ~/setup/backup-and-link.sh ~/OneDrive/Essentials/dotfile.ssh ~/.ssh
-    # and rsync -r ~/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
 
     test -d ~/winhome/OneDrive
     and bash ~/setup/backup-and-link.sh ~/winhome/OneDrive/Essentials/dotfile.ssh ~/.ssh
-    # and rsync -r $WHOME/OneDrive/Essentials/dotfile.ssh/* ~/.ssh
-
-    test -d (wslpath 'D:/OneDrive')
-    and bash ~/setup/backup-and-link.sh (wslpath 'D:/OneDrive/Essentials/dotfile.ssh') ~/.ssh
-    # and rsync -r (wslpath 'D:/OneDrive/Essentials/dotfile.ssh')/* ~/.ssh
-
+    
     chmod 600 ~/.ssh/*.private.asc
     chmod 600 ~/.ssh/*.pem
     chmod 600 ~/.ssh/config

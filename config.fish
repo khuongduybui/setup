@@ -90,6 +90,10 @@ if test -z $INIT
             set -x WDRIVE c
         end
 
+        ## Create /run/user/(id -u)
+        sudo mkdir -p /run/user/(id -u)
+        sudo chown -R (id -un):(id -gn) /run/user/(id -u)
+
         if test -f /etc/wsl.conf
             and grep -q -e root= /etc/wsl.conf
             set -x WROOT (command grep -e root= /etc/wsl.conf | command sed s/root=// | command sed s:/\$::)
@@ -121,10 +125,6 @@ if test -z $INIT
 
     ## Preload WPS
     wps-init
-
-    ## Create /run/user/(id -u)
-    sudo mkdir -p /run/user/(id -u)
-    sudo chown -R (id -un):(id -gn) /run/user/(id -u)
 
     ## Done INIT
     set -x INIT true
