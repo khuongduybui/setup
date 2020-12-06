@@ -1,7 +1,11 @@
+# Defined in /tmp/fish.avRCE7/accounts.fish @ line 2
 function accounts
     set -l location
+    echo $location
     test -f ~/OneDrive/Essentials/accounts.ini; and set location ~/OneDrive/Essentials/accounts.ini
-    test -f $WHOME/OneDrive/Essentials/accounts.ini; and set location $WHOME/OneDrive/Essentials/accounts.ini
+    echo $location
+    test -f ~/winhome/OneDrive/Essentials/accounts.ini; and set location ~/winhome/OneDrive/Essentials/accounts.ini
+    echo $location
 
     if test -z "$location"
         set_color $fish_color_error
@@ -13,9 +17,7 @@ function accounts
         echo "not found in these locations:"
         set_color normal
         echo "~/OneDrive/Essentials"
-        echo "$WDRIVE:/Users/$WUSER/OneDrive/Essentials"
-        echo "D:/OneDrive/Essentials"
-        echo "W:/My Documents/OneDrive/Essentials"
+        echo "~/winhome/OneDrive/Essentials"
         return -1
     end
 
