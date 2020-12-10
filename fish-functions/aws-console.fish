@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.Sv9T9u/aws-console.fish @ line 2
+# Defined in /tmp/fish.xZ4uiw/aws-console.fish @ line 2
 function aws-console
     set -l profile $AWS_PROFILE
     if test (count $argv) -gt 0
@@ -33,6 +33,9 @@ function aws-console
         set -l signinToken (echo $bar | jq -r .SigninToken)
         set -l signinUrl "https://signin.aws.amazon.com/federation?Action=login&Destination=https%3A%2F%2Fconsole.aws.amazon.com&SigninToken=$signinToken"
         echo "$signinUrl"
+        if not __is_wsl
+            microsoft-edge "$signinUrl"
+        end
         # set -l short (urlencode -p "$signinUrl")
         # set -l name "aws-(whoami)-$profile-(uuid)"
         # echo "$short"
