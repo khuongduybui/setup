@@ -3,11 +3,11 @@ function code-sync
     cd ~/setup/code-sync
 
     if not test -d node_modules
-        if which pnpm >/dev/null 2>&1
+        if type -q pnpm
             pnpm install
-        else if which npx >/dev/null 2>&1
+        else if type -q npx
             npx pnpm install
-        else if which yarn >/dev/null 2>&1
+        else if type -q yarn
             yarn
         else
             echo "Install npm, yarn, or pnpm"

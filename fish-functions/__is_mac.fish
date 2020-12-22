@@ -1,3 +1,3 @@
 function __is_mac
-    test (which sw_vers 2>/dev/null)
+    type -q sw_vers
 end

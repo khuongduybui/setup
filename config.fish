@@ -55,7 +55,7 @@ if test -z $INIT
         ### Editors
         if not test -e ~/.editor
             info 'Searching for Editors'
-            if which code >/dev/null 2>&1
+            if type -q code
                 and not test -e ~/.disable-vscode
                 set -x EDITOR ~/setup/vscode.sh
             else
@@ -74,8 +74,7 @@ if test -z $INIT
             grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen
             or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
             echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
-            which locale-gen >/dev/null 2>&1
-            and sudo locale-gen en_US.UTF-8
+            type -q locale-gen; and sudo locale-gen en_US.UTF-8
         end
     end
 
@@ -138,14 +137,14 @@ if test -z $INIT
 
         if test -z $INSIDE_GENIE
             and not test -e ~/.disable-genie
-            and which genie >/dev/null 2>&1
+            and type -q genie
             info 'Summoning genie'
             exec genie -s
         end
 
         if test -z $BYOBU_WINDOW_NAME
             and not test -e ~/.byobu/disable-autolaunch
-            and which byobu-launcher >/dev/null 2>&1
+            and type -q byobu-launcher
             info 'Launching Byobu'
             exec byobu-launcher
         end
@@ -153,11 +152,8 @@ if test -z $INIT
 end
 
 ### Shell
-which starship >/dev/null 2>&1
-and source (starship init fish --print-full-init | psub)
+type -q starship; and source (starship init fish --print-full-init | psub)
 
-which direnv >/dev/null 2>&1
-and direnv hook fish | source
+type -q direnv; and direnv hook fish | source
 
-which zoxide >/dev/null 2>&1
-and zoxide init fish | source
+type -q zoxide; and zoxide init fish | source

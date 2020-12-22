@@ -7,11 +7,11 @@ function aws-console
     test -z $profile
     and set profile default
 
-    which urlencode >/dev/null 2>&1
+    type -q urlencode
     or yarn global add url-cli
     and asdf reshim
 
-    which uuid >/dev/null 2>&1
+    type -q uuid
     or yarn global add uuid
     and asdf reshim
 

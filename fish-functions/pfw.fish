@@ -1,12 +1,12 @@
 # Defined in /tmp/fish.iWjHxs/pfw.fish @ line 2
 function pfw
-	if not which socat >/dev/null
+    if not type -q socat
         echo "Installing socat..."
-        which yum >/dev/null
+        type -q yum
         and sudo yum install -y socat
-        which apt >/dev/null
+        type -q apt
         and sudo apt install -y socat
-        which zypper >/dev/null
+        type -q zypper
         and sudo zypper install -y socat
     end
     set destination 3000
