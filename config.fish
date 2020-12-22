@@ -10,6 +10,9 @@ if status --is-interactive
 
     ## Abbreviations
     source ~/setup/abbreviations.fish
+
+    ## AWS
+    type -q aws-sso-util; and aws-sso-util login --all
 end
 
 if test -z $INIT
