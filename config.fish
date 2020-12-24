@@ -12,7 +12,7 @@ if status --is-interactive
     source ~/setup/abbreviations.fish
 
     ## AWS
-    type -q aws-sso-util; and aws-sso-util login --all --headless &
+    # type -q aws-sso-util; and aws-sso-util login --all --headless &
 end
 
 if test -z $INIT

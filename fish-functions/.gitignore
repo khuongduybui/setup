@@ -3,3 +3,4 @@ fisher.fish
 getopts.fish
 segment*.fish
 spin.fish
+replay.fish
