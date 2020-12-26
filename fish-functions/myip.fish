@@ -15,4 +15,9 @@ function myip
             ifconfig | fgrep inet | grep -oE "[ :]([0-9a-f]*[.:])+[%a-z0-9/]*[ \$]"
         end
     end
+
+    if __is_win; and type -q powershell.exe
+        info WSL Host IP
+        echo "Get-NetIPAddress | Select-Object IPAddress" | powershell.exe -NoLogo -NoProfile -Command -
+    end
 end
