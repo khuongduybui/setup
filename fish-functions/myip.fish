@@ -3,7 +3,7 @@ function myip
     info External IP
     type -q curl
     and echo -n " "
-    and curl -s https://www.myexternalip.com/raw | grep .
+    and curl -s https://checkip.amazonaws.com | grep .
 
     info Internal IP
     if type -q ip
