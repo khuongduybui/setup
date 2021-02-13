@@ -27,7 +27,7 @@ diffFilter = delta --color-only
 [delta]
 features = line-numbers decorations
 whitespace-error-style = 22 reverse
-syntax-theme = Monokai Extended
+	syntax-theme = Monokai Extended Light
 
 [delta "decorations"]
 commit-decoration-style = bold yellow box ul
