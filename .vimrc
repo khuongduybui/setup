@@ -7,7 +7,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'dag/vim-fish'
-Bundle 'terryma/vim-multiple-cursors'
+" Bundle 'terryma/vim-multiple-cursors'
+Bundle 'mg979/vim-visual-multi'
 " Plugin 'ssh://git.amazon.com:2222/pkg/VimAmazonWiki.git'
 Plugin 'zxqfl/tabnine-vim'
 
