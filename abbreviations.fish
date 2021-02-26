@@ -57,18 +57,8 @@ abbr bsm 'aws ssm start-session --document-name SSM-Bitnami --target'
 abbr region 'aws configure set region'
 abbr r53-ip 'curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r \'.prefixes[] | select(.service == "ROUTE53_HEALTHCHECKS") | .ip_prefix\''
 
-abbr snapd 'sudo service snapd'
-abbr mongod 'sudo service mongod'
-abbr mongodb 'sudo service mongodb'
-abbr rethinkdb 'sudo service rethinkdb'
-abbr dbus 'sudo service dbus'
-
-abbr fp 'feathers-plus'
-abbr fpg 'feathers-plus generate'
-abbr fpgs 'feathers-plus generate service'
-abbr fpgh 'feathers-plus generate hook'
-
 abbr edge microsoft-edge
 abbr winget winget.exe
 abbr winst winget.exe install
 abbr wsl wsl.exe
+abbr ids 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'

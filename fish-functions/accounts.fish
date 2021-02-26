@@ -2,7 +2,7 @@
 function accounts
     if type -q bw; and test (count $argv) -gt 0
         bw sync
-        bw list items --search $argv | jq -r '.[] | select(.type == 2) | "\(.name) = \(.notes)"' #| grep --color -i $argv
+        bw list items --search $argv | jq -r '.[] | select(.type == 2 or .type == 3) | "\(.name) = \(if .notes then .notes else .card end)"' | grep --color -e "^" -ie $argv
     else
         set -l location
         echo $location
