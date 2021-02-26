@@ -3,4 +3,5 @@
 .envrc
 local-tests*
 remote-tests*
+localonly-*
 .dccache
