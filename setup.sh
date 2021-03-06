@@ -153,7 +153,7 @@ yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.g
 asdf plugin add rust
 asdf install rust latest
 asdf global rust $(asdf latest rust)
-cargo install lsd starship bat exa git-delta zoxide sd
+cargo install starship bat exa git-delta zoxide
 
 asdf plugin add python
 asdf install python latest
