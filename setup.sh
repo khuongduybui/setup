@@ -156,7 +156,7 @@ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf install nodejs latest
 asdf global nodejs $(asdf latest nodejs)
 npm install -g npm yarn
-yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
+# yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
 # asdf plugin add rust
 # asdf install rust latest
