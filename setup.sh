@@ -155,7 +155,7 @@ asdf plugin add nodejs
 bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf install nodejs latest
 asdf global nodejs $(asdf latest nodejs)
-npm install -g npm yarn
+npm install -g npm@latest yarn@latest
 # yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
 # asdf plugin add rust
@@ -166,6 +166,7 @@ npm install -g npm yarn
 asdf plugin add python
 asdf install python latest
 asdf global python $(asdf latest python)
+pip install --upgrade pip
 pip install aws-sso-util cfn-lint cloudformation-cli cloudformation-cli-python-plugin awslogs git-remote-codecommit
 
 asdf reshim
