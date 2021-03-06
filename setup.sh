@@ -150,6 +150,7 @@ asdf update
 asdf plugin add deno
 asdf install deno latest
 asdf global deno $(asdf latest deno)
+bash ~/shell-utils/install.sh
 
 asdf plugin add nodejs
 bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring

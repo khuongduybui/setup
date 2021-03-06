@@ -57,7 +57,9 @@ if test -z $INIT
         ### Editors
         if not test -e ~/.editor
             info 'Searching for Editors'
-            if type -q code
+            if test -e ~/.asdf/shims/edit
+                set -x EDITOR ~/.asdf/shims/edit
+            else if type -q code
                 and not test -e ~/.disable-vscode
                 set -x EDITOR ~/setup/vscode.sh
             else

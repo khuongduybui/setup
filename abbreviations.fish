@@ -22,7 +22,6 @@ abbr s 'settings'
 abbr cmd command
 abbr cdw 'cd ~/winhome'
 abbr exit 'true; exit'
-abbr now 'date +"%s"'
 
 abbr bdf 'bit diff --ignore-space-change'
 abbr gdf 'git diff --ignore-space-change'
