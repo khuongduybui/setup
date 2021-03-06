@@ -2,7 +2,7 @@
 function aws-shell
     set -l profile $AWS_PROFILE
     if test (count $argv) -gt 0
-        set -x profile (cat ~/.aws/config | grep --color=never 'profile' | sed -e 's/\[profile //' -e 's/\]//' | fzf -1 -q $argv[1])
+        set -x profile (cat ~/.aws/config | grep --color=never '\[profile' | sed -e 's/\[profile //' -e 's/\]//' | fzf -1 -q $argv[1])
     end
     test -z $profile
     and set profile default
