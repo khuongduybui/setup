@@ -126,6 +126,14 @@ if [ ! -f /.dockerenv ]; then
     fi
 fi
 
+echo '=== Common shell tools ==='
+~/setup/linux-starship.sh
+~/setup/linux-bat.sh
+~/setup/linux-exa.sh
+~/setup/linux-delta.sh
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
+~/setup/linux-nu.sh
+
 echo '=== Common development tools ==='
 bash ~/setup/linux-inotify.sh
 bash ~/setup/linux-micro.sh
@@ -150,10 +158,10 @@ asdf global nodejs $(asdf latest nodejs)
 npm install -g npm yarn
 yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
-asdf plugin add rust
-asdf install rust latest
-asdf global rust $(asdf latest rust)
-cargo install starship bat exa git-delta zoxide
+# asdf plugin add rust
+# asdf install rust latest
+# asdf global rust $(asdf latest rust)
+# cargo install starship bat exa git-delta zoxide
 
 asdf plugin add python
 asdf install python latest
