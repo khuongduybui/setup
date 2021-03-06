@@ -1,6 +1,11 @@
-# Defined in /tmp/fish.avRCE7/accounts.fish @ line 2
+# Defined in /tmp/fish.DactoY/accounts.fish @ line 2
 function accounts
+    if not type -q bw; and type -q yarn; and test (count $argv) -gt 0
+        yarn global add @bitwarden/cli
+        type -q asdf; and asdf reshim
+    end
     if type -q bw; and test (count $argv) -gt 0
+        bw login duy@buifamily.info
         bw sync
         bw list items --search $argv | jq -r '.[] | select(.type == 2 or .type == 3) | "\(.name) = \(if .notes then .notes else .card end)"' | grep --color -e "^" -ie $argv
     else
