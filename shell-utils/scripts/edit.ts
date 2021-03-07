@@ -1,4 +1,4 @@
-import * as log from "https://deno.land/std@0.82.0/log/mod.ts";
+import * as log from "https://deno.land/std/log/mod.ts";
 
 import { cac } from "https://unpkg.com/cac/mod.ts";
 import { opn as open } from "https://denopkg.com/hashrock/deno-opn/opn.ts";
@@ -12,7 +12,7 @@ export async function main(file: string, options = { wait: true }) {
 }
 
 const cli = cac((import.meta.url.split("/").pop() ?? "").replace(".ts", ""));
-cli.command("<file>", "Path of the file to edit")
+cli.command("<file>", "Edit <file> with available editor")
   .option("--wait", "Wait for editor to return", { default: true })
   .action(async (file: string, options: { wait: boolean }) => {
     await main(file, options);

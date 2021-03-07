@@ -1,6 +1,6 @@
-import * as fs from "https://deno.land/std@0.82.0/fs/mod.ts";
-import * as log from "https://deno.land/std@0.82.0/log/mod.ts";
-import * as path from "https://deno.land/std@0.82.0/path/mod.ts";
+import * as fs from "https://deno.land/std/fs/mod.ts";
+import * as log from "https://deno.land/std/log/mod.ts";
+import * as path from "https://deno.land/std/path/mod.ts";
 
 import { cac } from "https://unpkg.com/cac/mod.ts";
 
@@ -28,11 +28,7 @@ export async function main(
   );
   if (!options.script && (options.function || await fs.exists(functionPath))) {
     log.info(`Editing fish function ${scriptName}`);
-    return invokeShell("fish", [
-      "funced",
-      "-s",
-      scriptName,
-    ]);
+    return invokeShell(["fish", "-c"], ["funced", "-s", scriptName]);
   }
 
   const scriptPath = path.join(

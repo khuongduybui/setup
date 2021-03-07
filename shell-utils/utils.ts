@@ -7,6 +7,9 @@ export const homeDirectoryEnv = (os?: os) => isWin(os) ? "USERPROFILE" : "HOME";
 export const homeDirectory = (os?: os) =>
   Deno.env.get(homeDirectoryEnv(os)) ?? "/";
 
+export const userEnv = (os?: os) => isWin(os) ? "USERNAME" : "USER";
+export const user = (os?: os) => Deno.env.get(userEnv(os)) ?? "/";
+
 export const executable = async (command: string) => {
   const checkCommand = isWin()
     ? `cmd /C "where ${command}"`
@@ -19,12 +22,36 @@ export const editor = async (options = { wait: true }) => {
   return (isWin() ? ["notepad"] : ["editor"]);
 };
 
-export const invokeShell = (shell: string, cmd: string[], options = {}) => {
+export const invoke = (cmd: string[], options = {}) => {
+  return Deno.run({ cmd, ...options }).status();
+};
+
+export const invokeShell = (shell: string[], cmd: string[], options = {}) => {
   const shellCommand = [
-    shell,
-    "-c",
+    ...shell,
     cmd.join(" "),
   ];
 
-  return Deno.run({ cmd: shellCommand, ...options }).status();
+  return invoke(shellCommand, options);
 };
+
+export const fuzzyShell = async (
+  shell: string[],
+  query: string,
+  cmd: string,
+) => {
+  const process = Deno.run({
+    cmd: [
+      ...shell,
+      `${cmd} | fzf -1 -q ${query}`,
+    ],
+    stdout: "piped",
+  });
+  await process.status();
+  return new TextDecoder().decode(await process.output()).trimEnd();
+};
+export const fuzzy = (
+  shell: string[],
+  query: string,
+  candidates: string[],
+) => fuzzyShell(shell, query, `echo "${candidates.join('"\\n"')}"`);
