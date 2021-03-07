@@ -18,3 +18,13 @@ export const editor = async (options = { wait: true }) => {
   if (await executable("code")) return ["code", options.wait ? "-w" : ""];
   return (isWin() ? ["notepad"] : ["editor"]);
 };
+
+export const invokeShell = (shell: string, cmd: string[], options = {}) => {
+  const shellCommand = [
+    shell,
+    "-c",
+    cmd.join(" "),
+  ];
+
+  return Deno.run({ cmd: shellCommand, ...options }).status();
+};
