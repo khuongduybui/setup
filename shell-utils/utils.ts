@@ -18,7 +18,7 @@ export const executable = async (command: string) => {
 };
 
 export const editor = async (options = { wait: true }) => {
-  if (await executable("code")) return ["code", options.wait ? "-w" : ""];
+  if (await executable("code")) return ["code", "-r", options.wait ? "-w" : ""];
   return (isWin() ? ["notepad"] : ["editor"]);
 };
 
