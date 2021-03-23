@@ -146,6 +146,7 @@ fi
 mkdir -p ~/.config/fish/completions
 cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 asdf update
+asdf plugin update --all
 
 asdf plugin add deno
 asdf install deno latest
