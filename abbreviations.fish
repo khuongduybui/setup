@@ -11,14 +11,14 @@ abbr update-git-msi 'git config user.email "duy.bui@motorolasolutions.com"; git 
 abbr update-font 'curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Complete.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Complete.ttf; curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Book.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Book.ttf'
 abbr rclone-code 'rclone sync ~/code onedrive:code --exclude \'**/node_modules/**/*\' --links'
 
-abbr a 'add-abbr'
-abbr acc 'accounts'
-abbr bass 'bax'
-abbr d 'dot'
-abbr c 'c2c'
-abbr v 'view'
-abbr e 'edit'
-abbr s 'settings'
+abbr a add-abbr
+abbr acc accounts
+abbr bass bax
+abbr d dot
+abbr c c2c
+abbr v view
+abbr e edit
+abbr s settings
 abbr cmd command
 abbr cdw 'cd ~/winhome'
 abbr exit 'true; exit'
@@ -39,17 +39,20 @@ abbr bl 'bit lg'
 abbr gl 'git lg'
 abbr b 'bit status'
 abbr g 'git status'
-abbr y 'yarn'
+abbr y yarn
 abbr yx 'yarn exec'
 abbr ya 'yarn add'
 abbr yad 'yarn add -D'
 abbr ycu yarn upgrade-interactive --latest
-abbr p 'pnpm'
-abbr px 'pnpx'
+abbr p pnpm
+abbr px pnpx
 abbr pi 'pnpm install'
 abbr pid 'pnpm install --save-dev'
 
 abbr azrcc 'git clone git@ssh.dev.azure.com:v3/LunarlineProducts/'
+
+abbr ghcc 'gh repo clone'
+abbr drcc 'gh repo clone Delta-Risk-LLC/'
 
 abbr awscc 'git clone codecommit://'
 abbr ssm 'aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="bash -l" --target'
@@ -61,4 +64,4 @@ abbr edge microsoft-edge
 abbr winget winget.exe
 abbr winst winget.exe install
 abbr wsl wsl.exe
-abbr ids 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'
+abbr myid 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'
