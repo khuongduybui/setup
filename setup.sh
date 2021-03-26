@@ -47,6 +47,10 @@ chmod 700 ~/.gnupg
 bash ~/setup/backup-and-link.sh ~/setup/gpg.conf ~/.gnupg/gpg.conf
 
 mkdir -p ~/bin
+curl https://raw.githubusercontent.com/codexnull/allssh/master/allssh > ~/bin/allssh
+chmod +x ~/bin/allssh
+bash ~/setup/backup-and-link.sh ~/setup/.allsshrc ~/
+
 mkdir -p ~/opt
 mkdir -p ~/code
 
