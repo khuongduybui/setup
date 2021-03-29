@@ -7,7 +7,7 @@ bash ~/setup/backup-and-link.sh ~/setup/gtk-3.0 ~/.config/
 bash ~/setup/backup-and-link.sh ~/setup/gtk-2.0/gtkrc ~/.gtkrc-2.0
 
 mkdir -p ~/.config/fish/conf.d
-bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/$USER.fish
+bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/"$USER".fish
 bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/fish_plugins
 bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
 
@@ -26,9 +26,9 @@ mkdir -p ~/.config/nvim
 bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/.config/nvim/init.vim
 mkdir -p ~/.vim/bundle
 if [ -d ~/.vim/bundle/vundle ]; then
-    cd ~/.vim/bundle/vundle
+    cd ~/.vim/bundle/vundle || return
     git pull
-    cd -
+    cd - || return
 else
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 fi
@@ -146,6 +146,7 @@ bash ~/setup/linux-aws-cli-v2.sh
 if [ ! -d ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
+# shellcheck disable=SC1090
 . ~/.asdf/asdf.sh
 mkdir -p ~/.config/fish/completions
 cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
@@ -154,26 +155,26 @@ asdf plugin update --all
 
 asdf plugin add deno
 asdf install deno latest
-asdf global deno $(asdf latest deno)
+asdf global deno "$(asdf latest deno)"
 bash ~/setup/shell-utils/install.sh
 
 asdf plugin add nodejs
 bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf install nodejs latest
-asdf global nodejs $(asdf latest nodejs)
+asdf global nodejs "$(asdf latest nodejs)"
 npm install -g npm@latest yarn@latest
 # yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
 # asdf plugin add rust
 # asdf install rust latest
-# asdf global rust $(asdf latest rust)
+# asdf global rust "$(asdf latest rust)"
 # cargo install starship bat exa git-delta zoxide
 
 asdf plugin add python
 asdf install python latest
-asdf global python $(asdf latest python)
+asdf global python "$(asdf latest python)"
 pip install --upgrade pip
-pip install aws-sso-util cfn-lint cloudformation-cli cloudformation-cli-python-plugin awslogs git-remote-codecommit
+pip install aws-sso-util git-remote-codecommit
 
 asdf reshim
 
