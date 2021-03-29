@@ -178,4 +178,9 @@ pip install aws-sso-util git-remote-codecommit
 
 asdf reshim
 
+echo "=== Suggestions ==="
+
+which gh 2>/dev/null >/dev/null || echo "github-cli"
+which sft 2>/dev/null >/dev/null || echo "scaleft"
+
 echo '=== Goodbye ==='
