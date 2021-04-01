@@ -65,3 +65,5 @@ abbr winget winget.exe
 abbr winst winget.exe install
 abbr wsl wsl.exe
 abbr myid 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'
+abbr up docker-compose up
+abbr down docker-compose down
