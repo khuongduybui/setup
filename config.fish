@@ -28,6 +28,8 @@ if test -z $INIT
 
         __ensure_path ~/bin
 
+        __ensure_path ~/.local/bin
+
         __ensure_path /home/linuxbrew/.linuxbrew/bin
 
         __ensure_path /snap/bin

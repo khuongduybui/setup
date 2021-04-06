@@ -175,13 +175,14 @@ asdf install python latest
 asdf global python "$(asdf latest python)"
 pip install --upgrade pip
 pip install --upgrade pipx
+
+asdf reshim
+
 pipx install aws-sso-util
 pipx install black
 pipx install cfn-lint
 pipx install git-remote-codecommit
 pipx install virtualenv
-
-asdf reshim
 
 echo "=== Suggestions ==="
 
