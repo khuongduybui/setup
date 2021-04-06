@@ -174,7 +174,12 @@ asdf plugin add python
 asdf install python latest
 asdf global python "$(asdf latest python)"
 pip install --upgrade pip
-pip install aws-sso-util git-remote-codecommit
+pip install --upgrade pipx
+pipx install aws-sso-util
+pipx install black
+pipx install cfn-lint
+pipx install git-remote-codecommit
+pipx install virtualenv
 
 asdf reshim
 

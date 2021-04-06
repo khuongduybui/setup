@@ -68,3 +68,4 @@ abbr myid 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'
 abbr up docker-compose up
 abbr down docker-compose down
 abbr venv 'test -d venv; and source venv/bin/activate.fish'
+abbr virtualenv 'virtualenv -p ~/.asdf/shims/python venv'
