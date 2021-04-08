@@ -5,3 +5,4 @@ local-tests*
 remote-tests*
 localonly-*
 .dccache
+.vscode/
