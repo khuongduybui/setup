@@ -9,10 +9,10 @@ import { homeDirectory } from "../utils.ts";
 
 export async function ensureCodeDir(): Promise<string> {
   const codeDir = path.join(await homeDirectory(), "code");
-  const workspaceDir = path.join(await homeDirectory(), "workspace");
+  const workspacesDir = path.join(await homeDirectory(), "workspaces");
   await Promise.all([
     fs.ensureDir(codeDir),
-    fs.ensureSymlink(codeDir, workspaceDir),
+    fs.ensureSymlink(codeDir, workspacesDir),
   ]);
   return codeDir;
 }
