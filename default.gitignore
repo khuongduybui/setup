@@ -6,3 +6,4 @@ remote-tests*
 localonly-*
 .dccache
 .vscode/
+.venv

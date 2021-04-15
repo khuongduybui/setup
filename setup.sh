@@ -182,7 +182,9 @@ pipx install aws-sso-util
 pipx install black
 pipx install cfn-lint
 pipx install git-remote-codecommit
-pipx install virtualenv
+pipx install virtualfish
+vf install
+vf addplugins auto_activation
 
 echo "=== Suggestions ==="
 
