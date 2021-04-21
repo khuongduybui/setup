@@ -120,14 +120,13 @@ if test -z $INIT
             set -x WIP 127.0.0.1
         end
         echo $WIP >~/.wip
-        set -x DISPLAY $WIP:0.0
 
         set -xg VAGRANT_WSL_ENABLE_WINDOWS_ACCESS 1
 
         test (umask) -eq 0022
         or umask 0022
 
-        x-init &
+        set -x DISPLAY :0
         font-init
     end
 
