@@ -183,8 +183,9 @@ pipx install black
 pipx install cfn-lint
 pipx install git-remote-codecommit
 pipx install virtualfish
-vf install
-vf addplugins auto_activation
+pipx ensurepath
+fish -c "vf install"
+fish -c "vf addplugins auto_activation"
 
 echo "=== Suggestions ==="
 
