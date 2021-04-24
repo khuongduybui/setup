@@ -34,8 +34,7 @@ if test -z $INIT
 
         __ensure_path /snap/bin
 
-        test -f ~/.asdf/asdf.fish
-        and source ~/.asdf/asdf.fish
+        test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 
         # if test -d /usr/local/android/sdk/tools
         #     set -xU ANDROID_HOME /usr/local/android/sdk
@@ -44,8 +43,8 @@ if test -z $INIT
         #     set -xU JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
         # end
 
-        # __ensure_path /z/Microsoft\ VS\ Code/bin
-        # __ensure_path /c/Program\ Files/Oracle/VirtualBox
+        # __ensure_path /$WROOT/z/Microsoft\ VS\ Code/bin
+        # __ensure_path /$WROOT/c/Program\ Files/Oracle/VirtualBox
 
         varclear PATH
         __clean_missing PATH
@@ -75,10 +74,8 @@ if test -z $INIT
         ### Languages
         if not grep -q -e "LANG=en_US.UTF-8" /etc/locale.conf
             info 'Setting locale'
-            grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment
-            or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
-            grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen
-            or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+            grep -q -e "^LC_ALL=en_US.UTF-8\$" /etc/environment; or echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+            grep -q -e "^en_US.UTF-8 UTF-8\$" /etc/locale.gen; or echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
             echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
             type -q locale-gen; and sudo locale-gen en_US.UTF-8
         end
@@ -121,12 +118,10 @@ if test -z $INIT
         end
         echo $WIP >~/.wip
 
-        set -xg VAGRANT_WSL_ENABLE_WINDOWS_ACCESS 1
+        type -q vagrant; and set -xg VAGRANT_WSL_ENABLE_WINDOWS_ACCESS 1
 
-        test (umask) -eq 0022
-        or umask 0022
+        test (umask) -eq 0022; or umask 0022
 
-        set -x DISPLAY :0
         font-init
     end
 

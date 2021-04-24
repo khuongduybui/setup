@@ -1,1 +1,0 @@
-Enter-PSSession -ComputerName duybui -credential (new-object -typename System.Management.Automation.PSCredential -argumentlist "ANT\duybui", (ConvertTo-SecureString "Elv1s=141592" -AsPlainText -Force)) -EnableNetworkAccess
