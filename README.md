@@ -1,21 +1,6 @@
-To setup a new machine, follow the steps below:
+This repo is designed to complement my setup gist.
+Start with the gist instead:
 
-__Step 1__. Set up authentication
 ```sh
-mkdir ~/.ssh
-vi ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-vi ~/.ssh/authorized_keys
-```
-
-__Step 2__. Install GIT
-```sh
-sudo apt-get install -y git
-```
-
-__Step 3__. Download and run the setup scripts
-```sh
-git clone git@bitbucket.org:khuongduybui/linux.git ~/setup
-sudo visudo
-bash ~/setup/setup.sh
+curl -sL https://gist.github.com/khuongduybui/a6d9d7867a89f304b5b774af9e6e6257/raw/setup.sh | bash -
 ```
