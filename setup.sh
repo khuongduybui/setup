@@ -189,7 +189,11 @@ fish -c "vf addplugins auto_activation"
 
 echo "=== Suggestions ==="
 
-which gh 2>/dev/null >/dev/null || echo "github-cli"
-which sft 2>/dev/null >/dev/null || echo "scaleft"
+~/setup/suggest.sh gh "github-cli"
+~/setup/suggest.sh sft "scaleft"
+~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
+~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
+~/setup/suggest.sh dust "https://github.com/bootandy/dust"
+~/setup/suggest.sh procs "https://github.com/dalance/procs"
 
 echo '=== Goodbye ==='
