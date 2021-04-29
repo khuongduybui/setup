@@ -2,6 +2,7 @@ if status --is-interactive
     ## Plugins
     source ~/setup/verify-fisher.fish
     source ~/setup/fallback.fish
+    source ~/setup/fish_preexec.fish
 
     ## Completions
     complete -c c2c -x -a '(__fish_complete_c2c)'
