@@ -157,4 +157,4 @@ type -q starship; and source (starship init fish --print-full-init | psub)
 
 type -q direnv; and direnv hook fish | source
 
-type -q zoxide; and zoxide init fish | source
+type -q zoxide; and zoxide init fish | source; and abbr cd z
