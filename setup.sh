@@ -135,7 +135,7 @@ echo '=== Common shell tools ==='
 ~/setup/linux-bat.sh
 ~/setup/linux-exa.sh
 ~/setup/linux-delta.sh
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
 ~/setup/linux-nu.sh
 
 echo '=== Common development tools ==='
@@ -191,6 +191,7 @@ echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "github-cli"
 ~/setup/suggest.sh sft "scaleft"
+~/setup/suggest.sh zoxide "https://github.com/ajeetdsouza/zoxide"
 ~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
 ~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
 ~/setup/suggest.sh dust "https://github.com/bootandy/dust"
