@@ -196,5 +196,6 @@ echo "=== Suggestions ==="
 ~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
 ~/setup/suggest.sh dust "https://github.com/bootandy/dust"
 ~/setup/suggest.sh procs "https://github.com/dalance/procs"
+~/setup/suggest.sh sam-beta-cdk "linux-aws-sam-cli"
 
 echo '=== Goodbye ==='
