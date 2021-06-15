@@ -74,7 +74,9 @@ if test -z $INIT
 
         if not test -e ~/.browser
             info 'Searching for Browsers'
-            if type -q microsoft-edge
+            if type -q wslview
+                set -x BROWSER (which wslview)
+            else if type -q microsoft-edge
                 set -x BROWSER (which microsoft-edge)
             else if type -q microsoft-edge-dev
                 set -x BROWSER (which microsoft-edge-dev)
