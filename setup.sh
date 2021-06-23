@@ -11,6 +11,9 @@ bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/"$USER
 bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/fish_plugins
 bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
 
+mkdir -p ~/.config/nu
+bash ~/setup/backup-and-link.sh ~/setup/nushell/config.toml ~/.config/nu/
+
 bash ~/setup/backup-and-link.sh ~/setup/WindowsPowerShell ~/.config/powershell
 
 bash ~/setup/backup-and-link.sh ~/setup/starship.toml ~/.config/
