@@ -72,21 +72,7 @@ if test -z $INIT
             echo $EDITOR >~/.editor
         end
 
-        if not test -e ~/.browser
-            info 'Searching for Browsers'
-            if type -q wslview
-                set -x BROWSER (which wslview)
-            else if type -q microsoft-edge
-                set -x BROWSER (which microsoft-edge)
-            else if type -q microsoft-edge-dev
-                set -x BROWSER (which microsoft-edge-dev)
-            end
-            if test -n "$BROWSER"
-                set -xU BROWSER $BROWSER
-                set -xg BROWSER $BROWSER
-                echo $BROWSER >~/.browser
-            end
-        end
+        browser-init
 
         ### Languages
         if not grep -q -e "LANG=en_US.UTF-8" /etc/locale.conf
