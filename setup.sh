@@ -194,6 +194,7 @@ echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "github-cli"
 ~/setup/suggest.sh sft "scaleft"
+~/setup/suggest.sh direnv "direnv"
 ~/setup/suggest.sh zoxide "https://github.com/ajeetdsouza/zoxide"
 ~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
 ~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
