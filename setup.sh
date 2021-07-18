@@ -186,6 +186,7 @@ pipx install black
 pipx install cfn-lint
 pipx install git-remote-codecommit
 pipx install virtualfish
+pipx upgrade-all
 pipx ensurepath
 fish -c "vf install"
 fish -c "vf addplugins auto_activation"
