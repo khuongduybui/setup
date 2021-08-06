@@ -12,15 +12,15 @@ abbr update-git-msi 'git config user.email "duy.bui@motorolasolutions.com"; git 
 abbr update-font 'curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Complete.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Complete.ttf; curl -s https://api.github.com/repos/adam7/delugia-code/releases/latest | jq -r ".assets[] | select(.name | test(\"Book.ttf\")) | .browser_download_url" | xargs wget -q -O ~/setup/Delugia.Nerd.Font.Book.ttf'
 abbr rclone-code 'rclone sync ~/code onedrive:code --exclude \'**/node_modules/**/*\' --links'
 
-abbr a add-abbr
-abbr acc accounts
-abbr bass bax
-abbr d dot
-abbr c c2c
-abbr v view
-abbr e edit
-abbr s settings
-abbr cmd command
+abbr a 'add-abbr'
+abbr acc 'accounts'
+abbr bass 'bax'
+abbr d 'dot'
+abbr c 'c2c'
+abbr v 'view'
+abbr e 'edit'
+abbr s 'settings'
+abbr cmd 'command'
 abbr cdw 'cd ~/winhome'
 abbr exit 'true; exit'
 
@@ -28,7 +28,7 @@ abbr bdf 'bit diff --ignore-space-change'
 abbr gdf 'git diff --ignore-space-change'
 abbr bdft 'git difftool -y --ignore-space-change'
 abbr gdft 'git difftool -y --ignore-space-change'
-abbr gbe git checkout --orphan
+abbr gbe 'git checkout --orphan'
 abbr gb 'git branch'
 abbr gbr 'git branch -r'
 abbr gbD 'git branch -D'
@@ -40,13 +40,13 @@ abbr bl 'bit lg'
 abbr gl 'git lg'
 abbr b 'bit status'
 abbr g 'git status'
-abbr y yarn
+abbr y 'yarn'
 abbr yx 'yarn exec'
 abbr ya 'yarn add'
 abbr yad 'yarn add -D'
-abbr ycu yarn upgrade-interactive --latest
-abbr p pnpm
-abbr px pnpx
+abbr ycu 'yarn upgrade-interactive --latest'
+abbr p 'pnpm'
+abbr px 'pnpx'
 abbr pi 'pnpm install'
 abbr pid 'pnpm install --save-dev'
 
@@ -61,12 +61,12 @@ abbr bsm 'aws ssm start-session --document-name SSM-Bitnami --target'
 abbr region 'aws configure set region'
 abbr r53-ip 'curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r \'.prefixes[] | select(.service == "ROUTE53_HEALTHCHECKS") | .ip_prefix\''
 
-abbr edge microsoft-edge
-abbr winget winget.exe
-abbr winst winget.exe install
-abbr wsl wsl.exe
+abbr edge 'microsoft-edge'
+abbr winget 'winget.exe'
+abbr winst 'winget.exe install'
+abbr wsl 'wsl.exe'
 abbr myid 'bw sync; bw list items | jq -r ".[] | select(.type == 4)"'
-abbr up docker-compose up
-abbr down docker-compose down
+abbr up 'docker-compose up'
+abbr down 'docker-compose down -v --remove-orphans'
 abbr venv 'test -d venv; and source venv/bin/activate.fish'
 abbr virtualenv 'virtualenv -p ~/.asdf/shims/python venv'
