@@ -134,6 +134,11 @@ if [ ! -f /.dockerenv ]; then
 fi
 
 echo '=== Common shell tools ==='
+if which webi >/dev/null 2>&1; then
+    webi webi
+else
+    curl -sS https://webinstall.dev/webi | bash
+fi
 ~/setup/linux-starship.sh
 ~/setup/linux-bat.sh
 ~/setup/linux-exa.sh
@@ -196,7 +201,7 @@ echo "=== Suggestions ==="
 ~/setup/suggest.sh gh "github-cli"
 ~/setup/suggest.sh sft "scaleft"
 ~/setup/suggest.sh direnv "direnv"
-~/setup/suggest.sh zoxide "https://github.com/ajeetdsouza/zoxide"
+~/setup/suggest.sh zoxide "webi zoxide"
 ~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
 ~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
 ~/setup/suggest.sh dust "https://github.com/bootandy/dust"
