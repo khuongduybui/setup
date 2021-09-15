@@ -14,7 +14,8 @@ abbr rclone-code 'rclone sync ~/code onedrive:code --exclude \'**/node_modules/*
 
 abbr a 'add-abbr'
 abbr acc 'accounts'
-abbr bass 'bax'
+abbr bass 'replay'
+abbr bax 'replay'
 abbr d 'dot'
 abbr c 'c2c'
 abbr v 'view'

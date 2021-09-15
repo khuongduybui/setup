@@ -199,6 +199,7 @@ fish -c "vf addplugins auto_activation"
 echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "github-cli"
+which gh && gh extension install mislav/gh-branch
 ~/setup/suggest.sh sft "scaleft"
 ~/setup/suggest.sh direnv "direnv"
 ~/setup/suggest.sh zoxide "webi zoxide"
