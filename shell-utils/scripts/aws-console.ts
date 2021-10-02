@@ -4,7 +4,7 @@ import { v4 as uuid } from "https://deno.land/std/uuid/mod.ts";
 
 import { cac } from "https://unpkg.com/cac/mod.ts";
 // import { decode as parseIni } from "https://deno.land/x/ini/mod.ts";
-import { STS } from "https://deno.land/x/aws_sdk/client-sts/mod.ts";
+import { STS } from "https://deno.land/x/aws_sdk@v3.11.0.0/client-sts/mod.ts";
 
 import { fuzzyShell, homeDirectory, user } from "../utils.ts";
 
