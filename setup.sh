@@ -198,16 +198,16 @@ fish -c "vf addplugins auto_activation"
 
 echo "=== Suggestions ==="
 
-~/setup/suggest.sh gh "github-cli"
+~/setup/suggest.sh gh "~/setup/debian-gh.sh"
 which gh && gh extension install mislav/gh-branch
-~/setup/suggest.sh sft "scaleft"
-~/setup/suggest.sh direnv "direnv"
+~/setup/suggest.sh sft "~/setup/debian-scaleft.sh"
+~/setup/suggest.sh direnv "~/setup/linux-direnv.sh"
 ~/setup/suggest.sh zoxide "webi zoxide"
 ~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
-~/setup/suggest.sh bandwhich "https://github.com/imsnif/bandwhich"
+~/setup/suggest.sh bandwhich "~/setup/linux-bandwhich.sh"
 ~/setup/suggest.sh dust "https://github.com/bootandy/dust"
 ~/setup/suggest.sh procs "https://github.com/dalance/procs"
-~/setup/suggest.sh sam "linux-aws-sam"
-~/setup/suggest.sh sam-beta-cdk "linux-aws-sam-cdk"
+~/setup/suggest.sh sam "~/setup/linux-aws-sam.sh"
+~/setup/suggest.sh sam-beta-cdk "~/setup/linux-aws-sam-cdk.sh"
 
 echo '=== Goodbye ==='
