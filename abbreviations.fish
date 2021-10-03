@@ -1,11 +1,9 @@
 # Fish abbreviations, sourced in ~/.config/fish/config.fish
 
-abbr my-setup 'curl -sL https://gist.github.com/khuongduybui/a6d9d7867a89f304b5b774af9e6e6257/raw/setup.sh >/tmp/setup.sh; bash /tmp/setup.sh'
-abbr elementary-setup 'curl -sL https://gist.github.com/khuongduybui/a6d9d7867a89f304b5b774af9e6e6257/raw/elementary.sh | bash -'
+abbr my-setup 'curl -sL https://cutt.ly/rEGEPKo >/tmp/setup.sh; bash /tmp/setup.sh'
 abbr ssh-ec2 'ssh -i ~/.ssh/ec2.pem -l ec2-user'
 abbr ssh-raw 'ssh -F /dev/null'
 abbr sshp 'ssh -o PreferredAuthentications=password'
-abbr update-git 'git remote set-url origin git@github.com:khuongduybui/setup.git'
 abbr update-git-ll 'git config user.email "duy.bui@lunarline.com"; git config user.signingkey 083EF93045D6B22C'
 abbr update-git-ct 'git config user.email "duy.bui@clevertech.biz"; git config user.signingkey 603790593AB493EA'
 abbr update-git-msi 'git config user.email "duy.bui@motorolasolutions.com"; git config user.signingkey F9F596B7934A7B17'
