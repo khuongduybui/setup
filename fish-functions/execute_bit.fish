@@ -1,3 +1,4 @@
+# Defined in /tmp/fish.igASpV/execute_bit.fish @ line 2
 function execute_bit
     if type -q starship
         starship prompt
@@ -13,8 +14,9 @@ function execute_bit
         set_color normal
     end
 
+    set_color $fish_color_command
     echo -n git' '
-    set_color cyan
+    set_color $fish_color_param
     echo $argv
     set_color normal
 
