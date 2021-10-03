@@ -1,4 +1,4 @@
-import { exec, OutputMode } from "https://deno.land/x/exec/mod.ts";
+import { exec, OutputMode } from "https://deno.land/x/exec@0.0.5/mod.ts";
 
 type os = "linux" | "darwin" | "windows";
 export const isWin = (os = Deno.build.os) => os === "windows";
@@ -20,8 +20,8 @@ export const executable = async (command: string) => {
 export const editor = async (options = { wait: true }) => {
   if (await executable("subl")) return ["subl", options.wait ? "-w" : ""];
   if (await executable("io.elementary.code")) return ["io.elementary.code"];
-  if (await executable("micro")) return ["micro"];
   if (await executable("code")) return ["code", "-r", options.wait ? "-w" : ""];
+  if (await executable("micro")) return ["micro"];
   return (isWin() ? ["notepad"] : ["editor"]);
 };
 

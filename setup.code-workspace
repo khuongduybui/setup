@@ -10,6 +10,17 @@
     "deno.unstable": true,
     "[typescript]": {
       "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "deno.suggest.imports.hosts": {
+      "https://deno.land": true
+    },
+    "cSpell.customDictionaries": {
+      "custom-dictionary-workspace": {
+        "name": "custom-dictionary-workspace",
+        "path": "${workspaceFolder:setup}/.cspell/custom-dictionary-workspace.txt",
+        "addWords": true,
+        "scope": "workspace"
+      }
     }
   }
 }

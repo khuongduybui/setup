@@ -1,6 +1,6 @@
-import * as fs from "https://deno.land/std/fs/mod.ts";
-import * as log from "https://deno.land/std/log/mod.ts";
-import * as path from "https://deno.land/std/path/mod.ts";
+import * as fs from "https://deno.land/std@0.109.0/fs/mod.ts";
+import * as log from "https://deno.land/std@0.109.0/log/mod.ts";
+import * as path from "https://deno.land/std@0.109.0/path/mod.ts";
 
 import { cac } from "https://unpkg.com/cac/mod.ts";
 import json5 from "https://cdn.skypack.dev/json5?dts";

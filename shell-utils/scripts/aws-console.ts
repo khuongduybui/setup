@@ -1,12 +1,13 @@
-import * as log from "https://deno.land/std/log/mod.ts";
-import * as path from "https://deno.land/std/path/mod.ts";
-import { v4 as uuid } from "https://deno.land/std/uuid/mod.ts";
+import * as log from "https://deno.land/std@0.109.0/log/mod.ts";
+// import * as path from "https://deno.land/std@0.109.0/path/mod.ts";
+import { v4 as uuid } from "https://deno.land/std@0.109.0/uuid/mod.ts";
 
 import { cac } from "https://unpkg.com/cac/mod.ts";
 // import { decode as parseIni } from "https://deno.land/x/ini/mod.ts";
 import { STS } from "https://deno.land/x/aws_sdk@v3.11.0.0/client-sts/mod.ts";
 
-import { fuzzyShell, homeDirectory, user } from "../utils.ts";
+import { fuzzyShell, user } from "../utils.ts";
+// import { homeDirectory } from "../utils.ts";
 
 export async function main(profile?: string) {
   if (profile) {
