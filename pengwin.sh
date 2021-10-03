@@ -1,6 +1,18 @@
 #! /bin/bash
 
 # bash ~/setup/debian.sh
+echo "--- Install pengwin supported tools ---"
+if ! which fish; then
+  pengwin-setup install SETTINGS SHELLS FISH
+fi
+if ! which brew; then
+  pengwin-setup install TOOLS HOMEBREW
+else
+  brew update
+fi
+if ! which pwsh; then
+  pengwin-setup install TOOLS POWERSHELL
+fi
 
 echo "--- Install package manager ---"
 sudo apt install -y gdebi apt-transport-https dirmngr
