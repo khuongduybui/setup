@@ -22,6 +22,7 @@ if test -z $INIT
     ## Global
     ### PATH
     if test -e ~/.path
+        set -e PATH
         set -eg PATH
     else
         info 'Calculating PATH'
