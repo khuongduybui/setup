@@ -18,7 +18,7 @@ echo "--- Install package manager ---"
 sudo apt install -y gdebi apt-transport-https dirmngr
 
 echo "--- Install system utils ---"
-sudo apt install -y jq direnv fzf zoxide
+sudo apt install -y jq direnv fzf zoxide sshpass
 
 echo "--- Install dev tools ---"
 sudo apt install -y pkg-config make build-essential
