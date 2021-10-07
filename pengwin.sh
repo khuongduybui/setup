@@ -19,6 +19,11 @@ sudo apt install -y gdebi apt-transport-https dirmngr
 
 echo "--- Install system utils ---"
 sudo apt install -y jq direnv fzf zoxide sshpass
+apt policy ssh | grep -i installed | grep -q 1:7
+if [ $? -ne 0 ]; then
+  sudo apt install -y ssh=1:7.9p1-10+deb10u2
+  sudo apt-mark hold ssh
+fi
 
 echo "--- Install dev tools ---"
 sudo apt install -y pkg-config make build-essential
