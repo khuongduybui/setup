@@ -21,7 +21,7 @@ echo "--- Install system utils ---"
 sudo apt install -y jq direnv fzf zoxide sshpass
 apt policy ssh | grep -i installed | grep -q 1:7
 if [ $? -ne 0 ]; then
-  sudo apt install -y ssh=1:7.9p1-10+deb10u2
+  sudo apt install -y --allow-downgrades ssh=1:7.9p1-10+deb10u2
   sudo apt-mark hold ssh
 fi
 
