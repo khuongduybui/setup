@@ -1,5 +1,9 @@
-[wasp]
-web1-2.ae.test.deltarisk.com
-
-[lion]
-web1-3.ae.prod.deltarisk.com
+[WEB_WASP]
+web1.ec2.wasp.activeeye.com             
+web2.ec2.wasp.activeeye.com             
+web3.ec2.wasp.activeeye.com             
+[WEB_LION]
+web1.ec2.lion.activeeye.com             
+web2.ec2.lion.activeeye.com             
+web3.ec2.lion.activeeye.com             
+web4.ec2.lion.activeeye.com             
