@@ -7,3 +7,4 @@ localonly-*
 .dccache
 .vscode/
 .venv
+.nu-env
