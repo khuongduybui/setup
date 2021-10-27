@@ -50,7 +50,7 @@ chmod 700 ~/.gnupg
 bash ~/setup/backup-and-link.sh ~/setup/gpg.conf ~/.gnupg/gpg.conf
 
 mkdir -p ~/bin
-curl https://raw.githubusercontent.com/codexnull/allssh/master/allssh > ~/bin/allssh
+curl https://raw.githubusercontent.com/codexnull/allssh/master/allssh >~/bin/allssh
 chmod +x ~/bin/allssh
 bash ~/setup/backup-and-link.sh ~/setup/.allsshrc ~/
 
@@ -203,10 +203,10 @@ which gh && gh extension install mislav/gh-branch
 ~/setup/suggest.sh sft "~/setup/debian-scaleft.sh"
 ~/setup/suggest.sh direnv "~/setup/linux-direnv.sh"
 ~/setup/suggest.sh zoxide "webi zoxide"
-~/setup/suggest.sh btm "https://github.com/ClementTsang/bottom"
+~/setup/suggest.sh btm "brew install bottom"
 ~/setup/suggest.sh bandwhich "~/setup/linux-bandwhich.sh"
-~/setup/suggest.sh dust "https://github.com/bootandy/dust"
-~/setup/suggest.sh procs "https://github.com/dalance/procs"
+~/setup/suggest.sh dust "brew install dust"
+~/setup/suggest.sh procs "brew install procs"
 ~/setup/suggest.sh sam "~/setup/linux-aws-sam.sh"
 ~/setup/suggest.sh sam-beta-cdk "~/setup/linux-aws-sam-cdk.sh"
 
