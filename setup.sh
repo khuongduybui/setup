@@ -134,17 +134,16 @@ if [ ! -f /.dockerenv ]; then
 fi
 
 echo '=== Common shell tools ==='
-if which webi >/dev/null 2>&1; then
-    webi webi
-else
-    curl -sS https://webinstall.dev/webi | bash
-fi
-~/setup/linux-starship.sh
-~/setup/linux-bat.sh
-~/setup/linux-exa.sh
-~/setup/linux-delta.sh
-# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
-~/setup/linux-nu.sh
+# if which webi >/dev/null 2>&1; then
+#     webi webi
+# else
+#     curl -sS https://webinstall.dev/webi | bash
+# fi
+~/setup/linux-starship.sh # brew install starship
+~/setup/linux-bat.sh      # brew install bat
+~/setup/linux-exa.sh      # brew install exa
+~/setup/linux-delta.sh    # brew install git-delta
+~/setup/linux-nu.sh       # brew install nu
 
 echo '=== Common development tools ==='
 bash ~/setup/linux-inotify.sh
@@ -201,10 +200,10 @@ echo "=== Suggestions ==="
 ~/setup/suggest.sh gh "~/setup/debian-gh.sh"
 which gh && gh extension install mislav/gh-branch
 ~/setup/suggest.sh sft "~/setup/debian-scaleft.sh"
-~/setup/suggest.sh direnv "~/setup/linux-direnv.sh"
-~/setup/suggest.sh zoxide "webi zoxide"
+~/setup/suggest.sh direnv "brew install direnv"
+~/setup/suggest.sh zoxide "brew install zoxide"
 ~/setup/suggest.sh btm "brew install bottom"
-~/setup/suggest.sh bandwhich "~/setup/linux-bandwhich.sh"
+~/setup/suggest.sh bandwhich "brew install bandwhich"
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
 ~/setup/suggest.sh sam "~/setup/linux-aws-sam.sh"
