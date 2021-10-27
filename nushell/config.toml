@@ -1,5 +1,14 @@
-prompt = "__zoxide_hook; echo (starship prompt)"
+path = [
+  "/home/linuxbrew/.linuxbrew/bin",
+  "/home/linuxbrew/.linuxbrew/sbin",
+  "/home/duybui/.asdf/shims",
+  "/home/duybui/.asdf/bin",
+  "/home/duybui/bin",
+  "/home/duybui/.local/bin",
+]
+prompt = "__zoxide_hook; starship_prompt"
 startup = [
+  "source ~/setup/nushell/starship.nu", # starship init nu | save ~/setup/nushell/starship.nu
   "source ~/setup/nushell/startup.nu",
-  "source ~/setup/nushell/zoxide.nu"
+  "source ~/setup/nushell/zoxide.nu",   # zoxide init nushell --hook prompt | save ~/setup/nushell/zoxide.nu
 ]
