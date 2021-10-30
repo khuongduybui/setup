@@ -54,6 +54,8 @@ curl https://raw.githubusercontent.com/codexnull/allssh/master/allssh >~/bin/all
 chmod +x ~/bin/allssh
 bash ~/setup/backup-and-link.sh ~/setup/.allsshrc ~/
 
+bash ~/setup/backup-and-link.sh ~/setup/jira.json ~/.config/jira
+
 mkdir -p ~/opt
 mkdir -p ~/code
 
