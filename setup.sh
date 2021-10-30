@@ -200,7 +200,8 @@ fish -c "vf addplugins auto_activation"
 echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "~/setup/debian-gh.sh"
-which gh && gh extension install mislav/gh-branch
+which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
+~/setup/suggest.sh jt "~/setup/brew-gh-jira.sh"
 ~/setup/suggest.sh sft "~/setup/debian-scaleft.sh"
 ~/setup/suggest.sh direnv "brew install direnv"
 ~/setup/suggest.sh zoxide "brew install zoxide"
