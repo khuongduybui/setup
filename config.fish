@@ -15,7 +15,7 @@ if status --is-interactive
     ## AWS
     # type -q aws-sso-util; and aws-sso-util login --all --headless &
 
-    __is_day; and git config --global delta.syntax-theme "Monokai Extended Light"; or git config --global delta.syntax-theme "Monokai Extended"
+    __is_day; and set -xU BAT_THEME "Monokai Extended Light"; or set -xU BAT_THEME "Monokai Extended"
 end
 
 if test -z $INIT
