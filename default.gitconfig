@@ -27,7 +27,6 @@ diffFilter = delta --color-only
 [delta]
 features = line-numbers decorations
 whitespace-error-style = 22 reverse
-	syntax-theme = Monokai Extended
 
 [delta "decorations"]
 commit-decoration-style = bold yellow box ul
@@ -38,7 +37,7 @@ file-decoration-style = none
 dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 lg = log --color --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr: %ct)%C(reset) %C(bold blue)<%an>' --abbrev-commit
 hide = update-index --skip-worktree
-hide-untrack = ! git status --porcelain | sed -n -e 's/^?? //p' >> ~/.gitignore
+hide-untrack = ! git status --porcelain | sed -n -e 's/^?? //p' >>~/.gitignore
 hidden = ! git ls-files -v | grep -i '^S' | cut -c3-
 unhide = update-index --no-skip-worktree
 unhide-all = ! git hidden | xargs git unhide
