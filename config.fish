@@ -13,7 +13,7 @@ if status --is-interactive
     source ~/setup/abbreviations.fish
 
     ## AWS
-    # type -q aws-sso-util; and aws-sso-util login --all --headless &
+    type -q aws-sso-util; and aws-sso-util login --all --headless &
 
     __is_day; and set -xU BAT_THEME "Monokai Extended Light"; or set -xU BAT_THEME "Monokai Extended"
 end
@@ -21,20 +21,18 @@ end
 if test -z $INIT
     ## Global
     ### PATH
-    if test -e ~/.path
-        set -e PATH
-        set -eg PATH
-    else
+    if not test -e ~/.path
         info 'Calculating PATH'
         __clean_missing PATH
 
         __ensure_path ~/bin
 
-        __ensure_path ~/.local/bin
+        # __ensure_path ~/.local/bin
 
-        __ensure_path /home/linuxbrew/.linuxbrew/bin
+        # __ensure_path /home/linuxbrew/.linuxbrew/bin
+        # __ensure_path /home/linuxbrew/.linuxbrew/sbin
 
-        __ensure_path /snap/bin
+        # __ensure_path /snap/bin
 
         test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 
