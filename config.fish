@@ -13,7 +13,7 @@ if status --is-interactive
     source ~/setup/abbreviations.fish
 
     ## AWS
-    type -q aws-sso-util; and aws-sso-util login --all --headless &
+    type -q aws-sso-util; and aws-sso-util login --all &
 
     __is_day; and set -xU BAT_THEME "Monokai Extended Light"; or set -xU BAT_THEME "Monokai Extended"
 end
