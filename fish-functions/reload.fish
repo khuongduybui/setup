@@ -1,6 +1,5 @@
 function reload
     set -e INIT
-    rm ~/.path
     if test -f ~/.config/fish/conf.d/$USER.fish
         source ~/.config/fish/conf.d/$USER.fish
     else if test -f ~/.config/fish/config.fish

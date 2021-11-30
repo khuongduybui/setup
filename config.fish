@@ -21,38 +21,12 @@ end
 if test -z $INIT
     ## Global
     ### PATH
-    if not test -e ~/.path
-        info 'Calculating PATH'
-        __clean_missing PATH
-
-        __ensure_path ~/bin
-
-        # __ensure_path ~/.local/bin
-
-        # __ensure_path /home/linuxbrew/.linuxbrew/bin
-        # __ensure_path /home/linuxbrew/.linuxbrew/sbin
-
-        # __ensure_path /snap/bin
-
-        test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
-
-        # if test -d /usr/local/android/sdk/tools
-        #     set -xU ANDROID_HOME /usr/local/android/sdk
-        #     __ensure_path $ANDROID_HOME/tools
-        #     __ensure_path $ANDROID_HOME/platform-tools
-        #     set -xU JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
-        # end
-
-        # __ensure_path /$WROOT/z/Microsoft\ VS\ Code/bin
-        # __ensure_path /$WROOT/c/Program\ Files/Oracle/VirtualBox
-
-        varclear PATH
-        __clean_missing PATH
-        set -xU PATH $PATH
-        set -x HOME ~
-
-        echo $PATH >~/.path
-    end
+    __clean_missing PATH
+    __ensure_path ~/bin
+    test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
+    varclear PATH
+    set -xU PATH $PATH
+    set -x HOME ~
 
     if status --is-interactive
         ### Editors
