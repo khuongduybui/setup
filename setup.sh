@@ -188,6 +188,7 @@ asdf reshim
 pipx install aws-sso-util
 pipx install black
 pipx install cfn-lint
+~/.local/pipx/venvs/cfn-lint/bin/python -m pip install pydot
 pipx install git-remote-codecommit
 pipx install virtualfish
 pipx upgrade-all
