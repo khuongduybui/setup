@@ -66,7 +66,7 @@ if [ ! -f /.dockerenv ]; then
         bash ~/setup/arch.sh
 
     test -f /etc/issue &&
-        grep -q -Ei "elementary|ubuntu" /etc/issue &&
+        grep -q -Ei "elementary|ubuntu|pop" /etc/issue &&
         echo "Ubuntu detected. Installing core modules..." &&
         bash ~/setup/ubuntu.sh
 
