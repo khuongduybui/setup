@@ -198,17 +198,17 @@ fish -c "vf addplugins auto_activation"
 
 echo "=== Suggestions ==="
 
-~/setup/suggest.sh gh "~/setup/debian-gh.sh"
+~/setup/suggest.sh gh "$HOME/setup/debian-gh.sh"
 which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
-~/setup/suggest.sh jt "~/setup/brew-gh-jira.sh"
-~/setup/suggest.sh sft "~/setup/debian-scaleft.sh"
+~/setup/suggest.sh jt "$HOME/setup/brew-gh-jira.sh"
+~/setup/suggest.sh sft "$HOME/setup/debian-scaleft.sh"
 ~/setup/suggest.sh direnv "brew install direnv"
 ~/setup/suggest.sh zoxide "brew install zoxide"
 ~/setup/suggest.sh btm "brew install bottom"
 ~/setup/suggest.sh bandwhich "brew install bandwhich"
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
-~/setup/suggest.sh sam "~/setup/linux-aws-sam.sh"
-~/setup/suggest.sh sam-beta-cdk "~/setup/linux-aws-sam-cdk.sh"
+~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
+~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
 echo '=== Goodbye ==='
