@@ -10,6 +10,7 @@ mkdir -p ~/.config/fish/conf.d
 bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/"$USER".fish
 bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/fish_plugins
 bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
+test -f /home/linuxbrew/.linuxbrew/bin/brew && echo "/home/linuxbrew/.linuxbrew/bin/brew shellenv | source; or true" > ~/.config/fish/conf.d/brew.fish
 
 mkdir -p ~/.config/nu
 bash ~/setup/backup-and-link.sh ~/setup/nushell/config.toml ~/.config/nu/
@@ -188,7 +189,7 @@ asdf reshim
 pipx install aws-sso-util
 pipx install black
 pipx install cfn-lint
-~/.local/pipx/venvs/cfn-lint/bin/python -m pip install pydot
+pipx runpip cfn-lint install --upgrade pydot
 pipx install git-remote-codecommit
 pipx install virtualfish
 pipx upgrade-all
