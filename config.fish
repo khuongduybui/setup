@@ -1,8 +1,16 @@
+## Global
+### PATH
+__clean_missing PATH
+__ensure_path ~/bin
+test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
+varclear PATH
+set -xU PATH $PATH
+
 if status --is-interactive
     ## Plugins
-    source ~/setup/verify-fisher.fish
-    source ~/setup/fallback.fish
-    source ~/setup/fish_preexec.fish
+    # source ~/setup/verify-fisher.fish
+    # source ~/setup/fallback.fish
+    # source ~/setup/fish_preexec.fish
 
     ## Completions
     complete -c c2c -x -a '(__fish_complete_c2c)'
@@ -19,15 +27,6 @@ if status --is-interactive
 end
 
 if test -z $INIT
-    ## Global
-    ### PATH
-    __clean_missing PATH
-    __ensure_path ~/bin
-    test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
-    varclear PATH
-    set -xU PATH $PATH
-    set -x HOME ~
-
     if status --is-interactive
         ### Editors
         if not test -e ~/.editor
@@ -57,67 +56,11 @@ if test -z $INIT
         end
     end
 
-    ### Windows?
-    if __is_win
-        if test -f ~/.wuser
-            set -x WUSER (cat ~/.wuser)
-        else
-            set -x WUSER (whoami)
-        end
-
-        if test -f ~/.wdrive
-            set -x WDRIVE (cat ~/.wdrive)
-        else
-            set -x WDRIVE c
-        end
-
-        ## Create /run/user/(id -u)
-        sudo mkdir -p /run/user/(id -u)
-        sudo chown -R (id -un):(id -gn) /run/user/(id -u)
-
-        if test -f /etc/wsl.conf
-            and grep -q -e root= /etc/wsl.conf
-            set -x WROOT (command grep -e root= /etc/wsl.conf | command sed s/root=// | command sed s:/\$::)
-        else
-            set -x WROOT /mnt
-        end
-        set -x WHOME (wslpath "$WDRIVE:/Users/$WUSER")
-        set -x W $WHOME
-        rm -f ~/winhome
-        ln -s $WHOME ~/winhome
-
-        if __is_wsl_2
-            set -x WIP (ip route show default | grep -Po 'via \K\S+')
-            docker-init
-        else
-            set -x WIP 127.0.0.1
-        end
-        echo $WIP >~/.wip
-
-        type -q vagrant; and set -xg VAGRANT_WSL_ENABLE_WINDOWS_ACCESS 1
-
-        test (umask) -eq 0022; or umask 0022
-
-        font-init
-    end
-
     ## Preload WPS
     wps-init
 
-    ## Done INIT
-    set -x INIT true
-
-    ## Load genie & byobu
+    ## Load byobu
     if status --is-login
-        and status --is-interactive
-
-        if test -z $INSIDE_GENIE
-            and not test -e ~/.disable-genie
-            and type -q genie
-            info 'Summoning genie'
-            exec genie -s
-        end
-
         if test -z $BYOBU_WINDOW_NAME
             and not test -e ~/.byobu/disable-autolaunch
             and type -q byobu-launcher
@@ -125,6 +68,9 @@ if test -z $INIT
             exec byobu-launcher
         end
     end
+
+    ## Done INIT
+    set -x INIT true
 end
 
 ### Shell
