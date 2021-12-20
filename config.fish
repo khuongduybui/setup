@@ -11,6 +11,8 @@ if status --is-interactive
     # source ~/setup/verify-fisher.fish
     # source ~/setup/fallback.fish
     # source ~/setup/fish_preexec.fish
+    test -d /home/linuxbrew/.linuxbrew/share/fish/vendor_completions.d
+    and cat /home/linuxbrew/.linuxbrew/share/fish/vendor_completions.d/*.fish | source
 
     ## Completions
     complete -c c2c -x -a '(__fish_complete_c2c)'

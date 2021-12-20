@@ -1,6 +1,6 @@
 # Fish abbreviations, sourced in ~/.config/fish/config.fish
 
-abbr my-setup 'curl -sL https://cutt.ly/rEGEPKo >/tmp/setup.sh; bash /tmp/setup.sh'
+abbr my-setup 'curl -sL https://git.io/JPi6g >/tmp/setup.sh; bash /tmp/setup.sh'
 abbr ssh-ec2 'ssh -i ~/.ssh/ec2.pem -l ec2-user'
 abbr ssh-raw 'ssh -F /dev/null'
 abbr sshp 'ssh -o PreferredAuthentications=password'
