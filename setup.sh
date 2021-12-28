@@ -149,6 +149,8 @@ echo '=== Common development tools ==='
 bash ~/setup/linux-inotify.sh
 bash ~/setup/linux-micro.sh
 bash ~/setup/linux-aws-cli-v2.sh
+bash ~/setup/linux-aws-sam.sh
+bash ~/setup/linux-aws-sam-cdk.sh
 
 if [ ! -d ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -195,7 +197,6 @@ pipx upgrade-all
 pipx ensurepath
 fish -c "vf install"
 fish -c "vf addplugins auto_activation"
-
 echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "brew install gh"
@@ -208,7 +209,7 @@ which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
 ~/setup/suggest.sh bandwhich "brew install bandwhich"
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
-~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
-~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
+# ~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
+# ~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
 echo '=== Goodbye ==='
