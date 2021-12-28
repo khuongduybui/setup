@@ -2,6 +2,7 @@
 ### PATH
 __clean_missing PATH
 __ensure_path ~/bin
+__ensure_path ~/.local/bin
 test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 varclear PATH
 set -xU PATH $PATH
