@@ -7,5 +7,5 @@ if ! which brew; then
 else
   brew update
 fi
-test -f /home/linuxbrew/.linuxbrew/bin/brew && echo "/home/linuxbrew/.linuxbrew/bin/brew shellenv | source; or true" >~/.config/fish/conf.d/brew.fish && /home/linuxbrew/.linuxbrew/bin/brew shellenv >/tmp/brew.sh && source /tmp/brew.sh
+test -f /home/linuxbrew/.linuxbrew/bin/brew && echo "/home/linuxbrew/.linuxbrew/bin/brew shellenv | source; or true" >~/.config/fish/conf.d/brew.fish && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 bash ~/setup/debian.sh
