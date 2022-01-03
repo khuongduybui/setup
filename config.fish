@@ -3,6 +3,13 @@
 __clean_missing PATH
 __ensure_path ~/bin
 __ensure_path ~/.local/bin
+if test -d ~/Android/Sdk
+    set -xU ANDROID_HOME "$HOME/Android/Sdk"
+    __ensure_path ~/Android/Sdk/platform-tools
+    __ensure_path ~/Android/Sdk/cmdline-tools/latest/bin
+else
+    set -e ANDROID_HOME
+end
 test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 varclear PATH
 set -xU PATH $PATH
