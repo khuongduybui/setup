@@ -10,6 +10,11 @@ mkdir -p ~/.config/fish/conf.d
 bash ~/setup/backup-and-link.sh ~/setup/config.fish ~/.config/fish/conf.d/"$USER".fish
 bash ~/setup/backup-and-link.sh ~/setup/fishfile ~/.config/fish/fish_plugins
 bash ~/setup/backup-and-link.sh ~/setup/fish-functions ~/.config/fish/functions
+if [ -f /etc/fish/conf.d/00-pengwin.fish ]; then
+    cp /etc/fish/conf.d/00-pengwin.fish ~/setup/00-pengwin.fish
+else
+    bash ~/setup/backup-and-link.sh ~/setup/00-pengwin.fish ~/.config/fish/conf.d/00-pengwin.fish
+fi
 
 mkdir -p ~/.config/nu
 bash ~/setup/backup-and-link.sh ~/setup/nushell/config.toml ~/.config/nu/
