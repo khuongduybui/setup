@@ -214,6 +214,7 @@ which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
 ~/setup/suggest.sh bandwhich "brew install bandwhich"
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
+~/setup/suggest.sh smem "apt|dnf|pacman|brew install smem"
 # ~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
 # ~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
