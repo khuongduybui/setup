@@ -8,7 +8,7 @@ sudo apt install -y fish
 
 sudo apt install -y neovim
 
-sudo apt install -y vim byobu grc rsync jq direnv fzf zoxide
+sudo apt install -y vim byobu grc rsync jq direnv fzf zoxide pass
 sudo apt install -y mc screenfetch
 
 echo "--- Install dev tools ---"
