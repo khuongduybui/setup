@@ -1,7 +1,5 @@
 #! /bin/bash
 
-# sudo apt-add-repository -y ppa:fish-shell/release-3
-
 if ! which brew; then
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
 else
