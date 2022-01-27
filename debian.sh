@@ -8,8 +8,17 @@ sudo apt install -y fish
 
 sudo apt install -y neovim
 
-sudo apt install -y vim byobu grc rsync jq direnv fzf zoxide pass
-sudo apt install -y mc screenfetch
+sudo apt install -y vim
+sudo apt install -y byobu
+sudo apt install -y grc
+sudo apt install -y rsync
+sudo apt install -y jq
+sudo apt install -y fzf
+sudo apt install -y pass
+sudo apt install -y direnv
+sudo apt install -y zoxide
+sudo apt install -y mc
+sudo apt install -y screenfetch
 
 echo "--- Install dev tools ---"
 sudo apt install -y pkg-config make build-essential
