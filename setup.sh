@@ -206,6 +206,7 @@ echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "brew install gh"
 which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
+which gh >/dev/null 2>/dev/null && gh extension install redraw/gh-install
 ~/setup/suggest.sh jt "$HOME/setup/brew-gh-jira.sh"
 ~/setup/suggest.sh sft "$HOME/setup/debian-scaleft.sh"
 ~/setup/suggest.sh direnv "brew install direnv"
