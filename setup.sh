@@ -57,6 +57,12 @@ bash ~/setup/backup-and-link.sh ~/setup/gpg.conf ~/.gnupg/gpg.conf
 mkdir -p ~/bin
 curl https://raw.githubusercontent.com/codexnull/allssh/master/allssh >~/bin/allssh
 chmod +x ~/bin/allssh
+if [ -f /usr/local/bin/cmd-exe ]; then
+    cp /usr/local/bin/cmd-exe ~/setup/cmd-exe
+else
+    bash ~/setup/backup-and-link.sh ~/setup/cmd-exe ~/bin/cmd-exe
+fi
+
 bash ~/setup/backup-and-link.sh ~/setup/.allsshrc ~/
 
 mkdir -p ~/opt
