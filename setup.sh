@@ -163,6 +163,12 @@ bash ~/setup/linux-aws-cli-v2.sh
 bash ~/setup/linux-aws-sam.sh
 bash ~/setup/linux-aws-sam-cdk.sh
 
+if which brew >/dev/null 2>&1; then
+    brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+else
+    echo brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+fi
+
 if [ ! -d ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
@@ -198,11 +204,8 @@ pip install --upgrade pipx
 
 asdf reshim
 
-pipx install aws-sso-util
-pipx install black
 pipx install cfn-lint
-pipx runpip cfn-lint install --upgrade pydot
-pipx install git-remote-codecommit
+pipx inject cfn-lint pydot
 pipx install virtualfish
 pipx upgrade-all
 pipx ensurepath
