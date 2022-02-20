@@ -22,5 +22,11 @@
         "scope": "workspace"
       }
     }
+  },
+  "extensions": {
+    "recommendations": [
+      "lunaryorn.fish-ide",
+      "denoland.vscode-deno"
+    ]
   }
 }

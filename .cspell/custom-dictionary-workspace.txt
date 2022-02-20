@@ -1,5 +1,9 @@
 # Custom Dictionary Words
+Autoformatter
 denoland
 funced
+markdownlint
 Rhum
+SCRIPTDIR
 subl
+taplo
