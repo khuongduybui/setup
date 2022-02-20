@@ -166,7 +166,12 @@ bash ~/setup/linux-aws-sam-cdk.sh
 if which brew >/dev/null 2>&1; then
     brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
 else
-    echo brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+    if test -f /home/linuxbrew/.linuxbrew/bin/brew; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+    else
+        echo brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+    fi
 fi
 
 if [ ! -d ~/.asdf ]; then
@@ -206,11 +211,14 @@ asdf reshim
 
 pipx install cfn-lint
 pipx inject cfn-lint pydot
+
+mkdir -p /home/duybui/.virtualenvs
 pipx install virtualfish
-pipx upgrade-all
 pipx ensurepath
 fish -c "vf install"
 fish -c "vf addplugins auto_activation"
+
+pipx upgrade-all
 echo "=== Suggestions ==="
 
 ~/setup/suggest.sh gh "brew install gh"
