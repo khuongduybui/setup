@@ -224,6 +224,7 @@ echo "=== Suggestions ==="
 ~/setup/suggest.sh gh "brew install gh"
 which gh >/dev/null 2>/dev/null && gh extension install mislav/gh-branch
 which gh >/dev/null 2>/dev/null && gh extension install redraw/gh-install
+which gh >/dev/null 2>/dev/null && gh extension install gennaro-tedesco/gh-f
 ~/setup/suggest.sh jt "$HOME/setup/brew-gh-jira.sh"
 ~/setup/suggest.sh sft "$HOME/setup/debian-scaleft.sh"
 ~/setup/suggest.sh direnv "brew install direnv"
@@ -232,7 +233,7 @@ which gh >/dev/null 2>/dev/null && gh extension install redraw/gh-install
 ~/setup/suggest.sh bandwhich "brew install bandwhich"
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
-~/setup/suggest.sh smem "apt|dnf|pacman|brew install smem"
+~/setup/suggest.sh smem "apt|dnf|pacman install smem"
 # ~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
 # ~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
