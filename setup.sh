@@ -164,15 +164,17 @@ bash ~/setup/linux-aws-sam.sh
 bash ~/setup/linux-aws-sam-cdk.sh
 
 if which brew >/dev/null 2>&1; then
-    brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+    brew install aws-sso-util git-remote-codecommit
 else
     if test -f /home/linuxbrew/.linuxbrew/bin/brew; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+        brew install aws-sso-util git-remote-codecommit
     else
-        echo brew install shellcheck hadolint yamllint black aws-sso-util git-remote-codecommit
+        echo brew install aws-sso-util git-remote-codecommit
     fi
 fi
+
+# brew install shellcheck hadolint yamllint black cfn-lint # provided by trunk.io
 
 if [ ! -d ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -209,8 +211,8 @@ pip install --upgrade pipx
 
 asdf reshim
 
-pipx install cfn-lint
-pipx inject cfn-lint pydot
+# pipx install cfn-lint
+# pipx inject cfn-lint pydot
 
 mkdir -p /home/duybui/.virtualenvs
 pipx install virtualfish
