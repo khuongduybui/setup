@@ -31,7 +31,9 @@ if status --is-interactive
     source ~/setup/abbreviations.fish
 
     ## AWS
-    type -q aws-sso-util; and aws-sso-util login --all &
+    if not test -f ~/.disable-aws-sso-util
+        type -q aws-sso-util; and aws-sso-util login --all &
+    end
 
     __is_day; and set -xU BAT_THEME "Monokai Extended Light"; or set -xU BAT_THEME "Monokai Extended"
 end
