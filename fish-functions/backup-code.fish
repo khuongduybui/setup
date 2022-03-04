@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.XiQVA4/backup-code.fish @ line 2
+# Defined in /tmp/fish.DYImcw/backup-code.fish @ line 2
 function backup-code
     cd ~/code
     ls -1 ./*.code-workspace >.auto-backup
@@ -7,8 +7,8 @@ function backup-code
     find -name .tool-versions >>.auto-backup
     find -name 'local-tests*' >>.auto-backup
     mkdir -p ~/winhome/code/
-    rsync --files-from=.auto-backup ./ ~/winhome/code/
+    rsync --files-from=.auto-backup ./ ~/winhome/.code/
     if test -f .manual-backup
-        rsync --files-from=.manual-backup ./ ~/winhome/code/
+        rsync --files-from=.manual-backup ./ ~/winhome/.code/
     end
 end
