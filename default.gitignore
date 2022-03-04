@@ -8,4 +8,3 @@ localonly-*
 .vscode/
 .venv
 .nu-env
-.trunk
