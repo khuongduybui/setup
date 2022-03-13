@@ -236,6 +236,7 @@ which gh >/dev/null 2>/dev/null && gh extension install gennaro-tedesco/gh-f
 ~/setup/suggest.sh dust "brew install dust"
 ~/setup/suggest.sh procs "brew install procs"
 ~/setup/suggest.sh smem "apt|dnf|pacman install smem"
+~/setup/suggest.sh trunk "$HOME/setup/linux-trunk.sh"
 # ~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
 # ~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
