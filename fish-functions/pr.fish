@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.ZImnXZ/pr.fish @ line 2
+# Defined in /tmp/fish.Y6dCyJ/pr.fish @ line 2
 function pr
     if not test -d .git
         echo "Not a git repository"
@@ -31,7 +31,7 @@ function pr
         return
     end
 
-    set sub_pr 0
+    set -l sub_pr 0
     for repo in (ls */.git | grep .git: | sed -e 's|/\.git:||')
         if test $repo = (basename $here)
             continue
@@ -58,7 +58,7 @@ function pr
             echo ')'
             set_color normal
         else
-            set sub_pr (sub_pr + 1)
+            set -x sub_pr (math "$sub_pr + 1")
             set_color $fish_color_command
             echo -n gh
             set_color $fish_color_param
