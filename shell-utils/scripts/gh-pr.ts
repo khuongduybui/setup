@@ -34,7 +34,7 @@ export async function main(base: string) {
   // log.info(currentDirectory);
   // log.info(parentDirectory);
   const otherRepos = (await siblingDirectories()).filter(
-    (dir) => dir !== currentDirectory()
+    (dir) => dir !== currentDirectory(),
   );
   // log.info(otherRepos);
   let subPrs = 0;
@@ -44,11 +44,11 @@ export async function main(base: string) {
       const currentBranch = await gitBranch(path);
       if (currentBranch === branch) {
         log.info(
-          `Creating a sub PR for ${repo} from ${currentBranch} to ${base}`
+          `Creating a sub PR for ${repo} from ${currentBranch} to ${base}`,
         );
         await exec(
           `gh pr create --base "${base}" --title "${title}" --body "See ${url}"`,
-          { output: OutputMode.None, cwd: path }
+          { output: OutputMode.None, cwd: path },
         );
         const pr = await exec(`gh pr view --jq .url --json url`, {
           output: OutputMode.Capture,
@@ -59,7 +59,7 @@ export async function main(base: string) {
       } else {
         log.info(`Skipping ${repo}, which is on ${currentBranch} branch.`);
       }
-    })
+    }),
   );
 
   if (subPrs > 0) {
@@ -67,7 +67,7 @@ export async function main(base: string) {
       `gh pr comment --body "Please review along with ${subPrs} related PR${
         subPrs > 1 ? "s" : ""
       }."`,
-      { output: OutputMode.StdOut }
+      { output: OutputMode.StdOut },
     );
   }
 }
@@ -77,7 +77,7 @@ const cli = cac((import.meta.url.split("/").pop() ?? "").replace(".ts", ""));
 cli
   .command(
     "[base]",
-    "The base branch to create a PR against, defaults to master"
+    "The base branch to create a PR against, defaults to master",
   )
   //   .option("--foo", "Some boolean option")
   //   .option("--bar <bar>", "Some text option")

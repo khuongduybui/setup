@@ -7,8 +7,7 @@ import { basename, dirname } from "https://deno.land/std@0.129.0/path/mod.ts";
 type os = "linux" | "darwin" | "windows";
 export const isWin = (os = Deno.build.os) => os === "windows";
 
-export const homeDirectoryEnv = (os?: os) =>
-  isWin(os) ? "USERPROFILE" : "HOME";
+export const homeDirectoryEnv = (os?: os) => isWin(os) ? "USERPROFILE" : "HOME";
 export const homeDirectory = (os?: os) =>
   Deno.env.get(homeDirectoryEnv(os)) ?? "/";
 
@@ -77,7 +76,7 @@ export const invokeShell = (shell: string[], cmd: string[], options = {}) => {
 export const fuzzyShell = async (
   shell: string[],
   query: string,
-  cmd: string
+  cmd: string,
 ) => {
   const process = Deno.run({
     cmd: [...shell, `${cmd} | fzf -1 -q ${query}`],

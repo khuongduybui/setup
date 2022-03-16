@@ -14,7 +14,8 @@ Then install the scripts with
 ./install.sh
 ```
 
-Run `asdf reshim` if https://deno.land was installed with https://github.com/asdf-vm/asdf.
+Run `asdf reshim` if https://deno.land was installed with
+https://github.com/asdf-vm/asdf.
 
 ## edit
 
