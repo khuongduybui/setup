@@ -17,17 +17,17 @@ import {
 export async function main(base: string) {
   const branch = await gitBranch();
   log.info(`Creating a PR from ${branch} to ${base}`);
-  await invoke(["gh", "pr", "create", "--base", base]);
+  await invoke(["gh", "pr", "create", "--base", base], {env: {DEBUG: ""}});
 
   const title = (
     await exec("gh pr view --jq .title --json title", {
       output: OutputMode.Capture,
-    })
+    }, {env: {DEBUG: ""}})
   ).output.trim();
   const url = (
     await exec("gh pr view --jq .url --json url", {
       output: OutputMode.Capture,
-    })
+    }, {env: {DEBUG: ""}})
   ).output.trim();
   // log.info({ title, url });
 
@@ -48,11 +48,12 @@ export async function main(base: string) {
         );
         await exec(
           `gh pr create --base "${base}" --title "${title}" --body "See ${url}"`,
-          { output: OutputMode.None, cwd: path },
+          { output: OutputMode.None, cwd: path, env: {DEBUG: ""} },
         );
         const pr = await exec(`gh pr view --jq .url --json url`, {
           output: OutputMode.Capture,
           cwd: path,
+          env: {DEBUG: ""}
         });
         log.info(`Created sub PR: ${pr.output.trim()}`);
         subPrs++;
@@ -67,7 +68,7 @@ export async function main(base: string) {
       `gh pr comment --body "Please review along with ${subPrs} related PR${
         subPrs > 1 ? "s" : ""
       }."`,
-      { output: OutputMode.StdOut },
+      { output: OutputMode.StdOut, env: {DEBUG: ""} },
     );
   }
 }
