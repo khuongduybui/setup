@@ -1,0 +1,4 @@
+*.gpg filter=gpg diff=gpg
+
+*.py filter=difftastic diff=difftastic
+*.sh filter=difftastic diff=difftastic

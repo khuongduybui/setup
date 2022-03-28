@@ -49,8 +49,14 @@ tool = vscode
 [difftool "vscode"]
 cmd = code -w --diff $LOCAL $REMOTE
 
+[difftool "difftastic"]
+cmd = difft "$LOCAL" "$REMOTE"
+
 [diff "gpg"]
 textconv = gpg --no-tty --decrypt
+
+[diff "difftastic"]
+command = difft
 
 [merge]
 tool = vscode

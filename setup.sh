@@ -46,6 +46,7 @@ bash ~/setup/backup-and-link.sh ~/setup/.editorconfig ~/
 bash ~/setup/backup-and-link.sh ~/setup/.czrc ~/
 bash ~/setup/backup-and-link.sh ~/setup/default.gitconfig ~/.gitconfig
 bash ~/setup/backup-and-link.sh ~/setup/default.gitignore ~/.gitignore
+bash ~/setup/backup-and-link.sh ~/setup/default.gitattributes ~/.gitattributes
 mkdir -p ~/.config/gh
 bash ~/setup/backup-and-link.sh ~/setup/gh/config.yml ~/.config/gh/
 
