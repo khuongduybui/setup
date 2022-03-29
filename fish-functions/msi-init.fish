@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.keEMiV/msi-init.fish @ line 2
+# Defined in /tmp/fish.pThgH7/msi-init.fish @ line 2
 function msi-init
     aws-sso-util login --all
 
@@ -12,6 +12,8 @@ function msi-init
     x-www-browser https://gateway1.orca.activeeye.com/gateway
     echo https://gateway1.ibex.activeeye.com/gateway
     x-www-browser https://gateway1.ibex.activeeye.com/gateway
+    echo https://gateway1.wolf.activeeye.com/gateway
+    x-www-browser https://gateway1.wolf.activeeye.com/gateway
 
     sft list-servers >/dev/null
 end
