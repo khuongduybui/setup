@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.deQ9Gi/c2c.fish @ line 2
+# Defined in /tmp/fish.SnYHiU/c2c.fish @ line 2
 function c2c
     if not test -d ~/code
         set_color $fish_color_error
@@ -17,7 +17,7 @@ function c2c
     cd ~/code
     if not test (count $argv) = 0
         cd ./(command ls | grep -v .code-workspace | fzf -1 -q $argv[1])
-        set -xg DEBUG "*$argv[1]*:*"
+        # set -xg DEBUG "*$argv[1]*:*"
         if test (count $argv) = 2
             cd ./(command ls | fzf -1 -q $argv[2])
         else if test (count (command ls)) = 1
