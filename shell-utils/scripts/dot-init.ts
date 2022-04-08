@@ -15,12 +15,13 @@ export async function main() {
   for await (const file of Deno.readDir(storage)) {
     if (file.name.startsWith("dotfile")) {
       const destinationName = file.name.replace("dotfile", "");
-      const destinationPath = path.join(home, destinationName);
+      const destinationPath = path.join(winhome, destinationName);
       const sourcePath = path.join(storage, file.name);
       log.debug(file);
-      if (await Deno.lstat(destinationPath)) {
+      try {
+        await Deno.lstat(destinationPath);
         log.warning(`${destinationPath} already exists`);
-      } else {
+      } catch(error) {
         await Deno.symlink(sourcePath, destinationPath);
         log.info(`${destinationPath} created`);
       }
