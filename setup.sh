@@ -200,9 +200,10 @@ asdf global nodejs "$(asdf latest nodejs)"
 npm install -g npm@latest yarn@latest
 # yarn global add forever eslint neovim https://github.com/khuongduybui/sqs-copy.git env-cmd
 
-# asdf plugin add rust
-# asdf install rust latest
-# asdf global rust "$(asdf latest rust)"
+asdf plugin add rust
+asdf install rust latest
+asdf global rust "$(asdf latest rust)"
+cargo install difftastic
 # cargo install starship bat exa git-delta zoxide
 
 asdf plugin add python
@@ -240,7 +241,7 @@ which gh >/dev/null 2>/dev/null && gh extension install gennaro-tedesco/gh-f
 ~/setup/suggest.sh smem "apt|dnf|pacman install smem"
 ~/setup/suggest.sh trunk "$HOME/setup/linux-trunk.sh"
 ~/setup/suggest.sh difft "cargo install difftastic"
-# ~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
-# ~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
+~/setup/suggest.sh sam "$HOME/setup/linux-aws-sam.sh"
+~/setup/suggest.sh sam-beta-cdk "$HOME/setup/linux-aws-sam-cdk.sh"
 
 echo '=== Goodbye ==='
