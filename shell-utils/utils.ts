@@ -2,7 +2,11 @@ import {
   exec,
   OutputMode,
 } from "https://raw.githubusercontent.com/khuongduybui/deno-exec/master/mod.ts";
-import { basename, dirname } from "https://deno.land/std@0.129.0/path/mod.ts";
+import {
+  basename,
+  dirname,
+  join,
+} from "https://deno.land/std@0.129.0/path/mod.ts";
 
 type os = "linux" | "darwin" | "windows";
 export const isWin = (os = Deno.build.os) => os === "windows";
@@ -24,6 +28,24 @@ export const siblingDirectories = async () => {
 };
 export const userEnv = (os?: os) => (isWin(os) ? "USERNAME" : "USER");
 export const user = (os?: os) => Deno.env.get(userEnv(os)) ?? "/";
+export const pathExists = async (path: string) => {
+  try {
+    await Deno.lstat(path);
+    return true;
+  } catch (_) {
+    return false;
+  }
+};
+export const windowsToWslPath = async (windowsPath: string) => {
+  const wslPath =
+    (await exec(`wslpath -u ${windowsPath}`, { output: OutputMode.Capture }))
+      .output.trim();
+
+  const home = homeDirectory();
+  const winhome = join(home, "winhome");
+
+  return wslPath.replace("~", winhome);
+};
 
 export const gitBranch = async (location = Deno.cwd()) => {
   return (
