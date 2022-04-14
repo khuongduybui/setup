@@ -1,12 +1,8 @@
 #! /bin/bash
 
+sudo apt install -y docker.io
+brew install docker-compose
 sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt update
-sudo apt install docker-ce
-
-sudo groupadd docker
-sudo gpasswd -a $USER docker
-newgrp docker
+sudo service docker start
+sudo usermod -aG docker (whoami)
