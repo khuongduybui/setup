@@ -89,3 +89,5 @@ type -q direnv; and direnv hook fish | source
 type -q zoxide; and zoxide init fish | sed "s/complete -e z/complete -c z -e/" | source; and abbr cd z
 
 type -q jt; and test -e ~/.config/jira; and jt completion fish | source
+
+type -q atuin; and atuin init fish | source
