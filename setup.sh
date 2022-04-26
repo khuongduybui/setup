@@ -16,6 +16,9 @@ else
     bash ~/setup/backup-and-link.sh ~/setup/00-pengwin.fish ~/.config/fish/conf.d/00-pengwin.fish
 fi
 
+mkdir -p ~/.config/atuin
+bash ~/setup/backup-and-link.sh ~/setup/atuin/config.toml ~/.config/atuin/
+
 mkdir -p ~/.config/nu
 bash ~/setup/backup-and-link.sh ~/setup/nushell/config.toml ~/.config/nu/
 
