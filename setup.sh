@@ -30,7 +30,7 @@ mkdir -p ~/.config/sublime-text-3/Packages/User
 bash ~/setup/backup-and-link.sh ~/setup/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
 
 mkdir -p ~/.config/micro
-bash ~/setup/backup-and-link.sh ~/setup/micro.json ~/.config/micro/settings.json
+bash ~/setup/backup-and-link.sh ~/setup/micro/settings.json ~/.config/micro/
 
 bash ~/setup/backup-and-link.sh ~/setup/.vimrc ~/
 mkdir -p ~/.config/nvim
