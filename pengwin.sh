@@ -3,16 +3,17 @@
 # bash ~/setup/debian.sh
 echo "--- Install pengwin supported tools ---"
 if ! which fish; then
-  pengwin-setup install SETTINGS SHELLS FISH
+    pengwin-setup install SETTINGS SHELLS FISH
 fi
 if ! which brew; then
-  pengwin-setup install TOOLS HOMEBREW
+    pengwin-setup install TOOLS HOMEBREW
 else
-  brew update
+    brew update
+    brew upgrade
 fi
 test -f /home/linuxbrew/.linuxbrew/bin/brew && echo "/home/linuxbrew/.linuxbrew/bin/brew shellenv | source; or true" >~/.config/fish/conf.d/brew.fish && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if ! which pwsh; then
-  pengwin-setup install TOOLS POWERSHELL
+    pengwin-setup install TOOLS POWERSHELL
 fi
 
 echo "--- Install package manager ---"
@@ -22,8 +23,8 @@ echo "--- Install system utils ---"
 sudo apt install -y jq direnv fzf zoxide sshpass
 apt policy ssh | grep -i installed | grep -q 1:7
 if [ $? -ne 0 ]; then
-  sudo apt install -y --allow-downgrades ssh=1:7.9p1-10+deb10u2
-  sudo apt-mark hold ssh
+    sudo apt install -y --allow-downgrades ssh=1:7.9p1-10+deb10u2
+    sudo apt-mark hold ssh
 fi
 
 echo "--- Install dev tools ---"
