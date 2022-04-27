@@ -1,7 +1,7 @@
-# Defined in /tmp/fish.Rd5D0x/l.fish @ line 2
+# Defined in /tmp/fish.K3mCY9/l.fish @ line 2
 function l
     if type -q exa
-        exa -lagh --time-style=long-iso --color-scale $argv
+        exa -lagh --time-style=long-iso --color-scale --group-directories-first $argv
     else if type -q lsd
         lsd -lA $argv
     else
