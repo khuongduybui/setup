@@ -17,7 +17,7 @@ sudo wget -O /etc/apt/trusted.gpg.d/wsl-transdebian.gpg https://arkane-systems.g
 
 sudo chmod a+r /etc/apt/trusted.gpg.d/wsl-transdebian.gpg
 
-cat << EOF | sudo tee /etc/apt/sources.list.d/wsl-transdebian.list
+cat <<EOF | sudo tee /etc/apt/sources.list.d/wsl-transdebian.list
 deb https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
 deb-src https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
 EOF
