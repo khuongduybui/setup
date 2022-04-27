@@ -117,10 +117,11 @@ cli.command("", "Command description")
 cli.help();
 
 if (import.meta.main) {
-  try {
-    cli.parse();
-  } catch (e) {
-    log.error(e);
-    cli.outputHelp();
-  }
+  log.critical("This cannot be run in WSL.");
+  // try {
+  //   cli.parse();
+  // } catch (e) {
+  //   log.error(e);
+  //   cli.outputHelp();
+  // }
 }
